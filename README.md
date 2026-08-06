@@ -2,16 +2,6 @@
 
 无框架、纯前端的 Minecraft 数据包 JSON 编辑器。表单由服务端发布的 JSON Schema 动态生成；Schema 不在浏览器中编辑或保存。
 
-## 启动
-
-必须通过静态 HTTP 服务访问，不能直接用 `file://` 打开，因为浏览器需要读取 Schema 索引和 JSON 配置文件。
-
-```powershell
-python -m http.server 4173
-```
-
-访问 `http://127.0.0.1:4173/`。
-
 ## 服务端 Schema 配置
 
 所有 Schema 位于 `schemas/`，由 `schemas/index.txt` 索引。索引文件每个非空且不以 `#` 开头的行，均表示相对于索引文件的一个 Schema JSON 路径。
@@ -31,17 +21,6 @@ recipe-1.21.1.json
 4. 部署这些静态文件；用户刷新页面后会加载最新配置。
 
 Schema 定义不会写入 localStorage。语言、主题、注册表索引、命名空间、内容路径及当前 JSON 编辑状态仍在浏览器本地保存。
-
-## Origins NeoForge Schemas
-
-目录已包含从 Origins NeoForge 0.3.1 源码生成并导入的 Minecraft 1.21.1 Schema：
-
-- `origins/origins-neoforge-origin-1.21.1.json`：`data/<namespace>/origins/origin/<path>.json`
-- `origins/origins-neoforge-layer-1.21.1.json`：`data/<namespace>/origins/layer/<path>.json`
-- `origins/origins-neoforge-badge-1.21.1.json`：`data/<namespace>/origins/badge/<path>.json`
-- `origins/origins-neoforge-power-1.21.1.json`：`data/<namespace>/origins/power/<path>.json`
-
-Origin 与 Layer 的字段来自其 `DIRECT_CODEC`。Power 和 Badge 使用 `type` 分派 Codec，因此 Schema 提供公共字段、内置类型建议和可扩展类型专属字段。Power 的 `condition` 已覆盖递归 Entity Condition（包括 `and`、`or`、`not`、`chance`、实体类型、维度、效果、Origin/Power、数值比较和记分板）；动作、修饰器、其余条件类型与 Layer 的条件化 Origin 条目可在 JSON 面板补充。
 
 ## 导出 ZIP
 
