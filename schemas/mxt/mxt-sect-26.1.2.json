@@ -1,0 +1,112 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Sect",
+    "zh_cn": "觅仙途宗门"
+  },
+  "$description": {
+    "en_us": "Data-driven Sect definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的宗门、等级与兑换定义。"
+  },
+  "type": "object",
+  "properties": {
+    "ranks": {
+      "$title": {
+        "en_us": "Ranks",
+        "zh_cn": "宗门等级"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_Rank",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Ranks value.",
+        "zh_cn": "宗门等级的值。"
+      }
+    },
+    "tasks": {
+      "$title": {
+        "en_us": "Tasks",
+        "zh_cn": "宗门任务"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_Task",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Tasks value.",
+        "zh_cn": "宗门任务的值。"
+      }
+    },
+    "exchanges": {
+      "$title": {
+        "en_us": "Exchanges",
+        "zh_cn": "兑换项目"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_Exchange",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Exchanges value.",
+        "zh_cn": "兑换项目的值。"
+      }
+    },
+    "territory_permissions": {
+      "$title": {
+        "en_us": "Territory Permissions",
+        "zh_cn": "领地权限"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Territory Permissions value.",
+        "zh_cn": "领地权限的值。"
+      }
+    }
+  },
+  "required": [
+    "ranks"
+  ],
+  "id": "mxt-sect",
+  "$version": "26.1.2",
+  "$registry": "mxt:sect",
+  "$path": "data/<namespace>/mxt/sect/<path>.json"
+}

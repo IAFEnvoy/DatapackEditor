@@ -1,0 +1,83 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Contract Type",
+    "zh_cn": "觅仙途契约类型"
+  },
+  "$description": {
+    "en_us": "Data-driven Contract Type definition from MiXianTu.",
+    "zh_cn": "觅仙途契约类型的值。"
+  },
+  "type": "object",
+  "properties": {
+    "owner_condition": {
+      "$title": {
+        "en_us": "Owner Condition",
+        "zh_cn": "主人条件"
+      },
+      "$type": "mxt-common#entity_condition",
+      "$description": {
+        "en_us": "Owner Condition value.",
+        "zh_cn": "主人条件的值。"
+      }
+    },
+    "creature_condition": {
+      "$title": {
+        "en_us": "Creature Condition",
+        "zh_cn": "灵兽条件"
+      },
+      "$type": "mxt-common#entity_condition",
+      "$description": {
+        "en_us": "Creature Condition value.",
+        "zh_cn": "灵兽条件的值。"
+      }
+    },
+    "follow_action": {
+      "$title": {
+        "en_us": "Follow Action",
+        "zh_cn": "跟随行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "Follow Action value.",
+        "zh_cn": "跟随行为的值。"
+      }
+    },
+    "combat_action": {
+      "$title": {
+        "en_us": "Combat Action",
+        "zh_cn": "战斗行为"
+      },
+      "$type": "mxt-common#bi_entity_action",
+      "$description": {
+        "en_us": "Combat Action value.",
+        "zh_cn": "战斗行为的值。"
+      }
+    },
+    "break_action": {
+      "$title": {
+        "en_us": "Break Action",
+        "zh_cn": "解除行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "Break Action value.",
+        "zh_cn": "解除行为的值。"
+      }
+    },
+    "penalty_action": {
+      "$title": {
+        "en_us": "Penalty Action",
+        "zh_cn": "惩罚行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "Penalty Action value.",
+        "zh_cn": "惩罚行为的值。"
+      }
+    }
+  },
+  "id": "mxt-contract_type",
+  "$version": "26.1.2",
+  "$registry": "mxt:contract_type",
+  "$path": "data/<namespace>/mxt/contract_type/<path>.json"
+}

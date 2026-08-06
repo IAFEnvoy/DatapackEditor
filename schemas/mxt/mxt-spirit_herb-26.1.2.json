@@ -1,0 +1,122 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Spirit Herb",
+    "zh_cn": "觅仙途灵草"
+  },
+  "$description": {
+    "en_us": "Data-driven Spirit Herb definition from MiXianTu.",
+    "zh_cn": "觅仙途灵草的值。"
+  },
+  "type": "object",
+  "properties": {
+    "items": {
+      "$title": {
+        "en_us": "Items",
+        "zh_cn": "物品"
+      },
+      "$description": {
+        "en_us": "Items value.",
+        "zh_cn": "物品的值。"
+      }
+    },
+    "material_grade": {
+      "$title": {
+        "en_us": "Material Grade",
+        "zh_cn": "材料品级"
+      },
+      "type": "string",
+      "$registry": "mxt:material_grade",
+      "$description": {
+        "en_us": "Material Grade value.",
+        "zh_cn": "材料品级的值。"
+      }
+    },
+    "age": {
+      "$title": {
+        "en_us": "Age",
+        "zh_cn": "年龄"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Age value.",
+        "zh_cn": "年龄的值。"
+      }
+    },
+    "element_tags": {
+      "$title": {
+        "en_us": "Element Tags",
+        "zh_cn": "元素标签"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Element Tags value.",
+        "zh_cn": "元素标签的值。"
+      }
+    },
+    "material_tags": {
+      "$title": {
+        "en_us": "Material Tags",
+        "zh_cn": "材料标签"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Material Tags value.",
+        "zh_cn": "材料标签的值。"
+      }
+    },
+    "growth_rate": {
+      "$title": {
+        "en_us": "Growth Rate",
+        "zh_cn": "生长速率"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Growth Rate value.",
+        "zh_cn": "生长速率的值。"
+      }
+    },
+    "drop_chance": {
+      "$title": {
+        "en_us": "Drop Chance",
+        "zh_cn": "掉落概率"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Drop Chance value.",
+        "zh_cn": "掉落概率的值。"
+      }
+    }
+  },
+  "required": [
+    "items",
+    "material_grade"
+  ],
+  "id": "mxt-spirit_herb",
+  "$version": "26.1.2",
+  "$registry": "mxt:spirit_herb",
+  "$path": "data/<namespace>/mxt/spirit_herb/<path>.json"
+}

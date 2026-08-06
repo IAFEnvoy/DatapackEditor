@@ -1,0 +1,31 @@
+{
+  "id": "language",
+  "$version": "1.21.1",
+  "$path": "assets/<namespace>/lang/<path>.json",
+  "title": "Language file",
+  "$title": {
+    "en_us": "Language file",
+    "zh_cn": "语言文件"
+  },
+  "$registry": "minecraft:language",
+  "description": "Resource pack translation file. Add translation keys as properties.",
+  "$description": {
+    "en_us": "Resource pack translation file. Add translation keys as properties.",
+    "zh_cn": "资源包语言文件。可将翻译键作为属性添加。"
+  },
+  "type": "object",
+  "additionalProperties": {
+    "type": "string",
+    "$title": {
+      "en_us": "Property",
+      "zh_cn": "Property"
+    },
+    "$description": {
+      "en_us": "Property value.",
+      "zh_cn": "Property的值。"
+    }
+  },
+  "default": {
+    "item.example.example_item": "Example item"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Pill Binding",
+    "zh_cn": "觅仙途丹药绑定"
+  },
+  "$description": {
+    "en_us": "Data-driven Pill Binding definition from MiXianTu.",
+    "zh_cn": "觅仙途丹药绑定的值。"
+  },
+  "type": "object",
+  "properties": {
+    "items": {
+      "$title": {
+        "en_us": "Items",
+        "zh_cn": "物品"
+      },
+      "$description": {
+        "en_us": "Items value.",
+        "zh_cn": "物品的值。"
+      }
+    },
+    "on_consume": {
+      "$title": {
+        "en_us": "On Consume",
+        "zh_cn": "服用时行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "On Consume value.",
+        "zh_cn": "服用时行为的值。"
+      }
+    },
+    "toxicity_gain": {
+      "$title": {
+        "en_us": "Toxicity Gain",
+        "zh_cn": "丹毒增加"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Toxicity Gain value.",
+        "zh_cn": "丹毒增加的值。"
+      }
+    },
+    "toxicity_threshold": {
+      "$title": {
+        "en_us": "Toxicity Threshold",
+        "zh_cn": "丹毒阈值"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Toxicity Threshold value.",
+        "zh_cn": "丹毒阈值的值。"
+      }
+    },
+    "on_overdose": {
+      "$title": {
+        "en_us": "On Overdose",
+        "zh_cn": "丹毒过量时行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "On Overdose value.",
+        "zh_cn": "丹毒过量时行为的值。"
+      }
+    },
+    "toxicity_after_overdose": {
+      "$title": {
+        "en_us": "Toxicity After Overdose",
+        "zh_cn": "过量后的丹毒"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Toxicity After Overdose value.",
+        "zh_cn": "过量后的丹毒的值。"
+      }
+    }
+  },
+  "required": [
+    "items"
+  ],
+  "id": "mxt-pill_binding",
+  "$version": "26.1.2",
+  "$registry": "mxt:pill_binding",
+  "$path": "data/<namespace>/mxt/pill_binding/<path>.json"
+}

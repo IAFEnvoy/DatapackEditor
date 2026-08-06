@@ -1,0 +1,110 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Spirit Root",
+    "zh_cn": "觅仙途灵根"
+  },
+  "$description": {
+    "en_us": "Data-driven Spirit Root definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的灵根定义。"
+  },
+  "type": "object",
+  "properties": {
+    "element": {
+      "$title": {
+        "en_us": "Element",
+        "zh_cn": "元素"
+      },
+      "type": "string",
+      "$registry": "mxt:element",
+      "$description": {
+        "en_us": "Element value.",
+        "zh_cn": "元素的值。"
+      }
+    },
+    "cultivation_multiplier": {
+      "$title": {
+        "en_us": "Cultivation Multiplier",
+        "zh_cn": "修炼倍率"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Cultivation Multiplier value.",
+        "zh_cn": "修炼倍率的值。"
+      }
+    },
+    "element_ability_modifier": {
+      "$title": {
+        "en_us": "Element Ability Modifier",
+        "zh_cn": "元素技能修正"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Element Ability Modifier value.",
+        "zh_cn": "元素技能修正的值。"
+      }
+    },
+    "rarity": {
+      "$title": {
+        "en_us": "Rarity",
+        "zh_cn": "稀有度"
+      },
+      "default": "common",
+      "$description": {
+        "en_us": "Rarity value.",
+        "zh_cn": "稀有度的值。"
+      }
+    },
+    "granted_abilities": {
+      "$title": {
+        "en_us": "Granted Abilities",
+        "zh_cn": "授予的技能"
+      },
+      "type": "array",
+      "items": {
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Granted Abilities value.",
+        "zh_cn": "授予的技能的值。"
+      }
+    },
+    "compatibility_tags": {
+      "$title": {
+        "en_us": "Compatibility Tags",
+        "zh_cn": "兼容 标签"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Compatibility Tags value.",
+        "zh_cn": "兼容 标签的值。"
+      }
+    }
+  },
+  "required": [
+    "element"
+  ],
+  "id": "mxt-spirit_root",
+  "$version": "26.1.2",
+  "$registry": "mxt:spirit_root",
+  "$path": "data/<namespace>/mxt/spirit_root/<path>.json"
+}

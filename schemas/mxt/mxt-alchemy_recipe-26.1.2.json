@@ -1,0 +1,193 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Alchemy Recipe",
+    "zh_cn": "觅仙途炼丹配方"
+  },
+  "$description": {
+    "en_us": "Data-driven Alchemy Recipe definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的炼丹配方定义。"
+  },
+  "type": "object",
+  "properties": {
+    "inputs": {
+      "$title": {
+        "en_us": "Inputs",
+        "zh_cn": "材料"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Inputs value.",
+        "zh_cn": "材料的值。"
+      }
+    },
+    "target_temperature": {
+      "$title": {
+        "en_us": "Target Temperature",
+        "zh_cn": "目标温度"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Target Temperature value.",
+        "zh_cn": "目标温度的值。"
+      }
+    },
+    "temperature_tolerance": {
+      "$title": {
+        "en_us": "Temperature Tolerance",
+        "zh_cn": "温度容差"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Temperature Tolerance value.",
+        "zh_cn": "温度容差的值。"
+      }
+    },
+    "minimum_furnace_tier": {
+      "$title": {
+        "en_us": "Minimum Furnace Tier",
+        "zh_cn": "最低丹炉阶"
+      },
+      "type": "integer",
+      "default": 0,
+      "$description": {
+        "en_us": "Minimum Furnace Tier value.",
+        "zh_cn": "最低丹炉阶的值。"
+      }
+    },
+    "duration": {
+      "$title": {
+        "en_us": "Duration",
+        "zh_cn": "持续时间"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Duration value.",
+        "zh_cn": "持续时间的值。"
+      }
+    },
+    "aura_kinds": {
+      "$title": {
+        "en_us": "Required Aura Kinds",
+        "zh_cn": "所需灵气类型"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "All listed aura kinds must be present to start alchemy.",
+        "zh_cn": "开始炼丹时必须同时具备的灵气类型。"
+      }
+    },
+    "minimum_aura": {
+      "$title": {
+        "en_us": "Minimum Aura",
+        "zh_cn": "最低灵气"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Minimum Aura value.",
+        "zh_cn": "最低灵气的值。"
+      }
+    },
+    "success_outputs": {
+      "$title": {
+        "en_us": "Success Outputs",
+        "zh_cn": "成功产物"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Success Outputs value.",
+        "zh_cn": "成功产物的值。"
+      }
+    },
+    "failure_outputs": {
+      "$title": {
+        "en_us": "Failure Outputs",
+        "zh_cn": "失败产物"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Failure Outputs value.",
+        "zh_cn": "失败产物的值。"
+      }
+    },
+    "success_behavior": {
+      "$title": {
+        "en_us": "Success Behavior",
+        "zh_cn": "成功行为"
+      },
+      "type": "string",
+      "$description": {
+        "en_us": "Success Behavior value.",
+        "zh_cn": "成功行为的值。"
+      }
+    },
+    "failure_behavior": {
+      "$title": {
+        "en_us": "Failure Behavior",
+        "zh_cn": "失败行为"
+      },
+      "type": "string",
+      "$description": {
+        "en_us": "Failure Behavior value.",
+        "zh_cn": "失败行为的值。"
+      }
+    }
+  },
+  "required": [
+    "inputs",
+    "target_temperature",
+    "duration",
+    "success_outputs"
+  ],
+  "id": "mxt-alchemy_recipe",
+  "$version": "26.1.2",
+  "$registry": "mxt:alchemy_recipe",
+  "$path": "data/<namespace>/mxt/alchemy_recipe/<path>.json"
+}

@@ -1,0 +1,180 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Realm Stage",
+    "zh_cn": "觅仙途境界阶段"
+  },
+  "$description": {
+    "en_us": "Data-driven Realm Stage definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的境界与突破条件定义。"
+  },
+  "type": "object",
+  "properties": {
+    "resource": {
+      "$title": {
+        "en_us": "Resource",
+        "zh_cn": "资源"
+      },
+      "type": "string",
+      "$registry": "mxt:resource",
+      "$description": {
+        "en_us": "Resource value.",
+        "zh_cn": "资源的值。"
+      }
+    },
+    "next_realm": {
+      "$title": {
+        "en_us": "Next Realm",
+        "zh_cn": "下一境界"
+      },
+      "type": "string",
+      "$description": {
+        "en_us": "Next Realm value.",
+        "zh_cn": "下一境界的值。"
+      }
+    },
+    "progress_threshold": {
+      "$title": {
+        "en_us": "Progress Threshold",
+        "zh_cn": "进度阈值"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Progress Threshold value.",
+        "zh_cn": "进度阈值的值。"
+      }
+    },
+    "upgrade_conditions": {
+      "$title": {
+        "en_us": "Upgrade Conditions",
+        "zh_cn": "突破条件"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#entity_condition",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Upgrade Conditions value.",
+        "zh_cn": "突破条件的值。"
+      }
+    },
+    "passive_modifiers": {
+      "$title": {
+        "en_us": "Passive Modifiers",
+        "zh_cn": "被动修正"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_AttributeModifier",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Passive Modifiers value.",
+        "zh_cn": "被动修正的值。"
+      }
+    },
+    "costs": {
+      "$title": {
+        "en_us": "Costs",
+        "zh_cn": "消耗"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_ResourceCost",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Costs value.",
+        "zh_cn": "消耗的值。"
+      }
+    },
+    "ability_requirements": {
+      "$title": {
+        "en_us": "Ability Requirements",
+        "zh_cn": "技能需求"
+      },
+      "type": "array",
+      "items": {
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Ability Requirements value.",
+        "zh_cn": "技能需求的值。"
+      }
+    },
+    "tribulation": {
+      "$title": {
+        "en_us": "Tribulation",
+        "zh_cn": "天劫"
+      },
+      "type": "string",
+      "$registry": "mxt:tribulation",
+      "$description": {
+        "en_us": "Tribulation value.",
+        "zh_cn": "天劫的值。"
+      }
+    },
+    "success_action": {
+      "$title": {
+        "en_us": "Success Action",
+        "zh_cn": "成功行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "Success Action value.",
+        "zh_cn": "成功行为的值。"
+      }
+    },
+    "fail_action": {
+      "$title": {
+        "en_us": "Fail Action",
+        "zh_cn": "失败行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "Fail Action value.",
+        "zh_cn": "失败行为的值。"
+      }
+    }
+  },
+  "required": [
+    "resource",
+    "progress_threshold"
+  ],
+  "id": "mxt-realm_stage",
+  "$version": "26.1.2",
+  "$registry": "mxt:realm_stage",
+  "$path": "data/<namespace>/mxt/realm_stage/<path>.json"
+}

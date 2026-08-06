@@ -1,0 +1,145 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Formation",
+    "zh_cn": "觅仙途阵法"
+  },
+  "$description": {
+    "en_us": "Data-driven Formation definition from MiXianTu.",
+    "zh_cn": "觅仙途阵法的值。"
+  },
+  "type": "object",
+  "properties": {
+    "structure_template": {
+      "$title": {
+        "en_us": "Structure Template",
+        "zh_cn": "结构模板"
+      },
+      "type": "string",
+      "$description": {
+        "en_us": "Structure Template value.",
+        "zh_cn": "结构模板的值。"
+      }
+    },
+    "radius": {
+      "$title": {
+        "en_us": "Radius",
+        "zh_cn": "半径"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Radius value.",
+        "zh_cn": "半径的值。"
+      }
+    },
+    "activation_costs": {
+      "$title": {
+        "en_us": "Activation Costs",
+        "zh_cn": "激活消耗"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_ResourceCost",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Activation Costs value.",
+        "zh_cn": "激活消耗的值。"
+      }
+    },
+    "maintenance_costs": {
+      "$title": {
+        "en_us": "Maintenance Costs",
+        "zh_cn": "维护消耗"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_ResourceCost",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Maintenance Costs value.",
+        "zh_cn": "维护消耗的值。"
+      }
+    },
+    "activate_action": {
+      "$title": {
+        "en_us": "Activate Action",
+        "zh_cn": "激活 行为"
+      },
+      "$type": "mxt-common#block_action",
+      "$description": {
+        "en_us": "Activate Action value.",
+        "zh_cn": "激活 行为的值。"
+      }
+    },
+    "tick_action": {
+      "$title": {
+        "en_us": "Tick Action",
+        "zh_cn": "周期行为"
+      },
+      "$type": "mxt-common#block_action",
+      "$description": {
+        "en_us": "Tick Action value.",
+        "zh_cn": "周期行为的值。"
+      }
+    },
+    "deactivate_action": {
+      "$title": {
+        "en_us": "Deactivate Action",
+        "zh_cn": "失效行为"
+      },
+      "$type": "mxt-common#block_action",
+      "$description": {
+        "en_us": "Deactivate Action value.",
+        "zh_cn": "失效行为的值。"
+      }
+    },
+    "entity_tick_action": {
+      "$title": {
+        "en_us": "Entity Tick Action",
+        "zh_cn": "实体周期行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "Entity Tick Action value.",
+        "zh_cn": "实体周期行为的值。"
+      }
+    },
+    "aura_zone": {
+      "$title": {
+        "en_us": "Aura Zone",
+        "zh_cn": "灵气区域"
+      },
+      "type": "string",
+      "$registry": "mxt:aura_zone",
+      "$description": {
+        "en_us": "Aura Zone value.",
+        "zh_cn": "灵气区域的值。"
+      }
+    }
+  },
+  "required": [
+    "structure_template",
+    "radius"
+  ],
+  "id": "mxt-formation",
+  "$version": "26.1.2",
+  "$registry": "mxt:formation",
+  "$path": "data/<namespace>/mxt/formation/<path>.json"
+}

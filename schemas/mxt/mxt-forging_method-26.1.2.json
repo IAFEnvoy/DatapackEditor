@@ -1,0 +1,76 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Forging Method",
+    "zh_cn": "觅仙途锻打方式"
+  },
+  "$description": {
+    "en_us": "Data-driven Forging Method definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的单次锻打操作定义。"
+  },
+  "type": "object",
+  "properties": {
+    "value_delta": {
+      "$title": {
+        "en_us": "Value Delta",
+        "zh_cn": "数值变化"
+      },
+      "type": "integer",
+      "$description": {
+        "en_us": "Value Delta value.",
+        "zh_cn": "数值变化的值。"
+      }
+    },
+    "costs": {
+      "$title": {
+        "en_us": "Costs",
+        "zh_cn": "消耗"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_ResourceCost",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Costs value.",
+        "zh_cn": "消耗的值。"
+      }
+    },
+    "condition": {
+      "$title": {
+        "en_us": "Condition",
+        "zh_cn": "条件"
+      },
+      "$type": "mxt-common#entity_condition",
+      "$description": {
+        "en_us": "Condition value.",
+        "zh_cn": "条件的值。"
+      }
+    },
+    "display_icon": {
+      "$title": {
+        "en_us": "Display Icon",
+        "zh_cn": "显示图标"
+      },
+      "type": "string",
+      "$description": {
+        "en_us": "Display Icon value.",
+        "zh_cn": "显示图标的值。"
+      }
+    }
+  },
+  "required": [
+    "value_delta"
+  ],
+  "id": "mxt-forging_method",
+  "$version": "26.1.2",
+  "$registry": "mxt:forging_method",
+  "$path": "data/<namespace>/mxt/forging_method/<path>.json"
+}

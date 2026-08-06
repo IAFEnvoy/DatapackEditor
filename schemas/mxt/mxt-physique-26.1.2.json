@@ -1,0 +1,119 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Physique",
+    "zh_cn": "觅仙途体质"
+  },
+  "$description": {
+    "en_us": "Data-driven Physique definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的体质定义。"
+  },
+  "type": "object",
+  "properties": {
+    "attribute_modifiers": {
+      "$title": {
+        "en_us": "Attribute Modifiers",
+        "zh_cn": "属性修正"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_AttributeModifier",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Attribute Modifiers value.",
+        "zh_cn": "属性修正的值。"
+      }
+    },
+    "granted_abilities": {
+      "$title": {
+        "en_us": "Granted Abilities",
+        "zh_cn": "授予的技能"
+      },
+      "type": "array",
+      "items": {
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Granted Abilities value.",
+        "zh_cn": "授予的技能的值。"
+      }
+    },
+    "holder_condition": {
+      "$title": {
+        "en_us": "Holder Condition",
+        "zh_cn": "持有者条件"
+      },
+      "$type": "mxt-common#entity_condition",
+      "$description": {
+        "en_us": "Holder Condition value.",
+        "zh_cn": "持有者条件的值。"
+      }
+    },
+    "exclusive_tags": {
+      "$title": {
+        "en_us": "Exclusive Tags",
+        "zh_cn": "互斥 标签"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Exclusive Tags value.",
+        "zh_cn": "互斥 标签的值。"
+      }
+    },
+    "rarity": {
+      "$title": {
+        "en_us": "Rarity",
+        "zh_cn": "稀有度"
+      },
+      "default": "common",
+      "$description": {
+        "en_us": "Rarity value.",
+        "zh_cn": "稀有度的值。"
+      }
+    },
+    "allow_stacking": {
+      "$title": {
+        "en_us": "Allow Stacking",
+        "zh_cn": "允许 叠加"
+      },
+      "type": "boolean",
+      "default": false,
+      "$description": {
+        "en_us": "Allow Stacking value.",
+        "zh_cn": "允许 叠加的值。"
+      }
+    }
+  },
+  "id": "mxt-physique",
+  "$version": "26.1.2",
+  "$registry": "mxt:physique",
+  "$path": "data/<namespace>/mxt/physique/<path>.json"
+}

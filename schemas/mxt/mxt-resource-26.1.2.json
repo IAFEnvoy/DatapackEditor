@@ -1,0 +1,122 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Resource",
+    "zh_cn": "实体数值资源"
+  },
+  "$description": {
+    "en_us": "Data-driven Resource definition from MiXianTu.",
+    "zh_cn": "定义实体持有的可消耗数值，例如灵力、真元或神识；上限与恢复量可按境界和已吸收灵气动态计算。"
+  },
+  "type": "object",
+  "properties": {
+    "default_value": {
+      "$title": {
+        "en_us": "Default Value",
+        "zh_cn": "初始值"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Default Value value.",
+        "zh_cn": "实体首次获得此数值资源时写入的当前值；最终值会被最小值与最大值限制。"
+      }
+    },
+    "min": {
+      "$title": {
+        "en_us": "Min",
+        "zh_cn": "最小值"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Min value.",
+        "zh_cn": "该数值资源允许的最低当前值。省略时为 0；支持数值或公式。"
+      }
+    },
+    "max": {
+      "$title": {
+        "en_us": "Max",
+        "zh_cn": "最大值"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Max value.",
+        "zh_cn": "该数值资源的当前上限，支持数值或公式。公式可使用 realm、realm_rank、level、absorbed_aura 与 cultivation_progress。"
+      }
+    },
+    "regen": {
+      "$title": {
+        "en_us": "Regen",
+        "zh_cn": "每刻恢复量"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Regen value.",
+        "zh_cn": "每游戏刻自动增加的数值，支持数值或公式。省略时不自动恢复。"
+      }
+    },
+    "cultivation_to_resource": {
+      "$title": {
+        "en_us": "Cultivation To Resource",
+        "zh_cn": "修为转蓝"
+      },
+      "$type": "mxt-common#record_ResourceConversion",
+      "$description": {
+        "en_us": "Cultivation To Resource value.",
+        "zh_cn": "从修为计数回充资源的转换配置，含倍率与每刻源修为上限。"
+      }
+    },
+    "resource_to_cultivation": {
+      "$title": {
+        "en_us": "Resource To Cultivation",
+        "zh_cn": "蓝转修为"
+      },
+      "$type": "mxt-common#record_ResourceConversion",
+      "$description": {
+        "en_us": "Resource To Cultivation value.",
+        "zh_cn": "培养行为运行时从资源转为修为计数的转换配置，含倍率与每刻源蓝条上限。"
+      }
+    },
+    "bars": {
+      "$title": {
+        "en_us": "Bars",
+        "zh_cn": "资源条"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_ResourceBar",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Bars value.",
+        "zh_cn": "此资源的内联 HUD 显示条；资源归属由父级定义自动确定。"
+      }
+    },
+    "first_realm": {
+      "$title": {
+        "en_us": "First Realm",
+        "zh_cn": "首个境界"
+      },
+      "type": "string",
+      "$registry": "mxt:realm_stage",
+      "$description": {
+        "en_us": "First Realm value.",
+        "zh_cn": "此资源绑定的线性境界链起点；用于为上限和恢复公式提供境界等级与已吸收灵气。"
+      }
+    }
+  },
+  "required": [
+    "default_value",
+    "max"
+  ],
+  "id": "mxt-resource",
+  "$version": "26.1.2",
+  "$registry": "mxt:resource",
+  "$path": "data/<namespace>/mxt/resource/<path>.json"
+}

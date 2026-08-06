@@ -1,0 +1,109 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Title",
+    "zh_cn": "觅仙途称号"
+  },
+  "$description": {
+    "en_us": "Data-driven Title definition from MiXianTu.",
+    "zh_cn": "觅仙途称号的值。"
+  },
+  "type": "object",
+  "properties": {
+    "unlock_condition": {
+      "$title": {
+        "en_us": "Unlock Condition",
+        "zh_cn": "解锁 条件"
+      },
+      "$type": "mxt-common#entity_condition",
+      "$description": {
+        "en_us": "Unlock Condition value.",
+        "zh_cn": "解锁 条件的值。"
+      }
+    },
+    "translation_key": {
+      "$title": {
+        "en_us": "Translation Key",
+        "zh_cn": "翻译键"
+      },
+      "default": "",
+      "$description": {
+        "en_us": "Translation Key value.",
+        "zh_cn": "翻译键的值。"
+      }
+    },
+    "priority": {
+      "$title": {
+        "en_us": "Priority",
+        "zh_cn": "优先级"
+      },
+      "type": "integer",
+      "default": 0,
+      "$description": {
+        "en_us": "Priority value.",
+        "zh_cn": "优先级的值。"
+      }
+    },
+    "passive_modifiers": {
+      "$title": {
+        "en_us": "Passive Modifiers",
+        "zh_cn": "被动修正"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_AttributeModifier",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Passive Modifiers value.",
+        "zh_cn": "被动修正的值。"
+      }
+    },
+    "exclusive_tags": {
+      "$title": {
+        "en_us": "Exclusive Tags",
+        "zh_cn": "互斥 标签"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Exclusive Tags value.",
+        "zh_cn": "互斥 标签的值。"
+      }
+    },
+    "maximum_level": {
+      "$title": {
+        "en_us": "Maximum Level",
+        "zh_cn": "最大等级"
+      },
+      "type": "integer",
+      "default": 1,
+      "$description": {
+        "en_us": "Maximum Level value.",
+        "zh_cn": "最大等级的值。"
+      }
+    }
+  },
+  "id": "mxt-title",
+  "$version": "26.1.2",
+  "$registry": "mxt:title",
+  "$path": "data/<namespace>/mxt/title/<path>.json"
+}

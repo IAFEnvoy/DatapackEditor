@@ -1,0 +1,118 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Cultivation Technique",
+    "zh_cn": "觅仙途功法"
+  },
+  "$description": {
+    "en_us": "Data-driven Cultivation Technique definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的功法定义。"
+  },
+  "type": "object",
+  "properties": {
+    "grade": {
+      "$title": {
+        "en_us": "Grade",
+        "zh_cn": "品级"
+      },
+      "default": "common",
+      "$description": {
+        "en_us": "Grade value.",
+        "zh_cn": "品级的值。"
+      }
+    },
+    "learn_condition": {
+      "$title": {
+        "en_us": "Learn Condition",
+        "zh_cn": "学习条件"
+      },
+      "$type": "mxt-common#entity_condition",
+      "$description": {
+        "en_us": "Learn Condition value.",
+        "zh_cn": "学习条件的值。"
+      }
+    },
+    "exclusive_tags": {
+      "$title": {
+        "en_us": "Exclusive Tags",
+        "zh_cn": "互斥 标签"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Exclusive Tags value.",
+        "zh_cn": "互斥 标签的值。"
+      }
+    },
+    "cultivation_modifier": {
+      "$title": {
+        "en_us": "Cultivation Modifier",
+        "zh_cn": "修炼修正"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Cultivation Modifier value.",
+        "zh_cn": "修炼修正的值。"
+      }
+    },
+    "passive_modifiers": {
+      "$title": {
+        "en_us": "Passive Modifiers",
+        "zh_cn": "被动修正"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_AttributeModifier",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Passive Modifiers value.",
+        "zh_cn": "被动修正的值。"
+      }
+    },
+    "granted_abilities": {
+      "$title": {
+        "en_us": "Granted Abilities",
+        "zh_cn": "授予的技能"
+      },
+      "type": "array",
+      "items": {
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Granted Abilities value.",
+        "zh_cn": "授予的技能的值。"
+      }
+    }
+  },
+  "id": "mxt-cultivation_technique",
+  "$version": "26.1.2",
+  "$registry": "mxt:cultivation_technique",
+  "$path": "data/<namespace>/mxt/cultivation_technique/<path>.json"
+}

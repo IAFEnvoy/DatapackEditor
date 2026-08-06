@@ -1,0 +1,186 @@
+{
+  "id": "loot-table",
+  "$version": "1.20.4",
+  "$path": "data/<namespace>/loot_tables/<path>.json",
+  "title": "Loot table",
+  "$title": {
+    "en_us": "Loot table",
+    "zh_cn": "战利品表"
+  },
+  "$registry": "minecraft:loot_table",
+  "description": "Legacy loot-table structure for Minecraft 1.20.4.",
+  "$description": {
+    "en_us": "Legacy loot-table structure for Minecraft 1.20.4.",
+    "zh_cn": "Minecraft 1.20.4 的旧版战利品表结构。"
+  },
+  "type": "object",
+  "required": [
+    "type",
+    "pools"
+  ],
+  "properties": {
+    "type": {
+      "title": "Table type",
+      "type": "string",
+      "enum": [
+        "minecraft:chest",
+        "minecraft:entity",
+        "minecraft:block"
+      ],
+      "$suggstion": true,
+      "$title": {
+        "en_us": "Table type",
+        "zh_cn": "表类型"
+      },
+      "$description": {
+        "en_us": "Table type value.",
+        "zh_cn": "表类型的值。"
+      }
+    },
+    "pools": {
+      "title": "Pools",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$type": "legacy_pool",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "$title": {
+        "en_us": "Pools",
+        "zh_cn": "Pools"
+      },
+      "$description": {
+        "en_us": "Pools value.",
+        "zh_cn": "Pools的值。"
+      }
+    }
+  },
+  "$types": {
+    "legacy_pool": {
+      "title": "Loot pool",
+      "type": "object",
+      "required": [
+        "rolls",
+        "entries"
+      ],
+      "properties": {
+        "rolls": {
+          "title": "Rolls",
+          "type": "number",
+          "minimum": 0,
+          "default": 1,
+          "$title": {
+            "en_us": "Rolls",
+            "zh_cn": "次数"
+          },
+          "$description": {
+            "en_us": "Rolls value.",
+            "zh_cn": "次数的值。"
+          }
+        },
+        "entries": {
+          "title": "Entries",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$type": "legacy_entry",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
+          "default": [],
+          "$title": {
+            "en_us": "Entries",
+            "zh_cn": "Entries"
+          },
+          "$description": {
+            "en_us": "Entries value.",
+            "zh_cn": "Entries的值。"
+          }
+        }
+      },
+      "$title": {
+        "en_us": "Loot pool",
+        "zh_cn": "Loot pool"
+      },
+      "$description": {
+        "en_us": "Loot pool value.",
+        "zh_cn": "Loot pool的值。"
+      }
+    },
+    "legacy_entry": {
+      "title": "Entry",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "title": "Entry type",
+          "type": "string",
+          "enum": [
+            "minecraft:item",
+            "minecraft:loot_table",
+            "minecraft:empty"
+          ],
+          "default": "minecraft:item",
+          "$title": {
+            "en_us": "Entry type",
+            "zh_cn": "条目类型"
+          },
+          "$description": {
+            "en_us": "Entry type value.",
+            "zh_cn": "条目类型的值。"
+          }
+        },
+        "name": {
+          "title": "Item / table",
+          "type": "string",
+          "$registry": "minecraft:item",
+          "$title": {
+            "en_us": "Item / table",
+            "zh_cn": "物品 / table"
+          },
+          "$description": {
+            "en_us": "Item / table value.",
+            "zh_cn": "物品 / table的值。"
+          }
+        },
+        "weight": {
+          "title": "Weight",
+          "type": "integer",
+          "minimum": 1,
+          "default": 1,
+          "$title": {
+            "en_us": "Weight",
+            "zh_cn": "权重"
+          },
+          "$description": {
+            "en_us": "Weight value.",
+            "zh_cn": "权重的值。"
+          }
+        }
+      },
+      "$title": {
+        "en_us": "Entry",
+        "zh_cn": "条目"
+      },
+      "$description": {
+        "en_us": "Entry value.",
+        "zh_cn": "条目的值。"
+      }
+    }
+  }
+}

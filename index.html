@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datapack Schema Studio</title>
+  <link rel="stylesheet" href="styles.css?v=6">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">{ }</span><span><strong>Datapack Schema Studio</strong><small data-i18n="app.subtitle">JSON Schema editor</small></span></div>
+    <div class="project-summary"><span class="status-dot"></span><span id="header-registry">minecraft:loot_table</span><span class="separator"></span><span data-i18n="savedInBrowser">Saved in this browser</span></div>
+    <div class="topbar-actions">
+      <button class="icon-button" id="new-document" title="New document" aria-label="New document">+</button>
+      <button class="icon-button" id="import-document" title="Import JSON" aria-label="Import JSON">&#8595;</button>
+      <div id="language-menu" class="language-menu">
+        <button id="language-menu-toggle" class="icon-button language-icon-button" type="button" aria-label="Language" aria-expanded="false"><img src="./img/language.svg" alt=""></button>
+        <div id="language-dropdown" class="language-dropdown" hidden>
+          <button type="button" data-language="zh"><span class="language-check"></span><span>中文</span></button>
+          <button type="button" data-language="en"><span class="language-check"></span><span>English</span></button>
+        </div>
+      </div>
+      <button class="icon-button" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">&#9788;</button>
+      <button class="button primary" id="export-pack" data-i18n="exportPack">Export ZIP</button>
+      <button class="button" id="export-document" data-i18n="exportJson">Export JSON</button>
+    </div>
+  </header>
+  <main class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <section class="side-section">
+        <div class="sidebar-topline"><div class="sidebar-heading" data-i18n="workspace">Workspace</div><button class="sidebar-collapse" id="sidebar-collapse" type="button" title="Collapse sidebar" aria-label="Collapse sidebar">&lsaquo;</button></div>
+        <button class="nav-item home-nav" id="home-nav" type="button" data-i18n="home">Home</button>
+        <label class="schema-version"><span data-i18n="schemaVersion">Schema version</span><select id="schema-version" aria-label="Schema version"></select></label>
+        <div class="workspace-tree-heading" data-i18n="workspace">Workspace</div>
+        <div id="schema-list" class="workspace-tree" aria-label="Schema workspace"></div>
+      </section>
+    </aside>
+    <div class="sidebar-resizer" id="sidebar-resizer" aria-hidden="true"></div>
+    <section class="workspace content">
+      <div id="home-view" class="home-view" hidden>
+        <div class="home-heading">
+          <p class="eyebrow" data-i18n="homeEyebrow">DATAPACK CONTENT</p>
+          <h1 data-i18n="homeTitle">Choose content to edit</h1>
+          <p class="page-description" data-i18n="homeDescription">Select a schema to create a new Minecraft data or resource file.</p>
+        </div>
+        <div id="folder-filter" class="folder-filter" aria-label="Schema folders"></div>
+        <div id="home-grid" class="schema-grid"></div>
+      </div>
+      <div id="editor-view">
+      <div class="workspace-head page-heading">
+        <div><p class="eyebrow" id="schema-registry">minecraft:loot_table</p><h1 id="document-title">Untitled loot table</h1><p class="page-description" data-i18n="editorDescription">Schema-driven document editor with local registry completion.</p><p class="output-path"><span data-i18n="outputPath">Output path</span><code id="output-path">data/example/loot_tables/untitled.json</code></p></div>
+        <div class="heading-actions"><div class="path-inputs"><label><span data-i18n="namespace">Namespace</span><input id="namespace-input" value="example" pattern="[a-z0-9_.-]+"></label><label><span data-i18n="contentPath">Content path</span><input id="content-path-input" value="untitled" pattern="[a-z0-9_./-]+"></label></div><div class="status" id="validation-status" aria-live="polite"></div></div>
+      </div>
+      <div class="editor-workbench">
+        <section class="editor-pane form-pane">
+          <header><div><h2 data-i18n="form">Form</h2><p data-i18n="formHint">Fields generated from the active schema</p></div></header>
+          <div id="editor-form" class="editor-form editor-pane-body"></div>
+        </section>
+        <section class="editor-pane code-pane">
+          <header><div><h2 data-i18n="json">JSON</h2><p data-i18n="jsonHint">Direct source editing</p></div></header>
+          <div id="editor-json" class="editor-json editor-pane-body"><textarea id="json-source" spellcheck="false"></textarea><button id="apply-json" class="button primary" data-i18n="applyJson">Apply JSON</button></div>
+        </section>
+      </div>
+      </div>
+    </section>
+  </main>
+  <dialog id="entry-dialog">
+    <form method="dialog" id="entry-form">
+      <div class="dialog-head"><h2 data-i18n="registryEntry">Registry entry</h2><button class="icon-button" value="cancel" formnovalidate aria-label="Close">&#215;</button></div>
+      <label><span data-i18n="registryId">Registry ID</span><input id="entry-registry" required placeholder="minecraft:item"></label>
+      <label><span data-i18n="entryId">Entry ID</span><input id="entry-id" required placeholder="minecraft:diamond"></label>
+      <menu><button value="cancel" formnovalidate data-i18n="cancel">Cancel</button><button class="primary-button" value="default" id="save-entry" data-i18n="save">Save</button></menu>
+    </form>
+  </dialog>
+  <dialog id="pack-dialog">
+    <form method="dialog" id="pack-form">
+      <div class="dialog-head"><h2 data-i18n="packExportTitle">Export Minecraft pack</h2><button class="icon-button" value="cancel" formnovalidate aria-label="Close">&#215;</button></div>
+      <p class="side-note" id="pack-kind"></p>
+      <p class="output-path"><span data-i18n="outputPath">Output path</span><code id="pack-path"></code></p>
+      <label><span data-i18n="packName">Pack name</span><input id="pack-name" required></label>
+      <label><span data-i18n="packDescription">Description</span><input id="pack-description"></label>
+      <label><span data-i18n="packFormat">Pack format</span><input id="pack-format" type="number" min="1" step="1" required></label>
+      <menu><button value="cancel" formnovalidate data-i18n="cancel">Cancel</button><button class="primary-button" value="default" id="create-pack" data-i18n="createPack">Create ZIP</button></menu>
+    </form>
+  </dialog>
+  <input id="file-input" type="file" accept="application/json,.json" hidden>
+  <script type="module" src="app.js?v=7"></script>
+</body>
+</html>

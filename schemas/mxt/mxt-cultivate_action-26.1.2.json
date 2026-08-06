@@ -1,0 +1,165 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Cultivate Action",
+    "zh_cn": "觅仙途修炼行为"
+  },
+  "$description": {
+    "en_us": "Data-driven Cultivate Action definition from MiXianTu.",
+    "zh_cn": "觅仙途修炼行为的值。"
+  },
+  "type": "object",
+  "properties": {
+    "start_condition": {
+      "$title": {
+        "en_us": "Start Condition",
+        "zh_cn": "开始条件"
+      },
+      "$type": "mxt-common#entity_condition",
+      "$description": {
+        "en_us": "Start Condition value.",
+        "zh_cn": "开始条件的值。"
+      }
+    },
+    "stop_condition": {
+      "$title": {
+        "en_us": "Stop Condition",
+        "zh_cn": "停止条件"
+      },
+      "$type": "mxt-common#entity_condition",
+      "$description": {
+        "en_us": "Stop Condition value.",
+        "zh_cn": "停止条件的值。"
+      }
+    },
+    "tick_interval": {
+      "$title": {
+        "en_us": "Tick Interval",
+        "zh_cn": "周期刻数"
+      },
+      "type": "integer",
+      "default": 20,
+      "$description": {
+        "en_us": "Tick Interval value.",
+        "zh_cn": "周期刻数的值。"
+      }
+    },
+    "aura_kinds": {
+      "$title": {
+        "en_us": "Required Aura Kinds",
+        "zh_cn": "所需灵气类型"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "All listed aura kinds must be present to cultivate.",
+        "zh_cn": "必须同时具备的灵气类型。"
+      }
+    },
+    "costs": {
+      "$title": {
+        "en_us": "Costs",
+        "zh_cn": "消耗"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_ResourceCost",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Costs value.",
+        "zh_cn": "消耗的值。"
+      }
+    },
+    "absorb_amount": {
+      "$title": {
+        "en_us": "Absorb Amount",
+        "zh_cn": "吸收 数量"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Absorb Amount value.",
+        "zh_cn": "吸收 数量的值。"
+      }
+    },
+    "aura_cost": {
+      "$title": {
+        "en_us": "Aura Cost",
+        "zh_cn": "灵气消耗"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Aura Cost value.",
+        "zh_cn": "灵气消耗的值。"
+      }
+    },
+    "aura_gains": {
+      "$title": {
+        "en_us": "Aura Gains",
+        "zh_cn": "灵气获得"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_ResourceGain",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Aura Gains value.",
+        "zh_cn": "灵气获得的值。"
+      }
+    },
+    "cooldown": {
+      "$title": {
+        "en_us": "Cooldown",
+        "zh_cn": "冷却时间"
+      },
+      "type": "integer",
+      "default": 0,
+      "$description": {
+        "en_us": "Cooldown value.",
+        "zh_cn": "冷却时间的值。"
+      }
+    },
+    "tick_action": {
+      "$title": {
+        "en_us": "Tick Action",
+        "zh_cn": "周期行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "Tick Action value.",
+        "zh_cn": "周期行为的值。"
+      }
+    }
+  },
+  "id": "mxt-cultivate_action",
+  "$version": "26.1.2",
+  "$registry": "mxt:cultivate_action",
+  "$path": "data/<namespace>/mxt/cultivate_action/<path>.json"
+}

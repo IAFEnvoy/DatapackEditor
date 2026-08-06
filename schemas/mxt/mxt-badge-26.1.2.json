@@ -1,0 +1,31 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Badge",
+    "zh_cn": "觅 仙 途 徽章"
+  },
+  "$description": {
+    "en_us": "Data-driven Badge definition from MiXianTu.",
+    "zh_cn": "觅 仙 途 徽章的值。"
+  },
+  "type": "object",
+  "properties": {
+    "type": {
+      "$title": {
+        "en_us": "Type",
+        "zh_cn": "类型"
+      },
+      "$type": "mxt-common#badge",
+      "$description": {
+        "en_us": "Type value.",
+        "zh_cn": "类型的值。"
+      }
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "id": "mxt-badge",
+  "$version": "26.1.2",
+  "$registry": "mxt:badge",
+  "$path": "data/<namespace>/mxt/badge/<path>.json"
+}

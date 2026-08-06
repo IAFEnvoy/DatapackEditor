@@ -1,0 +1,199 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Ability",
+    "zh_cn": "觅仙途技能"
+  },
+  "$description": {
+    "en_us": "Data-driven Ability definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的主动、被动或触发型技能定义。"
+  },
+  "type": "object",
+  "properties": {
+    "costs": {
+      "$title": {
+        "en_us": "Costs",
+        "zh_cn": "消耗"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_ResourceCost",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Costs value.",
+        "zh_cn": "消耗的值。"
+      }
+    },
+    "cast_time": {
+      "$title": {
+        "en_us": "Cast Time",
+        "zh_cn": "施放时间"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Cast Time value.",
+        "zh_cn": "施放时间的值。"
+      }
+    },
+    "cooldown": {
+      "$title": {
+        "en_us": "Cooldown",
+        "zh_cn": "冷却时间"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Cooldown value.",
+        "zh_cn": "冷却时间的值。"
+      }
+    },
+    "components": {
+      "$title": {
+        "en_us": "Components",
+        "zh_cn": "组件"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#ability_component",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Components value.",
+        "zh_cn": "组件的值。"
+      }
+    },
+    "modifiers": {
+      "$title": {
+        "en_us": "Modifiers",
+        "zh_cn": "属性修正"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_AttributeModifier",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Modifiers value.",
+        "zh_cn": "属性修正的值。"
+      }
+    },
+    "damage_condition": {
+      "$title": {
+        "en_us": "Damage Condition",
+        "zh_cn": "伤害条件"
+      },
+      "$type": "mxt-common#damage_condition",
+      "$description": {
+        "en_us": "Damage Condition value.",
+        "zh_cn": "伤害条件的值。"
+      }
+    },
+    "condition": {
+      "$title": {
+        "en_us": "Condition",
+        "zh_cn": "条件"
+      },
+      "$type": "mxt-common#entity_condition",
+      "$description": {
+        "en_us": "Condition value.",
+        "zh_cn": "条件的值。"
+      }
+    },
+    "entity_action": {
+      "$title": {
+        "en_us": "Entity Action",
+        "zh_cn": "实体行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "Entity Action value.",
+        "zh_cn": "实体行为的值。"
+      }
+    },
+    "target_condition": {
+      "$title": {
+        "en_us": "Target Condition",
+        "zh_cn": "目标条件"
+      },
+      "$type": "mxt-common#bi_entity_condition",
+      "$description": {
+        "en_us": "Target Condition value.",
+        "zh_cn": "目标条件的值。"
+      }
+    },
+    "bi_entity_action": {
+      "$title": {
+        "en_us": "Bi Entity Action",
+        "zh_cn": "双实体行为"
+      },
+      "$type": "mxt-common#bi_entity_action",
+      "$description": {
+        "en_us": "Bi Entity Action value.",
+        "zh_cn": "双实体行为的值。"
+      }
+    },
+    "element_affinity": {
+      "$title": {
+        "en_us": "Element Affinity",
+        "zh_cn": "元素亲和"
+      },
+      "type": "array",
+      "items": {
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Element Affinity value.",
+        "zh_cn": "元素亲和的值。"
+      }
+    },
+    "type": {
+      "$title": {
+        "en_us": "Type",
+        "zh_cn": "类型"
+      },
+      "$type": "mxt-common#ability_type",
+      "$description": {
+        "en_us": "Type value.",
+        "zh_cn": "类型的值。"
+      }
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "id": "mxt-ability",
+  "$version": "26.1.2",
+  "$registry": "mxt:ability",
+  "$path": "data/<namespace>/mxt/ability/<path>.json"
+}

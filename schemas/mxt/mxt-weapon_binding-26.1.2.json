@@ -1,0 +1,108 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Weapon Binding",
+    "zh_cn": "觅仙途武器绑定"
+  },
+  "$description": {
+    "en_us": "Data-driven Weapon Binding definition from MiXianTu.",
+    "zh_cn": "觅仙途武器绑定的值。"
+  },
+  "type": "object",
+  "properties": {
+    "items": {
+      "$title": {
+        "en_us": "Items",
+        "zh_cn": "物品"
+      },
+      "$description": {
+        "en_us": "Items value.",
+        "zh_cn": "物品的值。"
+      }
+    },
+    "attack_damage": {
+      "$title": {
+        "en_us": "Attack Damage",
+        "zh_cn": "攻击伤害"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Attack Damage value.",
+        "zh_cn": "攻击伤害的值。"
+      }
+    },
+    "attack_speed": {
+      "$title": {
+        "en_us": "Attack Speed",
+        "zh_cn": "攻击速度"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Attack Speed value.",
+        "zh_cn": "攻击速度的值。"
+      }
+    },
+    "attributes": {
+      "$title": {
+        "en_us": "Attributes",
+        "zh_cn": "属性"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_AttributeModifier",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Attributes value.",
+        "zh_cn": "属性的值。"
+      }
+    },
+    "use_action": {
+      "$title": {
+        "en_us": "Use Action",
+        "zh_cn": "使用行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "Use Action value.",
+        "zh_cn": "使用行为的值。"
+      }
+    },
+    "attack_action": {
+      "$title": {
+        "en_us": "Attack Action",
+        "zh_cn": "攻击行为"
+      },
+      "$type": "mxt-common#bi_entity_action",
+      "$description": {
+        "en_us": "Attack Action value.",
+        "zh_cn": "攻击行为的值。"
+      }
+    },
+    "tick_action": {
+      "$title": {
+        "en_us": "Tick Action",
+        "zh_cn": "周期行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "Tick Action value.",
+        "zh_cn": "周期行为的值。"
+      }
+    }
+  },
+  "required": [
+    "items"
+  ],
+  "id": "mxt-weapon_binding",
+  "$version": "26.1.2",
+  "$registry": "mxt:weapon_binding",
+  "$path": "data/<namespace>/mxt/weapon_binding/<path>.json"
+}

@@ -1,0 +1,164 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Creature Profile",
+    "zh_cn": "觅仙途灵兽档案"
+  },
+  "$description": {
+    "en_us": "Data-driven Creature Profile definition from MiXianTu.",
+    "zh_cn": "觅仙途灵兽档案的值。"
+  },
+  "type": "object",
+  "properties": {
+    "realm_stage": {
+      "$title": {
+        "en_us": "Realm Stage",
+        "zh_cn": "境界阶段"
+      },
+      "type": "string",
+      "$registry": "mxt:realm_stage",
+      "$description": {
+        "en_us": "Realm Stage value.",
+        "zh_cn": "境界阶段的值。"
+      }
+    },
+    "intelligence": {
+      "$title": {
+        "en_us": "Intelligence",
+        "zh_cn": "灵智"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Intelligence value.",
+        "zh_cn": "灵智的值。"
+      }
+    },
+    "spawn_conditions": {
+      "$title": {
+        "en_us": "Spawn Conditions",
+        "zh_cn": "生成条件"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Spawn Conditions value.",
+        "zh_cn": "生成条件的值。"
+      }
+    },
+    "inner_core": {
+      "$title": {
+        "en_us": "Inner Core",
+        "zh_cn": "内核"
+      },
+      "type": "string",
+      "$description": {
+        "en_us": "Inner Core value.",
+        "zh_cn": "内核的值。"
+      }
+    },
+    "loot_table": {
+      "$title": {
+        "en_us": "Loot Table",
+        "zh_cn": "战利品表"
+      },
+      "type": "string",
+      "$description": {
+        "en_us": "Loot Table value.",
+        "zh_cn": "战利品表的值。"
+      }
+    },
+    "contract_tags": {
+      "$title": {
+        "en_us": "Contract Tags",
+        "zh_cn": "契约 标签"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Contract Tags value.",
+        "zh_cn": "契约 标签的值。"
+      }
+    },
+    "entity_type_tags": {
+      "$title": {
+        "en_us": "Entity Type Tags",
+        "zh_cn": "实体类型标签"
+      },
+      "type": "array",
+      "items": {
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Entity Type Tags value.",
+        "zh_cn": "实体类型标签的值。"
+      }
+    },
+    "preferred_aura_elements": {
+      "$title": {
+        "en_us": "Preferred Aura Elements",
+        "zh_cn": "偏好灵气元素"
+      },
+      "type": "array",
+      "items": {
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Preferred Aura Elements value.",
+        "zh_cn": "偏好灵气元素的值。"
+      }
+    },
+    "minimum_aura": {
+      "$title": {
+        "en_us": "Minimum Aura",
+        "zh_cn": "最低灵气"
+      },
+      "type": "number",
+      "default": 0,
+      "$description": {
+        "en_us": "Minimum Aura value.",
+        "zh_cn": "最低灵气的值。"
+      }
+    }
+  },
+  "id": "mxt-creature_profile",
+  "$version": "26.1.2",
+  "$registry": "mxt:creature_profile",
+  "$path": "data/<namespace>/mxt/creature_profile/<path>.json"
+}

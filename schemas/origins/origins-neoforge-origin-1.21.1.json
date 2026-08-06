@@ -1,0 +1,240 @@
+{
+  "id": "origins-neoforge-origin",
+  "$version": ["1.21.1", "26.1.2"],
+  "$path": "data/<namespace>/origins/origin/<path>.json",
+  "title": "Origins origin",
+  "$title": {
+    "en_us": "Origins origin",
+    "zh_cn": "Origins 起源"
+  },
+  "$registry": "origins:origin",
+  "description": "Origins NeoForge 0.3.1 origin definition.",
+  "$description": {
+    "en_us": "Origins NeoForge 0.3.1 origin definition.",
+    "zh_cn": "Origins NeoForge 0.3.1 的起源定义。"
+  },
+  "type": "object",
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "description": "Translation key or inline text.",
+      "$title": {
+        "en_us": "Name",
+        "zh_cn": "名称"
+      },
+      "$description": {
+        "en_us": "Translation key or inline text.",
+        "zh_cn": "翻译键或内联文本。"
+      }
+    },
+    "description": {
+      "title": "Description",
+      "type": "string",
+      "description": "Translation key or inline text.",
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Translation key or inline text.",
+        "zh_cn": "翻译键或内联文本。"
+      }
+    },
+    "powers": {
+      "title": "Powers",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$registry": "origins:power",
+        "description": "Power ID or #tag.",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Power ID or #tag.",
+          "zh_cn": "能力 ID 或 #标签。"
+        }
+      },
+      "default": [],
+      "$title": {
+        "en_us": "Powers",
+        "zh_cn": "能力"
+      },
+      "$description": {
+        "en_us": "Powers value.",
+        "zh_cn": "能力的值。"
+      }
+    },
+    "icon": {
+      "title": "Icon item stack",
+      "description": "Minecraft item stack JSON.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Item",
+          "type": "string",
+          "$registry": "minecraft:item",
+          "$title": {
+            "en_us": "Item",
+            "zh_cn": "物品"
+          },
+          "$description": {
+            "en_us": "Item value.",
+            "zh_cn": "物品的值。"
+          }
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "minimum": 1,
+          "default": 1,
+          "$title": {
+            "en_us": "Count",
+            "zh_cn": "数量"
+          },
+          "$description": {
+            "en_us": "Count value.",
+            "zh_cn": "数量的值。"
+          }
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "$title": {
+        "en_us": "Icon item stack",
+        "zh_cn": "图标物品堆"
+      },
+      "$description": {
+        "en_us": "Minecraft item stack JSON.",
+        "zh_cn": "Minecraft 物品堆 JSON。"
+      }
+    },
+    "unchoosable": {
+      "title": "Unchoosable",
+      "type": "boolean",
+      "default": false,
+      "$title": {
+        "en_us": "Unchoosable",
+        "zh_cn": "不可选择"
+      },
+      "$description": {
+        "en_us": "Unchoosable value.",
+        "zh_cn": "不可选择的值。"
+      }
+    },
+    "order": {
+      "title": "Order",
+      "type": "integer",
+      "default": 2147483647,
+      "$title": {
+        "en_us": "Order",
+        "zh_cn": "排序"
+      },
+      "$description": {
+        "en_us": "Order value.",
+        "zh_cn": "Order的值。"
+      }
+    },
+    "impact": {
+      "title": "Impact",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3,
+      "default": 0,
+      "$title": {
+        "en_us": "Impact",
+        "zh_cn": "Impact"
+      },
+      "$description": {
+        "en_us": "Impact value.",
+        "zh_cn": "Impact的值。"
+      }
+    },
+    "upgrades": {
+      "title": "Upgrades",
+      "type": "array",
+      "items": {
+        "$type": "upgrade",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$title": {
+        "en_us": "Upgrades",
+        "zh_cn": "升级"
+      },
+      "$description": {
+        "en_us": "Upgrades value.",
+        "zh_cn": "升级的值。"
+      }
+    }
+  },
+  "$types": {
+    "upgrade": {
+      "title": "Origin upgrade",
+      "type": "object",
+      "required": [
+        "condition",
+        "origin"
+      ],
+      "properties": {
+        "condition": {
+          "title": "Advancement condition",
+          "type": "string",
+          "description": "Advancement or criterion identifier.",
+          "$title": {
+            "en_us": "Advancement condition",
+            "zh_cn": "Advancement condition"
+          },
+          "$description": {
+            "en_us": "Advancement or criterion identifier.",
+            "zh_cn": "Advancement condition的值。"
+          }
+        },
+        "origin": {
+          "title": "Target origin",
+          "type": "string",
+          "$registry": "origins:origin",
+          "$title": {
+            "en_us": "Target origin",
+            "zh_cn": "目标 origin"
+          },
+          "$description": {
+            "en_us": "Target origin value.",
+            "zh_cn": "目标 origin的值。"
+          }
+        },
+        "announcement": {
+          "title": "Announcement",
+          "type": "string",
+          "description": "Translation key or inline text.",
+          "$title": {
+            "en_us": "Announcement",
+            "zh_cn": "Announcement"
+          },
+          "$description": {
+            "en_us": "Translation key or inline text.",
+            "zh_cn": "翻译键或内联文本。"
+          }
+        }
+      },
+      "$title": {
+        "en_us": "Origin upgrade",
+        "zh_cn": "起源 upgrade"
+      },
+      "$description": {
+        "en_us": "Origin upgrade value.",
+        "zh_cn": "起源 upgrade的值。"
+      }
+    }
+  }
+}

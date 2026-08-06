@@ -1,0 +1,228 @@
+{
+  "id": "origins-neoforge-layer",
+  "$version": ["1.21.1", "26.1.2"],
+  "$path": "data/<namespace>/origins/layer/<path>.json",
+  "title": "Origins layer",
+  "$title": {
+    "en_us": "Origins layer",
+    "zh_cn": "Origins 层级"
+  },
+  "$registry": "origins:layer",
+  "description": "Origins NeoForge 0.3.1 origin selection layer.",
+  "$description": {
+    "en_us": "Origins NeoForge 0.3.1 origin selection layer.",
+    "zh_cn": "Origins NeoForge 0.3.1 的起源选择层级。"
+  },
+  "type": "object",
+  "required": [
+    "origins"
+  ],
+  "properties": {
+    "name": {
+      "title": "Name",
+      "type": "string",
+      "description": "Translation key or inline text.",
+      "$title": {
+        "en_us": "Name",
+        "zh_cn": "名称"
+      },
+      "$description": {
+        "en_us": "Translation key or inline text.",
+        "zh_cn": "翻译键或内联文本。"
+      }
+    },
+    "order": {
+      "title": "Order",
+      "type": "integer",
+      "default": 2147483647,
+      "$title": {
+        "en_us": "Order",
+        "zh_cn": "排序"
+      },
+      "$description": {
+        "en_us": "Order value.",
+        "zh_cn": "Order的值。"
+      }
+    },
+    "origins": {
+      "title": "Origins",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$registry": "origins:origin",
+        "description": "Origin ID or #tag. The Java codec also accepts conditioned { condition, origins } entries; add those through the JSON panel.",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Origin ID or #tag. The Java codec also accepts conditioned { condition, origins } entries; add those through the JSON panel.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$title": {
+        "en_us": "Origins",
+        "zh_cn": "起源"
+      },
+      "$description": {
+        "en_us": "Origins value.",
+        "zh_cn": "起源的值。"
+      }
+    },
+    "enabled": {
+      "title": "Enabled",
+      "type": "boolean",
+      "default": true,
+      "$title": {
+        "en_us": "Enabled",
+        "zh_cn": "启用"
+      },
+      "$description": {
+        "en_us": "Enabled value.",
+        "zh_cn": "启用的值。"
+      }
+    },
+    "gui_title": {
+      "$type": "gui_title",
+      "$title": {
+        "en_us": "Gui Title",
+        "zh_cn": "Gui Title"
+      },
+      "$description": {
+        "en_us": "Gui Title value.",
+        "zh_cn": "Gui Title的值。"
+      }
+    },
+    "allow_random": {
+      "title": "Allow random",
+      "type": "boolean",
+      "default": false,
+      "$title": {
+        "en_us": "Allow random",
+        "zh_cn": "允许随机"
+      },
+      "$description": {
+        "en_us": "Allow random value.",
+        "zh_cn": "允许随机的值。"
+      }
+    },
+    "allow_random_unchoosable": {
+      "title": "Allow random unchoosable",
+      "type": "boolean",
+      "default": false,
+      "$title": {
+        "en_us": "Allow random unchoosable",
+        "zh_cn": "允许 random unchoosable"
+      },
+      "$description": {
+        "en_us": "Allow random unchoosable value.",
+        "zh_cn": "允许 random unchoosable的值。"
+      }
+    },
+    "exclude_random": {
+      "title": "Exclude from random",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$registry": "origins:origin",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$title": {
+        "en_us": "Exclude from random",
+        "zh_cn": "Exclude from random"
+      },
+      "$description": {
+        "en_us": "Exclude from random value.",
+        "zh_cn": "Exclude from random的值。"
+      }
+    },
+    "default_origin": {
+      "title": "Default origin",
+      "type": "string",
+      "$registry": "origins:origin",
+      "$title": {
+        "en_us": "Default origin",
+        "zh_cn": "默认起源"
+      },
+      "$description": {
+        "en_us": "Default origin value.",
+        "zh_cn": "默认起源的值。"
+      }
+    },
+    "auto_choose": {
+      "title": "Auto choose",
+      "type": "boolean",
+      "default": false,
+      "$title": {
+        "en_us": "Auto choose",
+        "zh_cn": "自动 choose"
+      },
+      "$description": {
+        "en_us": "Auto choose value.",
+        "zh_cn": "自动 choose的值。"
+      }
+    },
+    "hidden": {
+      "title": "Hidden",
+      "type": "boolean",
+      "default": false,
+      "$title": {
+        "en_us": "Hidden",
+        "zh_cn": "隐藏"
+      },
+      "$description": {
+        "en_us": "Hidden value.",
+        "zh_cn": "隐藏的值。"
+      }
+    }
+  },
+  "$types": {
+    "gui_title": {
+      "title": "GUI titles",
+      "type": "object",
+      "properties": {
+        "choose_origin": {
+          "title": "Choose origin title",
+          "type": "string",
+          "$title": {
+            "en_us": "Choose origin title",
+            "zh_cn": "Choose origin title"
+          },
+          "$description": {
+            "en_us": "Choose origin title value.",
+            "zh_cn": "Choose origin title的值。"
+          }
+        },
+        "view_origin": {
+          "title": "View origin title",
+          "type": "string",
+          "$title": {
+            "en_us": "View origin title",
+            "zh_cn": "View origin title"
+          },
+          "$description": {
+            "en_us": "View origin title value.",
+            "zh_cn": "View origin title的值。"
+          }
+        }
+      },
+      "$title": {
+        "en_us": "GUI titles",
+        "zh_cn": "界面标题"
+      },
+      "$description": {
+        "en_us": "GUI titles value.",
+        "zh_cn": "界面标题的值。"
+      }
+    }
+  }
+}

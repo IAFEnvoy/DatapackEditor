@@ -1,0 +1,347 @@
+{
+  "id": "loot-table",
+  "$version": "1.21.1",
+  "$path": "data/<namespace>/loot_tables/<path>.json",
+  "title": "Loot table",
+  "$title": {
+    "en_us": "Loot table",
+    "zh_cn": "战利品表"
+  },
+  "$registry": "minecraft:loot_table",
+  "description": "Vanilla-style loot table with polymorphic pools and entries.",
+  "$description": {
+    "en_us": "Vanilla-style loot table with polymorphic pools and entries.",
+    "zh_cn": "包含多态池与条目的原版风格战利品表。"
+  },
+  "type": "object",
+  "required": [
+    "type",
+    "pools"
+  ],
+  "properties": {
+    "type": {
+      "title": "Table type",
+      "type": "string",
+      "enum": [
+        "minecraft:chest",
+        "minecraft:entity",
+        "minecraft:block",
+        "minecraft:gift"
+      ],
+      "$suggstion": true,
+      "$title": {
+        "en_us": "Table type",
+        "zh_cn": "表类型"
+      },
+      "$description": {
+        "en_us": "Table type value.",
+        "zh_cn": "表类型的值。"
+      }
+    },
+    "random_sequence": {
+      "title": "Random sequence",
+      "type": "string",
+      "description": "Optional deterministic sequence identifier.",
+      "$title": {
+        "en_us": "Random sequence",
+        "zh_cn": "随机 sequence"
+      },
+      "$description": {
+        "en_us": "Optional deterministic sequence identifier.",
+        "zh_cn": "随机 sequence的值。"
+      }
+    },
+    "pools": {
+      "title": "Pools",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$type": "pool",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "$title": {
+        "en_us": "Pools",
+        "zh_cn": "Pools"
+      },
+      "$description": {
+        "en_us": "Pools value.",
+        "zh_cn": "Pools的值。"
+      }
+    }
+  },
+  "$types": {
+    "pool": {
+      "title": "Loot pool",
+      "type": "object",
+      "required": [
+        "rolls",
+        "entries"
+      ],
+      "properties": {
+        "rolls": {
+          "title": "Rolls",
+          "type": "number",
+          "minimum": 0,
+          "default": 1,
+          "$title": {
+            "en_us": "Rolls",
+            "zh_cn": "次数"
+          },
+          "$description": {
+            "en_us": "Rolls value.",
+            "zh_cn": "次数的值。"
+          }
+        },
+        "bonus_rolls": {
+          "title": "Bonus rolls",
+          "type": "number",
+          "minimum": 0,
+          "default": 0,
+          "$title": {
+            "en_us": "Bonus rolls",
+            "zh_cn": "额外 rolls"
+          },
+          "$description": {
+            "en_us": "Bonus rolls value.",
+            "zh_cn": "额外 rolls的值。"
+          }
+        },
+        "entries": {
+          "title": "Entries",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$type": "entry",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
+          "default": [],
+          "$title": {
+            "en_us": "Entries",
+            "zh_cn": "Entries"
+          },
+          "$description": {
+            "en_us": "Entries value.",
+            "zh_cn": "Entries的值。"
+          }
+        },
+        "conditions": {
+          "title": "Conditions",
+          "type": "array",
+          "items": {
+            "$type": "condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
+          "default": [],
+          "$title": {
+            "en_us": "Conditions",
+            "zh_cn": "条件"
+          },
+          "$description": {
+            "en_us": "Conditions value.",
+            "zh_cn": "条件的值。"
+          }
+        }
+      },
+      "$title": {
+        "en_us": "Loot pool",
+        "zh_cn": "Loot pool"
+      },
+      "$description": {
+        "en_us": "Loot pool value.",
+        "zh_cn": "Loot pool的值。"
+      }
+    },
+    "entry": {
+      "title": "Entry",
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "title": "Entry type",
+          "type": "string",
+          "enum": [
+            "minecraft:item",
+            "minecraft:loot_table",
+            "minecraft:tag",
+            "minecraft:empty"
+          ],
+          "default": "minecraft:item",
+          "$title": {
+            "en_us": "Entry type",
+            "zh_cn": "条目类型"
+          },
+          "$description": {
+            "en_us": "Entry type value.",
+            "zh_cn": "条目类型的值。"
+          }
+        },
+        "name": {
+          "title": "Item / table",
+          "type": "string",
+          "$registry": "minecraft:item",
+          "description": "Uses the item registry index. You can still type an unknown identifier.",
+          "$title": {
+            "en_us": "Item / table",
+            "zh_cn": "物品 / table"
+          },
+          "$description": {
+            "en_us": "Uses the item registry index. You can still type an unknown identifier.",
+            "zh_cn": "物品 / table的值。"
+          }
+        },
+        "weight": {
+          "title": "Weight",
+          "type": "integer",
+          "minimum": 1,
+          "default": 1,
+          "$title": {
+            "en_us": "Weight",
+            "zh_cn": "权重"
+          },
+          "$description": {
+            "en_us": "Weight value.",
+            "zh_cn": "权重的值。"
+          }
+        },
+        "quality": {
+          "title": "Quality",
+          "type": "integer",
+          "default": 0,
+          "$title": {
+            "en_us": "Quality",
+            "zh_cn": "Quality"
+          },
+          "$description": {
+            "en_us": "Quality value.",
+            "zh_cn": "Quality的值。"
+          }
+        },
+        "conditions": {
+          "title": "Conditions",
+          "type": "array",
+          "items": {
+            "$type": "condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
+          "default": [],
+          "$title": {
+            "en_us": "Conditions",
+            "zh_cn": "条件"
+          },
+          "$description": {
+            "en_us": "Conditions value.",
+            "zh_cn": "条件的值。"
+          }
+        }
+      },
+      "$title": {
+        "en_us": "Entry",
+        "zh_cn": "条目"
+      },
+      "$description": {
+        "en_us": "Entry value.",
+        "zh_cn": "条目的值。"
+      }
+    },
+    "condition": {
+      "title": "Condition",
+      "type": "object",
+      "required": [
+        "condition"
+      ],
+      "properties": {
+        "condition": {
+          "title": "Condition type",
+          "type": "string",
+          "enum": [
+            "minecraft:random_chance",
+            "minecraft:entity_properties",
+            "minecraft:inverted"
+          ],
+          "$suggstion": true,
+          "default": "minecraft:random_chance",
+          "$title": {
+            "en_us": "Condition type",
+            "zh_cn": "条件类型"
+          },
+          "$description": {
+            "en_us": "Condition type value.",
+            "zh_cn": "条件类型的值。"
+          }
+        },
+        "chance": {
+          "title": "Chance",
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.5,
+          "$title": {
+            "en_us": "Chance",
+            "zh_cn": "概率"
+          },
+          "$description": {
+            "en_us": "Chance value.",
+            "zh_cn": "概率的值。"
+          }
+        },
+        "entity": {
+          "title": "Entity target",
+          "type": "string",
+          "enum": [
+            "this",
+            "killer",
+            "direct_killer",
+            "killer_player"
+          ],
+          "default": "this",
+          "$title": {
+            "en_us": "Entity target",
+            "zh_cn": "实体 target"
+          },
+          "$description": {
+            "en_us": "Entity target value.",
+            "zh_cn": "实体 target的值。"
+          }
+        }
+      },
+      "$title": {
+        "en_us": "Condition",
+        "zh_cn": "条件"
+      },
+      "$description": {
+        "en_us": "Condition value.",
+        "zh_cn": "条件的值。"
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Datapack Schema Generator"
+  short_description: "Generate Minecraft pack schemas from source code."
+  default_prompt: "Use $generate-datapack-schema to create a Schema from the supplied Minecraft code."

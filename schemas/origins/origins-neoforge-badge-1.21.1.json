@@ -1,0 +1,249 @@
+{
+  "id": "origins-neoforge-badge",
+  "$version": ["1.21.1", "26.1.2"],
+  "$path": "data/<namespace>/origins/badge/<path>.json",
+  "title": "Origins badge",
+  "$title": {
+    "en_us": "Origins badge",
+    "zh_cn": "Origins 徽章"
+  },
+  "$registry": "origins:badge",
+  "description": "Origins NeoForge 0.3.1 polymorphic badge definition.",
+  "$description": {
+    "en_us": "Origins NeoForge 0.3.1 polymorphic badge definition.",
+    "zh_cn": "Origins NeoForge 0.3.1 的多态徽章定义。"
+  },
+  "type": "object",
+  "required": [
+    "type"
+  ],
+  "properties": {
+    "type": {
+      "title": "Badge type",
+      "type": "string",
+      "enum": [
+        "origins:empty",
+        "origins:crafting_recipe",
+        "origins:keybind",
+        "origins:sprite",
+        "origins:tooltip"
+      ],
+      "$suggstion": true,
+      "default": "origins:tooltip",
+      "$title": {
+        "en_us": "Badge type",
+        "zh_cn": "徽章类型"
+      },
+      "$description": {
+        "en_us": "Badge type value.",
+        "zh_cn": "徽章类型的值。"
+      }
+    }
+  },
+  "additionalProperties": {
+    "title": "Type-specific value",
+    "$title": {
+      "en_us": "Type-specific value",
+      "zh_cn": "类型特定值"
+    },
+    "$description": {
+      "en_us": "Type-specific value value.",
+      "zh_cn": "类型特定值的值。"
+    }
+  },
+  "$variants": {
+    "origins:crafting_recipe": {
+      "properties": {
+        "sprite": {
+          "title": "Sprite",
+          "type": "string",
+          "$title": {
+            "en_us": "Sprite",
+            "zh_cn": "精灵图"
+          },
+          "$description": {
+            "en_us": "Sprite value.",
+            "zh_cn": "精灵图的值。"
+          }
+        },
+        "recipe": {
+          "title": "Recipe",
+          "type": "string",
+          "$title": {
+            "en_us": "Recipe",
+            "zh_cn": "配方"
+          },
+          "$description": {
+            "en_us": "Recipe value.",
+            "zh_cn": "配方的值。"
+          }
+        },
+        "from_power": {
+          "title": "From Power",
+          "type": "boolean",
+          "$title": {
+            "en_us": "From Power",
+            "zh_cn": "来自 能力"
+          },
+          "$description": {
+            "en_us": "From Power value.",
+            "zh_cn": "来自 能力的值。"
+          }
+        },
+        "prefix": {
+          "title": "Prefix",
+          "type": "boolean",
+          "$title": {
+            "en_us": "Prefix",
+            "zh_cn": "Prefix"
+          },
+          "$description": {
+            "en_us": "Prefix value.",
+            "zh_cn": "Prefix的值。"
+          }
+        },
+        "suffix": {
+          "title": "Suffix",
+          "type": "boolean",
+          "$title": {
+            "en_us": "Suffix",
+            "zh_cn": "Suffix"
+          },
+          "$description": {
+            "en_us": "Suffix value.",
+            "zh_cn": "Suffix的值。"
+          }
+        }
+      },
+      "required": [
+        "sprite",
+        "recipe"
+      ],
+      "$title": {
+        "en_us": "Variant",
+        "zh_cn": "Variant"
+      },
+      "$description": {
+        "en_us": "Variant value.",
+        "zh_cn": "Variant的值。"
+      }
+    },
+    "origins:keybind": {
+      "properties": {
+        "sprite": {
+          "title": "Sprite",
+          "type": "string",
+          "$title": {
+            "en_us": "Sprite",
+            "zh_cn": "精灵图"
+          },
+          "$description": {
+            "en_us": "Sprite value.",
+            "zh_cn": "精灵图的值。"
+          }
+        },
+        "text": {
+          "title": "Text",
+          "type": "string",
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "Text value.",
+            "zh_cn": "文本的值。"
+          }
+        },
+        "key": {
+          "title": "Key",
+          "type": "string",
+          "$title": {
+            "en_us": "Key",
+            "zh_cn": "键"
+          },
+          "$description": {
+            "en_us": "Key value.",
+            "zh_cn": "键的值。"
+          }
+        }
+      },
+      "required": [
+        "sprite"
+      ],
+      "$title": {
+        "en_us": "Variant",
+        "zh_cn": "Variant"
+      },
+      "$description": {
+        "en_us": "Variant value.",
+        "zh_cn": "Variant的值。"
+      }
+    },
+    "origins:sprite": {
+      "properties": {
+        "sprite": {
+          "title": "Sprite",
+          "type": "string",
+          "$title": {
+            "en_us": "Sprite",
+            "zh_cn": "精灵图"
+          },
+          "$description": {
+            "en_us": "Sprite value.",
+            "zh_cn": "精灵图的值。"
+          }
+        }
+      },
+      "required": [
+        "sprite"
+      ],
+      "$title": {
+        "en_us": "Variant",
+        "zh_cn": "Variant"
+      },
+      "$description": {
+        "en_us": "Variant value.",
+        "zh_cn": "Variant的值。"
+      }
+    },
+    "origins:tooltip": {
+      "properties": {
+        "sprite": {
+          "title": "Sprite",
+          "type": "string",
+          "$title": {
+            "en_us": "Sprite",
+            "zh_cn": "精灵图"
+          },
+          "$description": {
+            "en_us": "Sprite value.",
+            "zh_cn": "精灵图的值。"
+          }
+        },
+        "text": {
+          "title": "Text",
+          "type": "string",
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "Text value.",
+            "zh_cn": "文本的值。"
+          }
+        }
+      },
+      "required": [
+        "sprite"
+      ],
+      "$title": {
+        "en_us": "Variant",
+        "zh_cn": "Variant"
+      },
+      "$description": {
+        "en_us": "Variant value.",
+        "zh_cn": "Variant的值。"
+      }
+    }
+  }
+}

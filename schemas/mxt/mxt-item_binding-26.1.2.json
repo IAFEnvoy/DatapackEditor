@@ -1,0 +1,53 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Item Binding",
+    "zh_cn": "觅仙途物品绑定"
+  },
+  "$description": {
+    "en_us": "Data-driven Item Binding definition from MiXianTu.",
+    "zh_cn": "觅仙途物品绑定的值。"
+  },
+  "type": "object",
+  "properties": {
+    "items": {
+      "$title": {
+        "en_us": "Items",
+        "zh_cn": "物品"
+      },
+      "$description": {
+        "en_us": "Items value.",
+        "zh_cn": "物品的值。"
+      }
+    },
+    "actions": {
+      "$title": {
+        "en_us": "Actions",
+        "zh_cn": "行为"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#entity_action",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Actions value.",
+        "zh_cn": "行为的值。"
+      }
+    }
+  },
+  "required": [
+    "items"
+  ],
+  "id": "mxt-item_binding",
+  "$version": "26.1.2",
+  "$registry": "mxt:item_binding",
+  "$path": "data/<namespace>/mxt/item_binding/<path>.json"
+}

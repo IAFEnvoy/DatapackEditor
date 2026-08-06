@@ -1,0 +1,101 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Block Aura",
+    "zh_cn": "觅仙途方块灵气"
+  },
+  "$description": {
+    "en_us": "Data-driven Block Aura definition from MiXianTu.",
+    "zh_cn": "觅仙途方块灵气的值。"
+  },
+  "type": "object",
+  "properties": {
+    "blocks": {
+      "$title": {
+        "en_us": "Blocks",
+        "zh_cn": "方块"
+      },
+      "type": "array",
+      "items": {
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": 0,
+      "$description": {
+        "en_us": "Blocks value.",
+        "zh_cn": "方块的值。"
+      }
+    },
+    "aura_per_block": {
+      "$title": {
+        "en_us": "Aura Per Block",
+        "zh_cn": "每方块灵气"
+      },
+      "type": "number",
+      "default": 0,
+      "$description": {
+        "en_us": "Aura Per Block value.",
+        "zh_cn": "每方块灵气的值。"
+      }
+    },
+    "regen_per_tick_per_block": {
+      "$title": {
+        "en_us": "Regen Per Tick Per Block",
+        "zh_cn": "每方块每刻恢复"
+      },
+      "type": "number",
+      "default": 0,
+      "$description": {
+        "en_us": "Regen Per Tick Per Block value.",
+        "zh_cn": "每方块每刻恢复的值。"
+      }
+    },
+    "element_aura_per_block": {
+      "$title": {
+        "en_us": "Element Aura Per Block",
+        "zh_cn": "每方块元素灵气"
+      },
+      "type": "string",
+      "$registry": "mxt:element",
+      "$description": {
+        "en_us": "Element Aura Per Block value.",
+        "zh_cn": "每方块元素灵气的值。"
+      }
+    },
+    "aura_kinds": {
+      "$title": {
+        "en_us": "Aura Kinds",
+        "zh_cn": "灵气类型"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Aura kinds contributed by each matching block.",
+        "zh_cn": "每个匹配方块贡献的灵气类型，用于类型判断。"
+      }
+    }
+  },
+  "required": [
+    "blocks"
+  ],
+  "id": "mxt-block_aura",
+  "$version": "26.1.2",
+  "$registry": "mxt:block_aura",
+  "$path": "data/<namespace>/mxt/block_aura/<path>.json"
+}

@@ -1,0 +1,208 @@
+{
+  "id": "recipe",
+  "$version": "1.21.1",
+  "$path": "data/<namespace>/recipe/<path>.json",
+  "title": "Shaped recipe",
+  "$title": {
+    "en_us": "Shaped recipe",
+    "zh_cn": "有序合成配方"
+  },
+  "$registry": "minecraft:recipe",
+  "$description": {
+    "en_us": "Minecraft crafting recipe definition.",
+    "zh_cn": "Minecraft 合成配方定义。"
+  },
+  "type": "object",
+  "required": [
+    "type",
+    "pattern",
+    "key",
+    "result"
+  ],
+  "properties": {
+    "type": {
+      "title": "Recipe type",
+      "type": "string",
+      "enum": [
+        "minecraft:crafting_shaped",
+        "minecraft:crafting_shapeless"
+      ],
+      "default": "minecraft:crafting_shaped",
+      "$title": {
+        "en_us": "Recipe type",
+        "zh_cn": "配方类型"
+      },
+      "$description": {
+        "en_us": "Recipe type value.",
+        "zh_cn": "配方类型的值。"
+      }
+    },
+    "category": {
+      "title": "Category",
+      "type": "string",
+      "enum": [
+        "building",
+        "redstone",
+        "equipment",
+        "misc"
+      ],
+      "$suggstion": true,
+      "$title": {
+        "en_us": "Category",
+        "zh_cn": "分类"
+      },
+      "$description": {
+        "en_us": "Category value.",
+        "zh_cn": "分类的值。"
+      }
+    },
+    "pattern": {
+      "title": "Pattern",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [
+        "A"
+      ],
+      "$title": {
+        "en_us": "Pattern",
+        "zh_cn": "图案"
+      },
+      "$description": {
+        "en_us": "Pattern value.",
+        "zh_cn": "图案的值。"
+      }
+    },
+    "key": {
+      "title": "Key",
+      "type": "object",
+      "additionalProperties": {
+        "$type": "ingredient",
+        "$title": {
+          "en_us": "Property",
+          "zh_cn": "Property"
+        },
+        "$description": {
+          "en_us": "Property value.",
+          "zh_cn": "Property的值。"
+        }
+      },
+      "default": {},
+      "$title": {
+        "en_us": "Key",
+        "zh_cn": "键"
+      },
+      "$description": {
+        "en_us": "Key value.",
+        "zh_cn": "键的值。"
+      }
+    },
+    "result": {
+      "title": "Result",
+      "$type": "result",
+      "$title": {
+        "en_us": "Result",
+        "zh_cn": "结果"
+      },
+      "$description": {
+        "en_us": "Result value.",
+        "zh_cn": "结果的值。"
+      }
+    }
+  },
+  "$types": {
+    "ingredient": {
+      "title": "Ingredient",
+      "type": "object",
+      "properties": {
+        "item": {
+          "title": "Item",
+          "type": "string",
+          "$registry": "minecraft:item",
+          "$title": {
+            "en_us": "Item",
+            "zh_cn": "物品"
+          },
+          "$description": {
+            "en_us": "Item value.",
+            "zh_cn": "物品的值。"
+          }
+        },
+        "tag": {
+          "title": "Item tag",
+          "type": "string",
+          "$registry": "minecraft:item_tag",
+          "$title": {
+            "en_us": "Item tag",
+            "zh_cn": "物品标签"
+          },
+          "$description": {
+            "en_us": "Item tag value.",
+            "zh_cn": "物品标签的值。"
+          }
+        }
+      },
+      "$title": {
+        "en_us": "Ingredient",
+        "zh_cn": "Ingredient"
+      },
+      "$description": {
+        "en_us": "Ingredient value.",
+        "zh_cn": "Ingredient的值。"
+      }
+    },
+    "result": {
+      "title": "Result",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "title": "Item",
+          "type": "string",
+          "$registry": "minecraft:item",
+          "$title": {
+            "en_us": "Item",
+            "zh_cn": "物品"
+          },
+          "$description": {
+            "en_us": "Item value.",
+            "zh_cn": "物品的值。"
+          }
+        },
+        "count": {
+          "title": "Count",
+          "type": "integer",
+          "minimum": 1,
+          "default": 1,
+          "$title": {
+            "en_us": "Count",
+            "zh_cn": "数量"
+          },
+          "$description": {
+            "en_us": "Count value.",
+            "zh_cn": "数量的值。"
+          }
+        }
+      },
+      "$title": {
+        "en_us": "Result",
+        "zh_cn": "结果"
+      },
+      "$description": {
+        "en_us": "Result value.",
+        "zh_cn": "结果的值。"
+      }
+    }
+  }
+}

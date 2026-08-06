@@ -1,0 +1,169 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Forging Blueprint",
+    "zh_cn": "觅仙途锻造蓝图"
+  },
+  "$description": {
+    "en_us": "Data-driven Forging Blueprint definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的锻造目标与要求定义。"
+  },
+  "type": "object",
+  "properties": {
+    "input": {
+      "$title": {
+        "en_us": "Input",
+        "zh_cn": "输入"
+      },
+      "type": "string",
+      "$description": {
+        "en_us": "Input value.",
+        "zh_cn": "输入的值。"
+      }
+    },
+    "allowed_methods": {
+      "$title": {
+        "en_us": "Allowed Methods",
+        "zh_cn": "允许的锻打方式"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$registry": "mxt:forging_method",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Allowed Methods value.",
+        "zh_cn": "允许的锻打方式的值。"
+      }
+    },
+    "finish_pattern": {
+      "$title": {
+        "en_us": "Finish Pattern",
+        "zh_cn": "结束模式"
+      },
+      "$description": {
+        "en_us": "Finish Pattern value.",
+        "zh_cn": "结束模式的值。"
+      }
+    },
+    "max_steps": {
+      "$title": {
+        "en_us": "Max Steps",
+        "zh_cn": "最大步数"
+      },
+      "type": "integer",
+      "default": 64,
+      "$description": {
+        "en_us": "Max Steps value.",
+        "zh_cn": "最大步数的值。"
+      }
+    },
+    "quality_by_extra_steps": {
+      "$title": {
+        "en_us": "Quality By Extra Steps",
+        "zh_cn": "按额外步数确定品质"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_QualityThreshold",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Quality By Extra Steps value.",
+        "zh_cn": "按额外步数确定品质的值。"
+      }
+    },
+    "result": {
+      "$title": {
+        "en_us": "Result",
+        "zh_cn": "结果"
+      },
+      "type": "string",
+      "$description": {
+        "en_us": "Result value.",
+        "zh_cn": "结果的值。"
+      }
+    },
+    "workstation_blocks": {
+      "$title": {
+        "en_us": "Workstation Blocks",
+        "zh_cn": "工作台方块"
+      },
+      "type": "array",
+      "items": {
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Workstation Blocks value.",
+        "zh_cn": "工作台方块的值。"
+      }
+    },
+    "complete_action": {
+      "$title": {
+        "en_us": "Complete Action",
+        "zh_cn": "完成行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "Complete Action value.",
+        "zh_cn": "完成行为的值。"
+      }
+    },
+    "fail_action": {
+      "$title": {
+        "en_us": "Fail Action",
+        "zh_cn": "失败行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "Fail Action value.",
+        "zh_cn": "失败行为的值。"
+      }
+    },
+    "failure_settlement": {
+      "$title": {
+        "en_us": "Failure Settlement",
+        "zh_cn": "失败结算"
+      },
+      "$type": "mxt-common#record_FailureSettlement",
+      "$description": {
+        "en_us": "Failure Settlement value.",
+        "zh_cn": "失败结算的值。"
+      }
+    }
+  },
+  "required": [
+    "input",
+    "allowed_methods",
+    "quality_by_extra_steps",
+    "result"
+  ],
+  "id": "mxt-forging_blueprint",
+  "$version": "26.1.2",
+  "$registry": "mxt:forging_blueprint",
+  "$path": "data/<namespace>/mxt/forging_blueprint/<path>.json"
+}

@@ -1,0 +1,141 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Curse",
+    "zh_cn": "觅仙途诅咒"
+  },
+  "$description": {
+    "en_us": "Data-driven Curse definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的诅咒定义。"
+  },
+  "type": "object",
+  "properties": {
+    "duration_ticks": {
+      "$title": {
+        "en_us": "Duration Ticks",
+        "zh_cn": "持续刻数"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Duration Ticks value.",
+        "zh_cn": "持续刻数的值。"
+      }
+    },
+    "tick_interval": {
+      "$title": {
+        "en_us": "Tick Interval",
+        "zh_cn": "周期刻数"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Tick Interval value.",
+        "zh_cn": "周期刻数的值。"
+      }
+    },
+    "max_stacks": {
+      "$title": {
+        "en_us": "Max Stacks",
+        "zh_cn": "最大层数"
+      },
+      "type": "integer",
+      "default": 1,
+      "$description": {
+        "en_us": "Max Stacks value.",
+        "zh_cn": "最大层数的值。"
+      }
+    },
+    "stacking_mode": {
+      "$title": {
+        "en_us": "Stacking Mode",
+        "zh_cn": "叠加 模式"
+      },
+      "$type": "mxt-common#record_StackingMode",
+      "$description": {
+        "en_us": "Stacking Mode value.",
+        "zh_cn": "叠加 模式的值。"
+      }
+    },
+    "application_condition": {
+      "$title": {
+        "en_us": "Application Condition",
+        "zh_cn": "施加条件"
+      },
+      "$type": "mxt-common#entity_condition",
+      "$description": {
+        "en_us": "Application Condition value.",
+        "zh_cn": "施加条件的值。"
+      }
+    },
+    "on_apply": {
+      "$title": {
+        "en_us": "On Apply",
+        "zh_cn": "施加时行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "On Apply value.",
+        "zh_cn": "施加时行为的值。"
+      }
+    },
+    "on_tick": {
+      "$title": {
+        "en_us": "On Tick",
+        "zh_cn": "周期行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "On Tick value.",
+        "zh_cn": "周期行为的值。"
+      }
+    },
+    "on_remove": {
+      "$title": {
+        "en_us": "On Remove",
+        "zh_cn": "移除时行为"
+      },
+      "$type": "mxt-common#entity_action",
+      "$description": {
+        "en_us": "On Remove value.",
+        "zh_cn": "移除时行为的值。"
+      }
+    },
+    "cleanse_tags": {
+      "$title": {
+        "en_us": "Cleanse Tags",
+        "zh_cn": "净化 标签"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Cleanse Tags value.",
+        "zh_cn": "净化 标签的值。"
+      }
+    },
+    "allow_force_remove": {
+      "$title": {
+        "en_us": "Allow Force Remove",
+        "zh_cn": "允许 强制 移除"
+      },
+      "type": "boolean",
+      "default": false,
+      "$description": {
+        "en_us": "Allow Force Remove value.",
+        "zh_cn": "允许 强制 移除的值。"
+      }
+    }
+  },
+  "id": "mxt-curse",
+  "$version": "26.1.2",
+  "$registry": "mxt:curse",
+  "$path": "data/<namespace>/mxt/curse/<path>.json"
+}

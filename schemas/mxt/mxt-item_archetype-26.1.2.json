@@ -1,0 +1,121 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Item Archetype",
+    "zh_cn": "觅仙途法器与物品原型"
+  },
+  "$description": {
+    "en_us": "Data-driven Item Archetype definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的法器与物品原型定义。"
+  },
+  "type": "object",
+  "properties": {
+    "item_type": {
+      "$title": {
+        "en_us": "Item Type",
+        "zh_cn": "物品类型"
+      },
+      "$description": {
+        "en_us": "Item Type value.",
+        "zh_cn": "物品类型的值。"
+      }
+    },
+    "spirit_capacity": {
+      "$title": {
+        "en_us": "Spirit Capacity",
+        "zh_cn": "灵力容量"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Spirit Capacity value.",
+        "zh_cn": "灵力容量的值。"
+      }
+    },
+    "storage_slots": {
+      "$title": {
+        "en_us": "Storage Slots",
+        "zh_cn": "储物槽位"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Storage Slots value.",
+        "zh_cn": "储物槽位的值。"
+      }
+    },
+    "flight_speed": {
+      "$title": {
+        "en_us": "Flight Speed",
+        "zh_cn": "飞行速度"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Flight Speed value.",
+        "zh_cn": "飞行速度的值。"
+      }
+    },
+    "flight_costs": {
+      "$title": {
+        "en_us": "Flight Costs",
+        "zh_cn": "飞行消耗"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_ResourceCost",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Flight Costs value.",
+        "zh_cn": "飞行消耗的值。"
+      }
+    },
+    "granted_abilities": {
+      "$title": {
+        "en_us": "Granted Abilities",
+        "zh_cn": "授予的技能"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$registry": "mxt:ability",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Granted Abilities value.",
+        "zh_cn": "授予的技能的值。"
+      }
+    },
+    "refine_behavior": {
+      "$title": {
+        "en_us": "Refine Behavior",
+        "zh_cn": "炼化行为"
+      },
+      "type": "string",
+      "$description": {
+        "en_us": "Refine Behavior value.",
+        "zh_cn": "炼化行为的值。"
+      }
+    }
+  },
+  "required": [
+    "item_type"
+  ],
+  "id": "mxt-item_archetype",
+  "$version": "26.1.2",
+  "$registry": "mxt:item_archetype",
+  "$path": "data/<namespace>/mxt/item_archetype/<path>.json"
+}

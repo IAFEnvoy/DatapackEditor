@@ -1,0 +1,76 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Currency",
+    "zh_cn": "觅仙途货币价值"
+  },
+  "$description": {
+    "en_us": "Data-driven Currency definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的货币面额与兑换价值定义。"
+  },
+  "type": "object",
+  "properties": {
+    "items": {
+      "$title": {
+        "en_us": "Items",
+        "zh_cn": "物品"
+      },
+      "$description": {
+        "en_us": "Items value.",
+        "zh_cn": "物品的值。"
+      }
+    },
+    "item": {
+      "$title": {
+        "en_us": "Item",
+        "zh_cn": "物品"
+      },
+      "type": "string",
+      "$description": {
+        "en_us": "Item value.",
+        "zh_cn": "物品的值。"
+      }
+    },
+    "value": {
+      "$title": {
+        "en_us": "Value",
+        "zh_cn": "值"
+      },
+      "type": "integer",
+      "$description": {
+        "en_us": "Value value.",
+        "zh_cn": "值的值。"
+      }
+    },
+    "exchanges": {
+      "$title": {
+        "en_us": "Exchanges",
+        "zh_cn": "兑换项目"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_Exchange",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Exchanges value.",
+        "zh_cn": "兑换项目的值。"
+      }
+    }
+  },
+  "required": [
+    "value",
+    "exchanges"
+  ],
+  "id": "mxt-currency",
+  "$version": "26.1.2",
+  "$registry": "mxt:currency",
+  "$path": "data/<namespace>/mxt/currency/<path>.json"
+}

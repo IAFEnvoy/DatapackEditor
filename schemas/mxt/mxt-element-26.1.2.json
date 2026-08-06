@@ -1,0 +1,95 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Element",
+    "zh_cn": "觅仙途元素"
+  },
+  "$description": {
+    "en_us": "Data-driven Element definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的元素定义。"
+  },
+  "type": "object",
+  "properties": {
+    "translation_key": {
+      "$title": {
+        "en_us": "Translation Key",
+        "zh_cn": "翻译键"
+      },
+      "default": "",
+      "$description": {
+        "en_us": "Translation Key value.",
+        "zh_cn": "翻译键的值。"
+      }
+    },
+    "overcomes": {
+      "$title": {
+        "en_us": "Overcomes",
+        "zh_cn": "克制"
+      },
+      "type": "array",
+      "items": {
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Overcomes value.",
+        "zh_cn": "克制的值。"
+      }
+    },
+    "adapted_to": {
+      "$title": {
+        "en_us": "Adapted To",
+        "zh_cn": "适应元素"
+      },
+      "type": "array",
+      "items": {
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Adapted To value.",
+        "zh_cn": "适应元素的值。"
+      }
+    },
+    "aura_kinds": {
+      "$title": {
+        "en_us": "Aura Kinds",
+        "zh_cn": "灵气类型"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      },
+      "default": [],
+      "$description": {
+        "en_us": "Aura kinds associated with this element.",
+        "zh_cn": "与该元素关联的灵气类型。"
+      }
+    }
+  },
+  "id": "mxt-element",
+  "$version": "26.1.2",
+  "$registry": "mxt:element",
+  "$path": "data/<namespace>/mxt/element/<path>.json"
+}
