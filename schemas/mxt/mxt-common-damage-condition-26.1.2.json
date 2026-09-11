@@ -1,0 +1,444 @@
+{
+  "id": "mxt-common-damage-condition",
+  "$library": true,
+  "$version": "26.1.2",
+  "$title": {
+    "en_us": "MiXianTu Damage Conditions",
+    "zh_cn": "MiXianTu 伤害条件"
+  },
+  "$description": {
+    "en_us": "Conditions checked against incoming damage.",
+    "zh_cn": "针对来袭伤害判断的条件。"
+  },
+  "$types": {
+    "damage_condition": {
+      "$title": {
+        "en_us": "Damage Condition",
+        "zh_cn": "伤害条件"
+      },
+      "$description": {
+        "en_us": "Damage Condition selected by a type identifier.",
+        "zh_cn": "伤害条件的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:always_true",
+            "mxt:js",
+            "mxt:amount_range",
+            "mxt:directness",
+            "mxt:damage_type",
+            "mxt:damage_type_tag",
+            "mxt:fire",
+            "mxt:magic",
+            "mxt:projectile",
+            "mxt:and",
+            "mxt:chance",
+            "mxt:constant",
+            "mxt:not",
+            "mxt:or"
+          ],
+          "$suggstion": true,
+          "default": "mxt:always_true",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:always_true": {
+          "$title": {
+            "en_us": "Always True",
+            "zh_cn": "始终为真"
+          },
+          "$description": {
+            "en_us": "Always passes.",
+            "zh_cn": "始终满足，永远通过。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:js": {
+          "$title": {
+            "en_us": "Js",
+            "zh_cn": "JS 表达式"
+          },
+          "$description": {
+            "en_us": "Judged by a JavaScript callback with the damage source.",
+            "zh_cn": "以伤害来源为参数，由 JavaScript 回调判定。"
+          },
+          "type": "object",
+          "properties": {
+            "id": {
+              "$title": {
+                "en_us": "Id",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "Id value.",
+                "zh_cn": "标识符的值。"
+              }
+            },
+            "params": {
+              "$title": {
+                "en_us": "Params",
+                "zh_cn": "参数"
+              },
+              "$description": {
+                "en_us": "Params value.",
+                "zh_cn": "参数的值。"
+              }
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "mxt:amount_range": {
+          "$title": {
+            "en_us": "Amount Range",
+            "zh_cn": "数量范围"
+          },
+          "$description": {
+            "en_us": "Compares the damage amount.",
+            "zh_cn": "比较伤害数值。"
+          },
+          "type": "object",
+          "properties": {
+            "min": {
+              "$title": {
+                "en_us": "Min",
+                "zh_cn": "最小"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Min value.",
+                "zh_cn": "最小的值。"
+              }
+            },
+            "max": {
+              "$title": {
+                "en_us": "Max",
+                "zh_cn": "最大"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Max value.",
+                "zh_cn": "最大的值。"
+              }
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        "mxt:directness": {
+          "$title": {
+            "en_us": "Directness",
+            "zh_cn": "直接性"
+          },
+          "$description": {
+            "en_us": "Checks whether the damage was direct or indirect.",
+            "zh_cn": "判断伤害是直接还是间接。"
+          },
+          "type": "object",
+          "properties": {
+            "direct": {
+              "$title": {
+                "en_us": "Direct",
+                "zh_cn": "直接"
+              },
+              "type": "boolean",
+              "$description": {
+                "en_us": "Direct value.",
+                "zh_cn": "直接的值。"
+              }
+            }
+          }
+        },
+        "mxt:damage_type": {
+          "$title": {
+            "en_us": "Damage Type",
+            "zh_cn": "伤害类型"
+          },
+          "$description": {
+            "en_us": "Checks the damage type.",
+            "zh_cn": "判断伤害类型。"
+          },
+          "type": "object",
+          "properties": {
+            "damage_type": {
+              "$title": {
+                "en_us": "Damage Type",
+                "zh_cn": "伤害类型"
+              },
+              "$description": {
+                "en_us": "Damage Type value.",
+                "zh_cn": "伤害类型的值。"
+              }
+            }
+          },
+          "required": [
+            "damage_type"
+          ]
+        },
+        "mxt:damage_type_tag": {
+          "$title": {
+            "en_us": "Damage Type Tag",
+            "zh_cn": "伤害类型标签"
+          },
+          "$description": {
+            "en_us": "Checks the damage type's tags.",
+            "zh_cn": "判断伤害类型的标签。"
+          },
+          "type": "object",
+          "properties": {
+            "tag": {
+              "$title": {
+                "en_us": "Tag",
+                "zh_cn": "标签"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Tag value.",
+                "zh_cn": "标签的值。"
+              }
+            }
+          },
+          "required": [
+            "tag"
+          ]
+        },
+        "mxt:fire": {
+          "$title": {
+            "en_us": "Fire",
+            "zh_cn": "火焰"
+          },
+          "$description": {
+            "en_us": "Checks whether the damage is fire damage.",
+            "zh_cn": "判断是否为火焰伤害。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:magic": {
+          "$title": {
+            "en_us": "Magic",
+            "zh_cn": "魔法"
+          },
+          "$description": {
+            "en_us": "Checks whether the damage is magic damage.",
+            "zh_cn": "判断是否为魔法伤害。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:projectile": {
+          "$title": {
+            "en_us": "Projectile",
+            "zh_cn": "投射物"
+          },
+          "$description": {
+            "en_us": "Checks whether the damage came from a projectile.",
+            "zh_cn": "判断伤害是否来自投射物。"
+          },
+          "type": "object",
+          "properties": {
+            "projectile": {
+              "$title": {
+                "en_us": "Projectile",
+                "zh_cn": "投射物"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Projectile value.",
+                "zh_cn": "投射物的值。"
+              }
+            },
+            "projectile_condition": {
+              "$title": {
+                "en_us": "Projectile Condition",
+                "zh_cn": "投射物条件"
+              },
+              "$type": "mxt-common-entity-condition#entity_condition",
+              "$description": {
+                "en_us": "Projectile Condition value.",
+                "zh_cn": "投射物条件的值。"
+              }
+            }
+          }
+        },
+        "mxt:and": {
+          "$title": {
+            "en_us": "And",
+            "zh_cn": "全部满足"
+          },
+          "$description": {
+            "en_us": "Passes when every child condition passes.",
+            "zh_cn": "所有子条件都满足时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "conditions": {
+              "$title": {
+                "en_us": "Conditions",
+                "zh_cn": "条件"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-damage-condition#damage_condition",
+                "$title": {
+                  "en_us": "Condition",
+                  "zh_cn": "条件"
+                },
+                "$description": {
+                  "en_us": "One child condition.",
+                  "zh_cn": "一个子条件。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Conditions value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "conditions"
+          ]
+        },
+        "mxt:chance": {
+          "$title": {
+            "en_us": "Chance",
+            "zh_cn": "概率"
+          },
+          "$description": {
+            "en_us": "Passes with the given probability.",
+            "zh_cn": "按给定概率通过。"
+          },
+          "type": "object",
+          "properties": {
+            "chance": {
+              "$title": {
+                "en_us": "Chance",
+                "zh_cn": "概率"
+              },
+              "type": "number",
+              "$description": {
+                "en_us": "Chance value.",
+                "zh_cn": "概率的值。"
+              }
+            }
+          },
+          "required": [
+            "chance"
+          ]
+        },
+        "mxt:constant": {
+          "$title": {
+            "en_us": "Constant",
+            "zh_cn": "常量"
+          },
+          "$description": {
+            "en_us": "Always returns the configured answer.",
+            "zh_cn": "始终返回配置的固定结果。"
+          },
+          "type": "object",
+          "properties": {
+            "value": {
+              "$title": {
+                "en_us": "Value",
+                "zh_cn": "值"
+              },
+              "type": "boolean",
+              "$description": {
+                "en_us": "Value value.",
+                "zh_cn": "值的值。"
+              }
+            }
+          },
+          "required": [
+            "value"
+          ]
+        },
+        "mxt:not": {
+          "$title": {
+            "en_us": "Not",
+            "zh_cn": "条件取反"
+          },
+          "$description": {
+            "en_us": "Passes when the child condition fails.",
+            "zh_cn": "子条件不满足时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$type": "mxt-common-damage-condition#damage_condition",
+              "$description": {
+                "en_us": "Condition value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "condition"
+          ]
+        },
+        "mxt:or": {
+          "$title": {
+            "en_us": "Or",
+            "zh_cn": "任一满足"
+          },
+          "$description": {
+            "en_us": "Passes when any child condition passes.",
+            "zh_cn": "任一子条件满足时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "conditions": {
+              "$title": {
+                "en_us": "Conditions",
+                "zh_cn": "条件"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-damage-condition#damage_condition",
+                "$title": {
+                  "en_us": "Condition",
+                  "zh_cn": "条件"
+                },
+                "$description": {
+                  "en_us": "One child condition.",
+                  "zh_cn": "一个子条件。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Conditions value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "conditions"
+          ]
+        }
+      }
+    }
+  }
+}

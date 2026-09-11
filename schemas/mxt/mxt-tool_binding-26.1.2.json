@@ -1,0 +1,43 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Tool Binding",
+    "zh_cn": "觅仙途工具绑定"
+  },
+  "$description": {
+    "en_us": "Data-driven Tool Binding definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的工具解锁锻打方式定义。"
+  },
+  "type": "object",
+  "properties": {
+    "methods": {
+      "$title": {
+        "en_us": "Methods",
+        "zh_cn": "锻打方式"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$registry": "mxt:forging_method",
+        "$title": {
+          "en_us": "Forging Method",
+          "zh_cn": "锻打方式"
+        },
+        "$description": {
+          "en_us": "One method this tool unlocks.",
+          "zh_cn": "该工具解锁的一种锻打方式。"
+        }
+      },
+      "$description": {
+        "en_us": "Forging methods this tool unlocks. At least one entry, and no duplicates. Tools placed in the table's three tool slots widen the method list; the usable methods are always the blueprint's allowed set intersected with the union of every placed tool's methods.",
+        "zh_cn": "该工具解锁的全部锻打方式，至少一项且不可重复。锻造台右侧三格放入工具后其解锁的方式才会出现；可用方法始终是蓝图 allowed_methods 与所有已放置工具 methods 的并集的交集。"
+      }
+    }
+  },
+  "required": [
+    "methods"
+  ],
+  "id": "mxt-tool_binding",
+  "$version": "26.1.2",
+  "$registry": "mxt:tool_binding",
+  "$path": "data/<namespace>/mxt/tool_binding/<path>.json"
+}

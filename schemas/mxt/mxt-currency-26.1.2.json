@@ -14,9 +14,10 @@
         "en_us": "Items",
         "zh_cn": "物品"
       },
+      "$type": "mxt-common#item_matcher",
       "$description": {
-        "en_us": "Items value.",
-        "zh_cn": "物品的值。"
+        "en_us": "Items this currency definition covers.",
+        "zh_cn": "该货币定义覆盖的物品。"
       }
     },
     "item": {
@@ -26,8 +27,8 @@
       },
       "type": "string",
       "$description": {
-        "en_us": "Item value.",
-        "zh_cn": "物品的值。"
+        "en_us": "The item of one currency entry.",
+        "zh_cn": "单个货币条目对应的物品。"
       }
     },
     "value": {
@@ -37,8 +38,8 @@
       },
       "type": "integer",
       "$description": {
-        "en_us": "Value value.",
-        "zh_cn": "值的值。"
+        "en_us": "Worth of one unit, used when currencies are exchanged.",
+        "zh_cn": "一单位该货币的价值，用于兑换换算。"
       }
     },
     "exchanges": {
@@ -48,20 +49,20 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_Exchange",
+        "$type": "mxt-common-content#record_Exchange",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Exchange",
+          "zh_cn": "兑换项"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One exchange entry.",
+          "zh_cn": "一个兑换项。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Exchanges value.",
-        "zh_cn": "兑换项目的值。"
+        "en_us": "Currency exchange entries.",
+        "zh_cn": "可进行的货币兑换项。"
       }
     }
   },

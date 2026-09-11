@@ -1,0 +1,870 @@
+{
+  "id": "mxt-common-ability",
+  "$library": true,
+  "$version": "26.1.2",
+  "$title": {
+    "en_us": "MiXianTu Abilities",
+    "zh_cn": "MiXianTu 技能类型"
+  },
+  "$description": {
+    "en_us": "Ability types and components, curse types, ability triggers and resource value providers.",
+    "zh_cn": "技能类型与组件、诅咒类型、技能触发器与资源数值提供器。"
+  },
+  "$types": {
+    "ability_type": {
+      "$title": {
+        "en_us": "Ability Type",
+        "zh_cn": "技能类型"
+      },
+      "$description": {
+        "en_us": "Ability Type selected by a type identifier.",
+        "zh_cn": "技能类型的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:active",
+            "mxt:triggered",
+            "mxt:modifier",
+            "mxt:aura",
+            "mxt:channelled",
+            "mxt:composite",
+            "mxt:word",
+            "mxt:empty"
+          ],
+          "$suggstion": true,
+          "default": "mxt:active",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:active": {
+          "$title": {
+            "en_us": "Active",
+            "zh_cn": "激活"
+          },
+          "$description": {
+            "en_us": "Fired by the player on purpose.",
+            "zh_cn": "由玩家主动触发的技能。"
+          },
+          "type": "object",
+          "properties": {
+            "slot": {
+              "$title": {
+                "en_us": "Slot",
+                "zh_cn": "槽位"
+              },
+              "$description": {
+                "en_us": "Slot value.",
+                "zh_cn": "槽位的值。"
+              }
+            }
+          }
+        },
+        "mxt:triggered": {
+          "$title": {
+            "en_us": "Triggered",
+            "zh_cn": "触发型"
+          },
+          "$description": {
+            "en_us": "Fired by a trigger signal rather than by hand.",
+            "zh_cn": "由触发器信号触发，而非手动施放。"
+          },
+          "type": "object",
+          "properties": {
+            "trigger": {
+              "$title": {
+                "en_us": "Trigger",
+                "zh_cn": "触发器"
+              },
+              "$type": "mxt-common-ability#ability_trigger",
+              "$description": {
+                "en_us": "Trigger value.",
+                "zh_cn": "触发器的值。"
+              }
+            },
+            "chance": {
+              "$title": {
+                "en_us": "Chance",
+                "zh_cn": "概率"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Chance value.",
+                "zh_cn": "概率的值。"
+              }
+            }
+          },
+          "required": [
+            "trigger"
+          ]
+        },
+        "mxt:modifier": {
+          "$title": {
+            "en_us": "Modifier",
+            "zh_cn": "属性修正"
+          },
+          "$description": {
+            "en_us": "Contributes attribute modifiers and nothing else.",
+            "zh_cn": "只提供属性修正，没有主动效果。"
+          },
+          "type": "object",
+          "properties": {
+            "query_tags": {
+              "$title": {
+                "en_us": "Query Tags",
+                "zh_cn": "查询标签"
+              },
+              "type": "array",
+              "items": {
+                "type": "string",
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One tag id.",
+                  "zh_cn": "一个标签 ID。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Query Tags value.",
+                "zh_cn": "查询标签的值。"
+              }
+            }
+          }
+        },
+        "mxt:aura": {
+          "$title": {
+            "en_us": "Aura",
+            "zh_cn": "灵气"
+          },
+          "$description": {
+            "en_us": "Paid for with aura.",
+            "zh_cn": "以灵气作为代价的技能。"
+          },
+          "type": "object",
+          "properties": {
+            "interval": {
+              "$title": {
+                "en_us": "Interval",
+                "zh_cn": "间隔"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Interval value.",
+                "zh_cn": "间隔的值。"
+              }
+            },
+            "radius": {
+              "$title": {
+                "en_us": "Radius",
+                "zh_cn": "半径"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Radius value.",
+                "zh_cn": "半径的值。"
+              }
+            }
+          }
+        },
+        "mxt:channelled": {
+          "$title": {
+            "en_us": "Channelled",
+            "zh_cn": "引导型"
+          },
+          "$description": {
+            "en_us": "Runs for a while instead of firing once.",
+            "zh_cn": "持续引导生效，而非一次性触发。"
+          },
+          "type": "object",
+          "properties": {
+            "tick_interval": {
+              "$title": {
+                "en_us": "Tick Interval",
+                "zh_cn": "周期刻数"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Tick Interval value.",
+                "zh_cn": "周期刻数的值。"
+              }
+            },
+            "upkeep_costs": {
+              "$title": {
+                "en_us": "Upkeep Costs",
+                "zh_cn": "维持消耗"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common#record_ResourceCost",
+                "$title": {
+                  "en_us": "Cost",
+                  "zh_cn": "消耗"
+                },
+                "$description": {
+                  "en_us": "One cost paid while the effect is kept.",
+                  "zh_cn": "维持该效果期间支付的一项消耗。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Upkeep Costs value.",
+                "zh_cn": "维持消耗的值。"
+              }
+            }
+          }
+        },
+        "mxt:composite": {
+          "$title": {
+            "en_us": "Composite",
+            "zh_cn": "复合"
+          },
+          "$description": {
+            "en_us": "Runs several child abilities in order.",
+            "zh_cn": "按顺序执行多个子技能。"
+          },
+          "type": "object",
+          "properties": {
+            "abilities": {
+              "$title": {
+                "en_us": "Abilities",
+                "zh_cn": "技能"
+              },
+              "type": "array",
+              "items": {
+                "type": "string",
+                "$registry": "mxt:ability",
+                "$title": {
+                  "en_us": "Ability",
+                  "zh_cn": "技能"
+                },
+                "$description": {
+                  "en_us": "One ability id.",
+                  "zh_cn": "一个技能 ID。"
+                }
+              },
+              "default": true,
+              "$description": {
+                "en_us": "Abilities value.",
+                "zh_cn": "技能的值。"
+              }
+            },
+            "all_required": {
+              "$title": {
+                "en_us": "All Required",
+                "zh_cn": "全部满足"
+              },
+              "type": "boolean",
+              "default": true,
+              "$description": {
+                "en_us": "All Required value.",
+                "zh_cn": "全部满足的值。"
+              }
+            }
+          },
+          "required": [
+            "abilities"
+          ]
+        },
+        "mxt:word": {
+          "$title": {
+            "en_us": "Word",
+            "zh_cn": "言灵"
+          },
+          "$description": {
+            "en_us": "Operator-only word effect, limited to the whitelisted list.",
+            "zh_cn": "仅管理员可用的言灵效果，只能从白名单里选择。"
+          },
+          "type": "object",
+          "properties": {
+            "effect": {
+              "$title": {
+                "en_us": "Effect",
+                "zh_cn": "效果"
+              },
+              "type": "string",
+              "enum": [
+                "self_heal",
+                "purge_self_curses"
+              ],
+              "default": "self_heal",
+              "$description": {
+                "en_us": "Which whitelisted word effect runs. A datapack picks from this list; it cannot supply an arbitrary command.",
+                "zh_cn": "执行哪个白名单言灵效果。数据包只能从这份列表中选择，不能提供任意命令。"
+              }
+            },
+            "requires_operator": {
+              "$title": {
+                "en_us": "Requires Operator",
+                "zh_cn": "需要管理员权限"
+              },
+              "type": "boolean",
+              "default": true,
+              "$description": {
+                "en_us": "Requires Operator value.",
+                "zh_cn": "需要管理员权限的值。"
+              }
+            },
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Amount value.",
+                "zh_cn": "数量的值。"
+              }
+            }
+          },
+          "required": [
+            "effect"
+          ]
+        },
+        "mxt:empty": {
+          "$title": {
+            "en_us": "Empty",
+            "zh_cn": "空"
+          },
+          "$description": {
+            "en_us": "Placeholder for an ability with no payload.",
+            "zh_cn": "没有实际效果的占位技能。"
+          },
+          "type": "object",
+          "properties": {}
+        }
+      }
+    },
+    "ability_component": {
+      "$title": {
+        "en_us": "Ability Component",
+        "zh_cn": "技能组件"
+      },
+      "$description": {
+        "en_us": "Ability Component selected by a type identifier.",
+        "zh_cn": "技能组件的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:cooldown",
+            "mxt:charges",
+            "mxt:toggle",
+            "mxt:timer",
+            "mxt:resource",
+            "mxt:target_lock",
+            "mxt:empty"
+          ],
+          "$suggstion": true,
+          "default": "mxt:cooldown",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:cooldown": {
+          "$title": {
+            "en_us": "Cooldown",
+            "zh_cn": "冷却时间"
+          },
+          "$description": {
+            "en_us": "Adds a cooldown between uses.",
+            "zh_cn": "为技能添加使用冷却。"
+          },
+          "type": "object",
+          "properties": {
+            "ticks": {
+              "$title": {
+                "en_us": "Ticks",
+                "zh_cn": "刻数"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Ticks value.",
+                "zh_cn": "刻数的值。"
+              }
+            }
+          },
+          "required": [
+            "ticks"
+          ]
+        },
+        "mxt:charges": {
+          "$title": {
+            "en_us": "Charges",
+            "zh_cn": "充能次数"
+          },
+          "$description": {
+            "en_us": "Gives the ability a limited number of charges.",
+            "zh_cn": "为技能添加有限的充能次数。"
+          },
+          "type": "object",
+          "properties": {
+            "maximum": {
+              "$title": {
+                "en_us": "Maximum",
+                "zh_cn": "最大值"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Maximum value.",
+                "zh_cn": "最大值的值。"
+              }
+            },
+            "recharge_ticks": {
+              "$title": {
+                "en_us": "Recharge Ticks",
+                "zh_cn": "充能刻数"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Recharge Ticks value.",
+                "zh_cn": "充能刻数的值。"
+              }
+            }
+          },
+          "required": [
+            "maximum",
+            "recharge_ticks"
+          ]
+        },
+        "mxt:toggle": {
+          "$title": {
+            "en_us": "Toggle",
+            "zh_cn": "切换"
+          },
+          "$description": {
+            "en_us": "Lets the player switch the ability on and off.",
+            "zh_cn": "允许玩家开关该技能。"
+          },
+          "type": "object",
+          "properties": {
+            "default": {
+              "$title": {
+                "en_us": "Default",
+                "zh_cn": "默认"
+              },
+              "type": "boolean",
+              "$description": {
+                "en_us": "Default value.",
+                "zh_cn": "默认的值。"
+              }
+            }
+          }
+        },
+        "mxt:timer": {
+          "$title": {
+            "en_us": "Timer",
+            "zh_cn": "计时器"
+          },
+          "$description": {
+            "en_us": "Runs the ability on a repeating timer.",
+            "zh_cn": "让技能按固定间隔自动运行。"
+          },
+          "type": "object",
+          "properties": {
+            "duration": {
+              "$title": {
+                "en_us": "Duration",
+                "zh_cn": "持续时间"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Duration value.",
+                "zh_cn": "持续时间的值。"
+              }
+            }
+          },
+          "required": [
+            "duration"
+          ]
+        },
+        "mxt:resource": {
+          "$title": {
+            "en_us": "Resource",
+            "zh_cn": "资源"
+          },
+          "$description": {
+            "en_us": "Ties the ability to a resource cost.",
+            "zh_cn": "把技能与资源消耗绑定。"
+          },
+          "type": "object",
+          "properties": {
+            "resource": {
+              "$title": {
+                "en_us": "Resource",
+                "zh_cn": "资源"
+              },
+              "type": "string",
+              "$registry": "mxt:resource",
+              "$description": {
+                "en_us": "Resource value.",
+                "zh_cn": "资源的值。"
+              }
+            }
+          },
+          "required": [
+            "resource"
+          ]
+        },
+        "mxt:target_lock": {
+          "$title": {
+            "en_us": "Target Lock",
+            "zh_cn": "目标锁定"
+          },
+          "$description": {
+            "en_us": "Keeps the ability aimed at a locked target.",
+            "zh_cn": "让技能持续锁定并瞄准目标。"
+          },
+          "type": "object",
+          "properties": {
+            "range": {
+              "$title": {
+                "en_us": "Range",
+                "zh_cn": "范围"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Range value.",
+                "zh_cn": "范围的值。"
+              }
+            }
+          },
+          "required": [
+            "range"
+          ]
+        },
+        "mxt:empty": {
+          "$title": {
+            "en_us": "Empty",
+            "zh_cn": "空"
+          },
+          "$description": {
+            "en_us": "Placeholder for a component with no payload.",
+            "zh_cn": "没有实际效果的占位组件。"
+          },
+          "type": "object",
+          "properties": {}
+        }
+      }
+    },
+    "ability_trigger": {
+      "$title": {
+        "en_us": "Ability Trigger",
+        "zh_cn": "技能触发器"
+      },
+      "$description": {
+        "en_us": "Ability Trigger selected by a type identifier.",
+        "zh_cn": "技能触发器的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [],
+          "$suggstion": true,
+          "default": "mxt:empty",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {}
+    },
+    "curse_type": {
+      "$title": {
+        "en_us": "Curse Type",
+        "zh_cn": "诅咒类型"
+      },
+      "$description": {
+        "en_us": "Curse Type selected by a type identifier.",
+        "zh_cn": "诅咒类型的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:timed",
+            "mxt:permanent",
+            "mxt:triggered",
+            "mxt:empty"
+          ],
+          "$suggstion": true,
+          "default": "mxt:timed",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:timed": {
+          "$title": {
+            "en_us": "Timed",
+            "zh_cn": "限时"
+          },
+          "$description": {
+            "en_us": "Expires on its own after the configured duration.",
+            "zh_cn": "持续时间结束后自动失效。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:permanent": {
+          "$title": {
+            "en_us": "Permanent",
+            "zh_cn": "永久"
+          },
+          "$description": {
+            "en_us": "Lasts until something removes it.",
+            "zh_cn": "需要外部移除才会结束。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:triggered": {
+          "$title": {
+            "en_us": "Triggered",
+            "zh_cn": "触发型"
+          },
+          "$description": {
+            "en_us": "Reacts to trigger signals.",
+            "zh_cn": "响应触发器信号。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:empty": {
+          "$title": {
+            "en_us": "Empty",
+            "zh_cn": "空"
+          },
+          "$description": {
+            "en_us": "Placeholder for a curse with no payload.",
+            "zh_cn": "没有实际效果的占位诅咒。"
+          },
+          "type": "object",
+          "properties": {}
+        }
+      }
+    },
+    "resource_value_provider": {
+      "$title": {
+        "en_us": "Resource Value Provider",
+        "zh_cn": "资源数值提供器"
+      },
+      "$description": {
+        "en_us": "Resource Value Provider selected by a type identifier.",
+        "zh_cn": "资源数值提供器的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:current",
+            "mxt:js",
+            "mxt:max",
+            "mxt:regen",
+            "mxt:missing",
+            "mxt:constant",
+            "mxt:environment_concentration",
+            "mxt:actual_concentration"
+          ],
+          "$suggstion": true,
+          "default": "mxt:current",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:current": {
+          "$title": {
+            "en_us": "Current",
+            "zh_cn": "当前"
+          },
+          "$description": {
+            "en_us": "Current value of the resource.",
+            "zh_cn": "该资源的当前值。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:js": {
+          "$title": {
+            "en_us": "Js",
+            "zh_cn": "JS 表达式"
+          },
+          "$description": {
+            "en_us": "Computed by a JavaScript callback.",
+            "zh_cn": "由 JavaScript 回调计算。"
+          },
+          "type": "object",
+          "properties": {
+            "id": {
+              "$title": {
+                "en_us": "Id",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "Id value.",
+                "zh_cn": "标识符的值。"
+              }
+            },
+            "params": {
+              "$title": {
+                "en_us": "Params",
+                "zh_cn": "参数"
+              },
+              "$description": {
+                "en_us": "Params value.",
+                "zh_cn": "参数的值。"
+              }
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "mxt:max": {
+          "$title": {
+            "en_us": "Max",
+            "zh_cn": "最大"
+          },
+          "$description": {
+            "en_us": "Current maximum of the resource.",
+            "zh_cn": "该资源的当前上限。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:regen": {
+          "$title": {
+            "en_us": "Regen",
+            "zh_cn": "恢复"
+          },
+          "$description": {
+            "en_us": "Per-tick regeneration of the resource.",
+            "zh_cn": "该资源每刻的恢复量。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:missing": {
+          "$title": {
+            "en_us": "Missing",
+            "zh_cn": "缺失"
+          },
+          "$description": {
+            "en_us": "Fallback used when the provider cannot be resolved.",
+            "zh_cn": "无法解析提供器时使用的回退值。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:constant": {
+          "$title": {
+            "en_us": "Constant",
+            "zh_cn": "常量"
+          },
+          "$description": {
+            "en_us": "A fixed number.",
+            "zh_cn": "固定数值。"
+          },
+          "type": "object",
+          "properties": {
+            "value": {
+              "$title": {
+                "en_us": "Value",
+                "zh_cn": "值"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Value value.",
+                "zh_cn": "值的值。"
+              }
+            }
+          },
+          "required": [
+            "value"
+          ]
+        },
+        "mxt:environment_concentration": {
+          "$title": {
+            "en_us": "Environment Concentration",
+            "zh_cn": "环境浓度"
+          },
+          "$description": {
+            "en_us": "Environmental template concentration only.",
+            "zh_cn": "仅计算当前位置环境模板提供的灵气浓度。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:actual_concentration": {
+          "$title": {
+            "en_us": "Actual Concentration",
+            "zh_cn": "实际浓度"
+          },
+          "$description": {
+            "en_us": "Fully resolved concentration from all active aura sources.",
+            "zh_cn": "计算环境、区块库存、方块和阵法等全部已生效来源的灵气浓度。"
+          },
+          "type": "object",
+          "properties": {}
+        }
+      }
+    }
+  }
+}

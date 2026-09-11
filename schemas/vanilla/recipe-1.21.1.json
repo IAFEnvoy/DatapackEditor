@@ -89,7 +89,7 @@
         "$type": "ingredient",
         "$title": {
           "en_us": "Property",
-          "zh_cn": "Property"
+          "zh_cn": "条目"
         },
         "$description": {
           "en_us": "Property value.",
@@ -153,7 +153,7 @@
       },
       "$title": {
         "en_us": "Ingredient",
-        "zh_cn": "Ingredient"
+        "zh_cn": "材料"
       },
       "$description": {
         "en_us": "Ingredient value.",

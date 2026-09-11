@@ -16,7 +16,7 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Default Value value.",
+        "en_us": "Value written when an entity first gains this resource.",
         "zh_cn": "实体首次获得此数值资源时写入的当前值；最终值会被最小值与最大值限制。"
       }
     },
@@ -27,7 +27,7 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Min value.",
+        "en_us": "Lowest value this resource may hold. Omit it for 0.",
         "zh_cn": "该数值资源允许的最低当前值。省略时为 0；支持数值或公式。"
       }
     },
@@ -38,7 +38,7 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Max value.",
+        "en_us": "Upper limit of the resource. A formula may read the realm, level and absorbed aura.",
         "zh_cn": "该数值资源的当前上限，支持数值或公式。公式可使用 realm、realm_rank、level、absorbed_aura 与 cultivation_progress。"
       }
     },
@@ -49,8 +49,19 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Regen value.",
+        "en_us": "How much is restored per tick. Omit it for no regeneration.",
         "zh_cn": "每游戏刻自动增加的数值，支持数值或公式。省略时不自动恢复。"
+      }
+    },
+    "icon": {
+      "$title": {
+        "en_us": "Hotbar Icon",
+        "zh_cn": "快捷栏图标"
+      },
+      "$type": "mxt-common#hotbar_icon",
+      "$description": {
+        "en_us": "Optional icon used by the spirit-burst hotbar. Without one, the resource name is shown.",
+        "zh_cn": "灵气发射快捷栏的可选图标；未填写时显示资源名称。"
       }
     },
     "cultivation_to_resource": {
@@ -60,7 +71,7 @@
       },
       "$type": "mxt-common#record_ResourceConversion",
       "$description": {
-        "en_us": "Cultivation To Resource value.",
+        "en_us": "Conversion that refills the resource from cultivation progress.",
         "zh_cn": "从修为计数回充资源的转换配置，含倍率与每刻源修为上限。"
       }
     },
@@ -71,7 +82,7 @@
       },
       "$type": "mxt-common#record_ResourceConversion",
       "$description": {
-        "en_us": "Resource To Cultivation value.",
+        "en_us": "Conversion that turns the resource back into cultivation progress.",
         "zh_cn": "培养行为运行时从资源转为修为计数的转换配置，含倍率与每刻源蓝条上限。"
       }
     },
@@ -82,19 +93,19 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_ResourceBar",
+        "$type": "mxt-common-resource#record_ResourceBar",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Bar",
+          "zh_cn": "资源条"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One HUD bar.",
+          "zh_cn": "一条资源条。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Bars value.",
+        "en_us": "HUD bars drawn for this resource.",
         "zh_cn": "此资源的内联 HUD 显示条；资源归属由父级定义自动确定。"
       }
     },
@@ -106,7 +117,7 @@
       "type": "string",
       "$registry": "mxt:realm_stage",
       "$description": {
-        "en_us": "First Realm value.",
+        "en_us": "First realm of the chain this resource's formulas read from.",
         "zh_cn": "此资源绑定的线性境界链起点；用于为上限和恢复公式提供境界等级与已吸收灵气。"
       }
     }

@@ -5,7 +5,7 @@
   },
   "$description": {
     "en_us": "Data-driven Spirit Herb definition from MiXianTu.",
-    "zh_cn": "觅仙途灵草的值。"
+    "zh_cn": "由觅仙途数据包加载的灵草定义。"
   },
   "type": "object",
   "properties": {
@@ -14,21 +14,22 @@
         "en_us": "Items",
         "zh_cn": "物品"
       },
+      "$type": "mxt-common#item_matcher",
       "$description": {
-        "en_us": "Items value.",
-        "zh_cn": "物品的值。"
+        "en_us": "Items that are this herb.",
+        "zh_cn": "属于该灵草的物品。"
       }
     },
-    "material_grade": {
+    "quality": {
       "$title": {
-        "en_us": "Material Grade",
-        "zh_cn": "材料品级"
+        "en_us": "Quality",
+        "zh_cn": "品质"
       },
       "type": "string",
-      "$registry": "mxt:material_grade",
+      "$registry": "mxt:item_quality",
       "$description": {
-        "en_us": "Material Grade value.",
-        "zh_cn": "材料品级的值。"
+        "en_us": "Quality of the harvested herb.",
+        "zh_cn": "收获灵草的品质。"
       }
     },
     "age": {
@@ -38,8 +39,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Age value.",
-        "zh_cn": "年龄的值。"
+        "en_us": "Growth age this entry describes.",
+        "zh_cn": "该条目描述的灵草生长年龄。"
       }
     },
     "element_tags": {
@@ -51,18 +52,18 @@
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Tag",
+          "zh_cn": "标签"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One tag id.",
+          "zh_cn": "一个标签 ID。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Element Tags value.",
-        "zh_cn": "元素标签的值。"
+        "en_us": "Elements this herb carries.",
+        "zh_cn": "该灵草携带的元素标签。"
       }
     },
     "material_tags": {
@@ -74,18 +75,18 @@
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Tag",
+          "zh_cn": "标签"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One tag id.",
+          "zh_cn": "一个标签 ID。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Material Tags value.",
-        "zh_cn": "材料标签的值。"
+        "en_us": "Material tags this herb counts as.",
+        "zh_cn": "该灵草被视为的材料标签。"
       }
     },
     "growth_rate": {
@@ -95,8 +96,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Growth Rate value.",
-        "zh_cn": "生长速率的值。"
+        "en_us": "How fast the herb grows.",
+        "zh_cn": "该灵草的生长速率。"
       }
     },
     "drop_chance": {
@@ -106,14 +107,14 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Drop Chance value.",
-        "zh_cn": "掉落概率的值。"
+        "en_us": "Chance of the herb dropping when harvested.",
+        "zh_cn": "收获时掉落该灵草的概率。"
       }
     }
   },
   "required": [
     "items",
-    "material_grade"
+    "quality"
   ],
   "id": "mxt-spirit_herb",
   "$version": "26.1.2",

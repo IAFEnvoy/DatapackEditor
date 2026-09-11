@@ -1,6 +1,9 @@
 {
   "id": "origins-neoforge-origin",
-  "$version": ["1.21.1", "26.1.2"],
+  "$version": [
+    "1.21.1",
+    "26.1.2"
+  ],
   "$path": "data/<namespace>/origins/origin/<path>.json",
   "title": "Origins origin",
   "$title": {

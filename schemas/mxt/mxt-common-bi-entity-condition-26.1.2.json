@@ -1,0 +1,567 @@
+{
+  "id": "mxt-common-bi-entity-condition",
+  "$library": true,
+  "$version": "26.1.2",
+  "$title": {
+    "en_us": "MiXianTu Bi-Entity Conditions",
+    "zh_cn": "MiXianTu 双实体条件"
+  },
+  "$description": {
+    "en_us": "Conditions comparing an actor with a target.",
+    "zh_cn": "比较执行者与目标的条件。"
+  },
+  "$types": {
+    "bi_entity_condition": {
+      "$title": {
+        "en_us": "Bi Entity Condition",
+        "zh_cn": "双实体条件"
+      },
+      "$description": {
+        "en_us": "Bi Entity Condition selected by a type identifier.",
+        "zh_cn": "双实体条件的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:always_true",
+            "mxt:js",
+            "mxt:and",
+            "mxt:distance",
+            "mxt:team",
+            "mxt:relation",
+            "mxt:element_overcomes",
+            "mxt:can_see",
+            "mxt:chance",
+            "mxt:constant",
+            "mxt:not",
+            "mxt:or",
+            "mxt:actor_condition",
+            "mxt:target_condition",
+            "mxt:both",
+            "mxt:either",
+            "mxt:riding_recursive",
+            "mxt:same_team",
+            "mxt:relative_rotation",
+            "mxt:undirected"
+          ],
+          "$suggstion": true,
+          "default": "mxt:always_true",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:always_true": {
+          "$title": {
+            "en_us": "Always True",
+            "zh_cn": "始终为真"
+          },
+          "$description": {
+            "en_us": "Always passes.",
+            "zh_cn": "始终满足，永远通过。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:js": {
+          "$title": {
+            "en_us": "Js",
+            "zh_cn": "JS 表达式"
+          },
+          "$description": {
+            "en_us": "Judged by a JavaScript callback with the actor and the target.",
+            "zh_cn": "以执行者与目标为参数，由 JavaScript 回调判定。"
+          },
+          "type": "object",
+          "properties": {
+            "id": {
+              "$title": {
+                "en_us": "Id",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "Id value.",
+                "zh_cn": "标识符的值。"
+              }
+            },
+            "params": {
+              "$title": {
+                "en_us": "Params",
+                "zh_cn": "参数"
+              },
+              "$description": {
+                "en_us": "Params value.",
+                "zh_cn": "参数的值。"
+              }
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "mxt:and": {
+          "$title": {
+            "en_us": "And",
+            "zh_cn": "全部满足"
+          },
+          "$description": {
+            "en_us": "Passes when every child condition passes.",
+            "zh_cn": "所有子条件都满足时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "conditions": {
+              "$title": {
+                "en_us": "Conditions",
+                "zh_cn": "条件"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+                "$title": {
+                  "en_us": "Condition",
+                  "zh_cn": "条件"
+                },
+                "$description": {
+                  "en_us": "One child condition.",
+                  "zh_cn": "一个子条件。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Conditions value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "conditions"
+          ]
+        },
+        "mxt:distance": {
+          "$title": {
+            "en_us": "Distance",
+            "zh_cn": "距离"
+          },
+          "$description": {
+            "en_us": "Compares the distance between the two entities.",
+            "zh_cn": "比较两个实体之间的距离。"
+          },
+          "type": "object",
+          "properties": {
+            "maximum": {
+              "$title": {
+                "en_us": "Maximum",
+                "zh_cn": "最大值"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Maximum value.",
+                "zh_cn": "最大值的值。"
+              }
+            }
+          },
+          "required": [
+            "maximum"
+          ]
+        },
+        "mxt:team": {
+          "$title": {
+            "en_us": "Team",
+            "zh_cn": "队伍"
+          },
+          "$description": {
+            "en_us": "Checks the team of one side.",
+            "zh_cn": "判断其中一方的队伍。"
+          },
+          "type": "object",
+          "properties": {
+            "same_team": {
+              "$title": {
+                "en_us": "Same Team",
+                "zh_cn": "同队"
+              },
+              "type": "boolean",
+              "$description": {
+                "en_us": "Same Team value.",
+                "zh_cn": "同队的值。"
+              }
+            }
+          }
+        },
+        "mxt:relation": {
+          "$title": {
+            "en_us": "Relation",
+            "zh_cn": "关系"
+          },
+          "$description": {
+            "en_us": "Checks how the two entities relate to each other.",
+            "zh_cn": "判断两个实体之间的关系。"
+          },
+          "type": "object",
+          "properties": {
+            "allied": {
+              "$title": {
+                "en_us": "Allied",
+                "zh_cn": "友方"
+              },
+              "type": "boolean",
+              "default": true,
+              "$description": {
+                "en_us": "Allied value.",
+                "zh_cn": "友方的值。"
+              }
+            }
+          }
+        },
+        "mxt:element_overcomes": {
+          "$title": {
+            "en_us": "Element Overcomes",
+            "zh_cn": "元素克制"
+          },
+          "$description": {
+            "en_us": "Checks whether one side's element overcomes the other's.",
+            "zh_cn": "判断一方的元素是否克制另一方。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:can_see": {
+          "$title": {
+            "en_us": "Can See",
+            "zh_cn": "可见"
+          },
+          "$description": {
+            "en_us": "Checks whether the actor can see the target.",
+            "zh_cn": "判断执行者能否看到目标。"
+          },
+          "type": "object",
+          "properties": {
+            "shape_type": {
+              "$title": {
+                "en_us": "Shape Type",
+                "zh_cn": "形状类型"
+              },
+              "$description": {
+                "en_us": "Shape Type value.",
+                "zh_cn": "形状类型的值。"
+              }
+            },
+            "fluid_handling": {
+              "$title": {
+                "en_us": "Fluid Handling",
+                "zh_cn": "流体处理方式"
+              },
+              "$description": {
+                "en_us": "Fluid Handling value.",
+                "zh_cn": "流体处理方式的值。"
+              }
+            }
+          }
+        },
+        "mxt:chance": {
+          "$title": {
+            "en_us": "Chance",
+            "zh_cn": "概率"
+          },
+          "$description": {
+            "en_us": "Passes with the given probability.",
+            "zh_cn": "按给定概率通过。"
+          },
+          "type": "object",
+          "properties": {
+            "chance": {
+              "$title": {
+                "en_us": "Chance",
+                "zh_cn": "概率"
+              },
+              "type": "number",
+              "$description": {
+                "en_us": "Chance value.",
+                "zh_cn": "概率的值。"
+              }
+            }
+          },
+          "required": [
+            "chance"
+          ]
+        },
+        "mxt:constant": {
+          "$title": {
+            "en_us": "Constant",
+            "zh_cn": "常量"
+          },
+          "$description": {
+            "en_us": "Always returns the configured answer.",
+            "zh_cn": "始终返回配置的固定结果。"
+          },
+          "type": "object",
+          "properties": {
+            "value": {
+              "$title": {
+                "en_us": "Value",
+                "zh_cn": "值"
+              },
+              "type": "boolean",
+              "$description": {
+                "en_us": "Value value.",
+                "zh_cn": "值的值。"
+              }
+            }
+          },
+          "required": [
+            "value"
+          ]
+        },
+        "mxt:not": {
+          "$title": {
+            "en_us": "Not",
+            "zh_cn": "条件取反"
+          },
+          "$description": {
+            "en_us": "Passes when the child condition fails.",
+            "zh_cn": "子条件不满足时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+              "$description": {
+                "en_us": "Condition value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "condition"
+          ]
+        },
+        "mxt:or": {
+          "$title": {
+            "en_us": "Or",
+            "zh_cn": "任一满足"
+          },
+          "$description": {
+            "en_us": "Passes when any child condition passes.",
+            "zh_cn": "任一子条件满足时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "conditions": {
+              "$title": {
+                "en_us": "Conditions",
+                "zh_cn": "条件"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+                "$title": {
+                  "en_us": "Condition",
+                  "zh_cn": "条件"
+                },
+                "$description": {
+                  "en_us": "One child condition.",
+                  "zh_cn": "一个子条件。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Conditions value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "conditions"
+          ]
+        },
+        "mxt:actor_condition": {
+          "$title": {
+            "en_us": "Actor Condition",
+            "zh_cn": "执行者条件"
+          },
+          "$description": {
+            "en_us": "Checks a condition on the actor.",
+            "zh_cn": "对执行者判断一个实体条件。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$type": "mxt-common-entity-condition#entity_condition",
+              "$description": {
+                "en_us": "Condition value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "condition"
+          ]
+        },
+        "mxt:target_condition": {
+          "$title": {
+            "en_us": "Target Condition",
+            "zh_cn": "目标条件"
+          },
+          "$description": {
+            "en_us": "Checks a condition on the target.",
+            "zh_cn": "对目标判断一个实体条件。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$type": "mxt-common-entity-condition#entity_condition",
+              "$description": {
+                "en_us": "Condition value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "condition"
+          ]
+        },
+        "mxt:both": {
+          "$title": {
+            "en_us": "Both",
+            "zh_cn": "双方"
+          },
+          "$description": {
+            "en_us": "Passes when the condition holds for both sides.",
+            "zh_cn": "条件对双方都成立时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$type": "mxt-common-entity-condition#entity_condition",
+              "$description": {
+                "en_us": "Condition value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "condition"
+          ]
+        },
+        "mxt:either": {
+          "$title": {
+            "en_us": "Either",
+            "zh_cn": "任一"
+          },
+          "$description": {
+            "en_us": "Passes when the condition holds for at least one side.",
+            "zh_cn": "条件至少对一方成立时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$type": "mxt-common-entity-condition#entity_condition",
+              "$description": {
+                "en_us": "Condition value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "condition"
+          ]
+        },
+        "mxt:riding_recursive": {
+          "$title": {
+            "en_us": "Riding Recursive",
+            "zh_cn": "递归骑乘"
+          },
+          "$description": {
+            "en_us": "Walks the whole chain of vehicles.",
+            "zh_cn": "沿着载具链逐层判断。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:same_team": {
+          "$title": {
+            "en_us": "Same Team",
+            "zh_cn": "同队"
+          },
+          "$description": {
+            "en_us": "Checks whether both entities share a team.",
+            "zh_cn": "判断两个实体是否同队。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:relative_rotation": {
+          "$title": {
+            "en_us": "Relative Rotation",
+            "zh_cn": "相对朝向"
+          },
+          "$description": {
+            "en_us": "Compares one entity's facing relative to the other.",
+            "zh_cn": "比较一方相对另一方的朝向。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:undirected": {
+          "$title": {
+            "en_us": "Undirected",
+            "zh_cn": "无方向"
+          },
+          "$description": {
+            "en_us": "Ignores which entity is the actor when comparing.",
+            "zh_cn": "比较时忽略谁是执行者。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+              "$description": {
+                "en_us": "Condition value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "condition"
+          ]
+        }
+      }
+    }
+  }
+}

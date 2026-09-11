@@ -5,7 +5,7 @@
   },
   "$description": {
     "en_us": "Data-driven Tribulation definition from MiXianTu.",
-    "zh_cn": "觅仙途天劫的值。"
+    "zh_cn": "由觅仙途数据包加载的天劫定义。"
   },
   "type": "object",
   "properties": {
@@ -14,10 +14,10 @@
         "en_us": "Trigger Condition",
         "zh_cn": "触发条件"
       },
-      "$type": "mxt-common#entity_condition",
+      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Trigger Condition value.",
-        "zh_cn": "触发条件的值。"
+        "en_us": "Condition that starts the tribulation.",
+        "zh_cn": "触发天劫的条件。"
       }
     },
     "phases": {
@@ -27,20 +27,20 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_Phase",
+        "$type": "mxt-common-content#record_Phase",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Phase",
+          "zh_cn": "阶段"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One phase of the tribulation.",
+          "zh_cn": "天劫中的一个阶段。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Phases value.",
-        "zh_cn": "阶段的值。"
+        "en_us": "Phases the tribulation goes through.",
+        "zh_cn": "天劫经历的阶段。"
       }
     },
     "difficulty_scale": {
@@ -50,8 +50,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Difficulty Scale value.",
-        "zh_cn": "难度倍率的值。"
+        "en_us": "Multiplier applied to the tribulation's difficulty.",
+        "zh_cn": "天劫难度的倍率。"
       }
     },
     "success_action": {
@@ -59,10 +59,10 @@
         "en_us": "Success Action",
         "zh_cn": "成功行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Success Action value.",
-        "zh_cn": "成功行为的值。"
+        "en_us": "Action run when the tribulation is survived.",
+        "zh_cn": "渡过天劫时执行的行为。"
       }
     },
     "fail_action": {
@@ -70,10 +70,10 @@
         "en_us": "Fail Action",
         "zh_cn": "失败行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Fail Action value.",
-        "zh_cn": "失败行为的值。"
+        "en_us": "Action run when the tribulation is failed.",
+        "zh_cn": "天劫失败时执行的行为。"
       }
     }
   },

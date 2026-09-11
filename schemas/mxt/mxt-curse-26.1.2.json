@@ -16,8 +16,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Duration Ticks value.",
-        "zh_cn": "持续刻数的值。"
+        "en_us": "How long the curse lasts, in ticks.",
+        "zh_cn": "诅咒持续的时间，单位 tick。"
       }
     },
     "tick_interval": {
@@ -27,8 +27,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Tick Interval value.",
-        "zh_cn": "周期刻数的值。"
+        "en_us": "How often the curse ticks, in ticks.",
+        "zh_cn": "诅咒的触发间隔，单位 tick。"
       }
     },
     "max_stacks": {
@@ -39,19 +39,19 @@
       "type": "integer",
       "default": 1,
       "$description": {
-        "en_us": "Max Stacks value.",
-        "zh_cn": "最大层数的值。"
+        "en_us": "Highest stack count the curse may reach.",
+        "zh_cn": "诅咒可以叠加到的最高层数。"
       }
     },
     "stacking_mode": {
       "$title": {
         "en_us": "Stacking Mode",
-        "zh_cn": "叠加 模式"
+        "zh_cn": "叠加模式"
       },
       "$type": "mxt-common#record_StackingMode",
       "$description": {
-        "en_us": "Stacking Mode value.",
-        "zh_cn": "叠加 模式的值。"
+        "en_us": "How further applications combine with the stacks already there.",
+        "zh_cn": "再次施加时与已有层数的叠加方式。"
       }
     },
     "application_condition": {
@@ -59,10 +59,10 @@
         "en_us": "Application Condition",
         "zh_cn": "施加条件"
       },
-      "$type": "mxt-common#entity_condition",
+      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Application Condition value.",
-        "zh_cn": "施加条件的值。"
+        "en_us": "Condition required before the curse may be applied.",
+        "zh_cn": "施加该诅咒前需要满足的条件。"
       }
     },
     "on_apply": {
@@ -70,10 +70,10 @@
         "en_us": "On Apply",
         "zh_cn": "施加时行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "On Apply value.",
-        "zh_cn": "施加时行为的值。"
+        "en_us": "Action run when the curse is applied.",
+        "zh_cn": "诅咒被施加时执行的行为。"
       }
     },
     "on_tick": {
@@ -81,10 +81,10 @@
         "en_us": "On Tick",
         "zh_cn": "周期行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "On Tick value.",
-        "zh_cn": "周期行为的值。"
+        "en_us": "Action run on every curse tick.",
+        "zh_cn": "诅咒每刻执行的行为。"
       }
     },
     "on_remove": {
@@ -92,45 +92,45 @@
         "en_us": "On Remove",
         "zh_cn": "移除时行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "On Remove value.",
-        "zh_cn": "移除时行为的值。"
+        "en_us": "Action run when the curse ends or is cleansed.",
+        "zh_cn": "诅咒结束或被净化时执行的行为。"
       }
     },
     "cleanse_tags": {
       "$title": {
         "en_us": "Cleanse Tags",
-        "zh_cn": "净化 标签"
+        "zh_cn": "净化标签"
       },
       "type": "array",
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Tag",
+          "zh_cn": "标签"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One tag id.",
+          "zh_cn": "一个标签 ID。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Cleanse Tags value.",
-        "zh_cn": "净化 标签的值。"
+        "en_us": "Tags deciding which effects may cleanse this curse.",
+        "zh_cn": "决定哪些效果可以净化该诅咒的标签。"
       }
     },
     "allow_force_remove": {
       "$title": {
         "en_us": "Allow Force Remove",
-        "zh_cn": "允许 强制 移除"
+        "zh_cn": "允许强制移除"
       },
       "type": "boolean",
       "default": false,
       "$description": {
-        "en_us": "Allow Force Remove value.",
-        "zh_cn": "允许 强制 移除的值。"
+        "en_us": "Whether the curse may be removed by force.",
+        "zh_cn": "是否允许被强制移除。"
       }
     }
   },

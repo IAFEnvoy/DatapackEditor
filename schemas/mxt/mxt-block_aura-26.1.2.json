@@ -5,7 +5,7 @@
   },
   "$description": {
     "en_us": "Data-driven Block Aura definition from MiXianTu.",
-    "zh_cn": "觅仙途方块灵气的值。"
+    "zh_cn": "由觅仙途数据包加载的方块灵气定义。"
   },
   "type": "object",
   "properties": {
@@ -16,55 +16,42 @@
       },
       "type": "array",
       "items": {
+        "$type": "block_entry",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Block or Tag",
+          "zh_cn": "方块或标签"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One block this entry covers, or one block tag standing for several.",
+          "zh_cn": "本条覆盖的一个方块，或代表若干方块的一个方块标签。"
         }
       },
-      "default": 0,
       "$description": {
-        "en_us": "Blocks value.",
-        "zh_cn": "方块的值。"
+        "en_us": "Blocks this entry applies to. At least one, and the list may mix block ids with #tags.",
+        "zh_cn": "本条生效的方块。至少一项，可以混写方块 ID 与 #标签。"
       }
     },
-    "aura_per_block": {
+    "aura": {
       "$title": {
-        "en_us": "Aura Per Block",
-        "zh_cn": "每方块灵气"
+        "en_us": "Resource Aura",
+        "zh_cn": "资源灵气"
       },
-      "type": "number",
-      "default": 0,
-      "$description": {
-        "en_us": "Aura Per Block value.",
-        "zh_cn": "每方块灵气的值。"
-      }
-    },
-    "regen_per_tick_per_block": {
-      "$title": {
-        "en_us": "Regen Per Tick Per Block",
-        "zh_cn": "每方块每刻恢复"
+      "type": "object",
+      "additionalProperties": {
+        "$type": "mxt-common#record_AuraValue",
+        "$title": {
+          "en_us": "Aura Value",
+          "zh_cn": "灵气数值"
+        },
+        "$description": {
+          "en_us": "What one resource contributes per matching block, or what the zone holds of it.",
+          "zh_cn": "每个匹配方块对某一种资源的贡献，或该区域持有的该种灵气。"
+        }
       },
-      "type": "number",
-      "default": 0,
+      "default": {},
       "$description": {
-        "en_us": "Regen Per Tick Per Block value.",
-        "zh_cn": "每方块每刻恢复的值。"
-      }
-    },
-    "element_aura_per_block": {
-      "$title": {
-        "en_us": "Element Aura Per Block",
-        "zh_cn": "每方块元素灵气"
-      },
-      "type": "string",
-      "$registry": "mxt:element",
-      "$description": {
-        "en_us": "Element Aura Per Block value.",
-        "zh_cn": "每方块元素灵气的值。"
+        "en_us": "Map keyed by mxt:resource ids. Each resource contributes independently, and each matching block adds its own entry.",
+        "zh_cn": "以 mxt:resource ID 为键的表。每种资源独立贡献，每个匹配方块各加一份。"
       }
     },
     "aura_kinds": {
@@ -76,24 +63,63 @@
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Aura Kind",
+          "zh_cn": "灵气类型"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One aura kind identifier.",
+          "zh_cn": "一个灵气类型标识符。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Aura kinds contributed by each matching block.",
-        "zh_cn": "每个匹配方块贡献的灵气类型，用于类型判断。"
+        "en_us": "Aura kinds every matching block contributes, used for aura type checks.",
+        "zh_cn": "每个匹配方块贡献的灵气类型，用于灵气类型判断。"
       }
     }
   },
   "required": [
     "blocks"
   ],
+  "$types": {
+    "block_entry": {
+      "$title": {
+        "en_us": "Block Entry",
+        "zh_cn": "方块条目"
+      },
+      "$description": {
+        "en_us": "One block id, or one block tag prefixed with #.",
+        "zh_cn": "一个方块 ID，或一个以 # 开头的方块标签。"
+      },
+      "oneOf": [
+        {
+          "type": "string",
+          "$registry": "minecraft:block",
+          "$title": {
+            "en_us": "Block",
+            "zh_cn": "方块"
+          },
+          "$description": {
+            "en_us": "A block id.",
+            "zh_cn": "一个方块 ID。"
+          }
+        },
+        {
+          "type": "string",
+          "$registry": "minecraft:block_tag",
+          "pattern": "^#.+",
+          "$title": {
+            "en_us": "Block Tag",
+            "zh_cn": "方块标签"
+          },
+          "$description": {
+            "en_us": "A block tag id prefixed with #.",
+            "zh_cn": "以 # 开头的方块标签 ID。"
+          }
+        }
+      ]
+    }
+  },
   "id": "mxt-block_aura",
   "$version": "26.1.2",
   "$registry": "mxt:block_aura",

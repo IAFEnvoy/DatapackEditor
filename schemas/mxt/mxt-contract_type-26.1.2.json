@@ -5,7 +5,7 @@
   },
   "$description": {
     "en_us": "Data-driven Contract Type definition from MiXianTu.",
-    "zh_cn": "觅仙途契约类型的值。"
+    "zh_cn": "由觅仙途数据包加载的灵兽契约类型定义。"
   },
   "type": "object",
   "properties": {
@@ -14,10 +14,10 @@
         "en_us": "Owner Condition",
         "zh_cn": "主人条件"
       },
-      "$type": "mxt-common#entity_condition",
+      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Owner Condition value.",
-        "zh_cn": "主人条件的值。"
+        "en_us": "Condition the contract owner has to meet.",
+        "zh_cn": "契约主人需要满足的条件。"
       }
     },
     "creature_condition": {
@@ -25,10 +25,10 @@
         "en_us": "Creature Condition",
         "zh_cn": "灵兽条件"
       },
-      "$type": "mxt-common#entity_condition",
+      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Creature Condition value.",
-        "zh_cn": "灵兽条件的值。"
+        "en_us": "Condition the contracted creature has to meet.",
+        "zh_cn": "契约灵兽需要满足的条件。"
       }
     },
     "follow_action": {
@@ -36,10 +36,10 @@
         "en_us": "Follow Action",
         "zh_cn": "跟随行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Follow Action value.",
-        "zh_cn": "跟随行为的值。"
+        "en_us": "Action run on the creature while it follows its owner.",
+        "zh_cn": "灵兽跟随主人时执行的行为。"
       }
     },
     "combat_action": {
@@ -47,10 +47,10 @@
         "en_us": "Combat Action",
         "zh_cn": "战斗行为"
       },
-      "$type": "mxt-common#bi_entity_action",
+      "$type": "mxt-common-bi-entity-action#bi_entity_action",
       "$description": {
-        "en_us": "Combat Action value.",
-        "zh_cn": "战斗行为的值。"
+        "en_us": "Action run on the creature when it enters combat.",
+        "zh_cn": "灵兽进入战斗时执行的行为。"
       }
     },
     "break_action": {
@@ -58,10 +58,10 @@
         "en_us": "Break Action",
         "zh_cn": "解除行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Break Action value.",
-        "zh_cn": "解除行为的值。"
+        "en_us": "Action run when the contract is broken.",
+        "zh_cn": "契约解除时执行的行为。"
       }
     },
     "penalty_action": {
@@ -69,10 +69,10 @@
         "en_us": "Penalty Action",
         "zh_cn": "惩罚行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Penalty Action value.",
-        "zh_cn": "惩罚行为的值。"
+        "en_us": "Action run on the owner as the penalty for a broken contract.",
+        "zh_cn": "契约被违反时对主人执行的惩罚行为。"
       }
     }
   },

@@ -5,7 +5,7 @@
   },
   "$description": {
     "en_us": "Data-driven Item Binding definition from MiXianTu.",
-    "zh_cn": "觅仙途物品绑定的值。"
+    "zh_cn": "由觅仙途数据包加载的物品行为绑定定义。"
   },
   "type": "object",
   "properties": {
@@ -14,9 +14,10 @@
         "en_us": "Items",
         "zh_cn": "物品"
       },
+      "$type": "mxt-common#item_matcher",
       "$description": {
-        "en_us": "Items value.",
-        "zh_cn": "物品的值。"
+        "en_us": "Items this binding applies to.",
+        "zh_cn": "该绑定适用的物品。"
       }
     },
     "actions": {
@@ -26,20 +27,42 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#entity_action",
+        "$type": "mxt-common-entity-action#entity_action",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Action",
+          "zh_cn": "行为"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One child action.",
+          "zh_cn": "一个子行为。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Actions value.",
-        "zh_cn": "行为的值。"
+        "en_us": "Actions run for items matching this binding.",
+        "zh_cn": "匹配该绑定的物品所执行的行为。"
+      }
+    },
+    "quality_group": {
+      "$title": {
+        "en_us": "Quality Group",
+        "zh_cn": "品质组"
+      },
+      "$type": "mxt-common#item_quality_tag",
+      "$description": {
+        "en_us": "Quality group shared by these items.",
+        "zh_cn": "这些物品共用的品质组。"
+      }
+    },
+    "condition": {
+      "$title": {
+        "en_us": "Condition",
+        "zh_cn": "条件"
+      },
+      "$type": "mxt-common-entity-condition#entity_condition",
+      "$description": {
+        "en_us": "Condition an item has to meet for the binding to apply.",
+        "zh_cn": "物品需要满足的条件，满足后该绑定才生效。"
       }
     }
   },

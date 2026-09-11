@@ -15,8 +15,8 @@
         "zh_cn": "物品类型"
       },
       "$description": {
-        "en_us": "Item Type value.",
-        "zh_cn": "物品类型的值。"
+        "en_us": "Archetype of item this definition applies to.",
+        "zh_cn": "该定义适用的物品原型类型。"
       }
     },
     "spirit_capacity": {
@@ -26,8 +26,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Spirit Capacity value.",
-        "zh_cn": "灵力容量的值。"
+        "en_us": "How much aura the item can store.",
+        "zh_cn": "该物品可以储存的灵气上限。"
       }
     },
     "storage_slots": {
@@ -37,8 +37,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Storage Slots value.",
-        "zh_cn": "储物槽位的值。"
+        "en_us": "Number of storage slots the item exposes.",
+        "zh_cn": "该物品提供的储物槽位数量。"
       }
     },
     "flight_speed": {
@@ -48,8 +48,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Flight Speed value.",
-        "zh_cn": "飞行速度的值。"
+        "en_us": "Flight speed granted while the item is worn.",
+        "zh_cn": "装备该物品时提供的飞行速度。"
       }
     },
     "flight_costs": {
@@ -61,18 +61,18 @@
       "items": {
         "$type": "mxt-common#record_ResourceCost",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Cost",
+          "zh_cn": "消耗"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One cost paid while flying.",
+          "zh_cn": "飞行时支付的一项消耗。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Flight Costs value.",
-        "zh_cn": "飞行消耗的值。"
+        "en_us": "Resources paid per tick while flying.",
+        "zh_cn": "飞行时每刻支付的资源。"
       }
     },
     "granted_abilities": {
@@ -85,29 +85,29 @@
         "type": "string",
         "$registry": "mxt:ability",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Ability",
+          "zh_cn": "技能"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One ability id.",
+          "zh_cn": "一个技能 ID。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Granted Abilities value.",
-        "zh_cn": "授予的技能的值。"
+        "en_us": "Abilities granted while the item is equipped.",
+        "zh_cn": "装备该物品时授予的技能。"
       }
     },
-    "refine_behavior": {
+    "refine_action": {
       "$title": {
-        "en_us": "Refine Behavior",
+        "en_us": "Refine Action",
         "zh_cn": "炼化行为"
       },
-      "type": "string",
+      "type": "object",
       "$description": {
-        "en_us": "Refine Behavior value.",
-        "zh_cn": "炼化行为的值。"
+        "en_us": "Action run when the item is refined.",
+        "zh_cn": "炼化该物品时执行的行为。"
       }
     }
   },

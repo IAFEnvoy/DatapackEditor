@@ -16,8 +16,8 @@
       },
       "type": "integer",
       "$description": {
-        "en_us": "Value Delta value.",
-        "zh_cn": "数值变化的值。"
+        "en_us": "How far the meter moves on a successful strike. Positive moves right, negative moves left, and zero is rejected at load time.",
+        "zh_cn": "一次成功锻打让数值条移动的格数。正数向右、负数向左，写 0 会在数据包加载期被拒绝。"
       }
     },
     "costs": {
@@ -33,14 +33,14 @@
           "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One resource cost paid on each strike.",
+          "zh_cn": "每次锻打支付的一项资源消耗。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Costs value.",
-        "zh_cn": "消耗的值。"
+        "en_us": "Resources paid on every successful strike. Omit it for a free method.",
+        "zh_cn": "每次成功锻打支付的全部资源消耗。省略即为不消耗。"
       }
     },
     "condition": {
@@ -48,10 +48,10 @@
         "en_us": "Condition",
         "zh_cn": "条件"
       },
-      "$type": "mxt-common#entity_condition",
+      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Condition value.",
-        "zh_cn": "条件的值。"
+        "en_us": "Condition the striker has to meet before this method may be used. Omit it to always allow.",
+        "zh_cn": "使用该方式前必须满足的实体条件。省略即始终可用。"
       }
     },
     "display_icon": {
@@ -60,9 +60,37 @@
         "zh_cn": "显示图标"
       },
       "type": "string",
+      "$registry": "minecraft:item",
       "$description": {
-        "en_us": "Display Icon value.",
-        "zh_cn": "显示图标的值。"
+        "en_us": "Item id drawn in the method selector and used as this method's name. Omit it and the button shows the method id.",
+        "zh_cn": "方法选择格里绘制的物品 ID，同时也作为该方式的名字。省略时按钮显示方式 ID。"
+      }
+    },
+    "cooldown": {
+      "$title": {
+        "en_us": "Cooldown",
+        "zh_cn": "冷却时间"
+      },
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 72000,
+      "default": 0,
+      "$description": {
+        "en_us": "Ticks before the same player may strike the same table again, 0 to 72000. Enforced by the server's strike rate limiter.",
+        "zh_cn": "同一玩家对同一锻造台的连续锻打间隔，单位 tick，范围 0..72000，由服务端限流执行。"
+      }
+    },
+    "sound": {
+      "$title": {
+        "en_us": "Sound",
+        "zh_cn": "音效"
+      },
+      "type": "string",
+      "$registry": "minecraft:sound_event",
+      "default": "minecraft:block.anvil.place",
+      "$description": {
+        "en_us": "Sound played at the table when this method is struck. Heard by every player in range, on the Blocks channel. Use minecraft:intentionally_empty for a silent method.",
+        "zh_cn": "使用该方式锻打成功时在锻造台播放的音效，附近所有玩家都能听到，走 blocks 音量通道。写 minecraft:intentionally_empty 即为静音。"
       }
     }
   },

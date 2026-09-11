@@ -5,7 +5,7 @@
   },
   "$description": {
     "en_us": "Data-driven Creature Profile definition from MiXianTu.",
-    "zh_cn": "觅仙途灵兽档案的值。"
+    "zh_cn": "由觅仙途数据包加载的灵兽档案定义。"
   },
   "type": "object",
   "properties": {
@@ -17,8 +17,8 @@
       "type": "string",
       "$registry": "mxt:realm_stage",
       "$description": {
-        "en_us": "Realm Stage value.",
-        "zh_cn": "境界阶段的值。"
+        "en_us": "Realm stage this creature belongs to.",
+        "zh_cn": "该灵兽所属的境界阶段。"
       }
     },
     "intelligence": {
@@ -28,31 +28,19 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Intelligence value.",
-        "zh_cn": "灵智的值。"
+        "en_us": "How smart the creature is, used by taming and behaviour.",
+        "zh_cn": "灵兽的灵智，用于驯服与行为判断。"
       }
     },
-    "spawn_conditions": {
+    "condition": {
       "$title": {
-        "en_us": "Spawn Conditions",
-        "zh_cn": "生成条件"
+        "en_us": "Entity Condition",
+        "zh_cn": "实体条件"
       },
-      "type": "array",
-      "items": {
-        "type": "string",
-        "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
-        },
-        "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
-        }
-      },
-      "default": [],
+      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Spawn Conditions value.",
-        "zh_cn": "生成条件的值。"
+        "en_us": "Entity condition required before applying this creature profile. A single condition or an array of conditions can be supplied.",
+        "zh_cn": "应用灵兽档案前必须满足的实体条件，可填写单个条件或条件数组。"
       }
     },
     "inner_core": {
@@ -62,8 +50,8 @@
       },
       "type": "string",
       "$description": {
-        "en_us": "Inner Core value.",
-        "zh_cn": "内核的值。"
+        "en_us": "Item that forms the creature's inner core.",
+        "zh_cn": "构成灵兽内核的物品。"
       }
     },
     "loot_table": {
@@ -73,31 +61,31 @@
       },
       "type": "string",
       "$description": {
-        "en_us": "Loot Table value.",
-        "zh_cn": "战利品表的值。"
+        "en_us": "Loot table used when the creature is killed.",
+        "zh_cn": "灵兽被击杀时使用的战利品表。"
       }
     },
     "contract_tags": {
       "$title": {
         "en_us": "Contract Tags",
-        "zh_cn": "契约 标签"
+        "zh_cn": "契约标签"
       },
       "type": "array",
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Tag",
+          "zh_cn": "标签"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One tag id.",
+          "zh_cn": "一个标签 ID。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Contract Tags value.",
-        "zh_cn": "契约 标签的值。"
+        "en_us": "Contract tags this creature carries.",
+        "zh_cn": "该灵兽携带的契约标签。"
       }
     },
     "entity_type_tags": {
@@ -108,18 +96,18 @@
       "type": "array",
       "items": {
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Tag",
+          "zh_cn": "标签"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One tag id.",
+          "zh_cn": "一个标签 ID。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Entity Type Tags value.",
-        "zh_cn": "实体类型标签的值。"
+        "en_us": "Entity type tags this profile applies to.",
+        "zh_cn": "该档案生效的实体类型标签。"
       }
     },
     "preferred_aura_elements": {
@@ -130,30 +118,41 @@
       "type": "array",
       "items": {
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Element",
+          "zh_cn": "元素"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One preferred element.",
+          "zh_cn": "一个偏好的元素。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Preferred Aura Elements value.",
-        "zh_cn": "偏好灵气元素的值。"
+        "en_us": "Elements whose aura this creature prefers.",
+        "zh_cn": "该灵兽偏好的灵气元素。"
       }
     },
     "minimum_aura": {
       "$title": {
-        "en_us": "Minimum Aura",
-        "zh_cn": "最低灵气"
+        "en_us": "Minimum Resource Aura",
+        "zh_cn": "最低资源灵气"
       },
-      "type": "number",
-      "default": 0,
+      "type": "object",
+      "additionalProperties": {
+        "$type": "mxt-common#number_provider",
+        "$title": {
+          "en_us": "Resource Minimum",
+          "zh_cn": "资源最低值"
+        },
+        "$description": {
+          "en_us": "Minimum aura of this resource the creature needs, keyed by mxt:resource ids.",
+          "zh_cn": "该灵兽对这种资源要求的最低灵气，键为 mxt:resource ID。"
+        }
+      },
+      "default": {},
       "$description": {
-        "en_us": "Minimum Aura value.",
-        "zh_cn": "最低灵气的值。"
+        "en_us": "Per-resource environmental minimums; keys are mxt:resource IDs.",
+        "zh_cn": "按资源分别定义的环境最低值，键为 mxt:resource ID。"
       }
     }
   },

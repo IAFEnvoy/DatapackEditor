@@ -1,0 +1,84 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Item Quality",
+    "zh_cn": "觅仙途物品品质"
+  },
+  "$description": {
+    "en_us": "Data-driven Item Quality definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的物品品质定义。"
+  },
+  "type": "object",
+  "properties": {
+    "display_name": {
+      "$title": {
+        "en_us": "Display Name",
+        "zh_cn": "显示名称"
+      },
+      "$description": {
+        "en_us": "Name shown for this quality.",
+        "zh_cn": "该品质显示的名称。"
+      }
+    },
+    "description": {
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description shown for this quality.",
+        "zh_cn": "该品质显示的描述。"
+      }
+    },
+    "value_multiplier": {
+      "$title": {
+        "en_us": "Value Multiplier",
+        "zh_cn": "数值倍率"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Multiplier applied to the item's value.",
+        "zh_cn": "对物品价值施加的倍率。"
+      }
+    },
+    "forging_modifier": {
+      "$title": {
+        "en_us": "Forging Modifier",
+        "zh_cn": "锻造修正"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Modifier applied to forging outcomes.",
+        "zh_cn": "对锻造结果施加的修正。"
+      }
+    },
+    "alchemy_modifier": {
+      "$title": {
+        "en_us": "Alchemy Modifier",
+        "zh_cn": "炼丹修正"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Modifier applied to alchemy outcomes.",
+        "zh_cn": "对炼丹结果施加的修正。"
+      }
+    },
+    "condition": {
+      "$title": {
+        "en_us": "Condition",
+        "zh_cn": "条件"
+      },
+      "$type": "mxt-common-entity-condition#entity_condition",
+      "$description": {
+        "en_us": "Condition an item has to meet to carry this quality.",
+        "zh_cn": "物品拥有该品质需要满足的条件。"
+      }
+    }
+  },
+  "required": [
+    "display_name"
+  ],
+  "id": "mxt-item_quality",
+  "$version": "26.1.2",
+  "$registry": "mxt:item_quality",
+  "$path": "data/<namespace>/mxt/item_quality/<path>.json"
+}

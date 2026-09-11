@@ -1,0 +1,585 @@
+{
+  "id": "mxt-common-bi-entity-action",
+  "$library": true,
+  "$version": "26.1.2",
+  "$title": {
+    "en_us": "MiXianTu Bi-Entity Actions",
+    "zh_cn": "MiXianTu 双实体行为"
+  },
+  "$description": {
+    "en_us": "Actions involving an actor and a target.",
+    "zh_cn": "同时涉及执行者与目标的行为。"
+  },
+  "$types": {
+    "bi_entity_action": {
+      "$title": {
+        "en_us": "Bi Entity Action",
+        "zh_cn": "双实体行为"
+      },
+      "$description": {
+        "en_us": "Bi Entity Action selected by a type identifier.",
+        "zh_cn": "双实体行为的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:no_op",
+            "mxt:js",
+            "mxt:sequence",
+            "mxt:damage_target",
+            "mxt:heal_target",
+            "mxt:transfer_resource",
+            "mxt:add_velocity",
+            "mxt:teleport",
+            "mxt:chance",
+            "mxt:if_else",
+            "mxt:choice",
+            "mxt:actor_action",
+            "mxt:target_action"
+          ],
+          "$suggstion": true,
+          "default": "mxt:no_op",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:no_op": {
+          "$title": {
+            "en_us": "No Op",
+            "zh_cn": "无操作"
+          },
+          "$description": {
+            "en_us": "Does nothing.",
+            "zh_cn": "什么也不做。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:js": {
+          "$title": {
+            "en_us": "Js",
+            "zh_cn": "JS 表达式"
+          },
+          "$description": {
+            "en_us": "Runs a JavaScript callback with the actor and the target.",
+            "zh_cn": "以执行者与目标为参数执行 JavaScript 回调。"
+          },
+          "type": "object",
+          "properties": {
+            "id": {
+              "$title": {
+                "en_us": "Id",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "Id value.",
+                "zh_cn": "标识符的值。"
+              }
+            },
+            "params": {
+              "$title": {
+                "en_us": "Params",
+                "zh_cn": "参数"
+              },
+              "$description": {
+                "en_us": "Params value.",
+                "zh_cn": "参数的值。"
+              }
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "mxt:sequence": {
+          "$title": {
+            "en_us": "Sequence",
+            "zh_cn": "顺序"
+          },
+          "$description": {
+            "en_us": "Runs several actions in order.",
+            "zh_cn": "按顺序执行多个行为。"
+          },
+          "type": "object",
+          "properties": {
+            "actions": {
+              "$title": {
+                "en_us": "Actions",
+                "zh_cn": "行为"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-bi-entity-action#bi_entity_action",
+                "$title": {
+                  "en_us": "Action",
+                  "zh_cn": "行为"
+                },
+                "$description": {
+                  "en_us": "One child action.",
+                  "zh_cn": "一个子行为。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Actions value.",
+                "zh_cn": "行为的值。"
+              }
+            }
+          },
+          "required": [
+            "actions"
+          ]
+        },
+        "mxt:damage_target": {
+          "$title": {
+            "en_us": "Damage Target",
+            "zh_cn": "伤害目标"
+          },
+          "$description": {
+            "en_us": "Deals damage to the target.",
+            "zh_cn": "对目标造成伤害。"
+          },
+          "type": "object",
+          "properties": {
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Amount value.",
+                "zh_cn": "数量的值。"
+              }
+            }
+          },
+          "required": [
+            "amount"
+          ]
+        },
+        "mxt:heal_target": {
+          "$title": {
+            "en_us": "Heal Target",
+            "zh_cn": "治疗目标"
+          },
+          "$description": {
+            "en_us": "Heals the target.",
+            "zh_cn": "治疗目标。"
+          },
+          "type": "object",
+          "properties": {
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Amount value.",
+                "zh_cn": "数量的值。"
+              }
+            }
+          },
+          "required": [
+            "amount"
+          ]
+        },
+        "mxt:transfer_resource": {
+          "$title": {
+            "en_us": "Transfer Resource",
+            "zh_cn": "转移资源"
+          },
+          "$description": {
+            "en_us": "Moves an amount of a resource from one side to the other.",
+            "zh_cn": "把一定量的资源从一方转移到另一方。"
+          },
+          "type": "object",
+          "properties": {
+            "resource": {
+              "$title": {
+                "en_us": "Resource",
+                "zh_cn": "资源"
+              },
+              "type": "string",
+              "$registry": "mxt:resource",
+              "$description": {
+                "en_us": "Resource value.",
+                "zh_cn": "资源的值。"
+              }
+            },
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Amount value.",
+                "zh_cn": "数量的值。"
+              }
+            }
+          },
+          "required": [
+            "resource",
+            "amount"
+          ]
+        },
+        "mxt:add_velocity": {
+          "$title": {
+            "en_us": "Add Velocity",
+            "zh_cn": "施加速度"
+          },
+          "$description": {
+            "en_us": "Adds velocity to the target.",
+            "zh_cn": "给目标施加一个速度。"
+          },
+          "type": "object",
+          "properties": {
+            "x": {
+              "$title": {
+                "en_us": "X",
+                "zh_cn": "X"
+              },
+              "type": "number",
+              "default": 0,
+              "$description": {
+                "en_us": "X value.",
+                "zh_cn": "X的值。"
+              }
+            },
+            "y": {
+              "$title": {
+                "en_us": "Y",
+                "zh_cn": "Y"
+              },
+              "type": "number",
+              "default": 0,
+              "$description": {
+                "en_us": "Y value.",
+                "zh_cn": "Y的值。"
+              }
+            },
+            "z": {
+              "$title": {
+                "en_us": "Z",
+                "zh_cn": "Z"
+              },
+              "type": "number",
+              "default": 0,
+              "$description": {
+                "en_us": "Z value.",
+                "zh_cn": "Z的值。"
+              }
+            },
+            "reference": {
+              "$title": {
+                "en_us": "Reference",
+                "zh_cn": "引用"
+              },
+              "type": "string",
+              "enum": [
+                "position",
+                "rotation"
+              ],
+              "default": "position",
+              "$description": {
+                "en_us": "What the x/y/z offset is measured against: the position from the actor to the target, or the actor's facing.",
+                "zh_cn": "x/y/z 偏移相对的基准：执行者指向目标的位置，或执行者的朝向。"
+              }
+            },
+            "client": {
+              "$title": {
+                "en_us": "Client",
+                "zh_cn": "客户端"
+              },
+              "type": "boolean",
+              "default": true,
+              "$description": {
+                "en_us": "Client value.",
+                "zh_cn": "客户端的值。"
+              }
+            },
+            "server": {
+              "$title": {
+                "en_us": "Server",
+                "zh_cn": "服务端"
+              },
+              "type": "boolean",
+              "default": true,
+              "$description": {
+                "en_us": "Server value.",
+                "zh_cn": "服务端的值。"
+              }
+            },
+            "set": {
+              "$title": {
+                "en_us": "Set",
+                "zh_cn": "设置"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Set value.",
+                "zh_cn": "设置的值。"
+              }
+            }
+          }
+        },
+        "mxt:teleport": {
+          "$title": {
+            "en_us": "Teleport",
+            "zh_cn": "传送"
+          },
+          "$description": {
+            "en_us": "Teleports one side to the other.",
+            "zh_cn": "把一方传送到另一方处。"
+          },
+          "type": "object",
+          "properties": {
+            "teleport_actor": {
+              "$title": {
+                "en_us": "Teleport Actor",
+                "zh_cn": "传送执行者"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Teleport Actor value.",
+                "zh_cn": "传送执行者的值。"
+              }
+            },
+            "teleport_target": {
+              "$title": {
+                "en_us": "Teleport Target",
+                "zh_cn": "传送目标"
+              },
+              "type": "boolean",
+              "default": true,
+              "$description": {
+                "en_us": "Teleport Target value.",
+                "zh_cn": "传送目标的值。"
+              }
+            },
+            "rotate": {
+              "$title": {
+                "en_us": "Rotate",
+                "zh_cn": "旋转"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Rotate value.",
+                "zh_cn": "旋转的值。"
+              }
+            }
+          }
+        },
+        "mxt:chance": {
+          "$title": {
+            "en_us": "Chance",
+            "zh_cn": "概率"
+          },
+          "$description": {
+            "en_us": "Runs the child action with the given probability.",
+            "zh_cn": "按给定概率执行子行为。"
+          },
+          "type": "object",
+          "properties": {
+            "action": {
+              "$title": {
+                "en_us": "Action",
+                "zh_cn": "行为"
+              },
+              "$type": "mxt-common-bi-entity-action#bi_entity_action",
+              "$description": {
+                "en_us": "Action value.",
+                "zh_cn": "行为的值。"
+              }
+            },
+            "chance": {
+              "$title": {
+                "en_us": "Chance",
+                "zh_cn": "概率"
+              },
+              "type": "number",
+              "$description": {
+                "en_us": "Chance value.",
+                "zh_cn": "概率的值。"
+              }
+            },
+            "fail_action": {
+              "$title": {
+                "en_us": "Fail Action",
+                "zh_cn": "失败行为"
+              },
+              "$type": "mxt-common-bi-entity-action#bi_entity_action",
+              "$description": {
+                "en_us": "Fail Action value.",
+                "zh_cn": "失败行为的值。"
+              }
+            }
+          },
+          "required": [
+            "action",
+            "chance"
+          ]
+        },
+        "mxt:if_else": {
+          "$title": {
+            "en_us": "If Else",
+            "zh_cn": "条件分支"
+          },
+          "$description": {
+            "en_us": "Runs one of two actions, depending on a condition.",
+            "zh_cn": "按条件在两个行为中选择一个执行。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+              "$description": {
+                "en_us": "Condition value.",
+                "zh_cn": "条件的值。"
+              }
+            },
+            "if_action": {
+              "$title": {
+                "en_us": "If Action",
+                "zh_cn": "条件成立行为"
+              },
+              "$type": "mxt-common-bi-entity-action#bi_entity_action",
+              "$description": {
+                "en_us": "If Action value.",
+                "zh_cn": "条件成立行为的值。"
+              }
+            },
+            "else_action": {
+              "$title": {
+                "en_us": "Else Action",
+                "zh_cn": "否则行为"
+              },
+              "$type": "mxt-common-bi-entity-action#bi_entity_action",
+              "$description": {
+                "en_us": "Else Action value.",
+                "zh_cn": "否则行为的值。"
+              }
+            }
+          },
+          "required": [
+            "condition",
+            "if_action"
+          ]
+        },
+        "mxt:choice": {
+          "$title": {
+            "en_us": "Choice",
+            "zh_cn": "选择"
+          },
+          "$description": {
+            "en_us": "Picks one child action from a weighted list.",
+            "zh_cn": "从加权列表中随机挑选一个子行为。"
+          },
+          "type": "object",
+          "properties": {
+            "actions": {
+              "$title": {
+                "en_us": "Actions",
+                "zh_cn": "行为"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-bi-entity-action#bi_entity_action",
+                "$title": {
+                  "en_us": "Action",
+                  "zh_cn": "行为"
+                },
+                "$description": {
+                  "en_us": "One child action.",
+                  "zh_cn": "一个子行为。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Actions value.",
+                "zh_cn": "行为的值。"
+              }
+            }
+          },
+          "required": [
+            "actions"
+          ]
+        },
+        "mxt:actor_action": {
+          "$title": {
+            "en_us": "Actor Action",
+            "zh_cn": "执行者行为"
+          },
+          "$description": {
+            "en_us": "Runs an action on the actor.",
+            "zh_cn": "对执行者执行行为。"
+          },
+          "type": "object",
+          "properties": {
+            "action": {
+              "$title": {
+                "en_us": "Action",
+                "zh_cn": "行为"
+              },
+              "$type": "mxt-common-entity-action#entity_action",
+              "$description": {
+                "en_us": "Action value.",
+                "zh_cn": "行为的值。"
+              }
+            }
+          },
+          "required": [
+            "action"
+          ]
+        },
+        "mxt:target_action": {
+          "$title": {
+            "en_us": "Target Action",
+            "zh_cn": "目标行为"
+          },
+          "$description": {
+            "en_us": "Runs an action on the target.",
+            "zh_cn": "对目标执行行为。"
+          },
+          "type": "object",
+          "properties": {
+            "action": {
+              "$title": {
+                "en_us": "Action",
+                "zh_cn": "行为"
+              },
+              "$type": "mxt-common-entity-action#entity_action",
+              "$description": {
+                "en_us": "Action value.",
+                "zh_cn": "行为的值。"
+              }
+            }
+          },
+          "required": [
+            "action"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@
   },
   "$description": {
     "en_us": "Data-driven Formation definition from MiXianTu.",
-    "zh_cn": "觅仙途阵法的值。"
+    "zh_cn": "由觅仙途数据包加载的阵法结构与运作定义。"
   },
   "type": "object",
   "properties": {
@@ -16,8 +16,8 @@
       },
       "type": "string",
       "$description": {
-        "en_us": "Structure Template value.",
-        "zh_cn": "结构模板的值。"
+        "en_us": "Structure template that has to exist for the formation to work.",
+        "zh_cn": "阵法生效所需存在的结构模板。"
       }
     },
     "radius": {
@@ -27,8 +27,31 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Radius value.",
-        "zh_cn": "半径的值。"
+        "en_us": "Radius the formation's effects reach, in blocks.",
+        "zh_cn": "阵法效果的作用半径，单位方块。"
+      }
+    },
+    "max_bonus": {
+      "$title": {
+        "en_us": "Resource Maximum Bonus",
+        "zh_cn": "资源上限加成"
+      },
+      "type": "object",
+      "additionalProperties": {
+        "$type": "mxt-common#number_provider",
+        "$title": {
+          "en_us": "Resource Bonus",
+          "zh_cn": "资源加成"
+        },
+        "$description": {
+          "en_us": "Bonus added to this resource's maximum, keyed by mxt:resource ids.",
+          "zh_cn": "加到该资源上限上的加成，键为 mxt:resource ID。"
+        }
+      },
+      "default": {},
+      "$description": {
+        "en_us": "Per-resource capacity bonuses applied inside the formation.",
+        "zh_cn": "阵法范围内按资源分别增加灵气容量。"
       }
     },
     "activation_costs": {
@@ -40,18 +63,18 @@
       "items": {
         "$type": "mxt-common#record_ResourceCost",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Cost",
+          "zh_cn": "消耗"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One cost paid on activation.",
+          "zh_cn": "激活时支付的一项消耗。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Activation Costs value.",
-        "zh_cn": "激活消耗的值。"
+        "en_us": "Resources paid once when the formation activates.",
+        "zh_cn": "激活阵法时一次性支付的资源。"
       }
     },
     "maintenance_costs": {
@@ -63,29 +86,29 @@
       "items": {
         "$type": "mxt-common#record_ResourceCost",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Cost",
+          "zh_cn": "消耗"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One cost paid while running.",
+          "zh_cn": "维持期间支付的一项消耗。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Maintenance Costs value.",
-        "zh_cn": "维护消耗的值。"
+        "en_us": "Resources paid periodically while the formation runs.",
+        "zh_cn": "阵法维持期间周期性支付的资源。"
       }
     },
     "activate_action": {
       "$title": {
         "en_us": "Activate Action",
-        "zh_cn": "激活 行为"
+        "zh_cn": "激活行为"
       },
-      "$type": "mxt-common#block_action",
+      "$type": "mxt-common-block-action#block_action",
       "$description": {
-        "en_us": "Activate Action value.",
-        "zh_cn": "激活 行为的值。"
+        "en_us": "Action run when the formation activates.",
+        "zh_cn": "阵法激活时执行的行为。"
       }
     },
     "tick_action": {
@@ -93,10 +116,10 @@
         "en_us": "Tick Action",
         "zh_cn": "周期行为"
       },
-      "$type": "mxt-common#block_action",
+      "$type": "mxt-common-block-action#block_action",
       "$description": {
-        "en_us": "Tick Action value.",
-        "zh_cn": "周期行为的值。"
+        "en_us": "Action run on every formation tick.",
+        "zh_cn": "阵法每刻执行的行为。"
       }
     },
     "deactivate_action": {
@@ -104,10 +127,10 @@
         "en_us": "Deactivate Action",
         "zh_cn": "失效行为"
       },
-      "$type": "mxt-common#block_action",
+      "$type": "mxt-common-block-action#block_action",
       "$description": {
-        "en_us": "Deactivate Action value.",
-        "zh_cn": "失效行为的值。"
+        "en_us": "Action run when the formation deactivates.",
+        "zh_cn": "阵法失效时执行的行为。"
       }
     },
     "entity_tick_action": {
@@ -115,10 +138,10 @@
         "en_us": "Entity Tick Action",
         "zh_cn": "实体周期行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Entity Tick Action value.",
-        "zh_cn": "实体周期行为的值。"
+        "en_us": "Action run on entities inside the formation, every tick.",
+        "zh_cn": "阵法内实体每刻执行的行为。"
       }
     },
     "aura_zone": {
@@ -129,8 +152,8 @@
       "type": "string",
       "$registry": "mxt:aura_zone",
       "$description": {
-        "en_us": "Aura Zone value.",
-        "zh_cn": "灵气区域的值。"
+        "en_us": "Aura zone the formation projects.",
+        "zh_cn": "阵法投射出的灵气区域。"
       }
     }
   },

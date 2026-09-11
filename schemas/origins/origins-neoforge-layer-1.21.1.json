@@ -1,6 +1,9 @@
 {
   "id": "origins-neoforge-layer",
-  "$version": ["1.21.1", "26.1.2"],
+  "$version": [
+    "1.21.1",
+    "26.1.2"
+  ],
   "$path": "data/<namespace>/origins/layer/<path>.json",
   "title": "Origins layer",
   "$title": {
@@ -87,7 +90,7 @@
       "$type": "gui_title",
       "$title": {
         "en_us": "Gui Title",
-        "zh_cn": "Gui Title"
+        "zh_cn": "Gui 称号"
       },
       "$description": {
         "en_us": "Gui Title value.",

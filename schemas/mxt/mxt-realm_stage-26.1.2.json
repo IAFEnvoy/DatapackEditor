@@ -17,8 +17,31 @@
       "type": "string",
       "$registry": "mxt:resource",
       "$description": {
-        "en_us": "Resource value.",
-        "zh_cn": "资源的值。"
+        "en_us": "Resource this stage is bound to.",
+        "zh_cn": "该境界绑定的数值资源。"
+      }
+    },
+    "aura_share_weight": {
+      "$title": {
+        "en_us": "Aura Share Weight",
+        "zh_cn": "灵气分配权重"
+      },
+      "$type": "mxt-common#number_provider",
+      "default": 1,
+      "$description": {
+        "en_us": "Weight used by realm_weighted aura-zone distribution.",
+        "zh_cn": "灵气区域使用 realm_weighted 分配时采用的权重。"
+      }
+    },
+    "cultivate_condition": {
+      "$title": {
+        "en_us": "Cultivation Condition",
+        "zh_cn": "修炼条件"
+      },
+      "$type": "mxt-common-entity-condition#entity_condition",
+      "$description": {
+        "en_us": "Condition that must permit cultivation at this realm stage.",
+        "zh_cn": "当前境界修炼时必须满足的条件。"
       }
     },
     "next_realm": {
@@ -28,8 +51,8 @@
       },
       "type": "string",
       "$description": {
-        "en_us": "Next Realm value.",
-        "zh_cn": "下一境界的值。"
+        "en_us": "Stage a player breaks through to next.",
+        "zh_cn": "突破后进入的下一境界。"
       }
     },
     "progress_threshold": {
@@ -39,8 +62,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Progress Threshold value.",
-        "zh_cn": "进度阈值的值。"
+        "en_us": "Cultivation progress needed to break through.",
+        "zh_cn": "突破所需的修为进度。"
       }
     },
     "upgrade_conditions": {
@@ -50,20 +73,20 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#entity_condition",
+        "$type": "mxt-common-entity-condition#entity_condition",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Condition",
+          "zh_cn": "条件"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One condition checked when breaking through.",
+          "zh_cn": "突破时检查的一条条件。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Upgrade Conditions value.",
-        "zh_cn": "突破条件的值。"
+        "en_us": "Extra conditions checked when breaking through.",
+        "zh_cn": "突破时额外检查的条件。"
       }
     },
     "passive_modifiers": {
@@ -73,20 +96,20 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_AttributeModifier",
+        "$type": "mxt-common#record_AttributeEntry",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Modifier",
+          "zh_cn": "属性修正"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One attribute modifier.",
+          "zh_cn": "一条属性修正。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Passive Modifiers value.",
-        "zh_cn": "被动修正的值。"
+        "en_us": "Attribute modifiers granted while in this stage.",
+        "zh_cn": "处于该境界时获得的属性修正。"
       }
     },
     "costs": {
@@ -98,18 +121,18 @@
       "items": {
         "$type": "mxt-common#record_ResourceCost",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Cost",
+          "zh_cn": "消耗"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One cost paid per use.",
+          "zh_cn": "每次使用支付的一项消耗。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Costs value.",
-        "zh_cn": "消耗的值。"
+        "en_us": "Resources paid to break through.",
+        "zh_cn": "突破时支付的资源。"
       }
     },
     "ability_requirements": {
@@ -120,18 +143,18 @@
       "type": "array",
       "items": {
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Ability",
+          "zh_cn": "技能"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One required ability id.",
+          "zh_cn": "要求拥有的一个技能 ID。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Ability Requirements value.",
-        "zh_cn": "技能需求的值。"
+        "en_us": "Abilities a player must already have to break through.",
+        "zh_cn": "突破前必须已经拥有的技能。"
       }
     },
     "tribulation": {
@@ -142,8 +165,19 @@
       "type": "string",
       "$registry": "mxt:tribulation",
       "$description": {
-        "en_us": "Tribulation value.",
-        "zh_cn": "天劫的值。"
+        "en_us": "Tribulation triggered by the breakthrough.",
+        "zh_cn": "突破时触发的天劫。"
+      }
+    },
+    "breakthrough_particle": {
+      "$title": {
+        "en_us": "Breakthrough Particle",
+        "zh_cn": "突破粒子"
+      },
+      "$type": "mxt-common-aura#record_ParticleEffect",
+      "$description": {
+        "en_us": "Particles drawn when the breakthrough happens.",
+        "zh_cn": "突破时绘制的粒子。"
       }
     },
     "success_action": {
@@ -151,10 +185,10 @@
         "en_us": "Success Action",
         "zh_cn": "成功行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Success Action value.",
-        "zh_cn": "成功行为的值。"
+        "en_us": "Action run when the breakthrough succeeds.",
+        "zh_cn": "突破成功时执行的行为。"
       }
     },
     "fail_action": {
@@ -162,10 +196,10 @@
         "en_us": "Fail Action",
         "zh_cn": "失败行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Fail Action value.",
-        "zh_cn": "失败行为的值。"
+        "en_us": "Action run when the breakthrough fails.",
+        "zh_cn": "突破失败时执行的行为。"
       }
     }
   },

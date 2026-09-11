@@ -5,7 +5,7 @@
   },
   "$description": {
     "en_us": "Data-driven Weapon Binding definition from MiXianTu.",
-    "zh_cn": "觅仙途武器绑定的值。"
+    "zh_cn": "由觅仙途数据包加载的武器绑定定义。"
   },
   "type": "object",
   "properties": {
@@ -14,9 +14,10 @@
         "en_us": "Items",
         "zh_cn": "物品"
       },
+      "$type": "mxt-common#item_matcher",
       "$description": {
-        "en_us": "Items value.",
-        "zh_cn": "物品的值。"
+        "en_us": "Weapons this binding applies to.",
+        "zh_cn": "该绑定适用的武器。"
       }
     },
     "attack_damage": {
@@ -26,8 +27,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Attack Damage value.",
-        "zh_cn": "攻击伤害的值。"
+        "en_us": "Attack damage granted by the weapon.",
+        "zh_cn": "该武器提供的攻击伤害。"
       }
     },
     "attack_speed": {
@@ -37,8 +38,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Attack Speed value.",
-        "zh_cn": "攻击速度的值。"
+        "en_us": "Attack speed granted by the weapon.",
+        "zh_cn": "该武器提供的攻击速度。"
       }
     },
     "attributes": {
@@ -48,20 +49,20 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_AttributeModifier",
+        "$type": "mxt-common#record_AttributeEntry",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Attribute",
+          "zh_cn": "属性"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One attribute entry.",
+          "zh_cn": "一条属性条目。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Attributes value.",
-        "zh_cn": "属性的值。"
+        "en_us": "Attribute entries granted by the weapon.",
+        "zh_cn": "该武器提供的属性条目。"
       }
     },
     "use_action": {
@@ -69,10 +70,10 @@
         "en_us": "Use Action",
         "zh_cn": "使用行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Use Action value.",
-        "zh_cn": "使用行为的值。"
+        "en_us": "Action run when the weapon is used.",
+        "zh_cn": "使用该武器时执行的行为。"
       }
     },
     "attack_action": {
@@ -80,10 +81,10 @@
         "en_us": "Attack Action",
         "zh_cn": "攻击行为"
       },
-      "$type": "mxt-common#bi_entity_action",
+      "$type": "mxt-common-bi-entity-action#bi_entity_action",
       "$description": {
-        "en_us": "Attack Action value.",
-        "zh_cn": "攻击行为的值。"
+        "en_us": "Action run when the weapon hits.",
+        "zh_cn": "该武器命中时执行的行为。"
       }
     },
     "tick_action": {
@@ -91,10 +92,32 @@
         "en_us": "Tick Action",
         "zh_cn": "周期行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Tick Action value.",
-        "zh_cn": "周期行为的值。"
+        "en_us": "Action run on every tick while the weapon is held.",
+        "zh_cn": "持有该武器时每刻执行的行为。"
+      }
+    },
+    "quality_group": {
+      "$title": {
+        "en_us": "Quality Group",
+        "zh_cn": "品质组"
+      },
+      "$type": "mxt-common#item_quality_tag",
+      "$description": {
+        "en_us": "Quality group shared by these weapons.",
+        "zh_cn": "这些武器共用的品质组。"
+      }
+    },
+    "condition": {
+      "$title": {
+        "en_us": "Condition",
+        "zh_cn": "条件"
+      },
+      "$type": "mxt-common-entity-condition#entity_condition",
+      "$description": {
+        "en_us": "Condition a weapon has to meet for the binding to apply.",
+        "zh_cn": "武器需要满足的条件，满足后该绑定才生效。"
       }
     }
   },

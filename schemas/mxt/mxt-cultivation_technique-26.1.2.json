@@ -16,8 +16,8 @@
       },
       "default": "common",
       "$description": {
-        "en_us": "Grade value.",
-        "zh_cn": "品级的值。"
+        "en_us": "Grade of the technique, used by progression checks.",
+        "zh_cn": "功法的品级，用于进阶判定。"
       }
     },
     "learn_condition": {
@@ -25,33 +25,33 @@
         "en_us": "Learn Condition",
         "zh_cn": "学习条件"
       },
-      "$type": "mxt-common#entity_condition",
+      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Learn Condition value.",
-        "zh_cn": "学习条件的值。"
+        "en_us": "Condition a player has to meet to learn the technique.",
+        "zh_cn": "学习该功法需要满足的条件。"
       }
     },
     "exclusive_tags": {
       "$title": {
         "en_us": "Exclusive Tags",
-        "zh_cn": "互斥 标签"
+        "zh_cn": "互斥标签"
       },
       "type": "array",
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Tag",
+          "zh_cn": "标签"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One tag id.",
+          "zh_cn": "一个标签 ID。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Exclusive Tags value.",
-        "zh_cn": "互斥 标签的值。"
+        "en_us": "Tags that make other techniques mutually exclusive with this one.",
+        "zh_cn": "与其他功法互斥的标签。"
       }
     },
     "cultivation_modifier": {
@@ -61,8 +61,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Cultivation Modifier value.",
-        "zh_cn": "修炼修正的值。"
+        "en_us": "Multiplier applied to cultivation progress while practising.",
+        "zh_cn": "修炼时对修为进度的倍率修正。"
       }
     },
     "passive_modifiers": {
@@ -72,20 +72,20 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_AttributeModifier",
+        "$type": "mxt-common#record_AttributeEntry",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Modifier",
+          "zh_cn": "属性修正"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One attribute modifier.",
+          "zh_cn": "一条属性修正。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Passive Modifiers value.",
-        "zh_cn": "被动修正的值。"
+        "en_us": "Attribute modifiers granted passively.",
+        "zh_cn": "被动提供的属性修正。"
       }
     },
     "granted_abilities": {
@@ -96,18 +96,18 @@
       "type": "array",
       "items": {
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Ability",
+          "zh_cn": "技能"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One ability id.",
+          "zh_cn": "一个技能 ID。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Granted Abilities value.",
-        "zh_cn": "授予的技能的值。"
+        "en_us": "Abilities unlocked by learning the technique.",
+        "zh_cn": "学会该功法后解锁的技能。"
       }
     }
   },

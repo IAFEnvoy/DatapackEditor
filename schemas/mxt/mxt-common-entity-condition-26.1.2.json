@@ -1,0 +1,1249 @@
+{
+  "id": "mxt-common-entity-condition",
+  "$library": true,
+  "$version": "26.1.2",
+  "$title": {
+    "en_us": "MiXianTu Entity Conditions",
+    "zh_cn": "MiXianTu 实体条件"
+  },
+  "$description": {
+    "en_us": "Conditions checked against a single entity.",
+    "zh_cn": "针对单个实体判断的条件。"
+  },
+  "$types": {
+    "entity_condition": {
+      "$title": {
+        "en_us": "Entity Condition",
+        "zh_cn": "实体条件"
+      },
+      "$description": {
+        "en_us": "Entity Condition selected by a type identifier.",
+        "zh_cn": "实体条件的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:always_true",
+            "mxt:js",
+            "mxt:never",
+            "mxt:and",
+            "mxt:not",
+            "mxt:or",
+            "mxt:sneaking",
+            "mxt:has_ability",
+            "mxt:has_curse",
+            "mxt:realm",
+            "mxt:aura_range",
+            "mxt:resource_compare",
+            "mxt:entity_tag",
+            "mxt:formation_member",
+            "mxt:air",
+            "mxt:dimension",
+            "mxt:entity_type",
+            "mxt:fall_distance",
+            "mxt:glowing",
+            "mxt:health",
+            "mxt:exposed_to_sky",
+            "mxt:food_level",
+            "mxt:mob_effect",
+            "mxt:on_block",
+            "mxt:time_of_day",
+            "mxt:using_item",
+            "mxt:brightness",
+            "mxt:exposed_to_sun",
+            "mxt:experience_level",
+            "mxt:experience_points",
+            "mxt:relative_health",
+            "mxt:saturation_level",
+            "mxt:team",
+            "mxt:chance",
+            "mxt:constant",
+            "mxt:attribute",
+            "mxt:block_collision",
+            "mxt:can_have_effect",
+            "mxt:gamemode",
+            "mxt:passenger",
+            "mxt:attack_cooldown",
+            "mxt:equipped_item",
+            "mxt:in_block",
+            "mxt:in_block_anywhere",
+            "mxt:scoreboard",
+            "mxt:riding",
+            "mxt:riding_recursive",
+            "mxt:passenger_recursive",
+            "mxt:riding_root"
+          ],
+          "$suggstion": true,
+          "default": "mxt:always_true",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:always_true": {
+          "$title": {
+            "en_us": "Always True",
+            "zh_cn": "始终为真"
+          },
+          "$description": {
+            "en_us": "Always passes.",
+            "zh_cn": "始终满足，永远通过。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:js": {
+          "$title": {
+            "en_us": "Js",
+            "zh_cn": "JS 表达式"
+          },
+          "$description": {
+            "en_us": "Judged by a JavaScript callback.",
+            "zh_cn": "由 JavaScript 回调判定。"
+          },
+          "type": "object",
+          "properties": {
+            "id": {
+              "$title": {
+                "en_us": "Id",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "Id value.",
+                "zh_cn": "标识符的值。"
+              }
+            },
+            "params": {
+              "$title": {
+                "en_us": "Params",
+                "zh_cn": "参数"
+              },
+              "$description": {
+                "en_us": "Params value.",
+                "zh_cn": "参数的值。"
+              }
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "mxt:never": {
+          "$title": {
+            "en_us": "Never",
+            "zh_cn": "从不成立"
+          },
+          "$description": {
+            "en_us": "Never passes.",
+            "zh_cn": "永远不通过。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:and": {
+          "$title": {
+            "en_us": "And",
+            "zh_cn": "全部满足"
+          },
+          "$description": {
+            "en_us": "Passes when every child condition passes.",
+            "zh_cn": "所有子条件都满足时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "conditions": {
+              "$title": {
+                "en_us": "Conditions",
+                "zh_cn": "条件"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-entity-condition#entity_condition",
+                "$title": {
+                  "en_us": "Condition",
+                  "zh_cn": "条件"
+                },
+                "$description": {
+                  "en_us": "One child condition.",
+                  "zh_cn": "一个子条件。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Conditions value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "conditions"
+          ]
+        },
+        "mxt:not": {
+          "$title": {
+            "en_us": "Not",
+            "zh_cn": "条件取反"
+          },
+          "$description": {
+            "en_us": "Passes when the child condition fails.",
+            "zh_cn": "子条件不满足时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$description": {
+                "en_us": "Condition value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "condition"
+          ]
+        },
+        "mxt:or": {
+          "$title": {
+            "en_us": "Or",
+            "zh_cn": "任一满足"
+          },
+          "$description": {
+            "en_us": "Passes when any child condition passes.",
+            "zh_cn": "任一子条件满足时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "conditions": {
+              "$title": {
+                "en_us": "Conditions",
+                "zh_cn": "条件"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-entity-condition#entity_condition",
+                "$title": {
+                  "en_us": "Condition",
+                  "zh_cn": "条件"
+                },
+                "$description": {
+                  "en_us": "One child condition.",
+                  "zh_cn": "一个子条件。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Conditions value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "conditions"
+          ]
+        },
+        "mxt:sneaking": {
+          "$title": {
+            "en_us": "Sneaking",
+            "zh_cn": "潜行"
+          },
+          "$description": {
+            "en_us": "Checks whether the entity is sneaking.",
+            "zh_cn": "判断实体是否正在潜行。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:has_ability": {
+          "$title": {
+            "en_us": "Has Ability",
+            "zh_cn": "拥有技能"
+          },
+          "$description": {
+            "en_us": "Checks whether the entity has an ability.",
+            "zh_cn": "判断实体是否拥有某个技能。"
+          },
+          "type": "object",
+          "properties": {
+            "ability": {
+              "$title": {
+                "en_us": "Ability",
+                "zh_cn": "技能"
+              },
+              "type": "string",
+              "$registry": "mxt:ability",
+              "$description": {
+                "en_us": "Ability value.",
+                "zh_cn": "技能的值。"
+              }
+            }
+          },
+          "required": [
+            "ability"
+          ]
+        },
+        "mxt:has_curse": {
+          "$title": {
+            "en_us": "Has Curse",
+            "zh_cn": "拥有诅咒"
+          },
+          "$description": {
+            "en_us": "Checks whether the entity carries a curse.",
+            "zh_cn": "判断实体是否带有某个诅咒。"
+          },
+          "type": "object",
+          "properties": {
+            "curse": {
+              "$title": {
+                "en_us": "Curse",
+                "zh_cn": "诅咒"
+              },
+              "type": "string",
+              "$registry": "mxt:curse",
+              "$description": {
+                "en_us": "Curse value.",
+                "zh_cn": "诅咒的值。"
+              }
+            }
+          },
+          "required": [
+            "curse"
+          ]
+        },
+        "mxt:realm": {
+          "$title": {
+            "en_us": "Realm",
+            "zh_cn": "境界"
+          },
+          "$description": {
+            "en_us": "Checks the entity's realm stage.",
+            "zh_cn": "判断实体所处的境界。"
+          },
+          "type": "object",
+          "properties": {
+            "realm": {
+              "$title": {
+                "en_us": "Realm",
+                "zh_cn": "境界"
+              },
+              "type": "string",
+              "$registry": "mxt:realm_stage",
+              "$description": {
+                "en_us": "Realm value.",
+                "zh_cn": "境界的值。"
+              }
+            },
+            "comparison": {
+              "$title": {
+                "en_us": "Comparison",
+                "zh_cn": "比较方式"
+              },
+              "$type": "mxt-common#record_Comparison",
+              "$description": {
+                "en_us": "Comparison value.",
+                "zh_cn": "比较方式的值。"
+              }
+            }
+          },
+          "required": [
+            "realm"
+          ]
+        },
+        "mxt:aura_range": {
+          "$title": {
+            "en_us": "Aura Range",
+            "zh_cn": "灵气范围"
+          },
+          "$description": {
+            "en_us": "Requires the resolved aura concentration to be within a range.",
+            "zh_cn": "要求当前位置的最终灵气浓度处于指定范围。"
+          },
+          "type": "object",
+          "properties": {
+            "min": {
+              "$type": "mxt-common#number_provider",
+              "$title": {
+                "en_us": "Min",
+                "zh_cn": "最小"
+              },
+              "$description": {
+                "en_us": "Min value.",
+                "zh_cn": "最小的值。"
+              }
+            },
+            "max": {
+              "$type": "mxt-common#number_provider",
+              "$title": {
+                "en_us": "Max",
+                "zh_cn": "最大"
+              },
+              "$description": {
+                "en_us": "Max value.",
+                "zh_cn": "最大的值。"
+              }
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        "mxt:resource_compare": {
+          "$title": {
+            "en_us": "Resource Compare",
+            "zh_cn": "资源比较"
+          },
+          "$description": {
+            "en_us": "Compares one of the entity's resources against a value.",
+            "zh_cn": "把实体持有的某项资源与给定值比较。"
+          },
+          "type": "object",
+          "properties": {
+            "resource": {
+              "$title": {
+                "en_us": "Resource",
+                "zh_cn": "资源"
+              },
+              "type": "string",
+              "$registry": "mxt:resource",
+              "$description": {
+                "en_us": "Resource value.",
+                "zh_cn": "资源的值。"
+              }
+            },
+            "min": {
+              "$title": {
+                "en_us": "Min",
+                "zh_cn": "最小"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Min value.",
+                "zh_cn": "最小的值。"
+              }
+            }
+          },
+          "required": [
+            "resource",
+            "min"
+          ]
+        },
+        "mxt:entity_tag": {
+          "$title": {
+            "en_us": "Entity Tag",
+            "zh_cn": "实体标签"
+          },
+          "$description": {
+            "en_us": "Checks the entity's tags.",
+            "zh_cn": "判断实体携带的标签。"
+          },
+          "type": "object",
+          "properties": {
+            "tag": {
+              "$title": {
+                "en_us": "Tag",
+                "zh_cn": "标签"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Tag value.",
+                "zh_cn": "标签的值。"
+              }
+            }
+          },
+          "required": [
+            "tag"
+          ]
+        },
+        "mxt:formation_member": {
+          "$title": {
+            "en_us": "Formation Member",
+            "zh_cn": "阵法成员"
+          },
+          "$description": {
+            "en_us": "Checks whether the entity stands inside a formation.",
+            "zh_cn": "判断实体是否处于某个阵法中。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:air": {
+          "$title": {
+            "en_us": "Air",
+            "zh_cn": "氧气值"
+          },
+          "$description": {
+            "en_us": "Checks the entity's remaining air.",
+            "zh_cn": "判断实体剩余的氧气值。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:dimension": {
+          "$title": {
+            "en_us": "Dimension",
+            "zh_cn": "维度"
+          },
+          "$description": {
+            "en_us": "Checks the dimension the entity is in.",
+            "zh_cn": "判断实体所在的维度。"
+          },
+          "type": "object",
+          "properties": {
+            "dimension": {
+              "$title": {
+                "en_us": "Dimension",
+                "zh_cn": "维度"
+              },
+              "default": false,
+              "$description": {
+                "en_us": "Dimension value.",
+                "zh_cn": "维度的值。"
+              }
+            },
+            "inverted": {
+              "$title": {
+                "en_us": "Inverted",
+                "zh_cn": "反转"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Inverted value.",
+                "zh_cn": "反转的值。"
+              }
+            }
+          },
+          "required": [
+            "dimension"
+          ]
+        },
+        "mxt:entity_type": {
+          "$title": {
+            "en_us": "Entity Type",
+            "zh_cn": "实体类型"
+          },
+          "$description": {
+            "en_us": "Checks the entity's type.",
+            "zh_cn": "判断实体的类型。"
+          },
+          "type": "object",
+          "properties": {
+            "entity_type": {
+              "$title": {
+                "en_us": "Entity Type",
+                "zh_cn": "实体类型"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Entity Type value.",
+                "zh_cn": "实体类型的值。"
+              }
+            }
+          },
+          "required": [
+            "entity_type"
+          ]
+        },
+        "mxt:fall_distance": {
+          "$title": {
+            "en_us": "Fall Distance",
+            "zh_cn": "坠落距离"
+          },
+          "$description": {
+            "en_us": "Checks the entity's accumulated fall distance.",
+            "zh_cn": "判断实体已累计的坠落距离。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:glowing": {
+          "$title": {
+            "en_us": "Glowing",
+            "zh_cn": "发光"
+          },
+          "$description": {
+            "en_us": "Checks whether the entity is glowing.",
+            "zh_cn": "判断实体是否处于发光状态。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:health": {
+          "$title": {
+            "en_us": "Health",
+            "zh_cn": "生命值"
+          },
+          "$description": {
+            "en_us": "Compares the entity's health.",
+            "zh_cn": "比较实体的生命值。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:exposed_to_sky": {
+          "$title": {
+            "en_us": "Exposed To Sky",
+            "zh_cn": "露天"
+          },
+          "$description": {
+            "en_us": "Checks whether the entity can see the sky.",
+            "zh_cn": "判断实体是否露天。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:food_level": {
+          "$title": {
+            "en_us": "Food Level",
+            "zh_cn": "饥饿值"
+          },
+          "$description": {
+            "en_us": "Checks the entity's food level.",
+            "zh_cn": "判断实体的饥饿值。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:mob_effect": {
+          "$title": {
+            "en_us": "Mob Effect",
+            "zh_cn": "状态效果"
+          },
+          "$description": {
+            "en_us": "Checks whether the entity has a mob effect.",
+            "zh_cn": "判断实体是否拥有某个状态效果。"
+          },
+          "type": "object",
+          "properties": {
+            "effect": {
+              "$title": {
+                "en_us": "Effect",
+                "zh_cn": "效果"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Effect value.",
+                "zh_cn": "效果的值。"
+              }
+            }
+          },
+          "required": [
+            "effect"
+          ]
+        },
+        "mxt:on_block": {
+          "$title": {
+            "en_us": "On Block",
+            "zh_cn": "脚下的方块"
+          },
+          "$description": {
+            "en_us": "Checks the block the entity stands on.",
+            "zh_cn": "判断实体脚下的方块。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$type": "mxt-common-block-condition#block_condition",
+              "$description": {
+                "en_us": "Condition value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "condition"
+          ]
+        },
+        "mxt:time_of_day": {
+          "$title": {
+            "en_us": "Time Of Day",
+            "zh_cn": "一天中的时间"
+          },
+          "$description": {
+            "en_us": "Checks the time of day.",
+            "zh_cn": "判断一天中的时间。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:using_item": {
+          "$title": {
+            "en_us": "Using Item",
+            "zh_cn": "正在使用物品"
+          },
+          "$description": {
+            "en_us": "Checks whether the entity is using an item.",
+            "zh_cn": "判断实体是否正在使用物品。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:brightness": {
+          "$title": {
+            "en_us": "Brightness",
+            "zh_cn": "亮度"
+          },
+          "$description": {
+            "en_us": "Checks the light level at the entity.",
+            "zh_cn": "判断实体所在位置的光照亮度。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:exposed_to_sun": {
+          "$title": {
+            "en_us": "Exposed To Sun",
+            "zh_cn": "受阳光直射"
+          },
+          "$description": {
+            "en_us": "Checks whether the entity is in direct sunlight.",
+            "zh_cn": "判断实体是否受到阳光直射。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:experience_level": {
+          "$title": {
+            "en_us": "Experience Level",
+            "zh_cn": "经验等级"
+          },
+          "$description": {
+            "en_us": "Checks the entity's experience level.",
+            "zh_cn": "判断实体的经验等级。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:experience_points": {
+          "$title": {
+            "en_us": "Experience Points",
+            "zh_cn": "经验点数"
+          },
+          "$description": {
+            "en_us": "Checks the entity's experience points.",
+            "zh_cn": "判断实体的经验点数。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:relative_health": {
+          "$title": {
+            "en_us": "Relative Health",
+            "zh_cn": "相对生命值"
+          },
+          "$description": {
+            "en_us": "Compares health as a fraction of the entity's maximum.",
+            "zh_cn": "按占最大生命值的比例比较生命值。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:saturation_level": {
+          "$title": {
+            "en_us": "Saturation Level",
+            "zh_cn": "饱和度"
+          },
+          "$description": {
+            "en_us": "Checks the entity's saturation.",
+            "zh_cn": "判断实体的饱和度。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:team": {
+          "$title": {
+            "en_us": "Team",
+            "zh_cn": "队伍"
+          },
+          "$description": {
+            "en_us": "Checks the entity's team.",
+            "zh_cn": "判断实体所属的队伍。"
+          },
+          "type": "object",
+          "properties": {
+            "team": {
+              "$title": {
+                "en_us": "Team",
+                "zh_cn": "队伍"
+              },
+              "$description": {
+                "en_us": "Team value.",
+                "zh_cn": "队伍的值。"
+              }
+            }
+          }
+        },
+        "mxt:chance": {
+          "$title": {
+            "en_us": "Chance",
+            "zh_cn": "概率"
+          },
+          "$description": {
+            "en_us": "Passes with the given probability.",
+            "zh_cn": "按给定概率通过。"
+          },
+          "type": "object",
+          "properties": {
+            "chance": {
+              "$title": {
+                "en_us": "Chance",
+                "zh_cn": "概率"
+              },
+              "type": "number",
+              "$description": {
+                "en_us": "Chance value.",
+                "zh_cn": "概率的值。"
+              }
+            }
+          },
+          "required": [
+            "chance"
+          ]
+        },
+        "mxt:constant": {
+          "$title": {
+            "en_us": "Constant",
+            "zh_cn": "常量"
+          },
+          "$description": {
+            "en_us": "Always returns the configured answer.",
+            "zh_cn": "始终返回配置的固定结果。"
+          },
+          "type": "object",
+          "properties": {
+            "value": {
+              "$title": {
+                "en_us": "Value",
+                "zh_cn": "值"
+              },
+              "type": "boolean",
+              "$description": {
+                "en_us": "Value value.",
+                "zh_cn": "值的值。"
+              }
+            }
+          },
+          "required": [
+            "value"
+          ]
+        },
+        "mxt:attribute": {
+          "$title": {
+            "en_us": "Attribute",
+            "zh_cn": "属性"
+          },
+          "$description": {
+            "en_us": "Compares one of the entity's attributes.",
+            "zh_cn": "比较实体的某项属性数值。"
+          },
+          "type": "object",
+          "properties": {
+            "attribute": {
+              "$title": {
+                "en_us": "Attribute",
+                "zh_cn": "属性"
+              },
+              "$description": {
+                "en_us": "Attribute value.",
+                "zh_cn": "属性的值。"
+              }
+            }
+          },
+          "required": [
+            "attribute"
+          ]
+        },
+        "mxt:block_collision": {
+          "$title": {
+            "en_us": "Block Collision",
+            "zh_cn": "方块碰撞"
+          },
+          "$description": {
+            "en_us": "Checks the blocks the entity collides with.",
+            "zh_cn": "判断实体碰撞到的方块。"
+          },
+          "type": "object",
+          "properties": {
+            "offset_x": {
+              "$title": {
+                "en_us": "Offset X",
+                "zh_cn": "X 轴偏移"
+              },
+              "type": "number",
+              "default": 0,
+              "$description": {
+                "en_us": "Offset X value.",
+                "zh_cn": "X 轴偏移的值。"
+              }
+            },
+            "offset_y": {
+              "$title": {
+                "en_us": "Offset Y",
+                "zh_cn": "Y 轴偏移"
+              },
+              "type": "number",
+              "default": 0,
+              "$description": {
+                "en_us": "Offset Y value.",
+                "zh_cn": "Y 轴偏移的值。"
+              }
+            },
+            "offset_z": {
+              "$title": {
+                "en_us": "Offset Z",
+                "zh_cn": "Z 轴偏移"
+              },
+              "type": "number",
+              "default": 0,
+              "$description": {
+                "en_us": "Offset Z value.",
+                "zh_cn": "Z 轴偏移的值。"
+              }
+            }
+          }
+        },
+        "mxt:can_have_effect": {
+          "$title": {
+            "en_us": "Can Have Effect",
+            "zh_cn": "可获得效果"
+          },
+          "$description": {
+            "en_us": "Checks whether the entity can receive an effect.",
+            "zh_cn": "判断实体能否获得某个效果。"
+          },
+          "type": "object",
+          "properties": {
+            "effect": {
+              "$title": {
+                "en_us": "Effect",
+                "zh_cn": "效果"
+              },
+              "$description": {
+                "en_us": "Effect value.",
+                "zh_cn": "效果的值。"
+              }
+            }
+          },
+          "required": [
+            "effect"
+          ]
+        },
+        "mxt:gamemode": {
+          "$title": {
+            "en_us": "Gamemode",
+            "zh_cn": "游戏模式"
+          },
+          "$description": {
+            "en_us": "Checks the player's game mode.",
+            "zh_cn": "判断玩家的游戏模式。"
+          },
+          "type": "object",
+          "properties": {
+            "gamemode": {
+              "$title": {
+                "en_us": "Gamemode",
+                "zh_cn": "游戏模式"
+              },
+              "$description": {
+                "en_us": "Gamemode value.",
+                "zh_cn": "游戏模式的值。"
+              }
+            }
+          },
+          "required": [
+            "gamemode"
+          ]
+        },
+        "mxt:passenger": {
+          "$title": {
+            "en_us": "Passenger",
+            "zh_cn": "乘客"
+          },
+          "$description": {
+            "en_us": "Checks the entity's passengers.",
+            "zh_cn": "判断实体的乘客。"
+          },
+          "type": "object",
+          "properties": {
+            "bientity_condition": {
+              "$title": {
+                "en_us": "Bientity Condition",
+                "zh_cn": "双实体条件"
+              },
+              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+              "$description": {
+                "en_us": "Bientity Condition value.",
+                "zh_cn": "双实体条件的值。"
+              }
+            }
+          }
+        },
+        "mxt:attack_cooldown": {
+          "$title": {
+            "en_us": "Attack Cooldown",
+            "zh_cn": "攻击冷却"
+          },
+          "$description": {
+            "en_us": "Checks how far the attack cooldown has recovered.",
+            "zh_cn": "判断攻击冷却的恢复进度。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:equipped_item": {
+          "$title": {
+            "en_us": "Equipped Item",
+            "zh_cn": "装备物品"
+          },
+          "$description": {
+            "en_us": "Checks the item the entity has equipped.",
+            "zh_cn": "判断实体装备的物品。"
+          },
+          "type": "object",
+          "properties": {
+            "equipment_slot": {
+              "$title": {
+                "en_us": "Equipment Slot",
+                "zh_cn": "装备槽位"
+              },
+              "$description": {
+                "en_us": "Equipment Slot value.",
+                "zh_cn": "装备槽位的值。"
+              }
+            },
+            "item_condition": {
+              "$title": {
+                "en_us": "Item Condition",
+                "zh_cn": "物品条件"
+              },
+              "$type": "mxt-common-item-condition#item_condition",
+              "$description": {
+                "en_us": "Item Condition value.",
+                "zh_cn": "物品条件的值。"
+              }
+            }
+          },
+          "required": [
+            "equipment_slot"
+          ]
+        },
+        "mxt:in_block": {
+          "$title": {
+            "en_us": "In Block",
+            "zh_cn": "位于方块中"
+          },
+          "$description": {
+            "en_us": "Checks whether the entity is inside a block.",
+            "zh_cn": "判断实体是否处于方块内。"
+          },
+          "type": "object",
+          "properties": {
+            "block_condition": {
+              "$title": {
+                "en_us": "Block Condition",
+                "zh_cn": "方块条件"
+              },
+              "$type": "mxt-common-block-condition#block_condition",
+              "$description": {
+                "en_us": "Block Condition value.",
+                "zh_cn": "方块条件的值。"
+              }
+            }
+          },
+          "required": [
+            "block_condition"
+          ]
+        },
+        "mxt:in_block_anywhere": {
+          "$title": {
+            "en_us": "In Block Anywhere",
+            "zh_cn": "任意部位在方块内"
+          },
+          "$description": {
+            "en_us": "Checks whether any part of the entity is inside a block.",
+            "zh_cn": "判断实体任意部位是否处于方块内。"
+          },
+          "type": "object",
+          "properties": {
+            "block_condition": {
+              "$title": {
+                "en_us": "Block Condition",
+                "zh_cn": "方块条件"
+              },
+              "$type": "mxt-common-block-condition#block_condition",
+              "$description": {
+                "en_us": "Block Condition value.",
+                "zh_cn": "方块条件的值。"
+              }
+            },
+            "comparison": {
+              "$title": {
+                "en_us": "Comparison",
+                "zh_cn": "比较方式"
+              },
+              "$type": "mxt-common#record_Comparison",
+              "$description": {
+                "en_us": "Comparison value.",
+                "zh_cn": "比较方式的值。"
+              }
+            }
+          },
+          "required": [
+            "block_condition",
+            "comparison"
+          ]
+        },
+        "mxt:scoreboard": {
+          "$title": {
+            "en_us": "Scoreboard",
+            "zh_cn": "计分板"
+          },
+          "$description": {
+            "en_us": "Checks a scoreboard score.",
+            "zh_cn": "判断计分板分数。"
+          },
+          "type": "object",
+          "properties": {
+            "name": {
+              "$title": {
+                "en_us": "Name",
+                "zh_cn": "名称"
+              },
+              "$description": {
+                "en_us": "Name value.",
+                "zh_cn": "名称的值。"
+              }
+            },
+            "objective": {
+              "$title": {
+                "en_us": "Objective",
+                "zh_cn": "计分板目标"
+              },
+              "$description": {
+                "en_us": "Objective value.",
+                "zh_cn": "计分板目标的值。"
+              }
+            }
+          },
+          "required": [
+            "objective"
+          ]
+        },
+        "mxt:riding": {
+          "$title": {
+            "en_us": "Riding",
+            "zh_cn": "骑乘"
+          },
+          "$description": {
+            "en_us": "Checks the vehicle the entity rides.",
+            "zh_cn": "判断实体骑乘的载具。"
+          },
+          "type": "object",
+          "properties": {
+            "bientity_condition": {
+              "$title": {
+                "en_us": "Bientity Condition",
+                "zh_cn": "双实体条件"
+              },
+              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+              "$description": {
+                "en_us": "Bientity Condition value.",
+                "zh_cn": "双实体条件的值。"
+              }
+            }
+          }
+        },
+        "mxt:riding_recursive": {
+          "$title": {
+            "en_us": "Riding Recursive",
+            "zh_cn": "递归骑乘"
+          },
+          "$description": {
+            "en_us": "Walks the whole chain of vehicles.",
+            "zh_cn": "沿着载具链逐层判断。"
+          },
+          "type": "object",
+          "properties": {
+            "bientity_condition": {
+              "$title": {
+                "en_us": "Bientity Condition",
+                "zh_cn": "双实体条件"
+              },
+              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+              "$description": {
+                "en_us": "Bientity Condition value.",
+                "zh_cn": "双实体条件的值。"
+              }
+            }
+          }
+        },
+        "mxt:passenger_recursive": {
+          "$title": {
+            "en_us": "Passenger Recursive",
+            "zh_cn": "递归乘客"
+          },
+          "$description": {
+            "en_us": "Walks the whole chain of passengers.",
+            "zh_cn": "沿着乘客链逐层判断。"
+          },
+          "type": "object",
+          "properties": {
+            "bientity_condition": {
+              "$title": {
+                "en_us": "Bientity Condition",
+                "zh_cn": "双实体条件"
+              },
+              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+              "$description": {
+                "en_us": "Bientity Condition value.",
+                "zh_cn": "双实体条件的值。"
+              }
+            }
+          }
+        },
+        "mxt:riding_root": {
+          "$title": {
+            "en_us": "Riding Root",
+            "zh_cn": "最底层载具"
+          },
+          "$description": {
+            "en_us": "Checks the bottom-most vehicle in the chain.",
+            "zh_cn": "判断载具链最底层的那一个。"
+          },
+          "type": "object",
+          "properties": {
+            "bientity_condition": {
+              "$title": {
+                "en_us": "Bientity Condition",
+                "zh_cn": "双实体条件"
+              },
+              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+              "$description": {
+                "en_us": "Bientity Condition value.",
+                "zh_cn": "双实体条件的值。"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

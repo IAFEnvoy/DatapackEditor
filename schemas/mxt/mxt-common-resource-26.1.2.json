@@ -1,0 +1,837 @@
+{
+  "id": "mxt-common-resource",
+  "$library": true,
+  "$version": "26.1.2",
+  "$title": {
+    "en_us": "MiXianTu Resource Bars",
+    "zh_cn": "MiXianTu 资源条"
+  },
+  "$description": {
+    "en_us": "Resource bar layouts, renderers and visibility rules.",
+    "zh_cn": "资源条的布局、渲染方式与可见条件。"
+  },
+  "$types": {
+    "resource_bar_renderer": {
+      "$title": {
+        "en_us": "Resource Bar Renderer",
+        "zh_cn": "资源条渲染方式"
+      },
+      "$description": {
+        "en_us": "Resource Bar Renderer selected by a type identifier.",
+        "zh_cn": "通过 type 选择资源条的具体绘制方式。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:textured_bar",
+            "mxt:segmented_bar",
+            "mxt:radial_bar",
+            "mxt:text_only",
+            "mxt:boss_bar",
+            "mxt:missing"
+          ],
+          "$suggstion": true,
+          "default": "mxt:textured_bar",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:textured_bar": {
+          "$title": {
+            "en_us": "Textured Bar",
+            "zh_cn": "纹理资源条"
+          },
+          "$description": {
+            "en_us": "Draws the bar from a background sprite and a fill sprite.",
+            "zh_cn": "使用背景精灵图和填充精灵图绘制资源条。"
+          },
+          "type": "object",
+          "properties": {
+            "background_sprite": {
+              "$title": {
+                "en_us": "Background Sprite",
+                "zh_cn": "背景精灵图"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Background Sprite value.",
+                "zh_cn": "背景精灵图的值。"
+              }
+            },
+            "fill_sprite": {
+              "$title": {
+                "en_us": "Fill Sprite",
+                "zh_cn": "填充精灵图"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Fill Sprite value.",
+                "zh_cn": "填充精灵图的值。"
+              }
+            },
+            "width": {
+              "$title": {
+                "en_us": "Width",
+                "zh_cn": "宽度"
+              },
+              "type": "integer",
+              "$description": {
+                "en_us": "Width value.",
+                "zh_cn": "宽度的值。"
+              }
+            },
+            "height": {
+              "$title": {
+                "en_us": "Height",
+                "zh_cn": "高度"
+              },
+              "type": "integer",
+              "default": "#ffffff",
+              "$description": {
+                "en_us": "Height value.",
+                "zh_cn": "高度的值。"
+              }
+            },
+            "fill_color": {
+              "$title": {
+                "en_us": "Fill Color",
+                "zh_cn": "填充颜色"
+              },
+              "default": "#ffffff",
+              "$description": {
+                "en_us": "Fill Color value.",
+                "zh_cn": "填充颜色的值。"
+              }
+            },
+            "show_value": {
+              "$title": {
+                "en_us": "Show Value",
+                "zh_cn": "显示数值"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Show Value value.",
+                "zh_cn": "显示数值的值。"
+              }
+            }
+          },
+          "required": [
+            "background_sprite",
+            "fill_sprite",
+            "width",
+            "height"
+          ]
+        },
+        "mxt:segmented_bar": {
+          "$title": {
+            "en_us": "Segmented Bar",
+            "zh_cn": "分段资源条"
+          },
+          "$description": {
+            "en_us": "Draws the bar as configurable segments.",
+            "zh_cn": "将资源条绘制为多个可配置间隔的分段。"
+          },
+          "type": "object",
+          "properties": {
+            "segments": {
+              "$title": {
+                "en_us": "Segments",
+                "zh_cn": "分段数"
+              },
+              "type": "integer",
+              "default": 1,
+              "$description": {
+                "en_us": "Segments value.",
+                "zh_cn": "分段数的值。"
+              }
+            },
+            "gap": {
+              "$title": {
+                "en_us": "Gap",
+                "zh_cn": "间隔"
+              },
+              "type": "integer",
+              "default": 1,
+              "$description": {
+                "en_us": "Gap value.",
+                "zh_cn": "间隔的值。"
+              }
+            },
+            "full_color": {
+              "$title": {
+                "en_us": "Full Color",
+                "zh_cn": "满值颜色"
+              },
+              "default": "#ffffff",
+              "$description": {
+                "en_us": "Full Color value.",
+                "zh_cn": "满值颜色的值。"
+              }
+            },
+            "empty_color": {
+              "$title": {
+                "en_us": "Empty Color",
+                "zh_cn": "空槽颜色"
+              },
+              "default": "#555555",
+              "$description": {
+                "en_us": "Empty Color value.",
+                "zh_cn": "空槽颜色的值。"
+              }
+            }
+          },
+          "required": [
+            "segments"
+          ]
+        },
+        "mxt:radial_bar": {
+          "$title": {
+            "en_us": "Radial Bar",
+            "zh_cn": "径向资源条"
+          },
+          "$description": {
+            "en_us": "Draws an arc around a centre point.",
+            "zh_cn": "围绕圆心绘制可配置角度范围的环形资源条。"
+          },
+          "type": "object",
+          "properties": {
+            "radius": {
+              "$title": {
+                "en_us": "Radius",
+                "zh_cn": "半径"
+              },
+              "type": "integer",
+              "$description": {
+                "en_us": "Radius value.",
+                "zh_cn": "半径的值。"
+              }
+            },
+            "thickness": {
+              "$title": {
+                "en_us": "Thickness",
+                "zh_cn": "厚度"
+              },
+              "type": "integer",
+              "default": 0,
+              "$description": {
+                "en_us": "Thickness value.",
+                "zh_cn": "厚度的值。"
+              }
+            },
+            "start_angle": {
+              "$title": {
+                "en_us": "Start Angle",
+                "zh_cn": "起始角度"
+              },
+              "type": "number",
+              "default": 0,
+              "$description": {
+                "en_us": "Start Angle value.",
+                "zh_cn": "起始角度的值。"
+              }
+            },
+            "end_angle": {
+              "$title": {
+                "en_us": "End Angle",
+                "zh_cn": "结束角度"
+              },
+              "type": "number",
+              "default": 360,
+              "$description": {
+                "en_us": "End Angle value.",
+                "zh_cn": "结束角度的值。"
+              }
+            },
+            "fill_color": {
+              "$title": {
+                "en_us": "Fill Color",
+                "zh_cn": "填充颜色"
+              },
+              "default": "#ffffff",
+              "$description": {
+                "en_us": "Fill Color value.",
+                "zh_cn": "填充颜色的值。"
+              }
+            }
+          },
+          "required": [
+            "radius",
+            "thickness"
+          ]
+        },
+        "mxt:text_only": {
+          "$title": {
+            "en_us": "Text Only",
+            "zh_cn": "纯文本资源条"
+          },
+          "$description": {
+            "en_us": "Shows the value as text, with no bar.",
+            "zh_cn": "仅显示资源数值文本，不绘制图形条。"
+          },
+          "type": "object",
+          "properties": {
+            "format": {
+              "$title": {
+                "en_us": "Format",
+                "zh_cn": "格式"
+              },
+              "default": "%current%",
+              "$description": {
+                "en_us": "Format value.",
+                "zh_cn": "格式的值。"
+              }
+            },
+            "color": {
+              "$title": {
+                "en_us": "Color",
+                "zh_cn": "颜色"
+              },
+              "default": "#ffffff",
+              "$description": {
+                "en_us": "Color value.",
+                "zh_cn": "颜色的值。"
+              }
+            },
+            "show_maximum": {
+              "$title": {
+                "en_us": "Show Maximum",
+                "zh_cn": "显示最大值"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Show Maximum value.",
+                "zh_cn": "显示最大值的值。"
+              }
+            }
+          }
+        },
+        "mxt:boss_bar": {
+          "$title": {
+            "en_us": "Boss Bar",
+            "zh_cn": "Boss 血条"
+          },
+          "$description": {
+            "en_us": "Draws the value on a vanilla boss bar.",
+            "zh_cn": "用原版 Boss 血条显示该数值。"
+          },
+          "type": "object",
+          "properties": {
+            "sprite_location": {
+              "$title": {
+                "en_us": "Sprite Location",
+                "zh_cn": "精灵图路径"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Sprite Location value.",
+                "zh_cn": "精灵图路径的值。"
+              }
+            },
+            "bar_index": {
+              "$title": {
+                "en_us": "Bar Index",
+                "zh_cn": "条序号"
+              },
+              "type": "integer",
+              "default": 0,
+              "$description": {
+                "en_us": "Bar Index value.",
+                "zh_cn": "条序号的值。"
+              }
+            },
+            "icon_index": {
+              "$title": {
+                "en_us": "Icon Index",
+                "zh_cn": "图标序号"
+              },
+              "type": "integer",
+              "default": 0,
+              "$description": {
+                "en_us": "Icon Index value.",
+                "zh_cn": "图标序号的值。"
+              }
+            },
+            "inverted": {
+              "$title": {
+                "en_us": "Inverted",
+                "zh_cn": "反转"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Inverted value.",
+                "zh_cn": "反转的值。"
+              }
+            }
+          }
+        },
+        "mxt:missing": {
+          "$title": {
+            "en_us": "Missing",
+            "zh_cn": "缺失渲染器"
+          },
+          "$description": {
+            "en_us": "Placeholder used when the renderer cannot be found.",
+            "zh_cn": "找不到渲染器类型时使用的占位实现。"
+          },
+          "type": "object",
+          "properties": {}
+        }
+      }
+    },
+    "resource_bar_visibility": {
+      "$title": {
+        "en_us": "Resource Bar Visibility",
+        "zh_cn": "资源条可见条件"
+      },
+      "$description": {
+        "en_us": "Resource Bar Visibility selected by a type identifier.",
+        "zh_cn": "通过 type 选择资源条的显示条件。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:always",
+            "mxt:non_full",
+            "mxt:recently_changed",
+            "mxt:resource_range",
+            "mxt:and",
+            "mxt:or",
+            "mxt:not"
+          ],
+          "$suggstion": true,
+          "default": "mxt:always",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:always": {
+          "$title": {
+            "en_us": "Always",
+            "zh_cn": "始终显示"
+          },
+          "$description": {
+            "en_us": "Always visible.",
+            "zh_cn": "资源条始终可见。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:non_full": {
+          "$title": {
+            "en_us": "Non Full",
+            "zh_cn": "未满时显示"
+          },
+          "$description": {
+            "en_us": "Visible while the value is below its maximum.",
+            "zh_cn": "仅当当前值低于最大值时显示资源条。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:recently_changed": {
+          "$title": {
+            "en_us": "Recently Changed",
+            "zh_cn": "最近变动时显示"
+          },
+          "$description": {
+            "en_us": "Visible for a while after the value changes.",
+            "zh_cn": "资源值变动后，在指定时间内显示资源条。"
+          },
+          "type": "object",
+          "properties": {
+            "hold_ticks": {
+              "$title": {
+                "en_us": "Hold Ticks",
+                "zh_cn": "持有刻数"
+              },
+              "type": "integer",
+              "$description": {
+                "en_us": "Hold Ticks value.",
+                "zh_cn": "持有刻数的值。"
+              }
+            }
+          }
+        },
+        "mxt:resource_range": {
+          "$title": {
+            "en_us": "Resource Range",
+            "zh_cn": "数值范围内显示"
+          },
+          "$description": {
+            "en_us": "Visible while the value is inside a range.",
+            "zh_cn": "仅当当前资源值位于指定范围内时显示。"
+          },
+          "type": "object",
+          "properties": {
+            "min": {
+              "$title": {
+                "en_us": "Min",
+                "zh_cn": "最小"
+              },
+              "type": "number",
+              "$description": {
+                "en_us": "Min value.",
+                "zh_cn": "最小的值。"
+              }
+            },
+            "max": {
+              "$title": {
+                "en_us": "Max",
+                "zh_cn": "最大"
+              },
+              "type": "number",
+              "$description": {
+                "en_us": "Max value.",
+                "zh_cn": "最大的值。"
+              }
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        "mxt:and": {
+          "$title": {
+            "en_us": "And",
+            "zh_cn": "全部条件满足"
+          },
+          "$description": {
+            "en_us": "Visible when every child condition holds.",
+            "zh_cn": "所有子可见条件都满足时显示资源条。"
+          },
+          "type": "object",
+          "properties": {
+            "values": {
+              "$title": {
+                "en_us": "Values",
+                "zh_cn": "数值"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-resource#resource_bar_visibility",
+                "$title": {
+                  "en_us": "Value",
+                  "zh_cn": "数值"
+                },
+                "$description": {
+                  "en_us": "One value.",
+                  "zh_cn": "一个数值。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Values value.",
+                "zh_cn": "数值的值。"
+              }
+            }
+          },
+          "required": [
+            "values"
+          ]
+        },
+        "mxt:or": {
+          "$title": {
+            "en_us": "Or",
+            "zh_cn": "任一条件满足"
+          },
+          "$description": {
+            "en_us": "Visible when any child condition holds.",
+            "zh_cn": "任一子可见条件满足时显示资源条。"
+          },
+          "type": "object",
+          "properties": {
+            "values": {
+              "$title": {
+                "en_us": "Values",
+                "zh_cn": "数值"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-resource#resource_bar_visibility",
+                "$title": {
+                  "en_us": "Value",
+                  "zh_cn": "数值"
+                },
+                "$description": {
+                  "en_us": "One value.",
+                  "zh_cn": "一个数值。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Values value.",
+                "zh_cn": "数值的值。"
+              }
+            }
+          },
+          "required": [
+            "values"
+          ]
+        },
+        "mxt:not": {
+          "$title": {
+            "en_us": "Not",
+            "zh_cn": "条件不满足时显示"
+          },
+          "$description": {
+            "en_us": "Visible when the child condition does not hold.",
+            "zh_cn": "子可见条件不满足时显示资源条。"
+          },
+          "type": "object",
+          "properties": {
+            "value": {
+              "$title": {
+                "en_us": "Value",
+                "zh_cn": "值"
+              },
+              "$type": "mxt-common-resource#resource_bar_visibility",
+              "$description": {
+                "en_us": "Value value.",
+                "zh_cn": "值的值。"
+              }
+            }
+          },
+          "required": [
+            "value"
+          ]
+        }
+      }
+    },
+    "record_ResourceBar": {
+      "$title": {
+        "en_us": "ResourceBar",
+        "zh_cn": "资源显示条"
+      },
+      "$description": {
+        "en_us": "ResourceBar value.",
+        "zh_cn": "定义资源在客户端界面的显示位置、可见条件、渲染方式与数值文本。"
+      },
+      "type": "object",
+      "properties": {
+        "context": {
+          "$title": {
+            "en_us": "Context",
+            "zh_cn": "上下文"
+          },
+          "$type": "mxt-common-resource#record_Context",
+          "$description": {
+            "en_us": "Context value.",
+            "zh_cn": "上下文的值。"
+          }
+        },
+        "anchor": {
+          "$title": {
+            "en_us": "Anchor",
+            "zh_cn": "锚点"
+          },
+          "$type": "mxt-common-resource#record_Anchor",
+          "default": 0,
+          "$description": {
+            "en_us": "Anchor value.",
+            "zh_cn": "锚点的值。"
+          }
+        },
+        "order": {
+          "$title": {
+            "en_us": "Order",
+            "zh_cn": "排序"
+          },
+          "type": "integer",
+          "default": 0,
+          "$description": {
+            "en_us": "Order value.",
+            "zh_cn": "排序的值。"
+          }
+        },
+        "visibility": {
+          "$title": {
+            "en_us": "Visibility",
+            "zh_cn": "可见性"
+          },
+          "$type": "mxt-common-resource#resource_bar_visibility",
+          "$description": {
+            "en_us": "Visibility value.",
+            "zh_cn": "可见性的值。"
+          }
+        },
+        "renderer": {
+          "$title": {
+            "en_us": "Renderer",
+            "zh_cn": "渲染器"
+          },
+          "$type": "mxt-common-resource#resource_bar_renderer",
+          "$description": {
+            "en_us": "Renderer value.",
+            "zh_cn": "渲染器的值。"
+          }
+        },
+        "value_display": {
+          "$title": {
+            "en_us": "Value Display",
+            "zh_cn": "数值显示"
+          },
+          "$type": "mxt-common-resource#record_ValueDisplay",
+          "$description": {
+            "en_us": "Value Display value.",
+            "zh_cn": "数值显示的值。"
+          }
+        },
+        "replace_default": {
+          "$title": {
+            "en_us": "Replace Default",
+            "zh_cn": "替换默认值"
+          },
+          "type": "boolean",
+          "default": false,
+          "$description": {
+            "en_us": "Replace Default value.",
+            "zh_cn": "替换默认值的值。"
+          }
+        }
+      },
+      "required": [
+        "anchor",
+        "renderer"
+      ]
+    },
+    "record_Context": {
+      "$title": {
+        "en_us": "Context",
+        "zh_cn": "显示上下文"
+      },
+      "$description": {
+        "en_us": "Context value.",
+        "zh_cn": "资源条显示的目标上下文。"
+      },
+      "type": "object",
+      "properties": {}
+    },
+    "record_Anchor": {
+      "$title": {
+        "en_us": "Anchor",
+        "zh_cn": "显示锚点"
+      },
+      "$description": {
+        "en_us": "Anchor value.",
+        "zh_cn": "资源条在界面中的布局锚点。"
+      },
+      "type": "object",
+      "properties": {}
+    },
+    "record_ValueDisplay": {
+      "$title": {
+        "en_us": "ValueDisplay",
+        "zh_cn": "数值显示方式"
+      },
+      "$description": {
+        "en_us": "ValueDisplay value.",
+        "zh_cn": "资源条上叠加的数值文本显示方式。"
+      },
+      "type": "object",
+      "properties": {}
+    },
+    "record_Bar": {
+      "$title": {
+        "en_us": "Bar",
+        "zh_cn": "条"
+      },
+      "$description": {
+        "en_us": "Bar value.",
+        "zh_cn": "条的值。"
+      },
+      "type": "object",
+      "properties": {
+        "maximum": {
+          "$title": {
+            "en_us": "Maximum",
+            "zh_cn": "最大值"
+          },
+          "type": "number",
+          "default": 0,
+          "$description": {
+            "en_us": "Maximum value.",
+            "zh_cn": "最大值的值。"
+          }
+        },
+        "bar_index": {
+          "$title": {
+            "en_us": "Bar Index",
+            "zh_cn": "条序号"
+          },
+          "type": "integer",
+          "default": 0,
+          "$description": {
+            "en_us": "Bar Index value.",
+            "zh_cn": "条序号的值。"
+          }
+        },
+        "inverted": {
+          "$title": {
+            "en_us": "Inverted",
+            "zh_cn": "反转"
+          },
+          "type": "boolean",
+          "default": false,
+          "$description": {
+            "en_us": "Inverted value.",
+            "zh_cn": "反转的值。"
+          }
+        },
+        "anchor": {
+          "$title": {
+            "en_us": "Anchor",
+            "zh_cn": "锚点"
+          },
+          "$type": "mxt-common-resource#record_Anchor",
+          "$description": {
+            "en_us": "Anchor value.",
+            "zh_cn": "锚点的值。"
+          }
+        },
+        "order": {
+          "$title": {
+            "en_us": "Order",
+            "zh_cn": "排序"
+          },
+          "type": "integer",
+          "default": 0,
+          "$description": {
+            "en_us": "Order value.",
+            "zh_cn": "排序的值。"
+          }
+        }
+      },
+      "required": [
+        "maximum"
+      ]
+    }
+  }
+}

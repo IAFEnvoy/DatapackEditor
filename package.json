@@ -1,4 +1,7 @@
 {
+	"scripts": {
+		"dev": "vite dev"
+	},
 	"type": "module",
 	"dependencies": {
 		"vite": "^8.2.0"

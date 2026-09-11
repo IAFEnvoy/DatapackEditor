@@ -17,8 +17,8 @@
       "type": "string",
       "$registry": "mxt:element",
       "$description": {
-        "en_us": "Element value.",
-        "zh_cn": "元素的值。"
+        "en_us": "Element of this spirit root.",
+        "zh_cn": "该灵根对应的元素。"
       }
     },
     "cultivation_multiplier": {
@@ -28,8 +28,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Cultivation Multiplier value.",
-        "zh_cn": "修炼倍率的值。"
+        "en_us": "Multiplier applied to cultivation speed.",
+        "zh_cn": "对修炼速度施加的倍率。"
       }
     },
     "element_ability_modifier": {
@@ -39,8 +39,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Element Ability Modifier value.",
-        "zh_cn": "元素技能修正的值。"
+        "en_us": "Modifier applied to abilities of the matching element.",
+        "zh_cn": "对相应元素技能施加的修正。"
       }
     },
     "rarity": {
@@ -50,8 +50,8 @@
       },
       "default": "common",
       "$description": {
-        "en_us": "Rarity value.",
-        "zh_cn": "稀有度的值。"
+        "en_us": "How rare this spirit root is.",
+        "zh_cn": "该灵根的稀有度。"
       }
     },
     "granted_abilities": {
@@ -62,41 +62,41 @@
       "type": "array",
       "items": {
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Ability",
+          "zh_cn": "技能"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One ability id.",
+          "zh_cn": "一个技能 ID。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Granted Abilities value.",
-        "zh_cn": "授予的技能的值。"
+        "en_us": "Abilities unlocked by this spirit root.",
+        "zh_cn": "该灵根解锁的技能。"
       }
     },
     "compatibility_tags": {
       "$title": {
         "en_us": "Compatibility Tags",
-        "zh_cn": "兼容 标签"
+        "zh_cn": "兼容标签"
       },
       "type": "array",
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Tag",
+          "zh_cn": "标签"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One tag id.",
+          "zh_cn": "一个标签 ID。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Compatibility Tags value.",
-        "zh_cn": "兼容 标签的值。"
+        "en_us": "Tags used for compatibility checks.",
+        "zh_cn": "用于兼容性判断的标签。"
       }
     }
   },

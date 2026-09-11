@@ -1,6 +1,9 @@
 {
   "id": "origins-neoforge-badge",
-  "$version": ["1.21.1", "26.1.2"],
+  "$version": [
+    "1.21.1",
+    "26.1.2"
+  ],
   "$path": "data/<namespace>/origins/badge/<path>.json",
   "title": "Origins badge",
   "$title": {
@@ -95,7 +98,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Prefix",
-            "zh_cn": "Prefix"
+            "zh_cn": "前缀"
           },
           "$description": {
             "en_us": "Prefix value.",
@@ -107,7 +110,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Suffix",
-            "zh_cn": "Suffix"
+            "zh_cn": "后缀"
           },
           "$description": {
             "en_us": "Suffix value.",

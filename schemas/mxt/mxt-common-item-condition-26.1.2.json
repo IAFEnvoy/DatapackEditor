@@ -1,0 +1,649 @@
+{
+  "id": "mxt-common-item-condition",
+  "$library": true,
+  "$version": "26.1.2",
+  "$title": {
+    "en_us": "MiXianTu Item Conditions",
+    "zh_cn": "MiXianTu 物品条件"
+  },
+  "$description": {
+    "en_us": "Conditions checked against an item stack.",
+    "zh_cn": "针对物品判断的条件。"
+  },
+  "$types": {
+    "item_condition": {
+      "$title": {
+        "en_us": "Item Condition",
+        "zh_cn": "物品条件"
+      },
+      "$description": {
+        "en_us": "Item Condition selected by a type identifier.",
+        "zh_cn": "物品条件的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:always_true",
+            "mxt:js",
+            "mxt:and",
+            "mxt:item_id",
+            "mxt:owned_by",
+            "mxt:energy_range",
+            "mxt:item_tag",
+            "mxt:item_matcher",
+            "mxt:amount",
+            "mxt:fuel",
+            "mxt:is_equipable",
+            "mxt:relative_durability",
+            "mxt:chance",
+            "mxt:constant",
+            "mxt:not",
+            "mxt:or",
+            "mxt:armor_value",
+            "mxt:durability",
+            "mxt:on_cooldown",
+            "mxt:ingredient",
+            "mxt:tool_ability",
+            "mxt:base_enchantment",
+            "mxt:has_component",
+            "mxt:component"
+          ],
+          "$suggstion": true,
+          "default": "mxt:always_true",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:always_true": {
+          "$title": {
+            "en_us": "Always True",
+            "zh_cn": "始终为真"
+          },
+          "$description": {
+            "en_us": "Always passes.",
+            "zh_cn": "始终满足，永远通过。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:js": {
+          "$title": {
+            "en_us": "Js",
+            "zh_cn": "JS 表达式"
+          },
+          "$description": {
+            "en_us": "Judged by a JavaScript callback with the item.",
+            "zh_cn": "以该物品为参数，由 JavaScript 回调判定。"
+          },
+          "type": "object",
+          "properties": {
+            "id": {
+              "$title": {
+                "en_us": "Id",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "Id value.",
+                "zh_cn": "标识符的值。"
+              }
+            },
+            "params": {
+              "$title": {
+                "en_us": "Params",
+                "zh_cn": "参数"
+              },
+              "$description": {
+                "en_us": "Params value.",
+                "zh_cn": "参数的值。"
+              }
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "mxt:and": {
+          "$title": {
+            "en_us": "And",
+            "zh_cn": "全部满足"
+          },
+          "$description": {
+            "en_us": "Passes when every child condition passes.",
+            "zh_cn": "所有子条件都满足时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "conditions": {
+              "$title": {
+                "en_us": "Conditions",
+                "zh_cn": "条件"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-item-condition#item_condition",
+                "$title": {
+                  "en_us": "Condition",
+                  "zh_cn": "条件"
+                },
+                "$description": {
+                  "en_us": "One child condition.",
+                  "zh_cn": "一个子条件。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Conditions value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "conditions"
+          ]
+        },
+        "mxt:item_id": {
+          "$title": {
+            "en_us": "Item Id",
+            "zh_cn": "物品标识符"
+          },
+          "$description": {
+            "en_us": "Checks the item's id.",
+            "zh_cn": "判断物品的 ID。"
+          },
+          "type": "object",
+          "properties": {
+            "item": {
+              "$title": {
+                "en_us": "Item",
+                "zh_cn": "物品"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Item value.",
+                "zh_cn": "物品的值。"
+              }
+            }
+          },
+          "required": [
+            "item"
+          ]
+        },
+        "mxt:owned_by": {
+          "$title": {
+            "en_us": "Owned By",
+            "zh_cn": "归属者"
+          },
+          "$description": {
+            "en_us": "Checks which entity owns the item.",
+            "zh_cn": "判断该物品归属于谁。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:energy_range": {
+          "$title": {
+            "en_us": "Energy Range",
+            "zh_cn": "能量范围"
+          },
+          "$description": {
+            "en_us": "Checks how much energy the item stores.",
+            "zh_cn": "判断物品储存的能量。"
+          },
+          "type": "object",
+          "properties": {
+            "min": {
+              "$title": {
+                "en_us": "Min",
+                "zh_cn": "最小"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Min value.",
+                "zh_cn": "最小的值。"
+              }
+            },
+            "max": {
+              "$title": {
+                "en_us": "Max",
+                "zh_cn": "最大"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Max value.",
+                "zh_cn": "最大的值。"
+              }
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        "mxt:item_tag": {
+          "$title": {
+            "en_us": "Item Tag",
+            "zh_cn": "物品标签"
+          },
+          "$description": {
+            "en_us": "Checks the item's tags.",
+            "zh_cn": "判断物品携带的标签。"
+          },
+          "type": "object",
+          "properties": {
+            "tag": {
+              "$title": {
+                "en_us": "Tag",
+                "zh_cn": "标签"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Tag value.",
+                "zh_cn": "标签的值。"
+              }
+            }
+          },
+          "required": [
+            "tag"
+          ]
+        },
+        "mxt:item_matcher": {
+          "$title": {
+            "en_us": "Item Matcher",
+            "zh_cn": "物品匹配器"
+          },
+          "$description": {
+            "en_us": "Checks the item against a matcher.",
+            "zh_cn": "用物品匹配器判断该物品。"
+          },
+          "type": "object",
+          "properties": {
+            "items": {
+              "$title": {
+                "en_us": "Items",
+                "zh_cn": "物品"
+              },
+              "$type": "mxt-common#item_matcher",
+              "$description": {
+                "en_us": "Items value.",
+                "zh_cn": "物品的值。"
+              }
+            }
+          },
+          "required": [
+            "items"
+          ]
+        },
+        "mxt:amount": {
+          "$title": {
+            "en_us": "Amount",
+            "zh_cn": "数量"
+          },
+          "$description": {
+            "en_us": "Compares the stack size.",
+            "zh_cn": "比较物品堆的数量。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:fuel": {
+          "$title": {
+            "en_us": "Fuel",
+            "zh_cn": "燃料"
+          },
+          "$description": {
+            "en_us": "Checks whether the item is a fuel.",
+            "zh_cn": "判断该物品能否作为燃料。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:is_equipable": {
+          "$title": {
+            "en_us": "Is Equipable",
+            "zh_cn": "是否可装备"
+          },
+          "$description": {
+            "en_us": "Checks whether the item can be equipped.",
+            "zh_cn": "判断该物品是否可装备。"
+          },
+          "type": "object",
+          "properties": {
+            "slot": {
+              "$title": {
+                "en_us": "Slot",
+                "zh_cn": "槽位"
+              },
+              "$description": {
+                "en_us": "Slot value.",
+                "zh_cn": "槽位的值。"
+              }
+            }
+          }
+        },
+        "mxt:relative_durability": {
+          "$title": {
+            "en_us": "Relative Durability",
+            "zh_cn": "相对耐久度"
+          },
+          "$description": {
+            "en_us": "Compares durability as a fraction of the maximum.",
+            "zh_cn": "按占最大耐久度的比例比较耐久度。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:chance": {
+          "$title": {
+            "en_us": "Chance",
+            "zh_cn": "概率"
+          },
+          "$description": {
+            "en_us": "Passes with the given probability.",
+            "zh_cn": "按给定概率通过。"
+          },
+          "type": "object",
+          "properties": {
+            "chance": {
+              "$title": {
+                "en_us": "Chance",
+                "zh_cn": "概率"
+              },
+              "type": "number",
+              "$description": {
+                "en_us": "Chance value.",
+                "zh_cn": "概率的值。"
+              }
+            }
+          },
+          "required": [
+            "chance"
+          ]
+        },
+        "mxt:constant": {
+          "$title": {
+            "en_us": "Constant",
+            "zh_cn": "常量"
+          },
+          "$description": {
+            "en_us": "Always returns the configured answer.",
+            "zh_cn": "始终返回配置的固定结果。"
+          },
+          "type": "object",
+          "properties": {
+            "value": {
+              "$title": {
+                "en_us": "Value",
+                "zh_cn": "值"
+              },
+              "type": "boolean",
+              "$description": {
+                "en_us": "Value value.",
+                "zh_cn": "值的值。"
+              }
+            }
+          },
+          "required": [
+            "value"
+          ]
+        },
+        "mxt:not": {
+          "$title": {
+            "en_us": "Not",
+            "zh_cn": "条件取反"
+          },
+          "$description": {
+            "en_us": "Passes when the child condition fails.",
+            "zh_cn": "子条件不满足时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$type": "mxt-common-item-condition#item_condition",
+              "$description": {
+                "en_us": "Condition value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "condition"
+          ]
+        },
+        "mxt:or": {
+          "$title": {
+            "en_us": "Or",
+            "zh_cn": "任一满足"
+          },
+          "$description": {
+            "en_us": "Passes when any child condition passes.",
+            "zh_cn": "任一子条件满足时通过。"
+          },
+          "type": "object",
+          "properties": {
+            "conditions": {
+              "$title": {
+                "en_us": "Conditions",
+                "zh_cn": "条件"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-item-condition#item_condition",
+                "$title": {
+                  "en_us": "Condition",
+                  "zh_cn": "条件"
+                },
+                "$description": {
+                  "en_us": "One child condition.",
+                  "zh_cn": "一个子条件。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Conditions value.",
+                "zh_cn": "条件的值。"
+              }
+            }
+          },
+          "required": [
+            "conditions"
+          ]
+        },
+        "mxt:armor_value": {
+          "$title": {
+            "en_us": "Armor Value",
+            "zh_cn": "盔甲值"
+          },
+          "$description": {
+            "en_us": "Compares the item's armor value.",
+            "zh_cn": "比较该物品的盔甲值。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:durability": {
+          "$title": {
+            "en_us": "Durability",
+            "zh_cn": "耐久度"
+          },
+          "$description": {
+            "en_us": "Compares the item's remaining durability.",
+            "zh_cn": "比较该物品剩余的耐久度。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:on_cooldown": {
+          "$title": {
+            "en_us": "On Cooldown",
+            "zh_cn": "处于冷却"
+          },
+          "$description": {
+            "en_us": "Checks whether the item is on cooldown.",
+            "zh_cn": "判断该物品是否处于冷却。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:ingredient": {
+          "$title": {
+            "en_us": "Ingredient",
+            "zh_cn": "材料"
+          },
+          "$description": {
+            "en_us": "Checks whether the item matches an ingredient.",
+            "zh_cn": "判断该物品是否匹配某个材料。"
+          },
+          "type": "object",
+          "properties": {
+            "ingredient": {
+              "$title": {
+                "en_us": "Ingredient",
+                "zh_cn": "材料"
+              },
+              "$description": {
+                "en_us": "Ingredient value.",
+                "zh_cn": "材料的值。"
+              }
+            }
+          },
+          "required": [
+            "ingredient"
+          ]
+        },
+        "mxt:tool_ability": {
+          "$title": {
+            "en_us": "Tool Ability",
+            "zh_cn": "工具能力"
+          },
+          "$description": {
+            "en_us": "Checks the tool abilities the item provides.",
+            "zh_cn": "判断该物品提供的工具能力。"
+          },
+          "type": "object",
+          "properties": {
+            "ability": {
+              "$title": {
+                "en_us": "Ability",
+                "zh_cn": "技能"
+              },
+              "$description": {
+                "en_us": "Ability value.",
+                "zh_cn": "技能的值。"
+              }
+            }
+          },
+          "required": [
+            "ability"
+          ]
+        },
+        "mxt:base_enchantment": {
+          "$title": {
+            "en_us": "Base Enchantment",
+            "zh_cn": "基础附魔"
+          },
+          "$description": {
+            "en_us": "Checks the enchantments the item carries.",
+            "zh_cn": "判断该物品携带的附魔。"
+          },
+          "type": "object",
+          "properties": {
+            "enchantment": {
+              "$title": {
+                "en_us": "Enchantment",
+                "zh_cn": "附魔"
+              },
+              "$description": {
+                "en_us": "Enchantment value.",
+                "zh_cn": "附魔的值。"
+              }
+            }
+          },
+          "required": [
+            "enchantment"
+          ]
+        },
+        "mxt:has_component": {
+          "$title": {
+            "en_us": "Has Component",
+            "zh_cn": "拥有组件"
+          },
+          "$description": {
+            "en_us": "Checks whether the item carries a data component.",
+            "zh_cn": "判断该物品是否拥有某个数据组件。"
+          },
+          "type": "object",
+          "properties": {
+            "component": {
+              "$title": {
+                "en_us": "Component",
+                "zh_cn": "组件"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Component value.",
+                "zh_cn": "组件的值。"
+              }
+            }
+          },
+          "required": [
+            "component"
+          ]
+        },
+        "mxt:component": {
+          "$title": {
+            "en_us": "Component",
+            "zh_cn": "组件"
+          },
+          "$description": {
+            "en_us": "Compares the value of a data component.",
+            "zh_cn": "比较某个数据组件的值。"
+          },
+          "type": "object",
+          "properties": {
+            "component": {
+              "$title": {
+                "en_us": "Component",
+                "zh_cn": "组件"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Component value.",
+                "zh_cn": "组件的值。"
+              }
+            },
+            "nbt": {
+              "$title": {
+                "en_us": "Nbt",
+                "zh_cn": "NBT 数据"
+              },
+              "$description": {
+                "en_us": "Nbt value.",
+                "zh_cn": "NBT 数据的值。"
+              }
+            }
+          },
+          "required": [
+            "component",
+            "nbt"
+          ]
+        }
+      }
+    }
+  }
+}

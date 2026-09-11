@@ -1,0 +1,1931 @@
+{
+  "id": "mxt-common-entity-action",
+  "$library": true,
+  "$version": "26.1.2",
+  "$title": {
+    "en_us": "MiXianTu Entity Actions",
+    "zh_cn": "MiXianTu 实体行为"
+  },
+  "$description": {
+    "en_us": "Actions an entity performs on itself.",
+    "zh_cn": "实体对自身执行的行为。"
+  },
+  "$types": {
+    "entity_action": {
+      "$title": {
+        "en_us": "Entity Action",
+        "zh_cn": "实体行为"
+      },
+      "$description": {
+        "en_us": "Entity Action selected by a type identifier.",
+        "zh_cn": "实体行为的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:no_op",
+            "mxt:js",
+            "mxt:sequence",
+            "mxt:heal",
+            "mxt:damage",
+            "mxt:add_resource",
+            "mxt:grant_ability",
+            "mxt:grant_spirit_root",
+            "mxt:remove_ability",
+            "mxt:apply_curse",
+            "mxt:apply_curses",
+            "mxt:remove_curse",
+            "mxt:remove_curses_by_tag",
+            "mxt:apply_effect",
+            "mxt:teleport",
+            "mxt:knockback",
+            "mxt:modify_component",
+            "mxt:spawn_entity",
+            "mxt:spawn_projectile",
+            "mxt:add_experience",
+            "mxt:add_velocity",
+            "mxt:exhaust",
+            "mxt:feed",
+            "mxt:gain_air",
+            "mxt:give_item",
+            "mxt:play_sound",
+            "mxt:remove_effect",
+            "mxt:set_fall_distance",
+            "mxt:set_no_gravity",
+            "mxt:set_on_fire",
+            "mxt:swing_hand",
+            "mxt:chance",
+            "mxt:if_else",
+            "mxt:choice",
+            "mxt:emit_game_event",
+            "mxt:passenger_action",
+            "mxt:block_action",
+            "mxt:self_bientity_action",
+            "mxt:equipped_item_action",
+            "mxt:riding_action",
+            "mxt:explode",
+            "mxt:spawn_particles",
+            "mxt:spawn_effect_cloud"
+          ],
+          "$suggstion": true,
+          "default": "mxt:no_op",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:no_op": {
+          "$title": {
+            "en_us": "No Op",
+            "zh_cn": "无操作"
+          },
+          "$description": {
+            "en_us": "Does nothing.",
+            "zh_cn": "什么也不做。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:js": {
+          "$title": {
+            "en_us": "Js",
+            "zh_cn": "JS 表达式"
+          },
+          "$description": {
+            "en_us": "Runs a JavaScript callback.",
+            "zh_cn": "执行 JavaScript 回调。"
+          },
+          "type": "object",
+          "properties": {
+            "id": {
+              "$title": {
+                "en_us": "Id",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "Id value.",
+                "zh_cn": "标识符的值。"
+              }
+            },
+            "params": {
+              "$title": {
+                "en_us": "Params",
+                "zh_cn": "参数"
+              },
+              "$description": {
+                "en_us": "Params value.",
+                "zh_cn": "参数的值。"
+              }
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "mxt:sequence": {
+          "$title": {
+            "en_us": "Sequence",
+            "zh_cn": "顺序"
+          },
+          "$description": {
+            "en_us": "Runs several actions in order.",
+            "zh_cn": "按顺序执行多个行为。"
+          },
+          "type": "object",
+          "properties": {
+            "actions": {
+              "$title": {
+                "en_us": "Actions",
+                "zh_cn": "行为"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-entity-action#entity_action",
+                "$title": {
+                  "en_us": "Action",
+                  "zh_cn": "行为"
+                },
+                "$description": {
+                  "en_us": "One child action.",
+                  "zh_cn": "一个子行为。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Actions value.",
+                "zh_cn": "行为的值。"
+              }
+            }
+          },
+          "required": [
+            "actions"
+          ]
+        },
+        "mxt:heal": {
+          "$title": {
+            "en_us": "Heal",
+            "zh_cn": "治疗"
+          },
+          "$description": {
+            "en_us": "Heals the entity.",
+            "zh_cn": "治疗该实体。"
+          },
+          "type": "object",
+          "properties": {
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Amount value.",
+                "zh_cn": "数量的值。"
+              }
+            }
+          },
+          "required": [
+            "amount"
+          ]
+        },
+        "mxt:damage": {
+          "$title": {
+            "en_us": "Damage",
+            "zh_cn": "伤害"
+          },
+          "$description": {
+            "en_us": "Deals damage to the entity.",
+            "zh_cn": "对该实体造成伤害。"
+          },
+          "type": "object",
+          "properties": {
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Amount value.",
+                "zh_cn": "数量的值。"
+              }
+            }
+          },
+          "required": [
+            "amount"
+          ]
+        },
+        "mxt:add_resource": {
+          "$title": {
+            "en_us": "Add Resource",
+            "zh_cn": "添加资源"
+          },
+          "$description": {
+            "en_us": "Adds to a resource the entity holds.",
+            "zh_cn": "增加实体持有的某项资源。"
+          },
+          "type": "object",
+          "properties": {
+            "resource": {
+              "$title": {
+                "en_us": "Resource",
+                "zh_cn": "资源"
+              },
+              "type": "string",
+              "$registry": "mxt:resource",
+              "$description": {
+                "en_us": "Resource value.",
+                "zh_cn": "资源的值。"
+              }
+            },
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Amount value.",
+                "zh_cn": "数量的值。"
+              }
+            }
+          },
+          "required": [
+            "resource",
+            "amount"
+          ]
+        },
+        "mxt:grant_ability": {
+          "$title": {
+            "en_us": "Grant Ability",
+            "zh_cn": "授予技能"
+          },
+          "$description": {
+            "en_us": "Grants an ability.",
+            "zh_cn": "授予一个技能。"
+          },
+          "type": "object",
+          "properties": {
+            "ability": {
+              "$title": {
+                "en_us": "Ability",
+                "zh_cn": "技能"
+              },
+              "type": "string",
+              "$registry": "mxt:ability",
+              "$description": {
+                "en_us": "Ability value.",
+                "zh_cn": "技能的值。"
+              }
+            },
+            "source": {
+              "$title": {
+                "en_us": "Source",
+                "zh_cn": "来源"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Source value.",
+                "zh_cn": "来源的值。"
+              }
+            }
+          },
+          "required": [
+            "ability",
+            "source"
+          ]
+        },
+        "mxt:grant_spirit_root": {
+          "$title": {
+            "en_us": "Grant Spirit Root",
+            "zh_cn": "授予灵根"
+          },
+          "$description": {
+            "en_us": "Grants a spirit root.",
+            "zh_cn": "授予一个灵根。"
+          },
+          "type": "object",
+          "properties": {
+            "spirit_root": {
+              "$title": {
+                "en_us": "Spirit Root",
+                "zh_cn": "灵根"
+              },
+              "type": "string",
+              "$registry": "mxt:spirit_root",
+              "$description": {
+                "en_us": "Spirit Root value.",
+                "zh_cn": "灵根的值。"
+              }
+            }
+          },
+          "required": [
+            "spirit_root"
+          ]
+        },
+        "mxt:remove_ability": {
+          "$title": {
+            "en_us": "Remove Ability",
+            "zh_cn": "移除技能"
+          },
+          "$description": {
+            "en_us": "Removes an ability.",
+            "zh_cn": "移除一个技能。"
+          },
+          "type": "object",
+          "properties": {
+            "ability": {
+              "$title": {
+                "en_us": "Ability",
+                "zh_cn": "技能"
+              },
+              "type": "string",
+              "$registry": "mxt:ability",
+              "$description": {
+                "en_us": "Ability value.",
+                "zh_cn": "技能的值。"
+              }
+            },
+            "source": {
+              "$title": {
+                "en_us": "Source",
+                "zh_cn": "来源"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Source value.",
+                "zh_cn": "来源的值。"
+              }
+            }
+          },
+          "required": [
+            "ability",
+            "source"
+          ]
+        },
+        "mxt:apply_curse": {
+          "$title": {
+            "en_us": "Apply Curse",
+            "zh_cn": "施加诅咒"
+          },
+          "$description": {
+            "en_us": "Applies one curse.",
+            "zh_cn": "施加一个诅咒。"
+          },
+          "type": "object",
+          "properties": {
+            "curse": {
+              "$title": {
+                "en_us": "Curse",
+                "zh_cn": "诅咒"
+              },
+              "type": "string",
+              "$registry": "mxt:curse",
+              "$description": {
+                "en_us": "Curse value.",
+                "zh_cn": "诅咒的值。"
+              }
+            },
+            "stacks": {
+              "$title": {
+                "en_us": "Stacks",
+                "zh_cn": "层数"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Stacks value.",
+                "zh_cn": "层数的值。"
+              }
+            },
+            "duration_ticks": {
+              "$title": {
+                "en_us": "Duration Ticks",
+                "zh_cn": "持续刻数"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Duration Ticks value.",
+                "zh_cn": "持续刻数的值。"
+              }
+            }
+          },
+          "required": [
+            "curse"
+          ]
+        },
+        "mxt:apply_curses": {
+          "$title": {
+            "en_us": "Apply Curses",
+            "zh_cn": "施加诅咒"
+          },
+          "$description": {
+            "en_us": "Applies several curses at once.",
+            "zh_cn": "一次施加多个诅咒。"
+          },
+          "type": "object",
+          "properties": {
+            "curses": {
+              "$title": {
+                "en_us": "Curses",
+                "zh_cn": "诅咒"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common#record_ApplyCurseAction",
+                "$title": {
+                  "en_us": "Curse Entry",
+                  "zh_cn": "诅咒条目"
+                },
+                "$description": {
+                  "en_us": "One curse, with how many stacks and how long.",
+                  "zh_cn": "一条诅咒，含层数与持续时长。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Curses value.",
+                "zh_cn": "诅咒的值。"
+              }
+            }
+          },
+          "required": [
+            "curses"
+          ]
+        },
+        "mxt:remove_curse": {
+          "$title": {
+            "en_us": "Remove Curse",
+            "zh_cn": "移除诅咒"
+          },
+          "$description": {
+            "en_us": "Removes one curse.",
+            "zh_cn": "移除一个诅咒。"
+          },
+          "type": "object",
+          "properties": {
+            "curse": {
+              "$title": {
+                "en_us": "Curse",
+                "zh_cn": "诅咒"
+              },
+              "type": "string",
+              "$registry": "mxt:curse",
+              "$description": {
+                "en_us": "Curse value.",
+                "zh_cn": "诅咒的值。"
+              }
+            }
+          },
+          "required": [
+            "curse"
+          ]
+        },
+        "mxt:remove_curses_by_tag": {
+          "$title": {
+            "en_us": "Remove Curses By Tag",
+            "zh_cn": "按标签移除诅咒"
+          },
+          "$description": {
+            "en_us": "Removes every curse carrying the given tag.",
+            "zh_cn": "移除带有指定标签的全部诅咒。"
+          },
+          "type": "object",
+          "properties": {
+            "tags": {
+              "$title": {
+                "en_us": "Tags",
+                "zh_cn": "标签"
+              },
+              "type": "array",
+              "items": {
+                "type": "string",
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One tag id.",
+                  "zh_cn": "一个标签 ID。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Tags value.",
+                "zh_cn": "标签的值。"
+              }
+            }
+          },
+          "required": [
+            "tags"
+          ]
+        },
+        "mxt:apply_effect": {
+          "$title": {
+            "en_us": "Apply Effect",
+            "zh_cn": "施加效果"
+          },
+          "$description": {
+            "en_us": "Applies a mob effect.",
+            "zh_cn": "施加一个状态效果。"
+          },
+          "type": "object",
+          "properties": {
+            "effect": {
+              "$title": {
+                "en_us": "Effect",
+                "zh_cn": "效果"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Effect value.",
+                "zh_cn": "效果的值。"
+              }
+            },
+            "duration_ticks": {
+              "$title": {
+                "en_us": "Duration Ticks",
+                "zh_cn": "持续刻数"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Duration Ticks value.",
+                "zh_cn": "持续刻数的值。"
+              }
+            },
+            "amplifier": {
+              "$title": {
+                "en_us": "Amplifier",
+                "zh_cn": "等级"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Amplifier value.",
+                "zh_cn": "等级的值。"
+              }
+            }
+          },
+          "required": [
+            "effect",
+            "duration_ticks"
+          ]
+        },
+        "mxt:teleport": {
+          "$title": {
+            "en_us": "Teleport",
+            "zh_cn": "传送"
+          },
+          "$description": {
+            "en_us": "Teleports the entity.",
+            "zh_cn": "传送该实体。"
+          },
+          "type": "object",
+          "properties": {
+            "x": {
+              "$title": {
+                "en_us": "X",
+                "zh_cn": "X"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "X value.",
+                "zh_cn": "X的值。"
+              }
+            },
+            "y": {
+              "$title": {
+                "en_us": "Y",
+                "zh_cn": "Y"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Y value.",
+                "zh_cn": "Y的值。"
+              }
+            },
+            "z": {
+              "$title": {
+                "en_us": "Z",
+                "zh_cn": "Z"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Z value.",
+                "zh_cn": "Z的值。"
+              }
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "mxt:knockback": {
+          "$title": {
+            "en_us": "Knockback",
+            "zh_cn": "击退"
+          },
+          "$description": {
+            "en_us": "Pushes the entity away.",
+            "zh_cn": "把该实体击退。"
+          },
+          "type": "object",
+          "properties": {
+            "x": {
+              "$title": {
+                "en_us": "X",
+                "zh_cn": "X"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "X value.",
+                "zh_cn": "X的值。"
+              }
+            },
+            "y": {
+              "$title": {
+                "en_us": "Y",
+                "zh_cn": "Y"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Y value.",
+                "zh_cn": "Y的值。"
+              }
+            },
+            "z": {
+              "$title": {
+                "en_us": "Z",
+                "zh_cn": "Z"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Z value.",
+                "zh_cn": "Z的值。"
+              }
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "mxt:modify_component": {
+          "$title": {
+            "en_us": "Modify Component",
+            "zh_cn": "修改组件"
+          },
+          "$description": {
+            "en_us": "Edits a data component on the entity's item.",
+            "zh_cn": "修改实体物品上的数据组件。"
+          },
+          "type": "object",
+          "properties": {
+            "ability": {
+              "$title": {
+                "en_us": "Ability",
+                "zh_cn": "技能"
+              },
+              "type": "string",
+              "$registry": "mxt:ability",
+              "$description": {
+                "en_us": "Ability value.",
+                "zh_cn": "技能的值。"
+              }
+            },
+            "component": {
+              "$title": {
+                "en_us": "Component",
+                "zh_cn": "组件"
+              },
+              "$description": {
+                "en_us": "Component value.",
+                "zh_cn": "组件的值。"
+              }
+            },
+            "value": {
+              "$title": {
+                "en_us": "Value",
+                "zh_cn": "值"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Value value.",
+                "zh_cn": "值的值。"
+              }
+            }
+          },
+          "required": [
+            "ability",
+            "component",
+            "value"
+          ]
+        },
+        "mxt:spawn_entity": {
+          "$title": {
+            "en_us": "Spawn Entity",
+            "zh_cn": "生成实体"
+          },
+          "$description": {
+            "en_us": "Spawns an entity.",
+            "zh_cn": "生成一个实体。"
+          },
+          "type": "object",
+          "properties": {
+            "entity_type": {
+              "$title": {
+                "en_us": "Entity Type",
+                "zh_cn": "实体类型"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Entity Type value.",
+                "zh_cn": "实体类型的值。"
+              }
+            },
+            "x": {
+              "$title": {
+                "en_us": "X",
+                "zh_cn": "X"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "X value.",
+                "zh_cn": "X的值。"
+              }
+            },
+            "y": {
+              "$title": {
+                "en_us": "Y",
+                "zh_cn": "Y"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Y value.",
+                "zh_cn": "Y的值。"
+              }
+            },
+            "z": {
+              "$title": {
+                "en_us": "Z",
+                "zh_cn": "Z"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Z value.",
+                "zh_cn": "Z的值。"
+              }
+            }
+          },
+          "required": [
+            "entity_type",
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "mxt:spawn_projectile": {
+          "$title": {
+            "en_us": "Spawn Projectile",
+            "zh_cn": "生成投射物"
+          },
+          "$description": {
+            "en_us": "Fires a projectile.",
+            "zh_cn": "发射一个投射物。"
+          },
+          "type": "object",
+          "properties": {
+            "entity_type": {
+              "$title": {
+                "en_us": "Entity Type",
+                "zh_cn": "实体类型"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Entity Type value.",
+                "zh_cn": "实体类型的值。"
+              }
+            },
+            "velocity_x": {
+              "$title": {
+                "en_us": "Velocity X",
+                "zh_cn": "X 轴速度"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Velocity X value.",
+                "zh_cn": "X 轴速度的值。"
+              }
+            },
+            "velocity_y": {
+              "$title": {
+                "en_us": "Velocity Y",
+                "zh_cn": "Y 轴速度"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Velocity Y value.",
+                "zh_cn": "Y 轴速度的值。"
+              }
+            },
+            "velocity_z": {
+              "$title": {
+                "en_us": "Velocity Z",
+                "zh_cn": "Z 轴速度"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Velocity Z value.",
+                "zh_cn": "Z 轴速度的值。"
+              }
+            }
+          },
+          "required": [
+            "entity_type",
+            "velocity_x",
+            "velocity_y",
+            "velocity_z"
+          ]
+        },
+        "mxt:add_experience": {
+          "$title": {
+            "en_us": "Add Experience",
+            "zh_cn": "增加经验"
+          },
+          "$description": {
+            "en_us": "Adds experience points.",
+            "zh_cn": "增加经验点数。"
+          },
+          "type": "object",
+          "properties": {
+            "points": {
+              "$title": {
+                "en_us": "Points",
+                "zh_cn": "点数"
+              },
+              "type": "integer",
+              "$description": {
+                "en_us": "Points value.",
+                "zh_cn": "点数的值。"
+              }
+            },
+            "levels": {
+              "$title": {
+                "en_us": "Levels",
+                "zh_cn": "等级"
+              },
+              "type": "integer",
+              "$description": {
+                "en_us": "Levels value.",
+                "zh_cn": "等级的值。"
+              }
+            }
+          }
+        },
+        "mxt:add_velocity": {
+          "$title": {
+            "en_us": "Add Velocity",
+            "zh_cn": "施加速度"
+          },
+          "$description": {
+            "en_us": "Adds velocity to the entity.",
+            "zh_cn": "给实体施加一个速度。"
+          },
+          "type": "object",
+          "properties": {
+            "x": {
+              "$title": {
+                "en_us": "X",
+                "zh_cn": "X"
+              },
+              "type": "number",
+              "default": 0,
+              "$description": {
+                "en_us": "X value.",
+                "zh_cn": "X的值。"
+              }
+            },
+            "y": {
+              "$title": {
+                "en_us": "Y",
+                "zh_cn": "Y"
+              },
+              "type": "number",
+              "default": 0,
+              "$description": {
+                "en_us": "Y value.",
+                "zh_cn": "Y的值。"
+              }
+            },
+            "z": {
+              "$title": {
+                "en_us": "Z",
+                "zh_cn": "Z"
+              },
+              "type": "number",
+              "default": 0,
+              "$description": {
+                "en_us": "Z value.",
+                "zh_cn": "Z的值。"
+              }
+            },
+            "space": {
+              "$title": {
+                "en_us": "Space",
+                "zh_cn": "坐标空间"
+              },
+              "$description": {
+                "en_us": "Space value.",
+                "zh_cn": "坐标空间的值。"
+              }
+            },
+            "set": {
+              "$title": {
+                "en_us": "Set",
+                "zh_cn": "设置"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Set value.",
+                "zh_cn": "设置的值。"
+              }
+            }
+          }
+        },
+        "mxt:exhaust": {
+          "$title": {
+            "en_us": "Exhaust",
+            "zh_cn": "消耗饥饿值"
+          },
+          "$description": {
+            "en_us": "Adds exhaustion, the way sprinting does.",
+            "zh_cn": "增加饥饿消耗，效果类似疾跑。"
+          },
+          "type": "object",
+          "properties": {
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "type": "number",
+              "$description": {
+                "en_us": "Amount value.",
+                "zh_cn": "数量的值。"
+              }
+            }
+          },
+          "required": [
+            "amount"
+          ]
+        },
+        "mxt:feed": {
+          "$title": {
+            "en_us": "Feed",
+            "zh_cn": "喂食"
+          },
+          "$description": {
+            "en_us": "Feeds the entity.",
+            "zh_cn": "喂食该实体。"
+          },
+          "type": "object",
+          "properties": {
+            "food": {
+              "$title": {
+                "en_us": "Food",
+                "zh_cn": "食物"
+              },
+              "type": "integer",
+              "$description": {
+                "en_us": "Food value.",
+                "zh_cn": "食物的值。"
+              }
+            },
+            "saturation": {
+              "$title": {
+                "en_us": "Saturation",
+                "zh_cn": "饱和度"
+              },
+              "type": "number",
+              "$description": {
+                "en_us": "Saturation value.",
+                "zh_cn": "饱和度的值。"
+              }
+            }
+          },
+          "required": [
+            "food",
+            "saturation"
+          ]
+        },
+        "mxt:gain_air": {
+          "$title": {
+            "en_us": "Gain Air",
+            "zh_cn": "恢复空气"
+          },
+          "$description": {
+            "en_us": "Restores the entity's air supply.",
+            "zh_cn": "恢复实体的氧气值。"
+          },
+          "type": "object",
+          "properties": {
+            "value": {
+              "$title": {
+                "en_us": "Value",
+                "zh_cn": "值"
+              },
+              "type": "integer",
+              "$description": {
+                "en_us": "Value value.",
+                "zh_cn": "值的值。"
+              }
+            }
+          },
+          "required": [
+            "value"
+          ]
+        },
+        "mxt:give_item": {
+          "$title": {
+            "en_us": "Give Item",
+            "zh_cn": "给予物品"
+          },
+          "$description": {
+            "en_us": "Gives an item to the entity.",
+            "zh_cn": "给予实体一件物品。"
+          },
+          "type": "object",
+          "properties": {
+            "stack": {
+              "$title": {
+                "en_us": "Stack",
+                "zh_cn": "物品堆叠"
+              },
+              "$description": {
+                "en_us": "Stack value.",
+                "zh_cn": "物品堆叠的值。"
+              }
+            },
+            "item_action": {
+              "$title": {
+                "en_us": "Item Action",
+                "zh_cn": "物品行为"
+              },
+              "$type": "mxt-common-item-action#item_action",
+              "$description": {
+                "en_us": "Item Action value.",
+                "zh_cn": "物品行为的值。"
+              }
+            },
+            "preferred_slot": {
+              "$title": {
+                "en_us": "Preferred Slot",
+                "zh_cn": "优先槽位"
+              },
+              "$description": {
+                "en_us": "Preferred Slot value.",
+                "zh_cn": "优先槽位的值。"
+              }
+            }
+          },
+          "required": [
+            "stack"
+          ]
+        },
+        "mxt:play_sound": {
+          "$title": {
+            "en_us": "Play Sound",
+            "zh_cn": "播放声音"
+          },
+          "$description": {
+            "en_us": "Plays a sound.",
+            "zh_cn": "播放一个音效。"
+          },
+          "type": "object",
+          "properties": {
+            "sound": {
+              "$title": {
+                "en_us": "Sound",
+                "zh_cn": "声音"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Sound value.",
+                "zh_cn": "声音的值。"
+              }
+            },
+            "category": {
+              "$title": {
+                "en_us": "Category",
+                "zh_cn": "类别"
+              },
+              "default": 1,
+              "$description": {
+                "en_us": "Category value.",
+                "zh_cn": "类别的值。"
+              }
+            },
+            "volume": {
+              "$title": {
+                "en_us": "Volume",
+                "zh_cn": "音量"
+              },
+              "type": "number",
+              "default": 1,
+              "$description": {
+                "en_us": "Volume value.",
+                "zh_cn": "音量的值。"
+              }
+            },
+            "pitch": {
+              "$title": {
+                "en_us": "Pitch",
+                "zh_cn": "俯仰角"
+              },
+              "type": "number",
+              "default": 1,
+              "$description": {
+                "en_us": "Pitch value.",
+                "zh_cn": "俯仰角的值。"
+              }
+            }
+          },
+          "required": [
+            "sound"
+          ]
+        },
+        "mxt:remove_effect": {
+          "$title": {
+            "en_us": "Remove Effect",
+            "zh_cn": "移除状态效果"
+          },
+          "$description": {
+            "en_us": "Removes a mob effect.",
+            "zh_cn": "移除一个状态效果。"
+          },
+          "type": "object",
+          "properties": {
+            "effect": {
+              "$title": {
+                "en_us": "Effect",
+                "zh_cn": "效果"
+              },
+              "type": "string",
+              "$description": {
+                "en_us": "Effect value.",
+                "zh_cn": "效果的值。"
+              }
+            }
+          },
+          "required": [
+            "effect"
+          ]
+        },
+        "mxt:set_fall_distance": {
+          "$title": {
+            "en_us": "Set Fall Distance",
+            "zh_cn": "设置坠落距离"
+          },
+          "$description": {
+            "en_us": "Sets the entity's accumulated fall distance.",
+            "zh_cn": "设置实体已累计的坠落距离。"
+          },
+          "type": "object",
+          "properties": {
+            "distance": {
+              "$title": {
+                "en_us": "Distance",
+                "zh_cn": "距离"
+              },
+              "type": "number",
+              "$description": {
+                "en_us": "Distance value.",
+                "zh_cn": "距离的值。"
+              }
+            }
+          },
+          "required": [
+            "distance"
+          ]
+        },
+        "mxt:set_no_gravity": {
+          "$title": {
+            "en_us": "Set No Gravity",
+            "zh_cn": "关闭重力"
+          },
+          "$description": {
+            "en_us": "Turns gravity off for the entity.",
+            "zh_cn": "关闭实体的重力。"
+          },
+          "type": "object",
+          "properties": {
+            "no_gravity": {
+              "$title": {
+                "en_us": "No Gravity",
+                "zh_cn": "无重力"
+              },
+              "type": "boolean",
+              "$description": {
+                "en_us": "No Gravity value.",
+                "zh_cn": "无重力的值。"
+              }
+            }
+          }
+        },
+        "mxt:set_on_fire": {
+          "$title": {
+            "en_us": "Set On Fire",
+            "zh_cn": "点燃"
+          },
+          "$description": {
+            "en_us": "Sets the entity on fire.",
+            "zh_cn": "点燃该实体。"
+          },
+          "type": "object",
+          "properties": {
+            "ticks": {
+              "$title": {
+                "en_us": "Ticks",
+                "zh_cn": "刻数"
+              },
+              "type": "integer",
+              "$description": {
+                "en_us": "Ticks value.",
+                "zh_cn": "刻数的值。"
+              }
+            }
+          },
+          "required": [
+            "ticks"
+          ]
+        },
+        "mxt:swing_hand": {
+          "$title": {
+            "en_us": "Swing Hand",
+            "zh_cn": "挥动手臂"
+          },
+          "$description": {
+            "en_us": "Plays the hand swing animation.",
+            "zh_cn": "播放挥动手臂的动作。"
+          },
+          "type": "object",
+          "properties": {
+            "hand": {
+              "$title": {
+                "en_us": "Hand",
+                "zh_cn": "手"
+              },
+              "$description": {
+                "en_us": "Hand value.",
+                "zh_cn": "手的值。"
+              }
+            }
+          },
+          "required": [
+            "hand"
+          ]
+        },
+        "mxt:chance": {
+          "$title": {
+            "en_us": "Chance",
+            "zh_cn": "概率"
+          },
+          "$description": {
+            "en_us": "Runs the child action with the given probability.",
+            "zh_cn": "按给定概率执行子行为。"
+          },
+          "type": "object",
+          "properties": {
+            "action": {
+              "$title": {
+                "en_us": "Action",
+                "zh_cn": "行为"
+              },
+              "$type": "mxt-common-entity-action#entity_action",
+              "$description": {
+                "en_us": "Action value.",
+                "zh_cn": "行为的值。"
+              }
+            },
+            "chance": {
+              "$title": {
+                "en_us": "Chance",
+                "zh_cn": "概率"
+              },
+              "type": "number",
+              "$description": {
+                "en_us": "Chance value.",
+                "zh_cn": "概率的值。"
+              }
+            },
+            "fail_action": {
+              "$title": {
+                "en_us": "Fail Action",
+                "zh_cn": "失败行为"
+              },
+              "$type": "mxt-common-entity-action#entity_action",
+              "$description": {
+                "en_us": "Fail Action value.",
+                "zh_cn": "失败行为的值。"
+              }
+            }
+          },
+          "required": [
+            "action",
+            "chance"
+          ]
+        },
+        "mxt:if_else": {
+          "$title": {
+            "en_us": "If Else",
+            "zh_cn": "条件分支"
+          },
+          "$description": {
+            "en_us": "Runs one of two actions, depending on a condition.",
+            "zh_cn": "按条件在两个行为中选择一个执行。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$type": "mxt-common-entity-condition#entity_condition",
+              "$description": {
+                "en_us": "Condition value.",
+                "zh_cn": "条件的值。"
+              }
+            },
+            "if_action": {
+              "$title": {
+                "en_us": "If Action",
+                "zh_cn": "条件成立行为"
+              },
+              "$type": "mxt-common-entity-action#entity_action",
+              "$description": {
+                "en_us": "If Action value.",
+                "zh_cn": "条件成立行为的值。"
+              }
+            },
+            "else_action": {
+              "$title": {
+                "en_us": "Else Action",
+                "zh_cn": "否则行为"
+              },
+              "$type": "mxt-common-entity-action#entity_action",
+              "$description": {
+                "en_us": "Else Action value.",
+                "zh_cn": "否则行为的值。"
+              }
+            }
+          },
+          "required": [
+            "condition",
+            "if_action"
+          ]
+        },
+        "mxt:choice": {
+          "$title": {
+            "en_us": "Choice",
+            "zh_cn": "选择"
+          },
+          "$description": {
+            "en_us": "Picks one child action from a weighted list.",
+            "zh_cn": "从加权列表中随机挑选一个子行为。"
+          },
+          "type": "object",
+          "properties": {
+            "actions": {
+              "$title": {
+                "en_us": "Actions",
+                "zh_cn": "行为"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-entity-action#entity_action",
+                "$title": {
+                  "en_us": "Action",
+                  "zh_cn": "行为"
+                },
+                "$description": {
+                  "en_us": "One child action.",
+                  "zh_cn": "一个子行为。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Actions value.",
+                "zh_cn": "行为的值。"
+              }
+            }
+          },
+          "required": [
+            "actions"
+          ]
+        },
+        "mxt:emit_game_event": {
+          "$title": {
+            "en_us": "Emit Game Event",
+            "zh_cn": "触发游戏事件"
+          },
+          "$description": {
+            "en_us": "Emits a vanilla game event.",
+            "zh_cn": "发出一个原版游戏事件。"
+          },
+          "type": "object",
+          "properties": {
+            "event": {
+              "$title": {
+                "en_us": "Event",
+                "zh_cn": "事件"
+              },
+              "$description": {
+                "en_us": "Event value.",
+                "zh_cn": "事件的值。"
+              }
+            }
+          },
+          "required": [
+            "event"
+          ]
+        },
+        "mxt:passenger_action": {
+          "$title": {
+            "en_us": "Passenger Action",
+            "zh_cn": "作用于乘客"
+          },
+          "$description": {
+            "en_us": "Runs an action on the entity's passengers.",
+            "zh_cn": "对实体的乘客执行行为。"
+          },
+          "type": "object",
+          "properties": {
+            "action": {
+              "$title": {
+                "en_us": "Action",
+                "zh_cn": "行为"
+              },
+              "$type": "mxt-common-entity-action#entity_action",
+              "$description": {
+                "en_us": "Action value.",
+                "zh_cn": "行为的值。"
+              }
+            },
+            "bientity_action": {
+              "$title": {
+                "en_us": "Bientity Action",
+                "zh_cn": "双实体行为"
+              },
+              "$type": "mxt-common-bi-entity-action#bi_entity_action",
+              "$description": {
+                "en_us": "Bientity Action value.",
+                "zh_cn": "双实体行为的值。"
+              }
+            },
+            "bientity_condition": {
+              "$title": {
+                "en_us": "Bientity Condition",
+                "zh_cn": "双实体条件"
+              },
+              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+              "default": false,
+              "$description": {
+                "en_us": "Bientity Condition value.",
+                "zh_cn": "双实体条件的值。"
+              }
+            },
+            "recursive": {
+              "$title": {
+                "en_us": "Recursive",
+                "zh_cn": "递归"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Recursive value.",
+                "zh_cn": "递归的值。"
+              }
+            }
+          }
+        },
+        "mxt:block_action": {
+          "$title": {
+            "en_us": "Block Action",
+            "zh_cn": "方块行为"
+          },
+          "$description": {
+            "en_us": "Runs a block action at the entity's position.",
+            "zh_cn": "在实体所在位置执行方块行为。"
+          },
+          "type": "object",
+          "properties": {
+            "action": {
+              "$title": {
+                "en_us": "Action",
+                "zh_cn": "行为"
+              },
+              "$type": "mxt-common-block-action#block_action",
+              "$description": {
+                "en_us": "Action value.",
+                "zh_cn": "行为的值。"
+              }
+            }
+          },
+          "required": [
+            "action"
+          ]
+        },
+        "mxt:self_bientity_action": {
+          "$title": {
+            "en_us": "Self Bientity Action",
+            "zh_cn": "对自身的双实体行为"
+          },
+          "$description": {
+            "en_us": "Runs a bi-entity action with the entity as both actor and target.",
+            "zh_cn": "把实体自身同时当作执行者与目标，执行双实体行为。"
+          },
+          "type": "object",
+          "properties": {
+            "action": {
+              "$title": {
+                "en_us": "Action",
+                "zh_cn": "行为"
+              },
+              "$type": "mxt-common-bi-entity-action#bi_entity_action",
+              "$description": {
+                "en_us": "Action value.",
+                "zh_cn": "行为的值。"
+              }
+            }
+          },
+          "required": [
+            "action"
+          ]
+        },
+        "mxt:equipped_item_action": {
+          "$title": {
+            "en_us": "Equipped Item Action",
+            "zh_cn": "对装备物品执行"
+          },
+          "$description": {
+            "en_us": "Runs an item action on the item the entity holds.",
+            "zh_cn": "对实体持有的物品执行物品行为。"
+          },
+          "type": "object",
+          "properties": {
+            "slot": {
+              "$title": {
+                "en_us": "Slot",
+                "zh_cn": "槽位"
+              },
+              "$description": {
+                "en_us": "Slot value.",
+                "zh_cn": "槽位的值。"
+              }
+            },
+            "action": {
+              "$title": {
+                "en_us": "Action",
+                "zh_cn": "行为"
+              },
+              "$type": "mxt-common-item-action#item_action",
+              "$description": {
+                "en_us": "Action value.",
+                "zh_cn": "行为的值。"
+              }
+            }
+          },
+          "required": [
+            "slot",
+            "action"
+          ]
+        },
+        "mxt:riding_action": {
+          "$title": {
+            "en_us": "Riding Action",
+            "zh_cn": "对载具执行"
+          },
+          "$description": {
+            "en_us": "Runs an action on the vehicle the entity rides.",
+            "zh_cn": "对实体骑乘的载具执行行为。"
+          },
+          "type": "object",
+          "properties": {
+            "action": {
+              "$title": {
+                "en_us": "Action",
+                "zh_cn": "行为"
+              },
+              "$type": "mxt-common-entity-action#entity_action",
+              "$description": {
+                "en_us": "Action value.",
+                "zh_cn": "行为的值。"
+              }
+            },
+            "bientity_action": {
+              "$title": {
+                "en_us": "Bientity Action",
+                "zh_cn": "双实体行为"
+              },
+              "$type": "mxt-common-bi-entity-action#bi_entity_action",
+              "$description": {
+                "en_us": "Bientity Action value.",
+                "zh_cn": "双实体行为的值。"
+              }
+            },
+            "bientity_condition": {
+              "$title": {
+                "en_us": "Bientity Condition",
+                "zh_cn": "双实体条件"
+              },
+              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+              "default": false,
+              "$description": {
+                "en_us": "Bientity Condition value.",
+                "zh_cn": "双实体条件的值。"
+              }
+            },
+            "recursive": {
+              "$title": {
+                "en_us": "Recursive",
+                "zh_cn": "递归"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Recursive value.",
+                "zh_cn": "递归的值。"
+              }
+            }
+          }
+        },
+        "mxt:explode": {
+          "$title": {
+            "en_us": "Explode",
+            "zh_cn": "爆炸"
+          },
+          "$description": {
+            "en_us": "Creates an explosion.",
+            "zh_cn": "制造一次爆炸。"
+          },
+          "type": "object",
+          "properties": {
+            "power": {
+              "$title": {
+                "en_us": "Power",
+                "zh_cn": "能力"
+              },
+              "type": "number",
+              "$description": {
+                "en_us": "Power value.",
+                "zh_cn": "能力的值。"
+              }
+            },
+            "interaction": {
+              "$title": {
+                "en_us": "Interaction",
+                "zh_cn": "交互"
+              },
+              "$description": {
+                "en_us": "Interaction value.",
+                "zh_cn": "交互的值。"
+              }
+            },
+            "indestructible": {
+              "$title": {
+                "en_us": "Indestructible",
+                "zh_cn": "不可破坏"
+              },
+              "$type": "mxt-common-block-condition#block_condition",
+              "default": false,
+              "$description": {
+                "en_us": "Indestructible value.",
+                "zh_cn": "不可破坏的值。"
+              }
+            },
+            "create_fire": {
+              "$title": {
+                "en_us": "Create Fire",
+                "zh_cn": "创建火焰"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Create Fire value.",
+                "zh_cn": "创建火焰的值。"
+              }
+            }
+          },
+          "required": [
+            "power"
+          ]
+        },
+        "mxt:spawn_particles": {
+          "$title": {
+            "en_us": "Spawn Particles",
+            "zh_cn": "生成粒子"
+          },
+          "$description": {
+            "en_us": "Spawns particles.",
+            "zh_cn": "生成粒子。"
+          },
+          "type": "object",
+          "properties": {
+            "particle": {
+              "$title": {
+                "en_us": "Particle",
+                "zh_cn": "粒子"
+              },
+              "$description": {
+                "en_us": "Particle value.",
+                "zh_cn": "粒子的值。"
+              }
+            },
+            "bientity_condition": {
+              "$title": {
+                "en_us": "Bientity Condition",
+                "zh_cn": "双实体条件"
+              },
+              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+              "$description": {
+                "en_us": "Bientity Condition value.",
+                "zh_cn": "双实体条件的值。"
+              }
+            },
+            "count": {
+              "$title": {
+                "en_us": "Count",
+                "zh_cn": "数量"
+              },
+              "type": "integer",
+              "default": 0,
+              "$description": {
+                "en_us": "Count value.",
+                "zh_cn": "数量的值。"
+              }
+            },
+            "speed": {
+              "$title": {
+                "en_us": "Speed",
+                "zh_cn": "速度"
+              },
+              "type": "number",
+              "default": 0,
+              "$description": {
+                "en_us": "Speed value.",
+                "zh_cn": "速度的值。"
+              }
+            },
+            "force": {
+              "$title": {
+                "en_us": "Force",
+                "zh_cn": "强制"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Force value.",
+                "zh_cn": "强制的值。"
+              }
+            },
+            "spread": {
+              "$title": {
+                "en_us": "Spread",
+                "zh_cn": "扩散"
+              },
+              "$description": {
+                "en_us": "Spread value.",
+                "zh_cn": "扩散的值。"
+              }
+            },
+            "offset_x": {
+              "$title": {
+                "en_us": "Offset X",
+                "zh_cn": "X 轴偏移"
+              },
+              "type": "number",
+              "default": 0,
+              "$description": {
+                "en_us": "Offset X value.",
+                "zh_cn": "X 轴偏移的值。"
+              }
+            },
+            "offset_y": {
+              "$title": {
+                "en_us": "Offset Y",
+                "zh_cn": "Y 轴偏移"
+              },
+              "type": "number",
+              "default": 0.5,
+              "$description": {
+                "en_us": "Offset Y value.",
+                "zh_cn": "Y 轴偏移的值。"
+              }
+            },
+            "offset_z": {
+              "$title": {
+                "en_us": "Offset Z",
+                "zh_cn": "Z 轴偏移"
+              },
+              "type": "number",
+              "default": 0,
+              "$description": {
+                "en_us": "Offset Z value.",
+                "zh_cn": "Z 轴偏移的值。"
+              }
+            }
+          },
+          "required": [
+            "particle",
+            "count"
+          ]
+        },
+        "mxt:spawn_effect_cloud": {
+          "$title": {
+            "en_us": "Spawn Effect Cloud",
+            "zh_cn": "生成效果云"
+          },
+          "$description": {
+            "en_us": "Spawns an area effect cloud.",
+            "zh_cn": "生成一片效果云。"
+          },
+          "type": "object",
+          "properties": {
+            "radius": {
+              "$title": {
+                "en_us": "Radius",
+                "zh_cn": "半径"
+              },
+              "type": "number",
+              "default": 3,
+              "$description": {
+                "en_us": "Radius value.",
+                "zh_cn": "半径的值。"
+              }
+            },
+            "radius_on_use": {
+              "$title": {
+                "en_us": "Radius On Use",
+                "zh_cn": "使用时半径"
+              },
+              "type": "number",
+              "default": -0.5,
+              "$description": {
+                "en_us": "Radius On Use value.",
+                "zh_cn": "使用时半径的值。"
+              }
+            },
+            "wait_time": {
+              "$title": {
+                "en_us": "Wait Time",
+                "zh_cn": "等待时间"
+              },
+              "type": "integer",
+              "default": 10,
+              "$description": {
+                "en_us": "Wait Time value.",
+                "zh_cn": "等待时间的值。"
+              }
+            },
+            "effects": {
+              "$title": {
+                "en_us": "Effects",
+                "zh_cn": "效果"
+              },
+              "type": "array",
+              "items": {
+                "$title": {
+                  "en_us": "Effect",
+                  "zh_cn": "效果"
+                },
+                "$description": {
+                  "en_us": "One effect entry.",
+                  "zh_cn": "一条效果配置。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Effects value.",
+                "zh_cn": "效果的值。"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

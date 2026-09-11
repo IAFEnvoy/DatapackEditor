@@ -165,7 +165,7 @@
       },
       "$title": {
         "en_us": "Loot pool",
-        "zh_cn": "Loot pool"
+        "zh_cn": "战利品 pool"
       },
       "$description": {
         "en_us": "Loot pool value.",
@@ -232,7 +232,7 @@
           "default": 0,
           "$title": {
             "en_us": "Quality",
-            "zh_cn": "Quality"
+            "zh_cn": "品质"
           },
           "$description": {
             "en_us": "Quality value.",

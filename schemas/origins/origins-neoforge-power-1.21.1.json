@@ -1,6 +1,9 @@
 {
   "id": "origins-neoforge-power",
-  "$version": ["1.21.1", "26.1.2"],
+  "$version": [
+    "1.21.1",
+    "26.1.2"
+  ],
   "$path": "data/<namespace>/origins/power/<path>.json",
   "title": "Origins power",
   "$title": {
@@ -574,7 +577,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Offset X",
-                "zh_cn": "Offset X"
+                "zh_cn": "X 轴偏移"
               },
               "$description": {
                 "en_us": "Offset X value.",
@@ -586,7 +589,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Offset Y",
-                "zh_cn": "Offset Y"
+                "zh_cn": "Y 轴偏移"
               },
               "$description": {
                 "en_us": "Offset Y value.",
@@ -598,7 +601,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Offset Z",
-                "zh_cn": "Offset Z"
+                "zh_cn": "Z 轴偏移"
               },
               "$description": {
                 "en_us": "Offset Z value.",
@@ -634,7 +637,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Shape",
-                "zh_cn": "Shape"
+                "zh_cn": "形状"
               },
               "$description": {
                 "en_us": "Shape value.",
@@ -736,7 +739,7 @@
               "title": "Dimension",
               "$title": {
                 "en_us": "Dimension",
-                "zh_cn": "Dimension"
+                "zh_cn": "维度"
               },
               "$description": {
                 "en_us": "Dimension value.",
@@ -748,7 +751,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Inverted",
-                "zh_cn": "Inverted"
+                "zh_cn": "反转"
               },
               "$description": {
                 "en_us": "Inverted value.",
@@ -774,7 +777,7 @@
               "title": "Reference",
               "$title": {
                 "en_us": "Reference",
-                "zh_cn": "Reference"
+                "zh_cn": "引用"
               },
               "$description": {
                 "en_us": "Reference value.",
@@ -785,7 +788,7 @@
               "title": "Offset",
               "$title": {
                 "en_us": "Offset",
-                "zh_cn": "Offset"
+                "zh_cn": "偏移"
               },
               "$description": {
                 "en_us": "Offset value.",
@@ -833,7 +836,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Shape",
-                "zh_cn": "Shape"
+                "zh_cn": "形状"
               },
               "$description": {
                 "en_us": "Shape value.",
@@ -845,7 +848,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Scale Reference To Dimension",
-                "zh_cn": "Scale Reference To Dimension"
+                "zh_cn": "缩放引用至维度"
               },
               "$description": {
                 "en_us": "Scale Reference To Dimension value.",
@@ -881,7 +884,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Check Abilities",
-                "zh_cn": "Check Abilities"
+                "zh_cn": "Check 技能"
               },
               "$description": {
                 "en_us": "Check Abilities value.",
@@ -904,7 +907,7 @@
               "title": "Enchantment",
               "$title": {
                 "en_us": "Enchantment",
-                "zh_cn": "Enchantment"
+                "zh_cn": "附魔"
               },
               "$description": {
                 "en_us": "Enchantment value.",
@@ -954,7 +957,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Shape",
-                "zh_cn": "Shape"
+                "zh_cn": "形状"
               },
               "$description": {
                 "en_us": "Shape value.",
@@ -1018,7 +1021,7 @@
               "title": "Equipment Slot",
               "$title": {
                 "en_us": "Equipment Slot",
-                "zh_cn": "Equipment Slot"
+                "zh_cn": "装备槽位"
               },
               "$description": {
                 "en_us": "Equipment Slot value.",
@@ -1126,7 +1129,7 @@
               "title": "Gamemode",
               "$title": {
                 "en_us": "Gamemode",
-                "zh_cn": "Gamemode"
+                "zh_cn": "游戏模式"
               },
               "$description": {
                 "en_us": "Gamemode value.",
@@ -1228,7 +1231,7 @@
               "title": "Tag",
               "$title": {
                 "en_us": "Tag",
-                "zh_cn": "Tag"
+                "zh_cn": "标签"
               },
               "$description": {
                 "en_us": "Tag value.",
@@ -1254,7 +1257,7 @@
               "title": "Process Mode",
               "$title": {
                 "en_us": "Process Mode",
-                "zh_cn": "Process Mode"
+                "zh_cn": "Process 模式"
               },
               "$description": {
                 "en_us": "Process Mode value.",
@@ -1371,7 +1374,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Inverted",
-                "zh_cn": "Inverted"
+                "zh_cn": "反转"
               },
               "$description": {
                 "en_us": "Inverted value.",
@@ -1397,7 +1400,7 @@
               "title": "Nbt",
               "$title": {
                 "en_us": "Nbt",
-                "zh_cn": "Nbt"
+                "zh_cn": "NBT 数据"
               },
               "$description": {
                 "en_us": "Nbt value.",
@@ -1794,7 +1797,7 @@
               "type": "string",
               "$title": {
                 "en_us": "Objective",
-                "zh_cn": "Objective"
+                "zh_cn": "计分板目标"
               },
               "$description": {
                 "en_us": "Objective value.",
@@ -1821,7 +1824,7 @@
               "type": "string",
               "$title": {
                 "en_us": "Set",
-                "zh_cn": "Set"
+                "zh_cn": "设置"
               },
               "$description": {
                 "en_us": "Set value.",
@@ -1848,7 +1851,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Inverted",
-                "zh_cn": "Inverted"
+                "zh_cn": "反转"
               },
               "$description": {
                 "en_us": "Inverted value.",
@@ -1924,7 +1927,7 @@
               "type": "string",
               "$title": {
                 "en_us": "Team",
-                "zh_cn": "Team"
+                "zh_cn": "队伍"
               },
               "$description": {
                 "en_us": "Team value.",
@@ -2273,7 +2276,7 @@
               "title": "Enchantment",
               "$title": {
                 "en_us": "Enchantment",
-                "zh_cn": "Enchantment"
+                "zh_cn": "附魔"
               },
               "$description": {
                 "en_us": "Enchantment value.",
@@ -2284,7 +2287,7 @@
               "title": "Comparison",
               "$title": {
                 "en_us": "Comparison",
-                "zh_cn": "Comparison"
+                "zh_cn": "比较方式"
               },
               "$description": {
                 "en_us": "Comparison value.",
@@ -2296,7 +2299,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Compare To",
-                "zh_cn": "Compare To"
+                "zh_cn": "比较至"
               },
               "$description": {
                 "en_us": "Compare To value.",
@@ -2323,7 +2326,7 @@
               "title": "Component",
               "$title": {
                 "en_us": "Component",
-                "zh_cn": "Component"
+                "zh_cn": "组件"
               },
               "$description": {
                 "en_us": "Component value.",
@@ -2334,7 +2337,7 @@
               "title": "Nbt",
               "$title": {
                 "en_us": "Nbt",
-                "zh_cn": "Nbt"
+                "zh_cn": "NBT 数据"
               },
               "$description": {
                 "en_us": "Nbt value.",
@@ -2383,7 +2386,7 @@
               "title": "Component",
               "$title": {
                 "en_us": "Component",
-                "zh_cn": "Component"
+                "zh_cn": "组件"
               },
               "$description": {
                 "en_us": "Component value.",
@@ -2446,7 +2449,7 @@
               "title": "Ingredient",
               "$title": {
                 "en_us": "Ingredient",
-                "zh_cn": "Ingredient"
+                "zh_cn": "材料"
               },
               "$description": {
                 "en_us": "Ingredient value.",
@@ -2472,7 +2475,7 @@
               "title": "Tag",
               "$title": {
                 "en_us": "Tag",
-                "zh_cn": "Tag"
+                "zh_cn": "标签"
               },
               "$description": {
                 "en_us": "Tag value.",
@@ -2893,7 +2896,7 @@
               "type": "string",
               "$title": {
                 "en_us": "Property",
-                "zh_cn": "Property"
+                "zh_cn": "条目"
               },
               "$description": {
                 "en_us": "Property value.",
@@ -2931,7 +2934,7 @@
               "title": "Reference",
               "$title": {
                 "en_us": "Reference",
-                "zh_cn": "Reference"
+                "zh_cn": "引用"
               },
               "$description": {
                 "en_us": "Reference value.",
@@ -2942,7 +2945,7 @@
               "title": "Offset",
               "$title": {
                 "en_us": "Offset",
-                "zh_cn": "Offset"
+                "zh_cn": "偏移"
               },
               "$description": {
                 "en_us": "Offset value.",
@@ -2990,7 +2993,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Shape",
-                "zh_cn": "Shape"
+                "zh_cn": "形状"
               },
               "$description": {
                 "en_us": "Shape value.",
@@ -3002,7 +3005,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Scale Reference To Dimension",
-                "zh_cn": "Scale Reference To Dimension"
+                "zh_cn": "缩放引用至维度"
               },
               "$description": {
                 "en_us": "Scale Reference To Dimension value.",
@@ -3074,7 +3077,7 @@
               "title": "Tag",
               "$title": {
                 "en_us": "Tag",
-                "zh_cn": "Tag"
+                "zh_cn": "标签"
               },
               "$description": {
                 "en_us": "Tag value.",
@@ -3134,7 +3137,7 @@
               "title": "Nbt",
               "$title": {
                 "en_us": "Nbt",
-                "zh_cn": "Nbt"
+                "zh_cn": "NBT 数据"
               },
               "$description": {
                 "en_us": "Nbt value.",
@@ -3510,7 +3513,7 @@
               "type": "string",
               "$title": {
                 "en_us": "Set",
-                "zh_cn": "Set"
+                "zh_cn": "设置"
               },
               "$description": {
                 "en_us": "Set value.",
@@ -3981,7 +3984,7 @@
               "title": "Tag",
               "$title": {
                 "en_us": "Tag",
-                "zh_cn": "Tag"
+                "zh_cn": "标签"
               },
               "$description": {
                 "en_us": "Tag value.",
@@ -3993,7 +3996,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Inverted",
-                "zh_cn": "Inverted"
+                "zh_cn": "反转"
               },
               "$description": {
                 "en_us": "Inverted value.",
@@ -4340,7 +4343,7 @@
               "title": "Tag",
               "$title": {
                 "en_us": "Tag",
-                "zh_cn": "Tag"
+                "zh_cn": "标签"
               },
               "$description": {
                 "en_us": "Tag value.",
@@ -4377,7 +4380,7 @@
               "title": "Projectile",
               "$title": {
                 "en_us": "Projectile",
-                "zh_cn": "Projectile"
+                "zh_cn": "投射物"
               },
               "$description": {
                 "en_us": "Projectile value.",
@@ -4664,7 +4667,7 @@
               "title": "Tag",
               "$title": {
                 "en_us": "Tag",
-                "zh_cn": "Tag"
+                "zh_cn": "标签"
               },
               "$description": {
                 "en_us": "Tag value.",
@@ -4917,7 +4920,7 @@
               "type": "string",
               "$title": {
                 "en_us": "Set",
-                "zh_cn": "Set"
+                "zh_cn": "设置"
               },
               "$description": {
                 "en_us": "Set value.",
@@ -4929,7 +4932,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Time Limit",
-                "zh_cn": "Time Limit"
+                "zh_cn": "时间 Limit"
               },
               "$description": {
                 "en_us": "Time Limit value.",
@@ -4992,7 +4995,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Reference",
-                "zh_cn": "Reference"
+                "zh_cn": "引用"
               },
               "$description": {
                 "en_us": "Reference value.",
@@ -5004,7 +5007,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Client",
-                "zh_cn": "Client"
+                "zh_cn": "客户端"
               },
               "$description": {
                 "en_us": "Client value.",
@@ -5016,7 +5019,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Server",
-                "zh_cn": "Server"
+                "zh_cn": "服务端"
               },
               "$description": {
                 "en_us": "Server value.",
@@ -5028,7 +5031,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Set",
-                "zh_cn": "Set"
+                "zh_cn": "设置"
               },
               "$description": {
                 "en_us": "Set value.",
@@ -5125,7 +5128,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Modifier",
-                "zh_cn": "Modifier"
+                "zh_cn": "属性修正"
               },
               "$description": {
                 "en_us": "Modifier value.",
@@ -5154,7 +5157,7 @@
               "type": "string",
               "$title": {
                 "en_us": "Set",
-                "zh_cn": "Set"
+                "zh_cn": "设置"
               },
               "$description": {
                 "en_us": "Set value.",
@@ -5205,7 +5208,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Rotate",
-                "zh_cn": "Rotate"
+                "zh_cn": "旋转"
               },
               "$description": {
                 "en_us": "Rotate value.",
@@ -5515,7 +5518,7 @@
                 ],
                 "$title": {
                   "en_us": "ConditionedActionHolder",
-                  "zh_cn": "ConditionedActionHolder"
+                  "zh_cn": "Conditioned 行为持有者"
                 },
                 "$description": {
                   "en_us": "ConditionedActionHolder value.",
@@ -5790,7 +5793,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Drop",
-                "zh_cn": "Drop"
+                "zh_cn": "掉落"
               },
               "$description": {
                 "en_us": "Drop value.",
@@ -5865,7 +5868,7 @@
               "$type": "block_condition",
               "$title": {
                 "en_us": "Indestructible",
-                "zh_cn": "Indestructible"
+                "zh_cn": "不可破坏"
               },
               "$description": {
                 "en_us": "Indestructible value.",
@@ -5877,7 +5880,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Create Fire",
-                "zh_cn": "Create Fire"
+                "zh_cn": "创建火焰"
               },
               "$description": {
                 "en_us": "Create Fire value.",
@@ -5915,7 +5918,7 @@
               "type": "string",
               "$title": {
                 "en_us": "Property",
-                "zh_cn": "Property"
+                "zh_cn": "条目"
               },
               "$description": {
                 "en_us": "Property value.",
@@ -5927,7 +5930,7 @@
               "type": "string",
               "$title": {
                 "en_us": "Operation",
-                "zh_cn": "Operation"
+                "zh_cn": "操作"
               },
               "$description": {
                 "en_us": "Operation value.",
@@ -6041,7 +6044,7 @@
               "title": "Tag",
               "$title": {
                 "en_us": "Tag",
-                "zh_cn": "Tag"
+                "zh_cn": "标签"
               },
               "$description": {
                 "en_us": "Tag value.",
@@ -6429,7 +6432,7 @@
                 ],
                 "$title": {
                   "en_us": "ConditionedActionHolder",
-                  "zh_cn": "ConditionedActionHolder"
+                  "zh_cn": "Conditioned 行为持有者"
                 },
                 "$description": {
                   "en_us": "ConditionedActionHolder value.",
@@ -6478,7 +6481,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Shape",
-                "zh_cn": "Shape"
+                "zh_cn": "形状"
               },
               "$description": {
                 "en_us": "Shape value.",
@@ -6718,7 +6721,7 @@
               "type": "string",
               "$title": {
                 "en_us": "Set",
-                "zh_cn": "Set"
+                "zh_cn": "设置"
               },
               "$description": {
                 "en_us": "Set value.",
@@ -6830,7 +6833,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Space",
-                "zh_cn": "Space"
+                "zh_cn": "坐标空间"
               },
               "$description": {
                 "en_us": "Space value.",
@@ -6842,7 +6845,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Set",
-                "zh_cn": "Set"
+                "zh_cn": "设置"
               },
               "$description": {
                 "en_us": "Set value.",
@@ -7016,7 +7019,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Operation",
-                "zh_cn": "Operation"
+                "zh_cn": "操作"
               },
               "$description": {
                 "en_us": "Operation value.",
@@ -7044,7 +7047,7 @@
               "type": "string",
               "$title": {
                 "en_us": "Set",
-                "zh_cn": "Set"
+                "zh_cn": "设置"
               },
               "$description": {
                 "en_us": "Set value.",
@@ -7105,7 +7108,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Modifier",
-                "zh_cn": "Modifier"
+                "zh_cn": "属性修正"
               },
               "$description": {
                 "en_us": "Modifier value.",
@@ -7393,7 +7396,7 @@
               "$type": "block_condition",
               "$title": {
                 "en_us": "Indestructible",
-                "zh_cn": "Indestructible"
+                "zh_cn": "不可破坏"
               },
               "$description": {
                 "en_us": "Indestructible value.",
@@ -7405,7 +7408,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Create Fire",
-                "zh_cn": "Create Fire"
+                "zh_cn": "创建火焰"
               },
               "$description": {
                 "en_us": "Create Fire value.",
@@ -7432,7 +7435,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Food",
-                "zh_cn": "Food"
+                "zh_cn": "食物"
               },
               "$description": {
                 "en_us": "Food value.",
@@ -7444,7 +7447,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Saturation",
-                "zh_cn": "Saturation"
+                "zh_cn": "饱和度"
               },
               "$description": {
                 "en_us": "Saturation value.",
@@ -7495,7 +7498,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Speed",
-                "zh_cn": "Speed"
+                "zh_cn": "速度"
               },
               "$description": {
                 "en_us": "Speed value.",
@@ -7519,7 +7522,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Tag",
-                "zh_cn": "Tag"
+                "zh_cn": "标签"
               },
               "$description": {
                 "en_us": "Tag value.",
@@ -7584,7 +7587,7 @@
               "title": "Stack",
               "$title": {
                 "en_us": "Stack",
-                "zh_cn": "Stack"
+                "zh_cn": "物品堆叠"
               },
               "$description": {
                 "en_us": "Stack value.",
@@ -7595,7 +7598,7 @@
               "title": "Preferred Slot",
               "$title": {
                 "en_us": "Preferred Slot",
-                "zh_cn": "Preferred Slot"
+                "zh_cn": "优先槽位"
               },
               "$description": {
                 "en_us": "Preferred Slot value.",
@@ -7750,7 +7753,7 @@
               "title": "Modifier",
               "$title": {
                 "en_us": "Modifier",
-                "zh_cn": "Modifier"
+                "zh_cn": "属性修正"
               },
               "$description": {
                 "en_us": "Modifier value.",
@@ -7776,7 +7779,7 @@
               "title": "Modifier",
               "$title": {
                 "en_us": "Modifier",
-                "zh_cn": "Modifier"
+                "zh_cn": "属性修正"
               },
               "$description": {
                 "en_us": "Modifier value.",
@@ -7836,7 +7839,7 @@
               "title": "Process Mode",
               "$title": {
                 "en_us": "Process Mode",
-                "zh_cn": "Process Mode"
+                "zh_cn": "Process 模式"
               },
               "$description": {
                 "en_us": "Process Mode value.",
@@ -7898,7 +7901,7 @@
               "title": "Modifier",
               "$title": {
                 "en_us": "Modifier",
-                "zh_cn": "Modifier"
+                "zh_cn": "属性修正"
               },
               "$description": {
                 "en_us": "Modifier value.",
@@ -7938,7 +7941,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Recursive",
-                "zh_cn": "Recursive"
+                "zh_cn": "递归"
               },
               "$description": {
                 "en_us": "Recursive value.",
@@ -7997,7 +8000,7 @@
               "title": "Sound",
               "$title": {
                 "en_us": "Sound",
-                "zh_cn": "Sound"
+                "zh_cn": "音效"
               },
               "$description": {
                 "en_us": "Sound value.",
@@ -8020,7 +8023,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Volume",
-                "zh_cn": "Volume"
+                "zh_cn": "音量"
               },
               "$description": {
                 "en_us": "Volume value.",
@@ -8032,7 +8035,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Pitch",
-                "zh_cn": "Pitch"
+                "zh_cn": "俯仰角"
               },
               "$description": {
                 "en_us": "Pitch value.",
@@ -8059,7 +8062,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Area Width",
-                "zh_cn": "Area Width"
+                "zh_cn": "Area 宽度"
               },
               "$description": {
                 "en_us": "Area Width value.",
@@ -8071,7 +8074,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Area Height",
-                "zh_cn": "Area Height"
+                "zh_cn": "Area 高度"
               },
               "$description": {
                 "en_us": "Area Height value.",
@@ -8119,7 +8122,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Landing Offset",
-                "zh_cn": "Landing Offset"
+                "zh_cn": "Landing 偏移"
               },
               "$description": {
                 "en_us": "Landing Offset value.",
@@ -8131,7 +8134,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Loaded Chunks Only",
-                "zh_cn": "Loaded Chunks Only"
+                "zh_cn": "Loaded Chunks 仅"
               },
               "$description": {
                 "en_us": "Loaded Chunks Only value.",
@@ -8271,7 +8274,7 @@
               "title": "Stack",
               "$title": {
                 "en_us": "Stack",
-                "zh_cn": "Stack"
+                "zh_cn": "物品堆叠"
               },
               "$description": {
                 "en_us": "Stack value.",
@@ -8283,7 +8286,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Merge Component",
-                "zh_cn": "Merge Component"
+                "zh_cn": "合并组件"
               },
               "$description": {
                 "en_us": "Merge Component value.",
@@ -8333,7 +8336,16 @@
             "entity_types": {
               "title": "Entity Types",
               "type": "array",
-              "items": {},
+              "items": {
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              },
               "default": [],
               "$title": {
                 "en_us": "Entity Types",
@@ -8361,7 +8373,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Tag",
-                "zh_cn": "Tag"
+                "zh_cn": "标签"
               },
               "$description": {
                 "en_us": "Tag value.",
@@ -8500,7 +8512,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Recursive",
-                "zh_cn": "Recursive"
+                "zh_cn": "递归"
               },
               "$description": {
                 "en_us": "Recursive value.",
@@ -8638,7 +8650,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Fall Distance",
-                "zh_cn": "Fall Distance"
+                "zh_cn": "坠落距离"
               },
               "$description": {
                 "en_us": "Fall Distance value.",
@@ -8665,7 +8677,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Tick",
-                "zh_cn": "Tick"
+                "zh_cn": "刻"
               },
               "$description": {
                 "en_us": "Tick value.",
@@ -8692,7 +8704,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "No Gravity",
-                "zh_cn": "No Gravity"
+                "zh_cn": "无重力"
               },
               "$description": {
                 "en_us": "No Gravity value.",
@@ -8766,7 +8778,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Radius On Use",
-                "zh_cn": "Radius On Use"
+                "zh_cn": "使用时半径"
               },
               "$description": {
                 "en_us": "Radius On Use value.",
@@ -8778,7 +8790,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Wait Time",
-                "zh_cn": "Wait Time"
+                "zh_cn": "等待时间"
               },
               "$description": {
                 "en_us": "Wait Time value.",
@@ -8824,7 +8836,7 @@
               "title": "Tag",
               "$title": {
                 "en_us": "Tag",
-                "zh_cn": "Tag"
+                "zh_cn": "标签"
               },
               "$description": {
                 "en_us": "Tag value.",
@@ -8874,7 +8886,7 @@
               "title": "Particle",
               "$title": {
                 "en_us": "Particle",
-                "zh_cn": "Particle"
+                "zh_cn": "粒子"
               },
               "$description": {
                 "en_us": "Particle value.",
@@ -8897,7 +8909,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Speed",
-                "zh_cn": "Speed"
+                "zh_cn": "速度"
               },
               "$description": {
                 "en_us": "Speed value.",
@@ -8909,7 +8921,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Force",
-                "zh_cn": "Force"
+                "zh_cn": "强制"
               },
               "$description": {
                 "en_us": "Force value.",
@@ -8921,7 +8933,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Spread",
-                "zh_cn": "Spread"
+                "zh_cn": "扩散"
               },
               "$description": {
                 "en_us": "Spread value.",
@@ -8933,7 +8945,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Offset X",
-                "zh_cn": "Offset X"
+                "zh_cn": "X 轴偏移"
               },
               "$description": {
                 "en_us": "Offset X value.",
@@ -8945,7 +8957,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Offset Y",
-                "zh_cn": "Offset Y"
+                "zh_cn": "Y 轴偏移"
               },
               "$description": {
                 "en_us": "Offset Y value.",
@@ -8957,7 +8969,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Offset Z",
-                "zh_cn": "Offset Z"
+                "zh_cn": "Z 轴偏移"
               },
               "$description": {
                 "en_us": "Offset Z value.",
@@ -8996,7 +9008,7 @@
               "title": "Hand",
               "$title": {
                 "en_us": "Hand",
-                "zh_cn": "Hand"
+                "zh_cn": "手"
               },
               "$description": {
                 "en_us": "Hand value.",
@@ -9363,7 +9375,7 @@
                 ],
                 "$title": {
                   "en_us": "ConditionedActionHolder",
-                  "zh_cn": "ConditionedActionHolder"
+                  "zh_cn": "Conditioned 行为持有者"
                 },
                 "$description": {
                   "en_us": "ConditionedActionHolder value.",
@@ -9412,7 +9424,7 @@
               "type": "number",
               "$title": {
                 "en_us": "Shape",
-                "zh_cn": "Shape"
+                "zh_cn": "形状"
               },
               "$description": {
                 "en_us": "Shape value.",
@@ -9436,7 +9448,7 @@
               "type": "number",
               "$title": {
                 "en_us": "IncludeActor",
-                "zh_cn": "IncludeActor"
+                "zh_cn": "Include 执行者"
               },
               "$description": {
                 "en_us": "IncludeActor value.",
@@ -9576,7 +9588,7 @@
               "title": "Enchantment",
               "$title": {
                 "en_us": "Enchantment",
-                "zh_cn": "Enchantment"
+                "zh_cn": "附魔"
               },
               "$description": {
                 "en_us": "Enchantment value.",
@@ -9588,7 +9600,7 @@
               "type": "boolean",
               "$title": {
                 "en_us": "Override",
-                "zh_cn": "Override"
+                "zh_cn": "覆写"
               },
               "$description": {
                 "en_us": "Override value.",
@@ -9755,7 +9767,7 @@
               "type": "string",
               "$title": {
                 "en_us": "Modifier",
-                "zh_cn": "Modifier"
+                "zh_cn": "属性修正"
               },
               "$description": {
                 "en_us": "Modifier value.",
@@ -9781,7 +9793,7 @@
               "title": "Enchantment",
               "$title": {
                 "en_us": "Enchantment",
-                "zh_cn": "Enchantment"
+                "zh_cn": "附魔"
               },
               "$description": {
                 "en_us": "Enchantment value.",
@@ -9793,7 +9805,7 @@
               "type": "integer",
               "$title": {
                 "en_us": "Reset Repair Cost",
-                "zh_cn": "Reset Repair Cost"
+                "zh_cn": "重置修复消耗"
               },
               "$description": {
                 "en_us": "Reset Repair Cost value.",
@@ -10103,7 +10115,7 @@
                 ],
                 "$title": {
                   "en_us": "ConditionedActionHolder",
-                  "zh_cn": "ConditionedActionHolder"
+                  "zh_cn": "Conditioned 行为持有者"
                 },
                 "$description": {
                   "en_us": "ConditionedActionHolder value.",
@@ -10202,7 +10214,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Priority",
-            "zh_cn": "Priority"
+            "zh_cn": "优先级"
           },
           "$description": {
             "en_us": "Priority value.",
@@ -10349,7 +10361,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Only When Success",
-            "zh_cn": "Only When Success"
+            "zh_cn": "仅 When 成功"
           },
           "$description": {
             "en_us": "Only When Success value.",
@@ -10418,7 +10430,16 @@
         "directions": {
           "title": "Directions",
           "type": "array",
-          "items": {},
+          "items": {
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
           "default": [],
           "$title": {
             "en_us": "Directions",
@@ -10711,7 +10732,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Priority",
-            "zh_cn": "Priority"
+            "zh_cn": "优先级"
           },
           "$description": {
             "en_us": "Priority value.",
@@ -10810,7 +10831,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Priority",
-            "zh_cn": "Priority"
+            "zh_cn": "优先级"
           },
           "$description": {
             "en_us": "Priority value.",
@@ -10893,7 +10914,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Priority",
-            "zh_cn": "Priority"
+            "zh_cn": "优先级"
           },
           "$description": {
             "en_us": "Priority value.",
@@ -11304,7 +11325,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Hold Duration",
-            "zh_cn": "Hold Duration"
+            "zh_cn": "持有 Duration"
           },
           "$description": {
             "en_us": "Hold Duration value.",
@@ -11831,7 +11852,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -11868,7 +11889,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -11933,7 +11954,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -11944,7 +11965,7 @@
           "title": "Hardness Modifier",
           "$title": {
             "en_us": "Hardness Modifier",
-            "zh_cn": "Hardness Modifier"
+            "zh_cn": "硬度修正"
           },
           "$description": {
             "en_us": "Hardness Modifier value.",
@@ -11979,7 +12000,7 @@
           "title": "To",
           "$title": {
             "en_us": "To",
-            "zh_cn": "To"
+            "zh_cn": "至"
           },
           "$description": {
             "en_us": "To value.",
@@ -12112,7 +12133,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -12210,7 +12231,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -12333,7 +12354,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Sound",
-            "zh_cn": "Sound"
+            "zh_cn": "音效"
           },
           "$description": {
             "en_us": "Sound value.",
@@ -12345,7 +12366,7 @@
           "type": "number",
           "$title": {
             "en_us": "Volume",
-            "zh_cn": "Volume"
+            "zh_cn": "音量"
           },
           "$description": {
             "en_us": "Volume value.",
@@ -12357,7 +12378,7 @@
           "type": "number",
           "$title": {
             "en_us": "Pitch",
-            "zh_cn": "Pitch"
+            "zh_cn": "俯仰角"
           },
           "$description": {
             "en_us": "Pitch value.",
@@ -12394,7 +12415,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -12431,7 +12452,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -12494,7 +12515,7 @@
           "title": "Enchantment",
           "$title": {
             "en_us": "Enchantment",
-            "zh_cn": "Enchantment"
+            "zh_cn": "附魔"
           },
           "$description": {
             "en_us": "Enchantment value.",
@@ -12517,7 +12538,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -12592,7 +12613,7 @@
           "title": "Enchantment",
           "$title": {
             "en_us": "Enchantment",
-            "zh_cn": "Enchantment"
+            "zh_cn": "附魔"
           },
           "$description": {
             "en_us": "Enchantment value.",
@@ -12616,7 +12637,7 @@
           "type": "number",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -12679,7 +12700,7 @@
           "title": "Enchantment",
           "$title": {
             "en_us": "Enchantment",
-            "zh_cn": "Enchantment"
+            "zh_cn": "附魔"
           },
           "$description": {
             "en_us": "Enchantment value.",
@@ -12690,7 +12711,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -12729,7 +12750,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -12768,7 +12789,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -12841,7 +12862,7 @@
           "title": "Food Modifier",
           "$title": {
             "en_us": "Food Modifier",
-            "zh_cn": "Food Modifier"
+            "zh_cn": "食物修正"
           },
           "$description": {
             "en_us": "Food Modifier value.",
@@ -12852,7 +12873,7 @@
           "title": "Saturation Modifier",
           "$title": {
             "en_us": "Saturation Modifier",
-            "zh_cn": "Saturation Modifier"
+            "zh_cn": "饱和度修正"
           },
           "$description": {
             "en_us": "Saturation Modifier value.",
@@ -12863,7 +12884,7 @@
           "title": "Replace Stack",
           "$title": {
             "en_us": "Replace Stack",
-            "zh_cn": "Replace Stack"
+            "zh_cn": "替换层数"
           },
           "$description": {
             "en_us": "Replace Stack value.",
@@ -12875,7 +12896,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Always Edible",
-            "zh_cn": "Always Edible"
+            "zh_cn": "始终 Edible"
           },
           "$description": {
             "en_us": "Always Edible value.",
@@ -12887,7 +12908,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Prevent Effects",
-            "zh_cn": "Prevent Effects"
+            "zh_cn": "Prevent 效果"
           },
           "$description": {
             "en_us": "Prevent Effects value.",
@@ -12968,7 +12989,7 @@
           "title": "Xp Modifier",
           "$title": {
             "en_us": "Xp Modifier",
-            "zh_cn": "Xp Modifier"
+            "zh_cn": "Xp 修正"
           },
           "$description": {
             "en_us": "Xp Modifier value.",
@@ -13125,11 +13146,20 @@
         "modifier": {
           "title": "Modifier",
           "type": "array",
-          "items": {},
+          "items": {
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
           "default": [],
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -13168,7 +13198,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Sound",
-            "zh_cn": "Sound"
+            "zh_cn": "音效"
           },
           "$description": {
             "en_us": "Sound value.",
@@ -13180,7 +13210,7 @@
           "type": "number",
           "$title": {
             "en_us": "Volume",
-            "zh_cn": "Volume"
+            "zh_cn": "音量"
           },
           "$description": {
             "en_us": "Volume value.",
@@ -13192,7 +13222,7 @@
           "type": "number",
           "$title": {
             "en_us": "Pitch",
-            "zh_cn": "Pitch"
+            "zh_cn": "俯仰角"
           },
           "$description": {
             "en_us": "Pitch value.",
@@ -13217,11 +13247,20 @@
         "modifier": {
           "title": "Modifier",
           "type": "array",
-          "items": {},
+          "items": {
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
           "default": [],
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -13247,7 +13286,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -13285,7 +13324,7 @@
           "title": "Dimension",
           "$title": {
             "en_us": "Dimension",
-            "zh_cn": "Dimension"
+            "zh_cn": "维度"
           },
           "$description": {
             "en_us": "Dimension value.",
@@ -13297,7 +13336,7 @@
           "type": "number",
           "$title": {
             "en_us": "Dimension Distance Multiplier",
-            "zh_cn": "Dimension Distance Multiplier"
+            "zh_cn": "维度 Distance 倍率"
           },
           "$description": {
             "en_us": "Dimension Distance Multiplier value.",
@@ -13309,7 +13348,7 @@
           "type": "number",
           "$title": {
             "en_us": "Spawn Strategy",
-            "zh_cn": "Spawn Strategy"
+            "zh_cn": "生成 Strategy"
           },
           "$description": {
             "en_us": "Spawn Strategy value.",
@@ -13332,7 +13371,7 @@
           "title": "Structure",
           "$title": {
             "en_us": "Structure",
-            "zh_cn": "Structure"
+            "zh_cn": "结构"
           },
           "$description": {
             "en_us": "Structure value.",
@@ -13358,7 +13397,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -13432,7 +13471,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -13470,7 +13509,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -13480,7 +13519,16 @@
         "axis": {
           "title": "Axis",
           "type": "array",
-          "items": {},
+          "items": {
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
           "default": [],
           "$title": {
             "en_us": "Axis",
@@ -13509,11 +13557,20 @@
         "modifier": {
           "title": "Modifier",
           "type": "array",
-          "items": {},
+          "items": {
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
           "default": [],
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -13576,7 +13633,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Prevent Follow",
-            "zh_cn": "Prevent Follow"
+            "zh_cn": "Prevent 跟随"
           },
           "$description": {
             "en_us": "Prevent Follow value.",
@@ -13877,7 +13934,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Priority",
-            "zh_cn": "Priority"
+            "zh_cn": "优先级"
           },
           "$description": {
             "en_us": "Priority value.",
@@ -13996,7 +14053,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Set Spawn Point",
-            "zh_cn": "Set Spawn Point"
+            "zh_cn": "设置生成 Point"
           },
           "$description": {
             "en_us": "Set Spawn Point value.",
@@ -14008,7 +14065,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Priority",
-            "zh_cn": "Priority"
+            "zh_cn": "优先级"
           },
           "$description": {
             "en_us": "Priority value.",
@@ -14087,7 +14144,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -14137,7 +14194,7 @@
           "type": "number",
           "$title": {
             "en_us": "Multiplier",
-            "zh_cn": "Multiplier"
+            "zh_cn": "倍率"
           },
           "$description": {
             "en_us": "Multiplier value.",
@@ -14252,7 +14309,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -14264,7 +14321,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Update Health",
-            "zh_cn": "Update Health"
+            "zh_cn": "Update 生命值"
           },
           "$description": {
             "en_us": "Update Health value.",
@@ -14288,7 +14345,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Tick Rate",
-            "zh_cn": "Tick Rate"
+            "zh_cn": "刻速率"
           },
           "$description": {
             "en_us": "Tick Rate value.",
@@ -14467,7 +14524,7 @@
           "title": "Food Properties",
           "$title": {
             "en_us": "Food Properties",
-            "zh_cn": "Food Properties"
+            "zh_cn": "食物 Properties"
           },
           "$description": {
             "en_us": "Food Properties value.",
@@ -14478,7 +14535,7 @@
           "title": "Consume Animation",
           "$title": {
             "en_us": "Consume Animation",
-            "zh_cn": "Consume Animation"
+            "zh_cn": "消耗 Animation"
           },
           "$description": {
             "en_us": "Consume Animation value.",
@@ -14489,7 +14546,7 @@
           "title": "Consume Sound",
           "$title": {
             "en_us": "Consume Sound",
-            "zh_cn": "Consume Sound"
+            "zh_cn": "消耗声音"
           },
           "$description": {
             "en_us": "Consume Sound value.",
@@ -14500,7 +14557,7 @@
           "title": "Consuming Time Modifier",
           "$title": {
             "en_us": "Consuming Time Modifier",
-            "zh_cn": "Consuming Time Modifier"
+            "zh_cn": "Consuming 时间修正"
           },
           "$description": {
             "en_us": "Consuming Time Modifier value.",
@@ -14512,7 +14569,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Priority",
-            "zh_cn": "Priority"
+            "zh_cn": "优先级"
           },
           "$description": {
             "en_us": "Priority value.",
@@ -14598,7 +14655,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Inverted",
-            "zh_cn": "Inverted"
+            "zh_cn": "反转"
           },
           "$description": {
             "en_us": "Inverted value.",
@@ -14649,7 +14706,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Use Teams",
-            "zh_cn": "Use Teams"
+            "zh_cn": "使用 Teams"
           },
           "$description": {
             "en_us": "Use Teams value.",
@@ -14661,7 +14718,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Color",
-            "zh_cn": "Color"
+            "zh_cn": "颜色"
           },
           "$description": {
             "en_us": "Color value.",
@@ -14868,7 +14925,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Speed",
-            "zh_cn": "Speed"
+            "zh_cn": "速度"
           },
           "$description": {
             "en_us": "Speed value.",
@@ -14892,7 +14949,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Sound",
-            "zh_cn": "Sound"
+            "zh_cn": "音效"
           },
           "$description": {
             "en_us": "Sound value.",
@@ -14904,7 +14961,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Tag",
-            "zh_cn": "Tag"
+            "zh_cn": "标签"
           },
           "$description": {
             "en_us": "Tag value.",
@@ -15011,7 +15068,7 @@
           "title": "Title",
           "$title": {
             "en_us": "Title",
-            "zh_cn": "Title"
+            "zh_cn": "称号"
           },
           "$description": {
             "en_us": "Title value.",
@@ -15034,7 +15091,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Drop On Death",
-            "zh_cn": "Drop On Death"
+            "zh_cn": "掉落在 Death"
           },
           "$description": {
             "en_us": "Drop On Death value.",
@@ -15058,7 +15115,7 @@
           "$type": "item_condition",
           "$title": {
             "en_us": "Drop On Death Filter",
-            "zh_cn": "Drop On Death Filter"
+            "zh_cn": "掉落在 Death Filter"
           },
           "$description": {
             "en_us": "Drop On Death Filter value.",
@@ -15094,7 +15151,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Render Outline",
-            "zh_cn": "Render Outline"
+            "zh_cn": "渲染 Outline"
           },
           "$description": {
             "en_us": "Render Outline value.",
@@ -15261,11 +15318,20 @@
         "slots": {
           "title": "Slots",
           "type": "array",
-          "items": {},
+          "items": {
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
           "default": [],
           "$title": {
             "en_us": "Slots",
-            "zh_cn": "Slots"
+            "zh_cn": "槽位"
           },
           "$description": {
             "en_us": "Slots value.",
@@ -15301,7 +15367,7 @@
           "type": "number",
           "$title": {
             "en_us": "Speed",
-            "zh_cn": "Speed"
+            "zh_cn": "速度"
           },
           "$description": {
             "en_us": "Speed value.",
@@ -15313,7 +15379,7 @@
           "type": "number",
           "$title": {
             "en_us": "Sound",
-            "zh_cn": "Sound"
+            "zh_cn": "音效"
           },
           "$description": {
             "en_us": "Sound value.",
@@ -15361,7 +15427,7 @@
           "title": "Modifier",
           "$title": {
             "en_us": "Modifier",
-            "zh_cn": "Modifier"
+            "zh_cn": "属性修正"
           },
           "$description": {
             "en_us": "Modifier value.",
@@ -15448,7 +15514,7 @@
           "type": "number",
           "$title": {
             "en_us": "Draw Mode",
-            "zh_cn": "Draw Mode"
+            "zh_cn": "Draw 模式"
           },
           "$description": {
             "en_us": "Draw Mode value.",
@@ -15460,7 +15526,7 @@
           "type": "number",
           "$title": {
             "en_us": "Draw Phase",
-            "zh_cn": "Draw Phase"
+            "zh_cn": "Draw 阶段"
           },
           "$description": {
             "en_us": "Draw Phase value.",
@@ -15484,7 +15550,7 @@
           "type": "number",
           "$title": {
             "en_us": "Visible In Third Person",
-            "zh_cn": "Visible In Third Person"
+            "zh_cn": "Visible 处于 Third Person"
           },
           "$description": {
             "en_us": "Visible In Third Person value.",
@@ -15512,7 +15578,7 @@
           "title": "Particle",
           "$title": {
             "en_us": "Particle",
-            "zh_cn": "Particle"
+            "zh_cn": "粒子"
           },
           "$description": {
             "en_us": "Particle value.",
@@ -15732,7 +15798,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Priority",
-            "zh_cn": "Priority"
+            "zh_cn": "优先级"
           },
           "$description": {
             "en_us": "Priority value.",
@@ -15759,7 +15825,7 @@
           "type": "string",
           "$title": {
             "en_us": "Replace",
-            "zh_cn": "Replace"
+            "zh_cn": "替换"
           },
           "$description": {
             "en_us": "Replace value.",
@@ -15771,7 +15837,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Priority",
-            "zh_cn": "Priority"
+            "zh_cn": "优先级"
           },
           "$description": {
             "en_us": "Priority value.",
@@ -15858,7 +15924,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Hud Render",
-            "zh_cn": "HUD Render"
+            "zh_cn": "HUD 渲染"
           },
           "$description": {
             "en_us": "Hud Render value.",
@@ -15910,7 +15976,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Tick Rate",
-            "zh_cn": "Tick Rate"
+            "zh_cn": "刻速率"
           },
           "$description": {
             "en_us": "Tick Rate value.",
@@ -16004,7 +16070,7 @@
           "type": "boolean",
           "$title": {
             "en_us": "Use Teams",
-            "zh_cn": "Use Teams"
+            "zh_cn": "使用 Teams"
           },
           "$description": {
             "en_us": "Use Teams value.",
@@ -16016,7 +16082,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Color",
-            "zh_cn": "Color"
+            "zh_cn": "颜色"
           },
           "$description": {
             "en_us": "Color value.",
@@ -16149,7 +16215,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Duration Per Stack",
-            "zh_cn": "Duration Per Stack"
+            "zh_cn": "Duration 每层数"
           },
           "$description": {
             "en_us": "Duration Per Stack value.",
@@ -16187,7 +16253,7 @@
           "title": "Stack",
           "$title": {
             "en_us": "Stack",
-            "zh_cn": "Stack"
+            "zh_cn": "物品堆叠"
           },
           "$description": {
             "en_us": "Stack value.",
@@ -16238,7 +16304,7 @@
           "type": "integer",
           "$title": {
             "en_us": "Priority",
-            "zh_cn": "Priority"
+            "zh_cn": "优先级"
           },
           "$description": {
             "en_us": "Priority value.",

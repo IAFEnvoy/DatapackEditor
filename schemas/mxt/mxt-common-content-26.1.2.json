@@ -1,0 +1,433 @@
+{
+  "id": "mxt-common-content",
+  "$library": true,
+  "$version": "26.1.2",
+  "$title": {
+    "en_us": "MiXianTu Domain Records",
+    "zh_cn": "MiXianTu 域记录"
+  },
+  "$description": {
+    "en_us": "Records a single content domain uses, such as sect ranks or tribulation phases.",
+    "zh_cn": "单一内容域使用的记录，例如宗门等级或天劫阶段。"
+  },
+  "$types": {
+    "record_ItemAbilitiesData": {
+      "$title": {
+        "en_us": "ItemAbilitiesData",
+        "zh_cn": "物品技能数据"
+      },
+      "$description": {
+        "en_us": "ItemAbilitiesData value.",
+        "zh_cn": "物品技能数据的值。"
+      },
+      "type": "object",
+      "properties": {
+        "abilities": {
+          "$title": {
+            "en_us": "Abilities",
+            "zh_cn": "技能"
+          },
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$title": {
+              "en_us": "Ability",
+              "zh_cn": "技能"
+            },
+            "$description": {
+              "en_us": "One ability id.",
+              "zh_cn": "一个技能 ID。"
+            }
+          },
+          "default": [],
+          "$description": {
+            "en_us": "Abilities value.",
+            "zh_cn": "技能的值。"
+          }
+        }
+      }
+    },
+    "record_ArtifactStorageData": {
+      "$title": {
+        "en_us": "ArtifactStorageData",
+        "zh_cn": "法器存储数据"
+      },
+      "$description": {
+        "en_us": "ArtifactStorageData value.",
+        "zh_cn": "法器存储数据的值。"
+      },
+      "type": "object",
+      "properties": {
+        "contents": {
+          "$title": {
+            "en_us": "Contents",
+            "zh_cn": "内容"
+          },
+          "type": "array",
+          "items": {
+            "$title": {
+              "en_us": "Entry",
+              "zh_cn": "条目"
+            },
+            "$description": {
+              "en_us": "One stored entry.",
+              "zh_cn": "储存的一个条目。"
+            }
+          },
+          "default": [],
+          "$description": {
+            "en_us": "Contents value.",
+            "zh_cn": "内容的值。"
+          }
+        }
+      }
+    },
+    "record_ForgingResultData": {
+      "$title": {
+        "en_us": "ForgingResultData",
+        "zh_cn": "锻造结果数据"
+      },
+      "$description": {
+        "en_us": "ForgingResultData value.",
+        "zh_cn": "锻造结果数据的值。"
+      },
+      "type": "object",
+      "properties": {
+        "blueprint": {
+          "$title": {
+            "en_us": "Blueprint",
+            "zh_cn": "蓝图"
+          },
+          "type": "string",
+          "$description": {
+            "en_us": "Blueprint value.",
+            "zh_cn": "蓝图的值。"
+          }
+        },
+        "final_value": {
+          "$title": {
+            "en_us": "Final Value",
+            "zh_cn": "最终值"
+          },
+          "type": "integer",
+          "$description": {
+            "en_us": "Final Value value.",
+            "zh_cn": "最终值的值。"
+          }
+        },
+        "actual_steps": {
+          "$title": {
+            "en_us": "Actual Steps",
+            "zh_cn": "实际步数"
+          },
+          "type": "integer",
+          "$description": {
+            "en_us": "Actual Steps value.",
+            "zh_cn": "实际步数的值。"
+          }
+        },
+        "optimal_steps": {
+          "$title": {
+            "en_us": "Optimal Steps",
+            "zh_cn": "最优步数"
+          },
+          "type": "integer",
+          "$description": {
+            "en_us": "Optimal Steps value.",
+            "zh_cn": "最优步数的值。"
+          }
+        },
+        "extra_steps": {
+          "$title": {
+            "en_us": "Extra Steps",
+            "zh_cn": "额外步数"
+          },
+          "type": "integer",
+          "$description": {
+            "en_us": "Extra Steps value.",
+            "zh_cn": "额外步数的值。"
+          }
+        },
+        "quality": {
+          "$title": {
+            "en_us": "Quality",
+            "zh_cn": "品质"
+          },
+          "type": "string",
+          "$registry": "mxt:item_quality",
+          "$description": {
+            "en_us": "Quality value.",
+            "zh_cn": "品质的值。"
+          }
+        }
+      },
+      "required": [
+        "blueprint",
+        "final_value",
+        "actual_steps",
+        "optimal_steps",
+        "extra_steps",
+        "quality"
+      ]
+    },
+    "record_CurseContainerData": {
+      "$title": {
+        "en_us": "CurseContainerData",
+        "zh_cn": "诅咒容器数据"
+      },
+      "$description": {
+        "en_us": "CurseContainerData value.",
+        "zh_cn": "诅咒容器数据的值。"
+      },
+      "type": "object",
+      "properties": {}
+    },
+    "record_Phase": {
+      "$title": {
+        "en_us": "Phase",
+        "zh_cn": "阶段"
+      },
+      "$description": {
+        "en_us": "Phase value.",
+        "zh_cn": "阶段的值。"
+      },
+      "type": "object",
+      "properties": {
+        "duration": {
+          "$title": {
+            "en_us": "Duration",
+            "zh_cn": "持续时间"
+          },
+          "$type": "mxt-common#number_provider",
+          "$description": {
+            "en_us": "Duration value.",
+            "zh_cn": "持续时间的值。"
+          }
+        },
+        "start_action": {
+          "$title": {
+            "en_us": "Start Action",
+            "zh_cn": "开始行为"
+          },
+          "$type": "mxt-common-entity-action#entity_action",
+          "$description": {
+            "en_us": "Start Action value.",
+            "zh_cn": "开始行为的值。"
+          }
+        },
+        "end_action": {
+          "$title": {
+            "en_us": "End Action",
+            "zh_cn": "结束行为"
+          },
+          "$type": "mxt-common-entity-action#entity_action",
+          "$description": {
+            "en_us": "End Action value.",
+            "zh_cn": "结束行为的值。"
+          }
+        }
+      },
+      "required": [
+        "duration"
+      ]
+    },
+    "record_Rank": {
+      "$title": {
+        "en_us": "Rank",
+        "zh_cn": "阶位"
+      },
+      "$description": {
+        "en_us": "Rank value.",
+        "zh_cn": "阶位的值。"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "$title": {
+            "en_us": "Id",
+            "zh_cn": "标识符"
+          },
+          "default": 0,
+          "$description": {
+            "en_us": "Id value.",
+            "zh_cn": "标识符的值。"
+          }
+        },
+        "priority": {
+          "$title": {
+            "en_us": "Priority",
+            "zh_cn": "优先级"
+          },
+          "type": "integer",
+          "default": 0,
+          "$description": {
+            "en_us": "Priority value.",
+            "zh_cn": "优先级的值。"
+          }
+        },
+        "min_contribution": {
+          "$title": {
+            "en_us": "Min Contribution",
+            "zh_cn": "最低贡献"
+          },
+          "type": "integer",
+          "default": 0,
+          "$description": {
+            "en_us": "Min Contribution value.",
+            "zh_cn": "最低贡献的值。"
+          }
+        },
+        "permissions": {
+          "$title": {
+            "en_us": "Permissions",
+            "zh_cn": "权限"
+          },
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$title": {
+              "en_us": "Permission",
+              "zh_cn": "权限"
+            },
+            "$description": {
+              "en_us": "One permission entry.",
+              "zh_cn": "一条权限。"
+            }
+          },
+          "default": [],
+          "$description": {
+            "en_us": "Permissions value.",
+            "zh_cn": "权限的值。"
+          }
+        },
+        "promotion_costs": {
+          "$title": {
+            "en_us": "Promotion Costs",
+            "zh_cn": "晋升消耗"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common#record_ResourceCost",
+            "$title": {
+              "en_us": "Cost",
+              "zh_cn": "消耗"
+            },
+            "$description": {
+              "en_us": "One cost paid on promotion.",
+              "zh_cn": "晋升时支付的一项消耗。"
+            }
+          },
+          "default": [],
+          "$description": {
+            "en_us": "Promotion Costs value.",
+            "zh_cn": "晋升消耗的值。"
+          }
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "record_Task": {
+      "$title": {
+        "en_us": "Task",
+        "zh_cn": "任务"
+      },
+      "$description": {
+        "en_us": "Task value.",
+        "zh_cn": "任务的值。"
+      },
+      "type": "object",
+      "properties": {
+        "id": {
+          "$title": {
+            "en_us": "Id",
+            "zh_cn": "标识符"
+          },
+          "type": "string",
+          "$description": {
+            "en_us": "Id value.",
+            "zh_cn": "标识符的值。"
+          }
+        },
+        "contribution_reward": {
+          "$title": {
+            "en_us": "Contribution Reward",
+            "zh_cn": "贡献奖励"
+          },
+          "type": "integer",
+          "default": true,
+          "$description": {
+            "en_us": "Contribution Reward value.",
+            "zh_cn": "贡献奖励的值。"
+          }
+        },
+        "once": {
+          "$title": {
+            "en_us": "Once",
+            "zh_cn": "一次"
+          },
+          "type": "boolean",
+          "default": true,
+          "$description": {
+            "en_us": "Once value.",
+            "zh_cn": "一次的值。"
+          }
+        },
+        "required_permission": {
+          "$title": {
+            "en_us": "Required Permission",
+            "zh_cn": "所需权限"
+          },
+          "type": "string",
+          "$description": {
+            "en_us": "Required Permission value.",
+            "zh_cn": "所需权限的值。"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "contribution_reward"
+      ]
+    },
+    "record_Exchange": {
+      "$title": {
+        "en_us": "Exchange",
+        "zh_cn": "兑换"
+      },
+      "$description": {
+        "en_us": "Exchange value.",
+        "zh_cn": "兑换的值。"
+      },
+      "type": "object",
+      "properties": {
+        "cost": {
+          "$title": {
+            "en_us": "Cost",
+            "zh_cn": "消耗"
+          },
+          "type": "integer",
+          "$description": {
+            "en_us": "Cost value.",
+            "zh_cn": "消耗的值。"
+          }
+        },
+        "result": {
+          "$title": {
+            "en_us": "Result",
+            "zh_cn": "结果"
+          },
+          "$description": {
+            "en_us": "Result value.",
+            "zh_cn": "结果的值。"
+          }
+        }
+      },
+      "required": [
+        "cost",
+        "result"
+      ]
+    }
+  }
+}

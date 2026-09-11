@@ -113,7 +113,7 @@
       },
       "$title": {
         "en_us": "Loot pool",
-        "zh_cn": "Loot pool"
+        "zh_cn": "战利品 pool"
       },
       "$description": {
         "en_us": "Loot pool value.",

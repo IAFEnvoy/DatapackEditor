@@ -1,0 +1,531 @@
+{
+  "id": "mxt-common-item-action",
+  "$library": true,
+  "$version": "26.1.2",
+  "$title": {
+    "en_us": "MiXianTu Item Actions",
+    "zh_cn": "MiXianTu 物品行为"
+  },
+  "$description": {
+    "en_us": "Actions performed on an item stack.",
+    "zh_cn": "对物品执行的行为。"
+  },
+  "$types": {
+    "item_action": {
+      "$title": {
+        "en_us": "Item Action",
+        "zh_cn": "物品行为"
+      },
+      "$description": {
+        "en_us": "Item Action selected by a type identifier.",
+        "zh_cn": "物品行为的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:no_op",
+            "mxt:js",
+            "mxt:sequence",
+            "mxt:damage_item",
+            "mxt:consume_item",
+            "mxt:charge_artifact",
+            "mxt:chance",
+            "mxt:if_else",
+            "mxt:choice",
+            "mxt:cooldown",
+            "mxt:remove_enchantment",
+            "mxt:add_enchantment",
+            "mxt:merge_components"
+          ],
+          "$suggstion": true,
+          "default": "mxt:no_op",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:no_op": {
+          "$title": {
+            "en_us": "No Op",
+            "zh_cn": "无操作"
+          },
+          "$description": {
+            "en_us": "Does nothing.",
+            "zh_cn": "什么也不做。"
+          },
+          "type": "object",
+          "properties": {}
+        },
+        "mxt:js": {
+          "$title": {
+            "en_us": "Js",
+            "zh_cn": "JS 表达式"
+          },
+          "$description": {
+            "en_us": "Runs a JavaScript callback with the item.",
+            "zh_cn": "以该物品为参数执行 JavaScript 回调。"
+          },
+          "type": "object",
+          "properties": {
+            "id": {
+              "$title": {
+                "en_us": "Id",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "Id value.",
+                "zh_cn": "标识符的值。"
+              }
+            },
+            "params": {
+              "$title": {
+                "en_us": "Params",
+                "zh_cn": "参数"
+              },
+              "$description": {
+                "en_us": "Params value.",
+                "zh_cn": "参数的值。"
+              }
+            }
+          },
+          "required": [
+            "id"
+          ]
+        },
+        "mxt:sequence": {
+          "$title": {
+            "en_us": "Sequence",
+            "zh_cn": "顺序"
+          },
+          "$description": {
+            "en_us": "Runs several actions in order.",
+            "zh_cn": "按顺序执行多个行为。"
+          },
+          "type": "object",
+          "properties": {
+            "actions": {
+              "$title": {
+                "en_us": "Actions",
+                "zh_cn": "行为"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-item-action#item_action",
+                "$title": {
+                  "en_us": "Action",
+                  "zh_cn": "行为"
+                },
+                "$description": {
+                  "en_us": "One child action.",
+                  "zh_cn": "一个子行为。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Actions value.",
+                "zh_cn": "行为的值。"
+              }
+            }
+          },
+          "required": [
+            "actions"
+          ]
+        },
+        "mxt:damage_item": {
+          "$title": {
+            "en_us": "Damage Item",
+            "zh_cn": "损坏物品"
+          },
+          "$description": {
+            "en_us": "Damages the item.",
+            "zh_cn": "损坏该物品。"
+          },
+          "type": "object",
+          "properties": {
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Amount value.",
+                "zh_cn": "数量的值。"
+              }
+            }
+          },
+          "required": [
+            "amount"
+          ]
+        },
+        "mxt:consume_item": {
+          "$title": {
+            "en_us": "Consume Item",
+            "zh_cn": "消耗物品"
+          },
+          "$description": {
+            "en_us": "Consumes the item.",
+            "zh_cn": "消耗该物品。"
+          },
+          "type": "object",
+          "properties": {
+            "count": {
+              "$title": {
+                "en_us": "Count",
+                "zh_cn": "数量"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Count value.",
+                "zh_cn": "数量的值。"
+              }
+            }
+          },
+          "required": [
+            "count"
+          ]
+        },
+        "mxt:charge_artifact": {
+          "$title": {
+            "en_us": "Charge Artifact",
+            "zh_cn": "充能法器"
+          },
+          "$description": {
+            "en_us": "Charges the artifact.",
+            "zh_cn": "为该法器充能。"
+          },
+          "type": "object",
+          "properties": {
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Amount value.",
+                "zh_cn": "数量的值。"
+              }
+            },
+            "capacity": {
+              "$title": {
+                "en_us": "Capacity",
+                "zh_cn": "容量"
+              },
+              "$type": "mxt-common#number_provider",
+              "$description": {
+                "en_us": "Capacity value.",
+                "zh_cn": "容量的值。"
+              }
+            }
+          },
+          "required": [
+            "amount",
+            "capacity"
+          ]
+        },
+        "mxt:chance": {
+          "$title": {
+            "en_us": "Chance",
+            "zh_cn": "概率"
+          },
+          "$description": {
+            "en_us": "Runs the child action with the given probability.",
+            "zh_cn": "按给定概率执行子行为。"
+          },
+          "type": "object",
+          "properties": {
+            "action": {
+              "$title": {
+                "en_us": "Action",
+                "zh_cn": "行为"
+              },
+              "$type": "mxt-common-item-action#item_action",
+              "$description": {
+                "en_us": "Action value.",
+                "zh_cn": "行为的值。"
+              }
+            },
+            "chance": {
+              "$title": {
+                "en_us": "Chance",
+                "zh_cn": "概率"
+              },
+              "type": "number",
+              "$description": {
+                "en_us": "Chance value.",
+                "zh_cn": "概率的值。"
+              }
+            },
+            "fail_action": {
+              "$title": {
+                "en_us": "Fail Action",
+                "zh_cn": "失败行为"
+              },
+              "$type": "mxt-common-item-action#item_action",
+              "$description": {
+                "en_us": "Fail Action value.",
+                "zh_cn": "失败行为的值。"
+              }
+            }
+          },
+          "required": [
+            "action",
+            "chance"
+          ]
+        },
+        "mxt:if_else": {
+          "$title": {
+            "en_us": "If Else",
+            "zh_cn": "条件分支"
+          },
+          "$description": {
+            "en_us": "Runs one of two actions, depending on a condition.",
+            "zh_cn": "按条件在两个行为中选择一个执行。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$type": "mxt-common-item-condition#item_condition",
+              "$description": {
+                "en_us": "Condition value.",
+                "zh_cn": "条件的值。"
+              }
+            },
+            "if_action": {
+              "$title": {
+                "en_us": "If Action",
+                "zh_cn": "条件成立行为"
+              },
+              "$type": "mxt-common-item-action#item_action",
+              "$description": {
+                "en_us": "If Action value.",
+                "zh_cn": "条件成立行为的值。"
+              }
+            },
+            "else_action": {
+              "$title": {
+                "en_us": "Else Action",
+                "zh_cn": "否则行为"
+              },
+              "$type": "mxt-common-item-action#item_action",
+              "$description": {
+                "en_us": "Else Action value.",
+                "zh_cn": "否则行为的值。"
+              }
+            }
+          },
+          "required": [
+            "condition",
+            "if_action"
+          ]
+        },
+        "mxt:choice": {
+          "$title": {
+            "en_us": "Choice",
+            "zh_cn": "选择"
+          },
+          "$description": {
+            "en_us": "Picks one child action from a weighted list.",
+            "zh_cn": "从加权列表中随机挑选一个子行为。"
+          },
+          "type": "object",
+          "properties": {
+            "actions": {
+              "$title": {
+                "en_us": "Actions",
+                "zh_cn": "行为"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-item-action#item_action",
+                "$title": {
+                  "en_us": "Action",
+                  "zh_cn": "行为"
+                },
+                "$description": {
+                  "en_us": "One child action.",
+                  "zh_cn": "一个子行为。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Actions value.",
+                "zh_cn": "行为的值。"
+              }
+            }
+          },
+          "required": [
+            "actions"
+          ]
+        },
+        "mxt:cooldown": {
+          "$title": {
+            "en_us": "Cooldown",
+            "zh_cn": "冷却时间"
+          },
+          "$description": {
+            "en_us": "Puts the item on cooldown.",
+            "zh_cn": "让该物品进入冷却。"
+          },
+          "type": "object",
+          "properties": {
+            "ticks": {
+              "$title": {
+                "en_us": "Ticks",
+                "zh_cn": "刻数"
+              },
+              "type": "integer",
+              "$description": {
+                "en_us": "Ticks value.",
+                "zh_cn": "刻数的值。"
+              }
+            }
+          },
+          "required": [
+            "ticks"
+          ]
+        },
+        "mxt:remove_enchantment": {
+          "$title": {
+            "en_us": "Remove Enchantment",
+            "zh_cn": "移除附魔"
+          },
+          "$description": {
+            "en_us": "Removes an enchantment.",
+            "zh_cn": "移除一个附魔。"
+          },
+          "type": "object",
+          "properties": {
+            "enchantment": {
+              "$title": {
+                "en_us": "Enchantment",
+                "zh_cn": "附魔"
+              },
+              "type": "array",
+              "items": {
+                "$title": {
+                  "en_us": "Enchantment",
+                  "zh_cn": "附魔"
+                },
+                "$description": {
+                  "en_us": "One enchantment.",
+                  "zh_cn": "一个附魔。"
+                }
+              },
+              "default": [],
+              "$description": {
+                "en_us": "Enchantment value.",
+                "zh_cn": "附魔的值。"
+              }
+            },
+            "level": {
+              "$title": {
+                "en_us": "Level",
+                "zh_cn": "等级"
+              },
+              "type": "integer",
+              "default": false,
+              "$description": {
+                "en_us": "Level value.",
+                "zh_cn": "等级的值。"
+              }
+            },
+            "reset_repair_cost": {
+              "$title": {
+                "en_us": "Reset Repair Cost",
+                "zh_cn": "重置修复消耗"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Reset Repair Cost value.",
+                "zh_cn": "重置修复消耗的值。"
+              }
+            }
+          }
+        },
+        "mxt:add_enchantment": {
+          "$title": {
+            "en_us": "Add Enchantment",
+            "zh_cn": "添加附魔"
+          },
+          "$description": {
+            "en_us": "Adds an enchantment.",
+            "zh_cn": "添加一个附魔。"
+          },
+          "type": "object",
+          "properties": {
+            "enchantments": {
+              "$title": {
+                "en_us": "Enchantments",
+                "zh_cn": "附魔"
+              },
+              "default": false,
+              "$description": {
+                "en_us": "Enchantments value.",
+                "zh_cn": "附魔的值。"
+              }
+            },
+            "override": {
+              "$title": {
+                "en_us": "Override",
+                "zh_cn": "覆写"
+              },
+              "type": "boolean",
+              "default": false,
+              "$description": {
+                "en_us": "Override value.",
+                "zh_cn": "覆写的值。"
+              }
+            }
+          },
+          "required": [
+            "enchantments"
+          ]
+        },
+        "mxt:merge_components": {
+          "$title": {
+            "en_us": "Merge Components",
+            "zh_cn": "合并组件"
+          },
+          "$description": {
+            "en_us": "Merges data components onto the item.",
+            "zh_cn": "把数据组件合并到该物品上。"
+          },
+          "type": "object",
+          "properties": {
+            "components": {
+              "$title": {
+                "en_us": "Components",
+                "zh_cn": "组件"
+              },
+              "$description": {
+                "en_us": "Components value.",
+                "zh_cn": "组件的值。"
+              }
+            }
+          },
+          "required": [
+            "components"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -5,30 +5,42 @@
   },
   "$description": {
     "en_us": "Data-driven Cultivate Action definition from MiXianTu.",
-    "zh_cn": "觅仙途修炼行为的值。"
+    "zh_cn": "由觅仙途数据包加载的修炼行为定义。"
   },
   "type": "object",
   "properties": {
+    "default": {
+      "$title": {
+        "en_us": "Default",
+        "zh_cn": "默认行为"
+      },
+      "type": "boolean",
+      "default": false,
+      "$description": {
+        "en_us": "Use this behavior when the player has no selected cultivation behavior.",
+        "zh_cn": "玩家没有已选修炼行为时是否使用此行为。"
+      }
+    },
     "start_condition": {
       "$title": {
         "en_us": "Start Condition",
         "zh_cn": "开始条件"
       },
-      "$type": "mxt-common#entity_condition",
+      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Start Condition value.",
-        "zh_cn": "开始条件的值。"
+        "en_us": "Condition that starts this cultivation action.",
+        "zh_cn": "开始该修炼动作的条件。"
       }
     },
-    "stop_condition": {
+    "condition": {
       "$title": {
-        "en_us": "Stop Condition",
-        "zh_cn": "停止条件"
+        "en_us": "Continue Condition",
+        "zh_cn": "继续条件"
       },
-      "$type": "mxt-common#entity_condition",
+      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Stop Condition value.",
-        "zh_cn": "停止条件的值。"
+        "en_us": "Cultivation continues only while this condition is true.",
+        "zh_cn": "仅当此条件为真时才会继续修炼。"
       }
     },
     "tick_interval": {
@@ -39,31 +51,31 @@
       "type": "integer",
       "default": 20,
       "$description": {
-        "en_us": "Tick Interval value.",
-        "zh_cn": "周期刻数的值。"
+        "en_us": "How often the action ticks, in ticks.",
+        "zh_cn": "该动作的触发间隔，单位 tick。"
       }
     },
     "aura_kinds": {
       "$title": {
-        "en_us": "Required Aura Kinds",
-        "zh_cn": "所需灵气类型"
+        "en_us": "Aura Kinds",
+        "zh_cn": "灵气类型"
       },
       "type": "array",
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Aura Kind",
+          "zh_cn": "灵气类型"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One aura kind identifier.",
+          "zh_cn": "一个灵气类型标识符。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "All listed aura kinds must be present to cultivate.",
-        "zh_cn": "必须同时具备的灵气类型。"
+        "en_us": "Aura kinds this action may draw from.",
+        "zh_cn": "该动作可以吸收的灵气类型。"
       }
     },
     "costs": {
@@ -75,40 +87,53 @@
       "items": {
         "$type": "mxt-common#record_ResourceCost",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Cost",
+          "zh_cn": "消耗"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One cost paid per use.",
+          "zh_cn": "每次使用支付的一项消耗。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Costs value.",
-        "zh_cn": "消耗的值。"
+        "en_us": "Resources paid on every tick of the action.",
+        "zh_cn": "该动作每刻支付的资源消耗。"
       }
     },
     "absorb_amount": {
       "$title": {
         "en_us": "Absorb Amount",
-        "zh_cn": "吸收 数量"
+        "zh_cn": "吸收量"
       },
       "$type": "mxt-common#number_provider",
+      "default": 1,
       "$description": {
-        "en_us": "Absorb Amount value.",
-        "zh_cn": "吸收 数量的值。"
+        "en_us": "Multiplier for natural regeneration while cultivating. Overflow after filling the resource bar becomes cultivation progress.",
+        "zh_cn": "修炼时自然回复的倍率。资源条填满后的溢出量会转化为修为。"
       }
     },
-    "aura_cost": {
+    "aura_costs": {
       "$title": {
-        "en_us": "Aura Cost",
-        "zh_cn": "灵气消耗"
+        "en_us": "Resource Aura Costs",
+        "zh_cn": "资源灵气消耗"
       },
-      "$type": "mxt-common#number_provider",
+      "type": "object",
+      "additionalProperties": {
+        "$type": "mxt-common#number_provider",
+        "$title": {
+          "en_us": "Resource Cost",
+          "zh_cn": "资源消耗"
+        },
+        "$description": {
+          "en_us": "Aura of this resource consumed per tick, keyed by mxt:resource ids.",
+          "zh_cn": "每刻消耗的这种灵气，键为 mxt:resource ID。"
+        }
+      },
+      "default": {},
       "$description": {
-        "en_us": "Aura Cost value.",
-        "zh_cn": "灵气消耗的值。"
+        "en_us": "Per-resource environmental costs; keys are mxt:resource IDs.",
+        "zh_cn": "按资源分别定义的环境消耗，键为 mxt:resource ID。"
       }
     },
     "aura_gains": {
@@ -120,18 +145,18 @@
       "items": {
         "$type": "mxt-common#record_ResourceGain",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Gain",
+          "zh_cn": "灵气获得"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One aura gain entry.",
+          "zh_cn": "一条灵气获得配置。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Aura Gains value.",
-        "zh_cn": "灵气获得的值。"
+        "en_us": "Aura gained per tick, keyed by mxt:resource ids.",
+        "zh_cn": "每刻获得的灵气，键为 mxt:resource ID。"
       }
     },
     "cooldown": {
@@ -142,8 +167,8 @@
       "type": "integer",
       "default": 0,
       "$description": {
-        "en_us": "Cooldown value.",
-        "zh_cn": "冷却时间的值。"
+        "en_us": "Cooldown after the action stops, in ticks.",
+        "zh_cn": "该动作结束后的冷却，单位 tick。"
       }
     },
     "tick_action": {
@@ -151,10 +176,10 @@
         "en_us": "Tick Action",
         "zh_cn": "周期行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Tick Action value.",
-        "zh_cn": "周期行为的值。"
+        "en_us": "Action run on every tick of the cultivation.",
+        "zh_cn": "修炼每刻执行的行为。"
       }
     }
   },

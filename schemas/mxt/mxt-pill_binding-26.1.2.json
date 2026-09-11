@@ -5,7 +5,7 @@
   },
   "$description": {
     "en_us": "Data-driven Pill Binding definition from MiXianTu.",
-    "zh_cn": "觅仙途丹药绑定的值。"
+    "zh_cn": "由觅仙途数据包加载的丹药绑定定义。"
   },
   "type": "object",
   "properties": {
@@ -14,9 +14,10 @@
         "en_us": "Items",
         "zh_cn": "物品"
       },
+      "$type": "mxt-common#item_matcher",
       "$description": {
-        "en_us": "Items value.",
-        "zh_cn": "物品的值。"
+        "en_us": "Pills this binding applies to.",
+        "zh_cn": "该绑定适用的丹药物品。"
       }
     },
     "on_consume": {
@@ -24,10 +25,10 @@
         "en_us": "On Consume",
         "zh_cn": "服用时行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "On Consume value.",
-        "zh_cn": "服用时行为的值。"
+        "en_us": "Action run when the pill is consumed.",
+        "zh_cn": "服用丹药时执行的行为。"
       }
     },
     "toxicity_gain": {
@@ -37,8 +38,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Toxicity Gain value.",
-        "zh_cn": "丹毒增加的值。"
+        "en_us": "Toxicity added per pill.",
+        "zh_cn": "每颗丹药增加的丹毒。"
       }
     },
     "toxicity_threshold": {
@@ -48,8 +49,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Toxicity Threshold value.",
-        "zh_cn": "丹毒阈值的值。"
+        "en_us": "Toxicity at which the overdose behaviour starts.",
+        "zh_cn": "触发丹毒过量的阈值。"
       }
     },
     "on_overdose": {
@@ -57,10 +58,10 @@
         "en_us": "On Overdose",
         "zh_cn": "丹毒过量时行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "On Overdose value.",
-        "zh_cn": "丹毒过量时行为的值。"
+        "en_us": "Action run when toxicity passes the threshold.",
+        "zh_cn": "丹毒超过阈值时执行的行为。"
       }
     },
     "toxicity_after_overdose": {
@@ -70,8 +71,30 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Toxicity After Overdose value.",
-        "zh_cn": "过量后的丹毒的值。"
+        "en_us": "Toxicity left once the overdose has been resolved.",
+        "zh_cn": "丹毒过量处理完之后剩余的丹毒。"
+      }
+    },
+    "quality_group": {
+      "$title": {
+        "en_us": "Quality Group",
+        "zh_cn": "品质组"
+      },
+      "$type": "mxt-common#item_quality_tag",
+      "$description": {
+        "en_us": "Quality group shared by these pills.",
+        "zh_cn": "这些丹药共用的品质组。"
+      }
+    },
+    "condition": {
+      "$title": {
+        "en_us": "Condition",
+        "zh_cn": "条件"
+      },
+      "$type": "mxt-common-entity-condition#entity_condition",
+      "$description": {
+        "en_us": "Condition a pill has to meet for the binding to apply.",
+        "zh_cn": "丹药需要满足的条件，满足后该绑定才生效。"
       }
     }
   },

@@ -5,7 +5,7 @@
   },
   "$description": {
     "en_us": "Data-driven Realm Instance definition from MiXianTu.",
-    "zh_cn": "觅仙途秘境与位面实例的值。"
+    "zh_cn": "由觅仙途数据包加载的秘境与位面实例定义。"
   },
   "type": "object",
   "properties": {
@@ -17,8 +17,8 @@
       "type": "string",
       "default": 0,
       "$description": {
-        "en_us": "Dimension value.",
-        "zh_cn": "维度的值。"
+        "en_us": "Dimension the instance lives in.",
+        "zh_cn": "该秘境所在的维度。"
       }
     },
     "duration_ticks": {
@@ -28,8 +28,8 @@
       },
       "default": 0,
       "$description": {
-        "en_us": "Duration Ticks value.",
-        "zh_cn": "持续刻数的值。"
+        "en_us": "How long the instance lasts, in ticks. Omit it for an unlimited one.",
+        "zh_cn": "秘境持续的时间，单位 tick。省略即不限时。"
       }
     },
     "max_members": {
@@ -40,8 +40,8 @@
       "type": "integer",
       "default": 1,
       "$description": {
-        "en_us": "Max Members value.",
-        "zh_cn": "最大成员数的值。"
+        "en_us": "How many players may be inside at once.",
+        "zh_cn": "同时可以进入的玩家数量上限。"
       }
     },
     "enter_action": {
@@ -49,21 +49,21 @@
         "en_us": "Enter Action",
         "zh_cn": "进入行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Enter Action value.",
-        "zh_cn": "进入行为的值。"
+        "en_us": "Action run on a player entering the instance.",
+        "zh_cn": "玩家进入秘境时执行的行为。"
       }
     },
     "exit_action": {
       "$title": {
         "en_us": "Exit Action",
-        "zh_cn": "离开 行为"
+        "zh_cn": "离开行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Exit Action value.",
-        "zh_cn": "离开 行为的值。"
+        "en_us": "Action run on a player leaving the instance.",
+        "zh_cn": "玩家离开秘境时执行的行为。"
       }
     }
   },

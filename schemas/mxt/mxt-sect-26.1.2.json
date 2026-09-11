@@ -16,20 +16,20 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_Rank",
+        "$type": "mxt-common-content#record_Rank",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Rank",
+          "zh_cn": "宗门等级"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One rank of the sect.",
+          "zh_cn": "宗门的一级。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Ranks value.",
-        "zh_cn": "宗门等级的值。"
+        "en_us": "Rank ladder of the sect.",
+        "zh_cn": "宗门的等级阶梯。"
       }
     },
     "tasks": {
@@ -39,20 +39,20 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_Task",
+        "$type": "mxt-common-content#record_Task",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Task",
+          "zh_cn": "宗门任务"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One sect task.",
+          "zh_cn": "一个宗门任务。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Tasks value.",
-        "zh_cn": "宗门任务的值。"
+        "en_us": "Tasks members can complete for contribution.",
+        "zh_cn": "成员可以完成以获取贡献的任务。"
       }
     },
     "exchanges": {
@@ -62,20 +62,20 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_Exchange",
+        "$type": "mxt-common-content#record_Exchange",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Exchange",
+          "zh_cn": "兑换项"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One exchange entry.",
+          "zh_cn": "一个兑换项。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Exchanges value.",
-        "zh_cn": "兑换项目的值。"
+        "en_us": "Rewards members can exchange contribution for.",
+        "zh_cn": "成员可以用贡献兑换的奖励。"
       }
     },
     "territory_permissions": {
@@ -87,18 +87,18 @@
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Permission",
+          "zh_cn": "权限"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One permission entry.",
+          "zh_cn": "一条权限。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Territory Permissions value.",
-        "zh_cn": "领地权限的值。"
+        "en_us": "What each rank may do inside sect territory.",
+        "zh_cn": "各等级在宗门领地内的权限。"
       }
     }
   },

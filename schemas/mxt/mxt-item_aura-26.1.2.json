@@ -1,0 +1,101 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Item Aura",
+    "zh_cn": "觅仙途物品灵气"
+  },
+  "$description": {
+    "en_us": "Data-driven Item Aura definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的物品灵气储存定义。"
+  },
+  "type": "object",
+  "properties": {
+    "items": {
+      "$title": {
+        "en_us": "Items",
+        "zh_cn": "物品"
+      },
+      "$type": "mxt-common#item_matcher",
+      "$description": {
+        "en_us": "Items this aura definition applies to.",
+        "zh_cn": "该灵气定义适用的物品。"
+      }
+    },
+    "type": {
+      "$title": {
+        "en_us": "Resource Type",
+        "zh_cn": "资源类型"
+      },
+      "type": "string",
+      "$registry": "mxt:resource",
+      "$description": {
+        "en_us": "Resource consumed and released by this item aura definition.",
+        "zh_cn": "该物品灵气消耗和释放的资源；元素只作为资源的类型标记。"
+      }
+    },
+    "aura": {
+      "$title": {
+        "en_us": "Aura Amount",
+        "zh_cn": "灵气总量"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Initial fuel amount stored in the item aura component.",
+        "zh_cn": "首次处理物品时写入灵气组件的初始数量。"
+      }
+    },
+    "consume_speed": {
+      "$title": {
+        "en_us": "Consume Speed",
+        "zh_cn": "消耗速度"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "How fast the stored aura is consumed.",
+        "zh_cn": "储存灵气的消耗速度。"
+      }
+    },
+    "release_speed": {
+      "$title": {
+        "en_us": "Release Speed",
+        "zh_cn": "释放速度"
+      },
+      "$type": "mxt-common#number_provider",
+      "$description": {
+        "en_us": "Resource amount released per tick.",
+        "zh_cn": "每 tick 释放到资源条的数量。"
+      }
+    },
+    "result_stack": {
+      "$title": {
+        "en_us": "Result Stack",
+        "zh_cn": "结果物品堆"
+      },
+      "$description": {
+        "en_us": "Item stack left behind once the aura is spent.",
+        "zh_cn": "灵气耗尽后留下的物品堆。"
+      }
+    },
+    "exhausted_action": {
+      "$title": {
+        "en_us": "Exhausted Action",
+        "zh_cn": "力竭行为"
+      },
+      "$type": "mxt-common-entity-action#entity_action",
+      "$description": {
+        "en_us": "Action run when the stored aura runs out.",
+        "zh_cn": "储存灵气耗尽时执行的行为。"
+      }
+    }
+  },
+  "required": [
+    "items",
+    "type",
+    "aura",
+    "consume_speed",
+    "release_speed"
+  ],
+  "id": "mxt-item_aura",
+  "$version": "26.1.2",
+  "$registry": "mxt:item_aura",
+  "$path": "data/<namespace>/mxt/item_aura/<path>.json"
+}

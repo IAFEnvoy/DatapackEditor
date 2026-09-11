@@ -1,0 +1,78 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Technique Binding",
+    "zh_cn": "觅仙途功法绑定"
+  },
+  "$description": {
+    "en_us": "Data-driven Technique Binding definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的功法绑定定义。"
+  },
+  "type": "object",
+  "properties": {
+    "items": {
+      "$title": {
+        "en_us": "Items",
+        "zh_cn": "物品"
+      },
+      "$type": "mxt-common#item_matcher",
+      "$description": {
+        "en_us": "Items that teach this technique.",
+        "zh_cn": "可以学习该功法的物品。"
+      }
+    },
+    "technique": {
+      "$title": {
+        "en_us": "Technique",
+        "zh_cn": "功法"
+      },
+      "type": "string",
+      "$registry": "mxt:cultivation_technique",
+      "$description": {
+        "en_us": "Technique these items grant.",
+        "zh_cn": "这些物品授予的功法。"
+      }
+    },
+    "quality_group": {
+      "$title": {
+        "en_us": "Quality Group",
+        "zh_cn": "品质组"
+      },
+      "$type": "mxt-common#item_quality_tag",
+      "$description": {
+        "en_us": "Quality group shared by these items.",
+        "zh_cn": "这些物品共用的品质组。"
+      }
+    },
+    "condition": {
+      "$title": {
+        "en_us": "Condition",
+        "zh_cn": "条件"
+      },
+      "$type": "mxt-common-entity-condition#entity_condition",
+      "$description": {
+        "en_us": "Condition an item has to meet for the binding to apply.",
+        "zh_cn": "物品需要满足的条件，满足后该绑定才生效。"
+      }
+    },
+    "set_active": {
+      "$title": {
+        "en_us": "Set Active",
+        "zh_cn": "设置激活"
+      },
+      "type": "boolean",
+      "default": true,
+      "$description": {
+        "en_us": "Whether learning the technique also makes it the active one.",
+        "zh_cn": "学会后是否直接设为当前激活的功法。"
+      }
+    }
+  },
+  "required": [
+    "items",
+    "technique"
+  ],
+  "id": "mxt-technique_binding",
+  "$version": "26.1.2",
+  "$registry": "mxt:technique_binding",
+  "$path": "data/<namespace>/mxt/technique_binding/<path>.json"
+}

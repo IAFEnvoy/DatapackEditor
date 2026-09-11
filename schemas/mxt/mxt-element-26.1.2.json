@@ -9,17 +9,6 @@
   },
   "type": "object",
   "properties": {
-    "translation_key": {
-      "$title": {
-        "en_us": "Translation Key",
-        "zh_cn": "翻译键"
-      },
-      "default": "",
-      "$description": {
-        "en_us": "Translation Key value.",
-        "zh_cn": "翻译键的值。"
-      }
-    },
     "overcomes": {
       "$title": {
         "en_us": "Overcomes",
@@ -27,19 +16,20 @@
       },
       "type": "array",
       "items": {
+        "$type": "element_entry",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Element or Tag",
+          "zh_cn": "元素或标签"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One element this one overcomes, or one tag standing for several.",
+          "zh_cn": "被本元素克制的一个元素，或代表若干元素的一个标签。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Overcomes value.",
-        "zh_cn": "克制的值。"
+        "en_us": "Elements this one overcomes. Relations may point back at each other, so cycles are allowed and nothing is expanded at load time.",
+        "zh_cn": "本元素克制的元素。关系可以互相指回，因此允许成环，加载期不做展开。"
       }
     },
     "adapted_to": {
@@ -49,19 +39,20 @@
       },
       "type": "array",
       "items": {
+        "$type": "element_entry",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Element or Tag",
+          "zh_cn": "元素或标签"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One element this one is adapted to, or one tag standing for several.",
+          "zh_cn": "本元素适应的一个元素，或代表若干元素的一个标签。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Adapted To value.",
-        "zh_cn": "适应元素的值。"
+        "en_us": "Elements this one is adapted to. These feed the element-fit bonus.",
+        "zh_cn": "本元素适应的元素，用于计算元素契合加成。"
       }
     },
     "aura_kinds": {
@@ -73,19 +64,96 @@
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Aura Kind",
+          "zh_cn": "灵气类型"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One aura kind identifier.",
+          "zh_cn": "一个灵气类型标识符。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Aura kinds associated with this element.",
-        "zh_cn": "与该元素关联的灵气类型。"
+        "en_us": "Aura kinds associated with this element. They classify aura for compatibility checks; they do not encode precedence.",
+        "zh_cn": "与该元素关联的灵气类型，用于灵气相容性判断，不表达克制优先级。"
       }
+    },
+    "color": {
+      "$title": {
+        "en_us": "Color",
+        "zh_cn": "颜色"
+      },
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16777215,
+          "default": 16777215,
+          "$title": {
+            "en_us": "Decimal Color",
+            "zh_cn": "十进制颜色"
+          },
+          "$description": {
+            "en_us": "The color as a 24-bit decimal number, for example 16711680 for red.",
+            "zh_cn": "颜色的 24 位十进制数值，例如红色为 16711680。"
+          }
+        },
+        {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "$title": {
+            "en_us": "Hex Color",
+            "zh_cn": "十六进制颜色"
+          },
+          "$description": {
+            "en_us": "The color as #RRGGBB, for example #FF0000. No alpha channel.",
+            "zh_cn": "写成 #RRGGBB 的颜色，例如 #FF0000。不含透明度。"
+          }
+        }
+      ],
+      "$description": {
+        "en_us": "Display color used by aura-cost text. Defaults to white.",
+        "zh_cn": "灵气消耗文本使用的显示颜色，默认白色。"
+      }
+    }
+  },
+  "$types": {
+    "element_entry": {
+      "$title": {
+        "en_us": "Element Entry",
+        "zh_cn": "元素条目"
+      },
+      "$description": {
+        "en_us": "One element id, or one element tag prefixed with #.",
+        "zh_cn": "一个元素 ID，或一个以 # 开头的元素标签。"
+      },
+      "oneOf": [
+        {
+          "type": "string",
+          "$registry": "mxt:element",
+          "$title": {
+            "en_us": "Element",
+            "zh_cn": "元素"
+          },
+          "$description": {
+            "en_us": "An element id.",
+            "zh_cn": "一个元素 ID。"
+          }
+        },
+        {
+          "type": "string",
+          "$registry": "mxt:element_tag",
+          "pattern": "^#.+",
+          "$title": {
+            "en_us": "Element Tag",
+            "zh_cn": "元素标签"
+          },
+          "$description": {
+            "en_us": "An element tag id prefixed with #.",
+            "zh_cn": "以 # 开头的元素标签 ID。"
+          }
+        }
+      ]
     }
   },
   "id": "mxt-element",

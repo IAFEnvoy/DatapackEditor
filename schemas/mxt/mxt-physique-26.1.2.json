@@ -16,20 +16,20 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_AttributeModifier",
+        "$type": "mxt-common#record_AttributeEntry",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Modifier",
+          "zh_cn": "属性修正"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One attribute modifier.",
+          "zh_cn": "一条属性修正。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Attribute Modifiers value.",
-        "zh_cn": "属性修正的值。"
+        "en_us": "Attribute modifiers this physique grants.",
+        "zh_cn": "该体质提供的属性修正。"
       }
     },
     "granted_abilities": {
@@ -40,18 +40,18 @@
       "type": "array",
       "items": {
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Ability",
+          "zh_cn": "技能"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One ability id.",
+          "zh_cn": "一个技能 ID。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Granted Abilities value.",
-        "zh_cn": "授予的技能的值。"
+        "en_us": "Abilities unlocked by this physique.",
+        "zh_cn": "该体质解锁的技能。"
       }
     },
     "holder_condition": {
@@ -59,33 +59,33 @@
         "en_us": "Holder Condition",
         "zh_cn": "持有者条件"
       },
-      "$type": "mxt-common#entity_condition",
+      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Holder Condition value.",
-        "zh_cn": "持有者条件的值。"
+        "en_us": "Condition the holder has to meet.",
+        "zh_cn": "持有者需要满足的条件。"
       }
     },
     "exclusive_tags": {
       "$title": {
         "en_us": "Exclusive Tags",
-        "zh_cn": "互斥 标签"
+        "zh_cn": "互斥标签"
       },
       "type": "array",
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Tag",
+          "zh_cn": "标签"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One tag id.",
+          "zh_cn": "一个标签 ID。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Exclusive Tags value.",
-        "zh_cn": "互斥 标签的值。"
+        "en_us": "Tags that make physiques mutually exclusive.",
+        "zh_cn": "体质之间互斥的标签。"
       }
     },
     "rarity": {
@@ -95,20 +95,20 @@
       },
       "default": "common",
       "$description": {
-        "en_us": "Rarity value.",
-        "zh_cn": "稀有度的值。"
+        "en_us": "How rare this physique is.",
+        "zh_cn": "该体质的稀有度。"
       }
     },
     "allow_stacking": {
       "$title": {
         "en_us": "Allow Stacking",
-        "zh_cn": "允许 叠加"
+        "zh_cn": "允许叠加"
       },
       "type": "boolean",
       "default": false,
       "$description": {
-        "en_us": "Allow Stacking value.",
-        "zh_cn": "允许 叠加的值。"
+        "en_us": "Whether the physique may stack with itself.",
+        "zh_cn": "该体质是否允许叠加。"
       }
     }
   },

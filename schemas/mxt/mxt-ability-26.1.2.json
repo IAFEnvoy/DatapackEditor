@@ -9,6 +9,17 @@
   },
   "type": "object",
   "properties": {
+    "ability": {
+      "$title": {
+        "en_us": "Ability",
+        "zh_cn": "技能"
+      },
+      "$type": "mxt-common-ability#ability_type",
+      "$description": {
+        "en_us": "The ability itself: its type, plus the fields that type defines.",
+        "zh_cn": "技能本体：类型，以及该类型定义的字段。"
+      }
+    },
     "costs": {
       "$title": {
         "en_us": "Costs",
@@ -18,18 +29,18 @@
       "items": {
         "$type": "mxt-common#record_ResourceCost",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Cost",
+          "zh_cn": "消耗"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One cost paid per use.",
+          "zh_cn": "每次使用支付的一项消耗。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Costs value.",
-        "zh_cn": "消耗的值。"
+        "en_us": "Resources paid when the ability is used.",
+        "zh_cn": "使用技能时支付的全部资源消耗。"
       }
     },
     "cast_time": {
@@ -39,8 +50,8 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Cast Time value.",
-        "zh_cn": "施放时间的值。"
+        "en_us": "How long the ability takes to cast, in ticks.",
+        "zh_cn": "施放技能所需的时间，单位 tick。"
       }
     },
     "cooldown": {
@@ -50,8 +61,19 @@
       },
       "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Cooldown value.",
-        "zh_cn": "冷却时间的值。"
+        "en_us": "Ticks before the ability may be used again.",
+        "zh_cn": "再次使用该技能前的冷却，单位 tick。"
+      }
+    },
+    "icon": {
+      "$title": {
+        "en_us": "Hotbar Icon",
+        "zh_cn": "快捷栏图标"
+      },
+      "$type": "mxt-common#hotbar_icon",
+      "$description": {
+        "en_us": "Optional icon used by the ability hotbar. Without one, the ability name is shown.",
+        "zh_cn": "技能快捷栏的可选图标；未填写时显示技能名称。"
       }
     },
     "components": {
@@ -61,20 +83,20 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#ability_component",
+        "$type": "mxt-common-ability#ability_component",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Component",
+          "zh_cn": "组件"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One ability component.",
+          "zh_cn": "一个技能组件。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Components value.",
-        "zh_cn": "组件的值。"
+        "en_us": "Extra mechanics attached to the ability, such as charges or a toggle.",
+        "zh_cn": "附加在技能上的额外机制，例如充能次数或开关。"
       }
     },
     "modifiers": {
@@ -84,20 +106,20 @@
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_AttributeModifier",
+        "$type": "mxt-common#record_AttributeEntry",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Modifier",
+          "zh_cn": "属性修正"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One attribute modifier.",
+          "zh_cn": "一条属性修正。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Modifiers value.",
-        "zh_cn": "属性修正的值。"
+        "en_us": "Attribute modifiers the ability applies.",
+        "zh_cn": "该技能施加的属性修正。"
       }
     },
     "damage_condition": {
@@ -105,10 +127,10 @@
         "en_us": "Damage Condition",
         "zh_cn": "伤害条件"
       },
-      "$type": "mxt-common#damage_condition",
+      "$type": "mxt-common-damage-condition#damage_condition",
       "$description": {
-        "en_us": "Damage Condition value.",
-        "zh_cn": "伤害条件的值。"
+        "en_us": "Condition the incoming damage has to meet.",
+        "zh_cn": "来袭伤害需要满足的条件。"
       }
     },
     "condition": {
@@ -116,10 +138,10 @@
         "en_us": "Condition",
         "zh_cn": "条件"
       },
-      "$type": "mxt-common#entity_condition",
+      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Condition value.",
-        "zh_cn": "条件的值。"
+        "en_us": "Condition the caster has to meet before the ability may be used.",
+        "zh_cn": "施放者使用该技能前必须满足的条件。"
       }
     },
     "entity_action": {
@@ -127,10 +149,10 @@
         "en_us": "Entity Action",
         "zh_cn": "实体行为"
       },
-      "$type": "mxt-common#entity_action",
+      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Entity Action value.",
-        "zh_cn": "实体行为的值。"
+        "en_us": "Action run on the caster when the ability fires.",
+        "zh_cn": "技能生效时对施放者执行的行为。"
       }
     },
     "target_condition": {
@@ -138,10 +160,10 @@
         "en_us": "Target Condition",
         "zh_cn": "目标条件"
       },
-      "$type": "mxt-common#bi_entity_condition",
+      "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
       "$description": {
-        "en_us": "Target Condition value.",
-        "zh_cn": "目标条件的值。"
+        "en_us": "Condition a candidate target has to meet.",
+        "zh_cn": "候选目标需要满足的条件。"
       }
     },
     "bi_entity_action": {
@@ -149,10 +171,10 @@
         "en_us": "Bi Entity Action",
         "zh_cn": "双实体行为"
       },
-      "$type": "mxt-common#bi_entity_action",
+      "$type": "mxt-common-bi-entity-action#bi_entity_action",
       "$description": {
-        "en_us": "Bi Entity Action value.",
-        "zh_cn": "双实体行为的值。"
+        "en_us": "Action run with both the caster and the target.",
+        "zh_cn": "同时作用于施放者与目标的双实体行为。"
       }
     },
     "element_affinity": {
@@ -163,34 +185,23 @@
       "type": "array",
       "items": {
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Element",
+          "zh_cn": "元素"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One element this is aligned with.",
+          "zh_cn": "亲和的其中一个元素。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Element Affinity value.",
-        "zh_cn": "元素亲和的值。"
-      }
-    },
-    "type": {
-      "$title": {
-        "en_us": "Type",
-        "zh_cn": "类型"
-      },
-      "$type": "mxt-common#ability_type",
-      "$description": {
-        "en_us": "Type value.",
-        "zh_cn": "类型的值。"
+        "en_us": "Elements this ability is aligned with, used for affinity bonuses.",
+        "zh_cn": "该技能亲和的元素，用于元素亲和加成。"
       }
     }
   },
   "required": [
-    "type"
+    "ability"
   ],
   "id": "mxt-ability",
   "$version": "26.1.2",

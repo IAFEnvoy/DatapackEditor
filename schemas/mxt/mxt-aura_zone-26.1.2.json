@@ -9,40 +9,55 @@
   },
   "type": "object",
   "properties": {
-    "base_aura": {
+    "aura": {
       "$title": {
-        "en_us": "Base Aura",
-        "zh_cn": "基础灵气"
+        "en_us": "Resource Aura",
+        "zh_cn": "资源灵气"
       },
-      "type": "number",
-      "default": 0,
+      "type": "object",
+      "additionalProperties": {
+        "$type": "mxt-common#record_AuraValue",
+        "$title": {
+          "en_us": "Aura Value",
+          "zh_cn": "灵气数值"
+        },
+        "$description": {
+          "en_us": "What one resource contributes per matching block, or what the zone holds of it.",
+          "zh_cn": "每个匹配方块对某一种资源的贡献，或该区域持有的该种灵气。"
+        }
+      },
+      "default": {},
       "$description": {
-        "en_us": "Base Aura value.",
-        "zh_cn": "基础灵气的值。"
+        "en_us": "Map keyed by mxt:resource IDs. Each resource is stored independently.",
+        "zh_cn": "以 mxt:resource ID 为键的资源灵气表，每种资源独立存储。"
       }
     },
-    "regen_per_tick": {
+    "distribution": {
       "$title": {
-        "en_us": "Regen Per Tick",
-        "zh_cn": "每刻恢复"
-      },
-      "type": "number",
-      "default": 0,
-      "$description": {
-        "en_us": "Regen Per Tick value.",
-        "zh_cn": "每刻恢复的值。"
-      }
-    },
-    "element_aura": {
-      "$title": {
-        "en_us": "Element Aura",
-        "zh_cn": "元素灵气"
+        "en_us": "Shared Aura Distribution",
+        "zh_cn": "共享灵气分配"
       },
       "type": "string",
-      "$registry": "mxt:element",
+      "enum": [
+        "random",
+        "equal",
+        "realm_weighted"
+      ],
+      "default": "equal",
       "$description": {
-        "en_us": "Element Aura value.",
-        "zh_cn": "元素灵气的值。"
+        "en_us": "How insufficient chunk aura is shared by cultivating players.",
+        "zh_cn": "同一块区块灵气不足时，修炼玩家共享库存的分配方式。"
+      }
+    },
+    "cultivate_condition": {
+      "$title": {
+        "en_us": "Cultivation Condition",
+        "zh_cn": "修炼条件"
+      },
+      "$type": "mxt-common-entity-condition#entity_condition",
+      "$description": {
+        "en_us": "Environmental condition that must allow cultivation.",
+        "zh_cn": "当前位置必须满足的环境修炼条件。"
       }
     },
     "aura_kinds": {
@@ -54,18 +69,18 @@
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Aura Kind",
+          "zh_cn": "灵气类型"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One aura kind identifier.",
+          "zh_cn": "一个灵气类型标识符。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Aura kinds required or provided by this aura zone.",
-        "zh_cn": "该灵气区域提供的灵气类型，用于类型判断。"
+        "en_us": "Aura kinds this zone provides, used for aura type checks.",
+        "zh_cn": "该区域提供的灵气类型，用于灵气类型判断。"
       }
     },
     "dimensions": {
@@ -74,8 +89,8 @@
         "zh_cn": "维度"
       },
       "$description": {
-        "en_us": "Dimensions value.",
-        "zh_cn": "维度的值。"
+        "en_us": "Dimensions this zone applies to.",
+        "zh_cn": "该区域生效的维度。"
       }
     },
     "biomes": {
@@ -86,18 +101,18 @@
       "type": "array",
       "items": {
         "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+          "en_us": "Biome",
+          "zh_cn": "生物群系"
         },
         "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+          "en_us": "One biome or biome tag.",
+          "zh_cn": "一个生物群系或生物群系标签。"
         }
       },
       "default": [],
       "$description": {
-        "en_us": "Biomes value.",
-        "zh_cn": "生物群系的值。"
+        "en_us": "Biomes this zone applies to.",
+        "zh_cn": "该区域生效的生物群系。"
       }
     },
     "fluctuation": {
@@ -105,10 +120,10 @@
         "en_us": "Fluctuation",
         "zh_cn": "波动"
       },
-      "$type": "mxt-common#record_Fluctuation",
+      "$type": "mxt-common-aura#record_Fluctuation",
       "$description": {
-        "en_us": "Fluctuation value.",
-        "zh_cn": "波动的值。"
+        "en_us": "How the zone's environmental aura drifts over time.",
+        "zh_cn": "区域环境灵气随时间的波动方式。"
       }
     },
     "rules": {
@@ -116,10 +131,10 @@
         "en_us": "Rules",
         "zh_cn": "规则"
       },
-      "$type": "mxt-common#record_Rules",
+      "$type": "mxt-common-aura#record_Rules",
       "$description": {
-        "en_us": "Rules value.",
-        "zh_cn": "规则的值。"
+        "en_us": "Extra rules layered on top of the zone's aura.",
+        "zh_cn": "叠加在该区域灵气之上的额外规则。"
       }
     },
     "element_fit_bonus": {
@@ -130,8 +145,8 @@
       "type": "number",
       "default": 0,
       "$description": {
-        "en_us": "Element Fit Bonus value.",
-        "zh_cn": "元素契合加成的值。"
+        "en_us": "Bonus granted when a cultivator's element fits the zone.",
+        "zh_cn": "修炼者元素与区域契合时获得的加成。"
       }
     },
     "element_conflict_penalty": {
@@ -142,8 +157,8 @@
       "type": "number",
       "default": 0,
       "$description": {
-        "en_us": "Element Conflict Penalty value.",
-        "zh_cn": "元素冲突惩罚的值。"
+        "en_us": "Penalty applied when a cultivator's element conflicts with the zone.",
+        "zh_cn": "修炼者元素与区域冲突时受到的惩罚。"
       }
     },
     "noise": {
@@ -151,10 +166,21 @@
         "en_us": "Noise",
         "zh_cn": "噪声"
       },
-      "$type": "mxt-common#record_Noise",
+      "$type": "mxt-common-aura#record_Noise",
       "$description": {
-        "en_us": "Noise value.",
-        "zh_cn": "噪声的值。"
+        "en_us": "Noise settings for the zone's aura field.",
+        "zh_cn": "该区域灵气场的噪声设置。"
+      }
+    },
+    "particle": {
+      "$title": {
+        "en_us": "Particle",
+        "zh_cn": "粒子"
+      },
+      "$type": "mxt-common-aura#record_ParticleEffect",
+      "$description": {
+        "en_us": "Particles drawn inside the zone.",
+        "zh_cn": "区域内绘制的粒子。"
       }
     },
     "client_render": {
@@ -162,10 +188,10 @@
         "en_us": "Client Render",
         "zh_cn": "客户端渲染"
       },
-      "$type": "mxt-common#record_ClientRender",
+      "$type": "mxt-common-aura#record_ClientRender",
       "$description": {
-        "en_us": "Client Render value.",
-        "zh_cn": "客户端渲染的值。"
+        "en_us": "How the zone is rendered on the client.",
+        "zh_cn": "该区域在客户端的渲染方式。"
       }
     },
     "client_hud": {
@@ -173,10 +199,10 @@
         "en_us": "Client Hud",
         "zh_cn": "客户端 HUD"
       },
-      "$type": "mxt-common#record_ClientHud",
+      "$type": "mxt-common-aura#record_ClientHud",
       "$description": {
-        "en_us": "Client Hud value.",
-        "zh_cn": "客户端 HUD的值。"
+        "en_us": "How the zone's aura is shown on the client HUD.",
+        "zh_cn": "该区域灵气在客户端 HUD 上的显示方式。"
       }
     }
   },
