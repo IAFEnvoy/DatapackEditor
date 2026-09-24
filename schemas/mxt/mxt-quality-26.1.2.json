@@ -1,0 +1,137 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Quality",
+    "zh_cn": "觅仙途品质"
+  },
+  "$description": {
+    "en_us": "Data-driven Quality definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的物品品质定义。"
+  },
+  "type": "object",
+  "properties": {
+    "name": {
+      "$title": {
+        "en_us": "Name",
+        "zh_cn": "名称"
+      },
+      "$description": {
+        "en_us": "Name of this ItemQuality.",
+        "zh_cn": "名称的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "description": {
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description of this ItemQuality.",
+        "zh_cn": "描述的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "color": {
+      "$title": {
+        "en_us": "Color",
+        "zh_cn": "颜色"
+      },
+      "$description": {
+        "en_us": "Color of this ItemQuality.",
+        "zh_cn": "颜色的值。"
+      },
+      "type": [
+        "integer",
+        "string"
+      ]
+    },
+    "value_multiplier": {
+      "$title": {
+        "en_us": "Value Multiplier",
+        "zh_cn": "数值倍率"
+      },
+      "$description": {
+        "en_us": "Value Multiplier of this ItemQuality.",
+        "zh_cn": "数值倍率的值。"
+      },
+      "$type": "mxt-common-content#record_data_quality_Modifier"
+    },
+    "forging_modifier": {
+      "$title": {
+        "en_us": "Forging Modifier",
+        "zh_cn": "锻造修正"
+      },
+      "$description": {
+        "en_us": "Forging Modifier of this ItemQuality.",
+        "zh_cn": "锻造修正的值。"
+      },
+      "$type": "mxt-common-content#record_data_quality_Modifier"
+    },
+    "alchemy_modifier": {
+      "$title": {
+        "en_us": "Alchemy Modifier",
+        "zh_cn": "炼丹修正"
+      },
+      "$description": {
+        "en_us": "Alchemy Modifier of this ItemQuality.",
+        "zh_cn": "炼丹修正的值。"
+      },
+      "$type": "mxt-common-content#record_data_quality_Modifier"
+    },
+    "condition": {
+      "$title": {
+        "en_us": "Condition",
+        "zh_cn": "条件"
+      },
+      "$description": {
+        "en_us": "Condition of this ItemQuality.",
+        "zh_cn": "条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "id": "mxt-quality",
+  "$version": "26.1.2",
+  "$registry": "mxt:quality",
+  "$path": "data/<namespace>/mxt/quality/<path>.json"
+}

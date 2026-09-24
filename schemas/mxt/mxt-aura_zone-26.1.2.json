@@ -11,76 +11,24 @@
   "properties": {
     "aura": {
       "$title": {
-        "en_us": "Resource Aura",
-        "zh_cn": "资源灵气"
+        "en_us": "Aura",
+        "zh_cn": "灵气"
+      },
+      "$description": {
+        "en_us": "Aura of this AuraZone.",
+        "zh_cn": "灵气的值。"
       },
       "type": "object",
       "additionalProperties": {
-        "$type": "mxt-common#record_AuraValue",
+        "$type": "mxt-common-aura#record_AuraValue",
         "$title": {
-          "en_us": "Aura Value",
-          "zh_cn": "灵气数值"
+          "en_us": "Property",
+          "zh_cn": "条目"
         },
         "$description": {
-          "en_us": "What one resource contributes per matching block, or what the zone holds of it.",
-          "zh_cn": "每个匹配方块对某一种资源的贡献，或该区域持有的该种灵气。"
+          "en_us": "Property value.",
+          "zh_cn": "条目的值。"
         }
-      },
-      "default": {},
-      "$description": {
-        "en_us": "Map keyed by mxt:resource IDs. Each resource is stored independently.",
-        "zh_cn": "以 mxt:resource ID 为键的资源灵气表，每种资源独立存储。"
-      }
-    },
-    "distribution": {
-      "$title": {
-        "en_us": "Shared Aura Distribution",
-        "zh_cn": "共享灵气分配"
-      },
-      "type": "string",
-      "enum": [
-        "random",
-        "equal",
-        "realm_weighted"
-      ],
-      "default": "equal",
-      "$description": {
-        "en_us": "How insufficient chunk aura is shared by cultivating players.",
-        "zh_cn": "同一块区块灵气不足时，修炼玩家共享库存的分配方式。"
-      }
-    },
-    "cultivate_condition": {
-      "$title": {
-        "en_us": "Cultivation Condition",
-        "zh_cn": "修炼条件"
-      },
-      "$type": "mxt-common-entity-condition#entity_condition",
-      "$description": {
-        "en_us": "Environmental condition that must allow cultivation.",
-        "zh_cn": "当前位置必须满足的环境修炼条件。"
-      }
-    },
-    "aura_kinds": {
-      "$title": {
-        "en_us": "Aura Kinds",
-        "zh_cn": "灵气类型"
-      },
-      "type": "array",
-      "items": {
-        "type": "string",
-        "$title": {
-          "en_us": "Aura Kind",
-          "zh_cn": "灵气类型"
-        },
-        "$description": {
-          "en_us": "One aura kind identifier.",
-          "zh_cn": "一个灵气类型标识符。"
-        }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Aura kinds this zone provides, used for aura type checks.",
-        "zh_cn": "该区域提供的灵气类型，用于灵气类型判断。"
       }
     },
     "dimensions": {
@@ -89,121 +37,334 @@
         "zh_cn": "维度"
       },
       "$description": {
-        "en_us": "Dimensions this zone applies to.",
-        "zh_cn": "该区域生效的维度。"
-      }
+        "en_us": "Dimensions of this AuraZone.",
+        "zh_cn": "维度的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:level_stem"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:level_stem_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:level_stem"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:level_stem_tag",
+                "pattern": "^#.+"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "biomes": {
       "$title": {
         "en_us": "Biomes",
         "zh_cn": "生物群系"
       },
-      "type": "array",
-      "items": {
-        "$title": {
-          "en_us": "Biome",
-          "zh_cn": "生物群系"
-        },
-        "$description": {
-          "en_us": "One biome or biome tag.",
-          "zh_cn": "一个生物群系或生物群系标签。"
-        }
-      },
-      "default": [],
       "$description": {
-        "en_us": "Biomes this zone applies to.",
-        "zh_cn": "该区域生效的生物群系。"
-      }
+        "en_us": "Biomes of this AuraZone.",
+        "zh_cn": "生物群系的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:biome"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:biome_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:biome"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:biome_tag",
+                "pattern": "^#.+"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "fluctuation": {
       "$title": {
         "en_us": "Fluctuation",
         "zh_cn": "波动"
       },
-      "$type": "mxt-common-aura#record_Fluctuation",
       "$description": {
-        "en_us": "How the zone's environmental aura drifts over time.",
-        "zh_cn": "区域环境灵气随时间的波动方式。"
-      }
+        "en_us": "Fluctuation of this AuraZone.",
+        "zh_cn": "波动的值。"
+      },
+      "$type": "mxt-common-aura#record_Fluctuation"
     },
     "rules": {
       "$title": {
         "en_us": "Rules",
         "zh_cn": "规则"
       },
-      "$type": "mxt-common-aura#record_Rules",
       "$description": {
-        "en_us": "Extra rules layered on top of the zone's aura.",
-        "zh_cn": "叠加在该区域灵气之上的额外规则。"
-      }
+        "en_us": "Rules of this AuraZone.",
+        "zh_cn": "规则的值。"
+      },
+      "$type": "mxt-common-aura#record_Rules"
+    },
+    "cultivate_condition": {
+      "$title": {
+        "en_us": "Cultivate Condition",
+        "zh_cn": "修炼条件"
+      },
+      "$description": {
+        "en_us": "Cultivate Condition of this AuraZone.",
+        "zh_cn": "修炼条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "distribution": {
+      "$title": {
+        "en_us": "Distribution",
+        "zh_cn": "分布"
+      },
+      "$description": {
+        "en_us": "Distribution of this AuraZone.",
+        "zh_cn": "分布的值。"
+      },
+      "type": "string",
+      "enum": [
+        "random",
+        "equal",
+        "realm_weighted"
+      ],
+      "$suggstion": true,
+      "default": "equal"
+    },
+    "priority": {
+      "$title": {
+        "en_us": "Priority",
+        "zh_cn": "优先级"
+      },
+      "$description": {
+        "en_us": "Priority of this AuraZone.",
+        "zh_cn": "优先级的值。"
+      },
+      "type": "integer",
+      "default": 0
     },
     "element_fit_bonus": {
       "$title": {
         "en_us": "Element Fit Bonus",
         "zh_cn": "元素契合加成"
       },
-      "type": "number",
-      "default": 0,
       "$description": {
-        "en_us": "Bonus granted when a cultivator's element fits the zone.",
-        "zh_cn": "修炼者元素与区域契合时获得的加成。"
-      }
+        "en_us": "Element Fit Bonus of this AuraZone.",
+        "zh_cn": "元素契合加成的值。"
+      },
+      "type": "number",
+      "default": 0
     },
     "element_conflict_penalty": {
       "$title": {
         "en_us": "Element Conflict Penalty",
         "zh_cn": "元素冲突惩罚"
       },
-      "type": "number",
-      "default": 0,
       "$description": {
-        "en_us": "Penalty applied when a cultivator's element conflicts with the zone.",
-        "zh_cn": "修炼者元素与区域冲突时受到的惩罚。"
-      }
+        "en_us": "Element Conflict Penalty of this AuraZone.",
+        "zh_cn": "元素冲突惩罚的值。"
+      },
+      "type": "number",
+      "default": 0
     },
     "noise": {
       "$title": {
         "en_us": "Noise",
         "zh_cn": "噪声"
       },
-      "$type": "mxt-common-aura#record_Noise",
       "$description": {
-        "en_us": "Noise settings for the zone's aura field.",
-        "zh_cn": "该区域灵气场的噪声设置。"
-      }
+        "en_us": "Noise of this AuraZone.",
+        "zh_cn": "噪声的值。"
+      },
+      "$type": "mxt-common-aura#record_Noise"
     },
     "particle": {
       "$title": {
         "en_us": "Particle",
         "zh_cn": "粒子"
       },
-      "$type": "mxt-common-aura#record_ParticleEffect",
       "$description": {
-        "en_us": "Particles drawn inside the zone.",
-        "zh_cn": "区域内绘制的粒子。"
-      }
+        "en_us": "Particle of this AuraZone.",
+        "zh_cn": "粒子的值。"
+      },
+      "$type": "mxt-common#record_ParticleEffect"
     },
     "client_render": {
       "$title": {
         "en_us": "Client Render",
         "zh_cn": "客户端渲染"
       },
-      "$type": "mxt-common-aura#record_ClientRender",
       "$description": {
-        "en_us": "How the zone is rendered on the client.",
-        "zh_cn": "该区域在客户端的渲染方式。"
-      }
+        "en_us": "Client Render of this AuraZone.",
+        "zh_cn": "客户端渲染的值。"
+      },
+      "$type": "mxt-common-aura#record_ClientRender"
     },
     "client_hud": {
       "$title": {
         "en_us": "Client Hud",
         "zh_cn": "客户端 HUD"
       },
-      "$type": "mxt-common-aura#record_ClientHud",
       "$description": {
-        "en_us": "How the zone's aura is shown on the client HUD.",
-        "zh_cn": "该区域灵气在客户端 HUD 上的显示方式。"
-      }
+        "en_us": "Client Hud of this AuraZone.",
+        "zh_cn": "客户端 HUD的值。"
+      },
+      "$type": "mxt-common-aura#record_ClientHud"
     }
   },
   "id": "mxt-aura_zone",

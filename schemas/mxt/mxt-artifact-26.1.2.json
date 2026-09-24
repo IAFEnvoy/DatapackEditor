@@ -1,0 +1,655 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Artifact",
+    "zh_cn": "觅仙途法器"
+  },
+  "$description": {
+    "en_us": "Data-driven Artifact definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的法器与绑定定义。"
+  },
+  "type": "object",
+  "required": [
+    "items"
+  ],
+  "properties": {
+    "name": {
+      "$title": {
+        "en_us": "Name",
+        "zh_cn": "名称"
+      },
+      "$description": {
+        "en_us": "Name of this Artifact.",
+        "zh_cn": "名称的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "description": {
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description of this Artifact.",
+        "zh_cn": "描述的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "quality": {
+      "$title": {
+        "en_us": "Quality",
+        "zh_cn": "品质"
+      },
+      "$description": {
+        "en_us": "Quality of this Artifact.",
+        "zh_cn": "品质的值。"
+      },
+      "type": "string",
+      "$registry": "mxt:quality"
+    },
+    "items": {
+      "$title": {
+        "en_us": "Items",
+        "zh_cn": "物品"
+      },
+      "$description": {
+        "en_us": "Items of this Artifact.",
+        "zh_cn": "物品的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:item"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:item_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "Item Matcher Entry",
+            "zh_cn": "物品匹配器条目"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: item matcher entry.",
+            "zh_cn": "物品匹配器条目的值。"
+          },
+          "$type": "mxt-common#item_matcher_entry"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:item"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:item_tag",
+                "pattern": "^#.+"
+              },
+              {
+                "$title": {
+                  "en_us": "Item Matcher Entry",
+                  "zh_cn": "物品匹配器条目"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: item matcher entry.",
+                  "zh_cn": "物品匹配器条目的值。"
+                },
+                "$type": "mxt-common#item_matcher_entry"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "spirit_capacity": {
+      "$title": {
+        "en_us": "Spirit Capacity",
+        "zh_cn": "灵力容量"
+      },
+      "$description": {
+        "en_us": "Spirit Capacity of this Artifact.",
+        "zh_cn": "灵力容量的值。"
+      },
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "$title": {
+              "en_us": "Text",
+              "zh_cn": "文本"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: text.",
+              "zh_cn": "文本的值。"
+            },
+            "type": "string"
+          },
+          {
+            "$title": {
+              "en_us": "Number",
+              "zh_cn": "数值"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: number.",
+              "zh_cn": "数值的值。"
+            },
+            "type": "number"
+          },
+          {
+            "$title": {
+              "en_us": "Number Provider",
+              "zh_cn": "数值提供器"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: number provider.",
+              "zh_cn": "数值提供器的值。"
+            },
+            "$type": "mxt-common#number_provider"
+          }
+        ],
+        "$title": {
+          "en_us": "Property",
+          "zh_cn": "条目"
+        },
+        "$description": {
+          "en_us": "Property value.",
+          "zh_cn": "条目的值。"
+        }
+      }
+    },
+    "abilities": {
+      "$title": {
+        "en_us": "Abilities",
+        "zh_cn": "技能"
+      },
+      "$description": {
+        "en_us": "Abilities of this Artifact.",
+        "zh_cn": "技能的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:ability"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:ability_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:ability"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:ability_tag",
+                "pattern": "^#.+"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "curios_equipable": {
+      "$title": {
+        "en_us": "Curios Equipable",
+        "zh_cn": "Curios 可装备"
+      },
+      "$description": {
+        "en_us": "Curios Equipable of this Artifact.",
+        "zh_cn": "Curios 可装备的值。"
+      },
+      "type": "boolean",
+      "default": false
+    },
+    "require_owner": {
+      "$title": {
+        "en_us": "Require Owner",
+        "zh_cn": "Require 主人"
+      },
+      "$description": {
+        "en_us": "Require Owner of this Artifact.",
+        "zh_cn": "Require 主人的值。"
+      },
+      "type": "boolean",
+      "default": false
+    },
+    "claim_action": {
+      "$title": {
+        "en_us": "Claim Action",
+        "zh_cn": "Claim 行为"
+      },
+      "$description": {
+        "en_us": "Claim Action of this Artifact.",
+        "zh_cn": "Claim 行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Item Action",
+            "zh_cn": "物品行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: item action.",
+            "zh_cn": "物品行为的值。"
+          },
+          "$type": "mxt-common-item-action#item_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-item-action#item_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "claim_condition": {
+      "$title": {
+        "en_us": "Claim Condition",
+        "zh_cn": "Claim 条件"
+      },
+      "$description": {
+        "en_us": "Claim Condition of this Artifact.",
+        "zh_cn": "Claim 条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "pour_action": {
+      "$title": {
+        "en_us": "Pour Action",
+        "zh_cn": "Pour 行为"
+      },
+      "$description": {
+        "en_us": "Pour Action of this Artifact.",
+        "zh_cn": "Pour 行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Item Action",
+            "zh_cn": "物品行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: item action.",
+            "zh_cn": "物品行为的值。"
+          },
+          "$type": "mxt-common-item-action#item_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-item-action#item_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "use_action": {
+      "$title": {
+        "en_us": "Use Action",
+        "zh_cn": "使用行为"
+      },
+      "$description": {
+        "en_us": "Use Action of this Artifact.",
+        "zh_cn": "使用行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Item Action",
+            "zh_cn": "物品行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: item action.",
+            "zh_cn": "物品行为的值。"
+          },
+          "$type": "mxt-common-item-action#item_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-item-action#item_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "hold_ticks": {
+      "$title": {
+        "en_us": "Hold Ticks",
+        "zh_cn": "持有刻数"
+      },
+      "$description": {
+        "en_us": "Hold Ticks of this Artifact.",
+        "zh_cn": "持有刻数的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
+    },
+    "element": {
+      "$title": {
+        "en_us": "Element",
+        "zh_cn": "元素"
+      },
+      "$description": {
+        "en_us": "Element of this Artifact.",
+        "zh_cn": "元素的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:element"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:element_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:element"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:element_tag",
+                "pattern": "^#.+"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "attachment_multiplier": {
+      "$title": {
+        "en_us": "Attachment Multiplier",
+        "zh_cn": "Attachment 倍率"
+      },
+      "$description": {
+        "en_us": "Attachment Multiplier of this Artifact.",
+        "zh_cn": "Attachment 倍率的值。"
+      },
+      "type": "number",
+      "minimum": 0,
+      "default": 1
+    }
+  },
+  "id": "mxt-artifact",
+  "$version": "26.1.2",
+  "$registry": "mxt:artifact",
+  "$path": "data/<namespace>/mxt/artifact/<path>.json"
+}

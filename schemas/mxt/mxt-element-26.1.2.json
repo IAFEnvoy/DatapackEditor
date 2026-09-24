@@ -9,27 +9,54 @@
   },
   "type": "object",
   "properties": {
+    "name": {
+      "$title": {
+        "en_us": "Name",
+        "zh_cn": "名称"
+      },
+      "$description": {
+        "en_us": "Name of this Element.",
+        "zh_cn": "名称的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "description": {
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description of this Element.",
+        "zh_cn": "描述的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
     "overcomes": {
       "$title": {
         "en_us": "Overcomes",
         "zh_cn": "克制"
       },
+      "$description": {
+        "en_us": "Overcomes of this Element.",
+        "zh_cn": "克制的值。"
+      },
       "type": "array",
       "items": {
-        "$type": "element_entry",
+        "$type": "mxt-common-content#record_data_cultivation_Relation",
         "$title": {
-          "en_us": "Element or Tag",
-          "zh_cn": "元素或标签"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One element this one overcomes, or one tag standing for several.",
-          "zh_cn": "被本元素克制的一个元素，或代表若干元素的一个标签。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Elements this one overcomes. Relations may point back at each other, so cycles are allowed and nothing is expanded at load time.",
-        "zh_cn": "本元素克制的元素。关系可以互相指回，因此允许成环，加载期不做展开。"
       }
     },
     "adapted_to": {
@@ -37,123 +64,95 @@
         "en_us": "Adapted To",
         "zh_cn": "适应元素"
       },
+      "$description": {
+        "en_us": "Adapted To of this Element.",
+        "zh_cn": "适应元素的值。"
+      },
       "type": "array",
       "items": {
-        "$type": "element_entry",
+        "$type": "mxt-common-content#record_data_cultivation_Relation",
         "$title": {
-          "en_us": "Element or Tag",
-          "zh_cn": "元素或标签"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One element this one is adapted to, or one tag standing for several.",
-          "zh_cn": "本元素适应的一个元素，或代表若干元素的一个标签。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Elements this one is adapted to. These feed the element-fit bonus.",
-        "zh_cn": "本元素适应的元素，用于计算元素契合加成。"
       }
     },
-    "aura_kinds": {
+    "damage_types": {
       "$title": {
-        "en_us": "Aura Kinds",
-        "zh_cn": "灵气类型"
+        "en_us": "Damage Types",
+        "zh_cn": "伤害 Types"
+      },
+      "$description": {
+        "en_us": "Damage Types of this Element.",
+        "zh_cn": "伤害 Types的值。"
       },
       "type": "array",
       "items": {
-        "type": "string",
+        "$type": "mxt-common-content#record_DamageTypeClaim",
         "$title": {
-          "en_us": "Aura Kind",
-          "zh_cn": "灵气类型"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One aura kind identifier.",
-          "zh_cn": "一个灵气类型标识符。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Aura kinds associated with this element. They classify aura for compatibility checks; they do not encode precedence.",
-        "zh_cn": "与该元素关联的灵气类型，用于灵气相容性判断，不表达克制优先级。"
       }
+    },
+    "attachment_decay": {
+      "$title": {
+        "en_us": "Attachment Decay",
+        "zh_cn": "Attachment Decay"
+      },
+      "$description": {
+        "en_us": "Attachment Decay of this Element.",
+        "zh_cn": "Attachment Decay的值。"
+      },
+      "type": "number",
+      "default": 0
+    },
+    "damage_attachment": {
+      "$title": {
+        "en_us": "Damage Attachment",
+        "zh_cn": "伤害 Attachment"
+      },
+      "$description": {
+        "en_us": "Damage Attachment of this Element.",
+        "zh_cn": "伤害 Attachment的值。"
+      },
+      "type": "number",
+      "default": 0
     },
     "color": {
       "$title": {
         "en_us": "Color",
         "zh_cn": "颜色"
       },
-      "oneOf": [
-        {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 16777215,
-          "default": 16777215,
-          "$title": {
-            "en_us": "Decimal Color",
-            "zh_cn": "十进制颜色"
-          },
-          "$description": {
-            "en_us": "The color as a 24-bit decimal number, for example 16711680 for red.",
-            "zh_cn": "颜色的 24 位十进制数值，例如红色为 16711680。"
-          }
-        },
-        {
-          "type": "string",
-          "pattern": "^#[0-9a-fA-F]{6}$",
-          "$title": {
-            "en_us": "Hex Color",
-            "zh_cn": "十六进制颜色"
-          },
-          "$description": {
-            "en_us": "The color as #RRGGBB, for example #FF0000. No alpha channel.",
-            "zh_cn": "写成 #RRGGBB 的颜色，例如 #FF0000。不含透明度。"
-          }
-        }
+      "$description": {
+        "en_us": "Color of this Element.",
+        "zh_cn": "颜色的值。"
+      },
+      "type": [
+        "integer",
+        "string"
       ],
-      "$description": {
-        "en_us": "Display color used by aura-cost text. Defaults to white.",
-        "zh_cn": "灵气消耗文本使用的显示颜色，默认白色。"
-      }
-    }
-  },
-  "$types": {
-    "element_entry": {
+      "default": 1048575
+    },
+    "conflict_multiplier": {
       "$title": {
-        "en_us": "Element Entry",
-        "zh_cn": "元素条目"
+        "en_us": "Conflict Multiplier",
+        "zh_cn": "冲突倍率"
       },
       "$description": {
-        "en_us": "One element id, or one element tag prefixed with #.",
-        "zh_cn": "一个元素 ID，或一个以 # 开头的元素标签。"
+        "en_us": "Conflict Multiplier of this Element.",
+        "zh_cn": "冲突倍率的值。"
       },
-      "oneOf": [
-        {
-          "type": "string",
-          "$registry": "mxt:element",
-          "$title": {
-            "en_us": "Element",
-            "zh_cn": "元素"
-          },
-          "$description": {
-            "en_us": "An element id.",
-            "zh_cn": "一个元素 ID。"
-          }
-        },
-        {
-          "type": "string",
-          "$registry": "mxt:element_tag",
-          "pattern": "^#.+",
-          "$title": {
-            "en_us": "Element Tag",
-            "zh_cn": "元素标签"
-          },
-          "$description": {
-            "en_us": "An element tag id prefixed with #.",
-            "zh_cn": "以 # 开头的元素标签 ID。"
-          }
-        }
-      ]
+      "type": "number",
+      "default": 1
     }
   },
   "id": "mxt-element",

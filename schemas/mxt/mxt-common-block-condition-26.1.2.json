@@ -3,12 +3,12 @@
   "$library": true,
   "$version": "26.1.2",
   "$title": {
-    "en_us": "MiXianTu Block Conditions",
-    "zh_cn": "MiXianTu 方块条件"
+    "en_us": "MiXianTu Block-Condition Types",
+    "zh_cn": "觅仙途 Block-Condition Types"
   },
   "$description": {
-    "en_us": "Conditions checked against a block.",
-    "zh_cn": "针对方块判断的条件。"
+    "en_us": "Shared field types used by MiXianTu datapack schemas.",
+    "zh_cn": "觅仙途 Block-Condition Types的值。"
   },
   "$types": {
     "block_condition": {
@@ -17,7 +17,7 @@
         "zh_cn": "方块条件"
       },
       "$description": {
-        "en_us": "Block Condition selected by a type identifier.",
+        "en_us": "Block Condition selected by its type identifier.",
         "zh_cn": "方块条件的值。"
       },
       "type": "object",
@@ -67,11 +67,10 @@
             "zh_cn": "始终为真"
           },
           "$description": {
-            "en_us": "Always passes.",
-            "zh_cn": "始终满足，永远通过。"
+            "en_us": "Always True block_condition fields.",
+            "zh_cn": "始终为真的值。"
           },
-          "type": "object",
-          "properties": {}
+          "type": "object"
         },
         "mxt:js": {
           "$title": {
@@ -79,8 +78,8 @@
             "zh_cn": "JS 表达式"
           },
           "$description": {
-            "en_us": "Judged by a JavaScript callback with the block.",
-            "zh_cn": "以该方块为参数，由 JavaScript 回调判定。"
+            "en_us": "Js block_condition fields.",
+            "zh_cn": "JS 表达式的值。"
           },
           "type": "object",
           "properties": {
@@ -90,9 +89,10 @@
                 "zh_cn": "标识符"
               },
               "$description": {
-                "en_us": "Id value.",
+                "en_us": "Id of this JsBlockCondition.",
                 "zh_cn": "标识符的值。"
-              }
+              },
+              "type": "string"
             },
             "params": {
               "$title": {
@@ -100,9 +100,10 @@
                 "zh_cn": "参数"
               },
               "$description": {
-                "en_us": "Params value.",
+                "en_us": "Params of this JsBlockCondition.",
                 "zh_cn": "参数的值。"
-              }
+              },
+              "type": "object"
             }
           },
           "required": [
@@ -115,8 +116,8 @@
             "zh_cn": "全部满足"
           },
           "$description": {
-            "en_us": "Passes when every child condition passes.",
-            "zh_cn": "所有子条件都满足时通过。"
+            "en_us": "And block_condition fields.",
+            "zh_cn": "全部满足的值。"
           },
           "type": "object",
           "properties": {
@@ -125,22 +126,21 @@
                 "en_us": "Conditions",
                 "zh_cn": "条件"
               },
+              "$description": {
+                "en_us": "Conditions of this AndBlockCondition.",
+                "zh_cn": "条件的值。"
+              },
               "type": "array",
               "items": {
                 "$type": "mxt-common-block-condition#block_condition",
                 "$title": {
-                  "en_us": "Condition",
-                  "zh_cn": "条件"
+                  "en_us": "Item",
+                  "zh_cn": "物品"
                 },
                 "$description": {
-                  "en_us": "One child condition.",
-                  "zh_cn": "一个子条件。"
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
                 }
-              },
-              "default": [],
-              "$description": {
-                "en_us": "Conditions value.",
-                "zh_cn": "条件的值。"
               }
             }
           },
@@ -154,8 +154,8 @@
             "zh_cn": "方块标识符"
           },
           "$description": {
-            "en_us": "Checks the block's id.",
-            "zh_cn": "判断方块的 ID。"
+            "en_us": "Block Id block_condition fields.",
+            "zh_cn": "方块标识符的值。"
           },
           "type": "object",
           "properties": {
@@ -164,11 +164,12 @@
                 "en_us": "Block",
                 "zh_cn": "方块"
               },
-              "type": "string",
               "$description": {
-                "en_us": "Block value.",
+                "en_us": "Block of this BlockIdCondition.",
                 "zh_cn": "方块的值。"
-              }
+              },
+              "type": "string",
+              "$registry": "minecraft:block"
             }
           },
           "required": [
@@ -181,37 +182,36 @@
             "zh_cn": "灵气范围"
           },
           "$description": {
-            "en_us": "Checks the aura around the block.",
-            "zh_cn": "判断方块周围的灵气。"
+            "en_us": "Aura Range block_condition fields.",
+            "zh_cn": "灵气范围的值。"
           },
           "type": "object",
           "properties": {
-            "min": {
+            "aura": {
               "$title": {
-                "en_us": "Min",
-                "zh_cn": "最小"
+                "en_us": "Aura",
+                "zh_cn": "灵气"
               },
-              "$type": "mxt-common#number_provider",
               "$description": {
-                "en_us": "Min value.",
-                "zh_cn": "最小的值。"
-              }
-            },
-            "max": {
-              "$title": {
-                "en_us": "Max",
-                "zh_cn": "最大"
+                "en_us": "Aura of this AuraRangeBlockCondition.",
+                "zh_cn": "灵气的值。"
               },
-              "$type": "mxt-common#number_provider",
-              "$description": {
-                "en_us": "Max value.",
-                "zh_cn": "最大的值。"
+              "type": "object",
+              "additionalProperties": {
+                "$type": "mxt-common-aura#record_AuraRequirement",
+                "$title": {
+                  "en_us": "Property",
+                  "zh_cn": "条目"
+                },
+                "$description": {
+                  "en_us": "Property value.",
+                  "zh_cn": "条目的值。"
+                }
               }
             }
           },
           "required": [
-            "min",
-            "max"
+            "aura"
           ]
         },
         "mxt:block_tag": {
@@ -220,8 +220,8 @@
             "zh_cn": "方块标签"
           },
           "$description": {
-            "en_us": "Checks the block's tags.",
-            "zh_cn": "判断方块携带的标签。"
+            "en_us": "Block Tag block_condition fields.",
+            "zh_cn": "方块标签的值。"
           },
           "type": "object",
           "properties": {
@@ -230,11 +230,13 @@
                 "en_us": "Tag",
                 "zh_cn": "标签"
               },
-              "type": "string",
               "$description": {
-                "en_us": "Tag value.",
+                "en_us": "Tag of this BlockTagCondition.",
                 "zh_cn": "标签的值。"
-              }
+              },
+              "type": "string",
+              "$registry": "minecraft:block_tag",
+              "pattern": "^#.+"
             }
           },
           "required": [
@@ -247,8 +249,8 @@
             "zh_cn": "生物群系标签"
           },
           "$description": {
-            "en_us": "Checks the biome the block is in.",
-            "zh_cn": "判断方块所在生物群系的标签。"
+            "en_us": "Biome Tag block_condition fields.",
+            "zh_cn": "生物群系标签的值。"
           },
           "type": "object",
           "properties": {
@@ -257,11 +259,13 @@
                 "en_us": "Tag",
                 "zh_cn": "标签"
               },
-              "type": "string",
               "$description": {
-                "en_us": "Tag value.",
+                "en_us": "Tag of this BiomeTagBlockCondition.",
                 "zh_cn": "标签的值。"
-              }
+              },
+              "type": "string",
+              "$registry": "minecraft:biome_tag",
+              "pattern": "^#.+"
             }
           },
           "required": [
@@ -274,11 +278,47 @@
             "zh_cn": "硬度"
           },
           "$description": {
-            "en_us": "Compares the block's hardness.",
-            "zh_cn": "比较方块的硬度。"
+            "en_us": "Hardness block_condition fields.",
+            "zh_cn": "硬度的值。"
           },
           "type": "object",
-          "properties": {}
+          "properties": {
+            "comparison": {
+              "$title": {
+                "en_us": "Comparison",
+                "zh_cn": "比较方式"
+              },
+              "$description": {
+                "en_us": "Comparison of this Comparison.",
+                "zh_cn": "比较方式的值。"
+              },
+              "type": "string",
+              "enum": [
+                "<",
+                "<=",
+                ">",
+                ">=",
+                "==",
+                "!="
+              ],
+              "$suggstion": true
+            },
+            "compare_to": {
+              "$title": {
+                "en_us": "Compare To",
+                "zh_cn": "比较至"
+              },
+              "$description": {
+                "en_us": "Compare To of this Comparison.",
+                "zh_cn": "比较至的值。"
+              },
+              "type": "number"
+            }
+          },
+          "required": [
+            "comparison",
+            "compare_to"
+          ]
         },
         "mxt:height": {
           "$title": {
@@ -286,11 +326,47 @@
             "zh_cn": "高度"
           },
           "$description": {
-            "en_us": "Compares the block's height.",
-            "zh_cn": "比较方块的高度。"
+            "en_us": "Height block_condition fields.",
+            "zh_cn": "高度的值。"
           },
           "type": "object",
-          "properties": {}
+          "properties": {
+            "comparison": {
+              "$title": {
+                "en_us": "Comparison",
+                "zh_cn": "比较方式"
+              },
+              "$description": {
+                "en_us": "Comparison of this Comparison.",
+                "zh_cn": "比较方式的值。"
+              },
+              "type": "string",
+              "enum": [
+                "<",
+                "<=",
+                ">",
+                ">=",
+                "==",
+                "!="
+              ],
+              "$suggstion": true
+            },
+            "compare_to": {
+              "$title": {
+                "en_us": "Compare To",
+                "zh_cn": "比较至"
+              },
+              "$description": {
+                "en_us": "Compare To of this Comparison.",
+                "zh_cn": "比较至的值。"
+              },
+              "type": "number"
+            }
+          },
+          "required": [
+            "comparison",
+            "compare_to"
+          ]
         },
         "mxt:light_level": {
           "$title": {
@@ -298,8 +374,8 @@
             "zh_cn": "光照等级"
           },
           "$description": {
-            "en_us": "Compares the light level at the block.",
-            "zh_cn": "比较方块所在位置的光照等级。"
+            "en_us": "Light Level block_condition fields.",
+            "zh_cn": "光照等级的值。"
           },
           "type": "object",
           "properties": {
@@ -309,11 +385,52 @@
                 "zh_cn": "光照类型"
               },
               "$description": {
-                "en_us": "Light Type value.",
+                "en_us": "Light Type of this LightLevelCondition.",
                 "zh_cn": "光照类型的值。"
-              }
+              },
+              "type": "string",
+              "enum": [
+                "block",
+                "sky"
+              ],
+              "$suggstion": true
+            },
+            "comparison": {
+              "$title": {
+                "en_us": "Comparison",
+                "zh_cn": "比较方式"
+              },
+              "$description": {
+                "en_us": "Comparison of this Comparison.",
+                "zh_cn": "比较方式的值。"
+              },
+              "type": "string",
+              "enum": [
+                "<",
+                "<=",
+                ">",
+                ">=",
+                "==",
+                "!="
+              ],
+              "$suggstion": true
+            },
+            "compare_to": {
+              "$title": {
+                "en_us": "Compare To",
+                "zh_cn": "比较至"
+              },
+              "$description": {
+                "en_us": "Compare To of this Comparison.",
+                "zh_cn": "比较至的值。"
+              },
+              "type": "number"
             }
-          }
+          },
+          "required": [
+            "comparison",
+            "compare_to"
+          ]
         },
         "mxt:slipperiness": {
           "$title": {
@@ -321,11 +438,47 @@
             "zh_cn": "滑度"
           },
           "$description": {
-            "en_us": "Compares the block's slipperiness.",
-            "zh_cn": "比较方块的滑度。"
+            "en_us": "Slipperiness block_condition fields.",
+            "zh_cn": "滑度的值。"
           },
           "type": "object",
-          "properties": {}
+          "properties": {
+            "comparison": {
+              "$title": {
+                "en_us": "Comparison",
+                "zh_cn": "比较方式"
+              },
+              "$description": {
+                "en_us": "Comparison of this Comparison.",
+                "zh_cn": "比较方式的值。"
+              },
+              "type": "string",
+              "enum": [
+                "<",
+                "<=",
+                ">",
+                ">=",
+                "==",
+                "!="
+              ],
+              "$suggstion": true
+            },
+            "compare_to": {
+              "$title": {
+                "en_us": "Compare To",
+                "zh_cn": "比较至"
+              },
+              "$description": {
+                "en_us": "Compare To of this Comparison.",
+                "zh_cn": "比较至的值。"
+              },
+              "type": "number"
+            }
+          },
+          "required": [
+            "comparison",
+            "compare_to"
+          ]
         },
         "mxt:blast_resistance": {
           "$title": {
@@ -333,11 +486,47 @@
             "zh_cn": "爆炸抗性"
           },
           "$description": {
-            "en_us": "Compares the block's blast resistance.",
-            "zh_cn": "比较方块的爆炸抗性。"
+            "en_us": "Blast Resistance block_condition fields.",
+            "zh_cn": "爆炸抗性的值。"
           },
           "type": "object",
-          "properties": {}
+          "properties": {
+            "comparison": {
+              "$title": {
+                "en_us": "Comparison",
+                "zh_cn": "比较方式"
+              },
+              "$description": {
+                "en_us": "Comparison of this Comparison.",
+                "zh_cn": "比较方式的值。"
+              },
+              "type": "string",
+              "enum": [
+                "<",
+                "<=",
+                ">",
+                ">=",
+                "==",
+                "!="
+              ],
+              "$suggstion": true
+            },
+            "compare_to": {
+              "$title": {
+                "en_us": "Compare To",
+                "zh_cn": "比较至"
+              },
+              "$description": {
+                "en_us": "Compare To of this Comparison.",
+                "zh_cn": "比较至的值。"
+              },
+              "type": "number"
+            }
+          },
+          "required": [
+            "comparison",
+            "compare_to"
+          ]
         },
         "mxt:movement_blocking": {
           "$title": {
@@ -345,11 +534,10 @@
             "zh_cn": "阻挡移动"
           },
           "$description": {
-            "en_us": "Checks whether the block blocks movement.",
-            "zh_cn": "判断方块是否阻挡移动。"
+            "en_us": "Movement Blocking block_condition fields.",
+            "zh_cn": "阻挡移动的值。"
           },
-          "type": "object",
-          "properties": {}
+          "type": "object"
         },
         "mxt:chance": {
           "$title": {
@@ -357,8 +545,8 @@
             "zh_cn": "概率"
           },
           "$description": {
-            "en_us": "Passes with the given probability.",
-            "zh_cn": "按给定概率通过。"
+            "en_us": "Chance block_condition fields.",
+            "zh_cn": "概率的值。"
           },
           "type": "object",
           "properties": {
@@ -367,11 +555,13 @@
                 "en_us": "Chance",
                 "zh_cn": "概率"
               },
-              "type": "number",
               "$description": {
-                "en_us": "Chance value.",
+                "en_us": "Chance of this ChanceCondition.",
                 "zh_cn": "概率的值。"
-              }
+              },
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
             }
           },
           "required": [
@@ -384,8 +574,8 @@
             "zh_cn": "常量"
           },
           "$description": {
-            "en_us": "Always returns the configured answer.",
-            "zh_cn": "始终返回配置的固定结果。"
+            "en_us": "Constant block_condition fields.",
+            "zh_cn": "常量的值。"
           },
           "type": "object",
           "properties": {
@@ -394,11 +584,11 @@
                 "en_us": "Value",
                 "zh_cn": "值"
               },
-              "type": "boolean",
               "$description": {
-                "en_us": "Value value.",
+                "en_us": "Value of this ConstantCondition.",
                 "zh_cn": "值的值。"
-              }
+              },
+              "type": "boolean"
             }
           },
           "required": [
@@ -411,8 +601,8 @@
             "zh_cn": "条件取反"
           },
           "$description": {
-            "en_us": "Passes when the child condition fails.",
-            "zh_cn": "子条件不满足时通过。"
+            "en_us": "Not block_condition fields.",
+            "zh_cn": "条件取反的值。"
           },
           "type": "object",
           "properties": {
@@ -421,11 +611,45 @@
                 "en_us": "Condition",
                 "zh_cn": "条件"
               },
-              "$type": "mxt-common-block-condition#block_condition",
               "$description": {
-                "en_us": "Condition value.",
+                "en_us": "Condition of this NotCondition.",
                 "zh_cn": "条件的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Block Condition",
+                    "zh_cn": "方块条件"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: block condition.",
+                    "zh_cn": "方块条件的值。"
+                  },
+                  "$type": "mxt-common-block-condition#block_condition"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-block-condition#block_condition",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -438,8 +662,8 @@
             "zh_cn": "任一满足"
           },
           "$description": {
-            "en_us": "Passes when any child condition passes.",
-            "zh_cn": "任一子条件满足时通过。"
+            "en_us": "Or block_condition fields.",
+            "zh_cn": "任一满足的值。"
           },
           "type": "object",
           "properties": {
@@ -448,22 +672,21 @@
                 "en_us": "Conditions",
                 "zh_cn": "条件"
               },
+              "$description": {
+                "en_us": "Conditions of this OrCondition.",
+                "zh_cn": "条件的值。"
+              },
               "type": "array",
               "items": {
                 "$type": "mxt-common-block-condition#block_condition",
                 "$title": {
-                  "en_us": "Condition",
-                  "zh_cn": "条件"
+                  "en_us": "Item",
+                  "zh_cn": "物品"
                 },
                 "$description": {
-                  "en_us": "One child condition.",
-                  "zh_cn": "一个子条件。"
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
                 }
-              },
-              "default": [],
-              "$description": {
-                "en_us": "Conditions value.",
-                "zh_cn": "条件的值。"
               }
             }
           },
@@ -477,8 +700,8 @@
             "zh_cn": "相邻"
           },
           "$description": {
-            "en_us": "Checks the blocks next to this one.",
-            "zh_cn": "判断与该方块相邻的方块。"
+            "en_us": "Adjacent block_condition fields.",
+            "zh_cn": "相邻的值。"
           },
           "type": "object",
           "properties": {
@@ -487,15 +710,82 @@
                 "en_us": "Adjacent Condition",
                 "zh_cn": "相邻条件"
               },
-              "$type": "mxt-common-block-condition#block_condition",
               "$description": {
-                "en_us": "Adjacent Condition value.",
+                "en_us": "Adjacent Condition of this AdjacentCondition.",
                 "zh_cn": "相邻条件的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Block Condition",
+                    "zh_cn": "方块条件"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: block condition.",
+                    "zh_cn": "方块条件的值。"
+                  },
+                  "$type": "mxt-common-block-condition#block_condition"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-block-condition#block_condition",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
+            },
+            "comparison": {
+              "$title": {
+                "en_us": "Comparison",
+                "zh_cn": "比较方式"
+              },
+              "$description": {
+                "en_us": "Comparison of this Comparison.",
+                "zh_cn": "比较方式的值。"
+              },
+              "type": "string",
+              "enum": [
+                "<",
+                "<=",
+                ">",
+                ">=",
+                "==",
+                "!="
+              ],
+              "$suggstion": true
+            },
+            "compare_to": {
+              "$title": {
+                "en_us": "Compare To",
+                "zh_cn": "比较至"
+              },
+              "$description": {
+                "en_us": "Compare To of this Comparison.",
+                "zh_cn": "比较至的值。"
+              },
+              "type": "number"
             }
           },
           "required": [
-            "adjacent_condition"
+            "adjacent_condition",
+            "comparison",
+            "compare_to"
           ]
         },
         "mxt:offset": {
@@ -504,8 +794,8 @@
             "zh_cn": "偏移"
           },
           "$description": {
-            "en_us": "Checks the block at an offset position.",
-            "zh_cn": "判断偏移位置上的方块。"
+            "en_us": "Offset block_condition fields.",
+            "zh_cn": "偏移的值。"
           },
           "type": "object",
           "properties": {
@@ -514,48 +804,81 @@
                 "en_us": "Condition",
                 "zh_cn": "条件"
               },
-              "$type": "mxt-common-block-condition#block_condition",
-              "default": 0,
               "$description": {
-                "en_us": "Condition value.",
+                "en_us": "Condition of this OffsetCondition.",
                 "zh_cn": "条件的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Block Condition",
+                    "zh_cn": "方块条件"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: block condition.",
+                    "zh_cn": "方块条件的值。"
+                  },
+                  "$type": "mxt-common-block-condition#block_condition"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-block-condition#block_condition",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             },
             "x": {
               "$title": {
                 "en_us": "X",
                 "zh_cn": "X"
               },
-              "type": "integer",
-              "default": 0,
               "$description": {
-                "en_us": "X value.",
+                "en_us": "X of this OffsetCondition.",
                 "zh_cn": "X的值。"
-              }
+              },
+              "type": "integer",
+              "default": 0
             },
             "y": {
               "$title": {
                 "en_us": "Y",
                 "zh_cn": "Y"
               },
-              "type": "integer",
-              "default": 0,
               "$description": {
-                "en_us": "Y value.",
+                "en_us": "Y of this OffsetCondition.",
                 "zh_cn": "Y的值。"
-              }
+              },
+              "type": "integer",
+              "default": 0
             },
             "z": {
               "$title": {
                 "en_us": "Z",
                 "zh_cn": "Z"
               },
-              "type": "integer",
-              "default": 0,
               "$description": {
-                "en_us": "Z value.",
+                "en_us": "Z of this OffsetCondition.",
                 "zh_cn": "Z的值。"
-              }
+              },
+              "type": "integer",
+              "default": 0
             }
           },
           "required": [

@@ -8,34 +8,34 @@
     "zh_cn": "由觅仙途数据包加载的蓝图物品所提供的蓝图定义。"
   },
   "type": "object",
+  "required": [
+    "blueprints"
+  ],
   "properties": {
     "blueprints": {
       "$title": {
         "en_us": "Blueprints",
         "zh_cn": "蓝图"
       },
+      "$description": {
+        "en_us": "Blueprints of this BlueprintBinding.",
+        "zh_cn": "蓝图的值。"
+      },
       "type": "array",
       "items": {
         "type": "string",
         "$registry": "mxt:forging_blueprint",
         "$title": {
-          "en_us": "Forging Blueprint",
-          "zh_cn": "锻造蓝图"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One blueprint this item provides.",
-          "zh_cn": "该物品提供的一张锻造蓝图。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "$description": {
-        "en_us": "Blueprints this item provides. At least one entry, and no duplicates. The table's blueprint list is filled from the blueprint items placed in its three blueprint slots, so an item that carries no binding - or a table with empty slots - offers nothing.",
-        "zh_cn": "该物品提供的全部蓝图，至少一项且不可重复。界面蓝图列表完全由左侧三格里的蓝图物品填充，所以没有绑定组件的物品（或空格子的台子）不会提供任何蓝图。"
       }
     }
   },
-  "required": [
-    "blueprints"
-  ],
   "id": "mxt-blueprint_binding",
   "$version": "26.1.2",
   "$registry": "mxt:blueprint_binding",

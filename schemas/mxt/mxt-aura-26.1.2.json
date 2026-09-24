@@ -1,0 +1,309 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Aura",
+    "zh_cn": "觅仙途灵气"
+  },
+  "$description": {
+    "en_us": "Data-driven Aura definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的灵气定义。"
+  },
+  "type": "object",
+  "required": [
+    "resource"
+  ],
+  "properties": {
+    "name": {
+      "$title": {
+        "en_us": "Name",
+        "zh_cn": "名称"
+      },
+      "$description": {
+        "en_us": "Name of this Aura.",
+        "zh_cn": "名称的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "description": {
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description of this Aura.",
+        "zh_cn": "描述的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "resource": {
+      "$title": {
+        "en_us": "Resource",
+        "zh_cn": "资源"
+      },
+      "$description": {
+        "en_us": "Resource of this Aura.",
+        "zh_cn": "资源的值。"
+      },
+      "type": "string",
+      "$registry": "mxt:resource"
+    },
+    "first_realm": {
+      "$title": {
+        "en_us": "First Realm",
+        "zh_cn": "首个境界"
+      },
+      "$description": {
+        "en_us": "First Realm of this Aura.",
+        "zh_cn": "首个境界的值。"
+      },
+      "type": "string",
+      "$registry": "mxt:realm_stage"
+    },
+    "start_exp": {
+      "$title": {
+        "en_us": "Start Exp",
+        "zh_cn": "开始 Exp"
+      },
+      "$description": {
+        "en_us": "Start Exp of this Aura.",
+        "zh_cn": "开始 Exp的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
+    },
+    "start_cultivate_conditions": {
+      "$title": {
+        "en_us": "Start Cultivate Conditions",
+        "zh_cn": "开始修炼条件"
+      },
+      "$description": {
+        "en_us": "Start Cultivate Conditions of this Aura.",
+        "zh_cn": "开始修炼条件的值。"
+      },
+      "$type": "mxt-common-content#record_CultivateConditions"
+    },
+    "cultivation_to_resource": {
+      "$title": {
+        "en_us": "Cultivation To Resource",
+        "zh_cn": "修炼至 Resource"
+      },
+      "$description": {
+        "en_us": "Cultivation To Resource of this Aura.",
+        "zh_cn": "修炼至 Resource的值。"
+      },
+      "$type": "mxt-common-aura#record_ResourceConversion"
+    },
+    "resource_to_cultivation": {
+      "$title": {
+        "en_us": "Resource To Cultivation",
+        "zh_cn": "Resource 至修炼"
+      },
+      "$description": {
+        "en_us": "Resource To Cultivation of this Aura.",
+        "zh_cn": "Resource 至修炼的值。"
+      },
+      "$type": "mxt-common-aura#record_ResourceConversion"
+    },
+    "regen": {
+      "$title": {
+        "en_us": "Regen",
+        "zh_cn": "恢复"
+      },
+      "$description": {
+        "en_us": "Regen of this Aura.",
+        "zh_cn": "恢复的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
+    },
+    "aura_type": {
+      "$title": {
+        "en_us": "Aura Type",
+        "zh_cn": "灵气类型"
+      },
+      "$description": {
+        "en_us": "Aura Type of this Aura.",
+        "zh_cn": "灵气类型的值。"
+      },
+      "type": "string",
+      "$registry": "mxt:element"
+    },
+    "burst_amount": {
+      "$title": {
+        "en_us": "Burst Amount",
+        "zh_cn": "Burst 数量"
+      },
+      "$description": {
+        "en_us": "Burst Amount of this Aura.",
+        "zh_cn": "Burst 数量的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
+    },
+    "use_condition": {
+      "$title": {
+        "en_us": "Use Condition",
+        "zh_cn": "使用条件"
+      },
+      "$description": {
+        "en_us": "Use Condition of this Aura.",
+        "zh_cn": "使用条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "show_cultivation_info": {
+      "$title": {
+        "en_us": "Show Cultivation Info",
+        "zh_cn": "显示修炼 Info"
+      },
+      "$description": {
+        "en_us": "Show Cultivation Info of this Aura.",
+        "zh_cn": "显示修炼 Info的值。"
+      },
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "id": "mxt-aura",
+  "$version": "26.1.2",
+  "$registry": "mxt:aura",
+  "$path": "data/<namespace>/mxt/aura/<path>.json"
+}

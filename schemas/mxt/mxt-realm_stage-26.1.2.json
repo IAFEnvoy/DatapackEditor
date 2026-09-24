@@ -8,108 +8,315 @@
     "zh_cn": "由觅仙途数据包加载的境界与突破条件定义。"
   },
   "type": "object",
+  "required": [
+    "aura"
+  ],
   "properties": {
-    "resource": {
+    "name": {
       "$title": {
-        "en_us": "Resource",
-        "zh_cn": "资源"
+        "en_us": "Name",
+        "zh_cn": "名称"
+      },
+      "$description": {
+        "en_us": "Name of this RealmStage.",
+        "zh_cn": "名称的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "description": {
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description of this RealmStage.",
+        "zh_cn": "描述的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "aura": {
+      "$title": {
+        "en_us": "Aura",
+        "zh_cn": "灵气"
+      },
+      "$description": {
+        "en_us": "Aura of this RealmStage.",
+        "zh_cn": "灵气的值。"
       },
       "type": "string",
-      "$registry": "mxt:resource",
-      "$description": {
-        "en_us": "Resource this stage is bound to.",
-        "zh_cn": "该境界绑定的数值资源。"
-      }
+      "$registry": "mxt:aura"
     },
     "aura_share_weight": {
       "$title": {
         "en_us": "Aura Share Weight",
-        "zh_cn": "灵气分配权重"
+        "zh_cn": "灵气 Share 权重"
       },
-      "$type": "mxt-common#number_provider",
-      "default": 1,
       "$description": {
-        "en_us": "Weight used by realm_weighted aura-zone distribution.",
-        "zh_cn": "灵气区域使用 realm_weighted 分配时采用的权重。"
-      }
+        "en_us": "Aura Share Weight of this RealmStage.",
+        "zh_cn": "灵气 Share 权重的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     },
     "cultivate_condition": {
       "$title": {
-        "en_us": "Cultivation Condition",
+        "en_us": "Cultivate Condition",
         "zh_cn": "修炼条件"
       },
-      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Condition that must permit cultivation at this realm stage.",
-        "zh_cn": "当前境界修炼时必须满足的条件。"
-      }
+        "en_us": "Cultivate Condition of this RealmStage.",
+        "zh_cn": "修炼条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "next_realm": {
       "$title": {
         "en_us": "Next Realm",
         "zh_cn": "下一境界"
       },
+      "$description": {
+        "en_us": "Next Realm of this RealmStage.",
+        "zh_cn": "下一境界的值。"
+      },
       "type": "string",
-      "$description": {
-        "en_us": "Stage a player breaks through to next.",
-        "zh_cn": "突破后进入的下一境界。"
-      }
+      "$registry": "mxt:realm_stage"
     },
-    "progress_threshold": {
+    "breakthrough_exp": {
       "$title": {
-        "en_us": "Progress Threshold",
-        "zh_cn": "进度阈值"
+        "en_us": "Breakthrough Exp",
+        "zh_cn": "Breakthrough Exp"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Cultivation progress needed to break through.",
-        "zh_cn": "突破所需的修为进度。"
-      }
-    },
-    "upgrade_conditions": {
-      "$title": {
-        "en_us": "Upgrade Conditions",
-        "zh_cn": "突破条件"
+        "en_us": "Breakthrough Exp of this RealmStage.",
+        "zh_cn": "Breakthrough Exp的值。"
       },
-      "type": "array",
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
+    },
+    "max_experience": {
+      "$title": {
+        "en_us": "Max Experience",
+        "zh_cn": "最大经验"
+      },
+      "$description": {
+        "en_us": "Max Experience of this RealmStage.",
+        "zh_cn": "最大经验的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
+    },
+    "minor_stages": {
+      "$title": {
+        "en_us": "Minor Stages",
+        "zh_cn": "子境界"
+      },
+      "$description": {
+        "en_us": "Minor Stages of this RealmStage.",
+        "zh_cn": "子境界的值。"
+      },
+      "type": [
+        "array",
+        "integer"
+      ],
       "items": {
-        "$type": "mxt-common-entity-condition#entity_condition",
+        "type": [
+          "string",
+          "object"
+        ],
         "$title": {
-          "en_us": "Condition",
-          "zh_cn": "条件"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One condition checked when breaking through.",
-          "zh_cn": "突破时检查的一条条件。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
       },
-      "default": [],
+      "minimum": 1,
+      "maximum": 1024
+    },
+    "breakthrough": {
+      "$title": {
+        "en_us": "Breakthrough",
+        "zh_cn": "突破"
+      },
       "$description": {
-        "en_us": "Extra conditions checked when breaking through.",
-        "zh_cn": "突破时额外检查的条件。"
-      }
+        "en_us": "Breakthrough of this RealmStage.",
+        "zh_cn": "突破的值。"
+      },
+      "$type": "mxt-common-content#record_CultivateConditions"
+    },
+    "auto_breakthrough": {
+      "$title": {
+        "en_us": "Auto Breakthrough",
+        "zh_cn": "自动 Breakthrough"
+      },
+      "$description": {
+        "en_us": "Auto Breakthrough of this RealmStage.",
+        "zh_cn": "自动 Breakthrough的值。"
+      },
+      "type": "boolean",
+      "default": false
     },
     "passive_modifiers": {
       "$title": {
         "en_us": "Passive Modifiers",
         "zh_cn": "被动修正"
       },
+      "$description": {
+        "en_us": "Passive Modifiers of this RealmStage.",
+        "zh_cn": "被动修正的值。"
+      },
       "type": "array",
       "items": {
         "$type": "mxt-common#record_AttributeEntry",
         "$title": {
-          "en_us": "Modifier",
-          "zh_cn": "属性修正"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One attribute modifier.",
-          "zh_cn": "一条属性修正。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Attribute modifiers granted while in this stage.",
-        "zh_cn": "处于该境界时获得的属性修正。"
       }
     },
     "costs": {
@@ -117,22 +324,107 @@
         "en_us": "Costs",
         "zh_cn": "消耗"
       },
+      "$description": {
+        "en_us": "Costs of this RealmStage.",
+        "zh_cn": "消耗的值。"
+      },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_ResourceCost",
+        "oneOf": [
+          {
+            "$title": {
+              "en_us": "Object",
+              "zh_cn": "对象"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: object.",
+              "zh_cn": "对象的值。"
+            },
+            "type": "object",
+            "properties": {
+              "id": {
+                "$title": {
+                  "en_us": "Id",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "Id of this Cost.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:resource"
+              },
+              "amount": {
+                "$title": {
+                  "en_us": "Amount",
+                  "zh_cn": "数量"
+                },
+                "$description": {
+                  "en_us": "Amount of this Cost.",
+                  "zh_cn": "数量的值。"
+                },
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Text",
+                      "zh_cn": "文本"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: text.",
+                      "zh_cn": "文本的值。"
+                    },
+                    "type": "string"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number",
+                      "zh_cn": "数值"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number.",
+                      "zh_cn": "数值的值。"
+                    },
+                    "type": "number"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number Provider",
+                      "zh_cn": "数值提供器"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number provider.",
+                      "zh_cn": "数值提供器的值。"
+                    },
+                    "$type": "mxt-common#number_provider"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "amount"
+            ]
+          },
+          {
+            "$title": {
+              "en_us": "Cost",
+              "zh_cn": "消耗"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: cost.",
+              "zh_cn": "消耗的值。"
+            },
+            "$type": "mxt-common#cost"
+          }
+        ],
         "$title": {
-          "en_us": "Cost",
-          "zh_cn": "消耗"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One cost paid per use.",
-          "zh_cn": "每次使用支付的一项消耗。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Resources paid to break through.",
-        "zh_cn": "突破时支付的资源。"
       }
     },
     "ability_requirements": {
@@ -140,73 +432,200 @@
         "en_us": "Ability Requirements",
         "zh_cn": "技能需求"
       },
-      "type": "array",
-      "items": {
-        "$title": {
-          "en_us": "Ability",
-          "zh_cn": "技能"
-        },
-        "$description": {
-          "en_us": "One required ability id.",
-          "zh_cn": "要求拥有的一个技能 ID。"
-        }
-      },
-      "default": [],
       "$description": {
-        "en_us": "Abilities a player must already have to break through.",
-        "zh_cn": "突破前必须已经拥有的技能。"
-      }
+        "en_us": "Ability Requirements of this RealmStage.",
+        "zh_cn": "技能需求的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:ability"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:ability_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:ability"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:ability_tag",
+                "pattern": "^#.+"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "tribulation": {
       "$title": {
         "en_us": "Tribulation",
         "zh_cn": "天劫"
       },
-      "type": "string",
-      "$registry": "mxt:tribulation",
       "$description": {
-        "en_us": "Tribulation triggered by the breakthrough.",
-        "zh_cn": "突破时触发的天劫。"
-      }
+        "en_us": "Tribulation of this RealmStage.",
+        "zh_cn": "天劫的值。"
+      },
+      "type": "string",
+      "$registry": "mxt:tribulation"
     },
     "breakthrough_particle": {
       "$title": {
         "en_us": "Breakthrough Particle",
         "zh_cn": "突破粒子"
       },
-      "$type": "mxt-common-aura#record_ParticleEffect",
       "$description": {
-        "en_us": "Particles drawn when the breakthrough happens.",
-        "zh_cn": "突破时绘制的粒子。"
-      }
+        "en_us": "Breakthrough Particle of this RealmStage.",
+        "zh_cn": "突破粒子的值。"
+      },
+      "$type": "mxt-common#record_ParticleEffect"
     },
     "success_action": {
       "$title": {
         "en_us": "Success Action",
         "zh_cn": "成功行为"
       },
-      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Action run when the breakthrough succeeds.",
-        "zh_cn": "突破成功时执行的行为。"
-      }
+        "en_us": "Success Action of this RealmStage.",
+        "zh_cn": "成功行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "fail_action": {
       "$title": {
         "en_us": "Fail Action",
         "zh_cn": "失败行为"
       },
-      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Action run when the breakthrough fails.",
-        "zh_cn": "突破失败时执行的行为。"
-      }
+        "en_us": "Fail Action of this RealmStage.",
+        "zh_cn": "失败行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     }
   },
-  "required": [
-    "resource",
-    "progress_threshold"
-  ],
   "id": "mxt-realm_stage",
   "$version": "26.1.2",
   "$registry": "mxt:realm_stage",

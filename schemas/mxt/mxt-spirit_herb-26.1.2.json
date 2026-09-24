@@ -8,85 +8,280 @@
     "zh_cn": "由觅仙途数据包加载的灵草定义。"
   },
   "type": "object",
+  "required": [
+    "items",
+    "quality"
+  ],
   "properties": {
     "items": {
       "$title": {
         "en_us": "Items",
         "zh_cn": "物品"
       },
-      "$type": "mxt-common#item_matcher",
       "$description": {
-        "en_us": "Items that are this herb.",
-        "zh_cn": "属于该灵草的物品。"
-      }
+        "en_us": "Items of this SpiritHerb.",
+        "zh_cn": "物品的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:item"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:item_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "Item Matcher Entry",
+            "zh_cn": "物品匹配器条目"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: item matcher entry.",
+            "zh_cn": "物品匹配器条目的值。"
+          },
+          "$type": "mxt-common#item_matcher_entry"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:item"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:item_tag",
+                "pattern": "^#.+"
+              },
+              {
+                "$title": {
+                  "en_us": "Item Matcher Entry",
+                  "zh_cn": "物品匹配器条目"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: item matcher entry.",
+                  "zh_cn": "物品匹配器条目的值。"
+                },
+                "$type": "mxt-common#item_matcher_entry"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "quality": {
       "$title": {
         "en_us": "Quality",
         "zh_cn": "品质"
       },
-      "type": "string",
-      "$registry": "mxt:item_quality",
       "$description": {
-        "en_us": "Quality of the harvested herb.",
-        "zh_cn": "收获灵草的品质。"
-      }
+        "en_us": "Quality of this SpiritHerb.",
+        "zh_cn": "品质的值。"
+      },
+      "type": "string",
+      "$registry": "mxt:quality"
     },
     "age": {
       "$title": {
         "en_us": "Age",
         "zh_cn": "年龄"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Growth age this entry describes.",
-        "zh_cn": "该条目描述的灵草生长年龄。"
-      }
+        "en_us": "Age of this SpiritHerb.",
+        "zh_cn": "年龄的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     },
     "element_tags": {
       "$title": {
         "en_us": "Element Tags",
         "zh_cn": "元素标签"
       },
-      "type": "array",
-      "items": {
-        "type": "string",
-        "$title": {
-          "en_us": "Tag",
-          "zh_cn": "标签"
-        },
-        "$description": {
-          "en_us": "One tag id.",
-          "zh_cn": "一个标签 ID。"
-        }
-      },
-      "default": [],
       "$description": {
-        "en_us": "Elements this herb carries.",
-        "zh_cn": "该灵草携带的元素标签。"
-      }
+        "en_us": "Element Tags of this SpiritHerb.",
+        "zh_cn": "元素标签的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:element"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:element_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:element"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:element_tag",
+                "pattern": "^#.+"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "material_tags": {
       "$title": {
         "en_us": "Material Tags",
         "zh_cn": "材料标签"
       },
+      "$description": {
+        "en_us": "Material Tags of this SpiritHerb.",
+        "zh_cn": "材料标签的值。"
+      },
       "type": "array",
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Tag",
-          "zh_cn": "标签"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One tag id.",
-          "zh_cn": "一个标签 ID。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Material tags this herb counts as.",
-        "zh_cn": "该灵草被视为的材料标签。"
       }
     },
     "growth_rate": {
@@ -94,28 +289,92 @@
         "en_us": "Growth Rate",
         "zh_cn": "生长速率"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "How fast the herb grows.",
-        "zh_cn": "该灵草的生长速率。"
-      }
+        "en_us": "Growth Rate of this SpiritHerb.",
+        "zh_cn": "生长速率的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     },
     "drop_chance": {
       "$title": {
         "en_us": "Drop Chance",
         "zh_cn": "掉落概率"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Chance of the herb dropping when harvested.",
-        "zh_cn": "收获时掉落该灵草的概率。"
-      }
+        "en_us": "Drop Chance of this SpiritHerb.",
+        "zh_cn": "掉落概率的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     }
   },
-  "required": [
-    "items",
-    "quality"
-  ],
   "id": "mxt-spirit_herb",
   "$version": "26.1.2",
   "$registry": "mxt:spirit_herb",

@@ -8,69 +8,225 @@
     "zh_cn": "由觅仙途数据包加载的功法绑定定义。"
   },
   "type": "object",
+  "required": [
+    "technique"
+  ],
   "properties": {
-    "items": {
-      "$title": {
-        "en_us": "Items",
-        "zh_cn": "物品"
-      },
-      "$type": "mxt-common#item_matcher",
-      "$description": {
-        "en_us": "Items that teach this technique.",
-        "zh_cn": "可以学习该功法的物品。"
-      }
-    },
     "technique": {
       "$title": {
         "en_us": "Technique",
         "zh_cn": "功法"
       },
-      "type": "string",
-      "$registry": "mxt:cultivation_technique",
       "$description": {
-        "en_us": "Technique these items grant.",
-        "zh_cn": "这些物品授予的功法。"
-      }
-    },
-    "quality_group": {
-      "$title": {
-        "en_us": "Quality Group",
-        "zh_cn": "品质组"
+        "en_us": "Technique of this TechniqueBinding.",
+        "zh_cn": "功法的值。"
       },
-      "$type": "mxt-common#item_quality_tag",
-      "$description": {
-        "en_us": "Quality group shared by these items.",
-        "zh_cn": "这些物品共用的品质组。"
-      }
+      "type": "string",
+      "$registry": "mxt:technique"
     },
-    "condition": {
+    "carrier_item": {
       "$title": {
-        "en_us": "Condition",
+        "en_us": "Carrier Item",
+        "zh_cn": "载体物品"
+      },
+      "$description": {
+        "en_us": "Carrier Item of this TechniqueBinding.",
+        "zh_cn": "载体物品的值。"
+      },
+      "type": "string",
+      "$registry": "minecraft:item"
+    },
+    "quality_chain": {
+      "$title": {
+        "en_us": "Quality Chain",
+        "zh_cn": "品质链"
+      },
+      "$description": {
+        "en_us": "Quality Chain of this TechniqueBinding.",
+        "zh_cn": "品质链的值。"
+      },
+      "type": "string",
+      "$registry": "mxt:quality_chain"
+    },
+    "conditions": {
+      "$title": {
+        "en_us": "Conditions",
         "zh_cn": "条件"
       },
-      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Condition an item has to meet for the binding to apply.",
-        "zh_cn": "物品需要满足的条件，满足后该绑定才生效。"
+        "en_us": "Conditions of this TechniqueBinding.",
+        "zh_cn": "条件的值。"
+      },
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$title": {
+              "en_us": "Object",
+              "zh_cn": "对象"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: object.",
+              "zh_cn": "对象的值。"
+            },
+            "type": "object",
+            "properties": {
+              "condition": {
+                "$title": {
+                  "en_us": "Condition",
+                  "zh_cn": "条件"
+                },
+                "$description": {
+                  "en_us": "Condition of this TechniqueBinding.",
+                  "zh_cn": "条件的值。"
+                },
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Entity Condition",
+                      "zh_cn": "实体条件"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: entity condition.",
+                      "zh_cn": "实体条件的值。"
+                    },
+                    "$type": "mxt-common-entity-condition#entity_condition"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "List",
+                      "zh_cn": "列表"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: list.",
+                      "zh_cn": "列表的值。"
+                    },
+                    "type": "array",
+                    "items": {
+                      "$type": "mxt-common-entity-condition#entity_condition",
+                      "$title": {
+                        "en_us": "Item",
+                        "zh_cn": "物品"
+                      },
+                      "$description": {
+                        "en_us": "Item value.",
+                        "zh_cn": "物品的值。"
+                      }
+                    }
+                  }
+                ]
+              },
+              "description": {
+                "$title": {
+                  "en_us": "Description",
+                  "zh_cn": "描述"
+                },
+                "$description": {
+                  "en_us": "Description of this TechniqueBinding.",
+                  "zh_cn": "描述的值。"
+                },
+                "type": "string"
+              }
+            },
+            "required": [
+              "condition"
+            ]
+          },
+          {
+            "$title": {
+              "en_us": "Entity Condition",
+              "zh_cn": "实体条件"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: entity condition.",
+              "zh_cn": "实体条件的值。"
+            },
+            "$type": "mxt-common-entity-condition#entity_condition"
+          },
+          {
+            "$title": {
+              "en_us": "List",
+              "zh_cn": "列表"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: list.",
+              "zh_cn": "列表的值。"
+            },
+            "type": "array",
+            "items": {
+              "$type": "mxt-common-entity-condition#entity_condition",
+              "$title": {
+                "en_us": "Item",
+                "zh_cn": "物品"
+              },
+              "$description": {
+                "en_us": "Item value.",
+                "zh_cn": "物品的值。"
+              }
+            }
+          }
+        ],
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
       }
     },
-    "set_active": {
+    "learn_time": {
       "$title": {
-        "en_us": "Set Active",
-        "zh_cn": "设置激活"
+        "en_us": "Learn Time",
+        "zh_cn": "学习时长"
       },
-      "type": "boolean",
-      "default": true,
       "$description": {
-        "en_us": "Whether learning the technique also makes it the active one.",
-        "zh_cn": "学会后是否直接设为当前激活的功法。"
-      }
+        "en_us": "Learn Time of this TechniqueBinding.",
+        "zh_cn": "学习时长的值。"
+      },
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 72000
+    },
+    "hold_animation": {
+      "$title": {
+        "en_us": "Hold Animation",
+        "zh_cn": "长按行为"
+      },
+      "$description": {
+        "en_us": "Hold Animation of this TechniqueBinding.",
+        "zh_cn": "长按行为的值。"
+      },
+      "type": "string",
+      "enum": [
+        "none",
+        "eat",
+        "drink",
+        "block",
+        "bow",
+        "spear",
+        "crossbow",
+        "spyglass",
+        "toot_horn",
+        "brush",
+        "bundle"
+      ],
+      "$suggstion": true
+    },
+    "hold_sound": {
+      "$title": {
+        "en_us": "Hold Sound",
+        "zh_cn": "长按音效"
+      },
+      "$description": {
+        "en_us": "Hold Sound of this TechniqueBinding.",
+        "zh_cn": "长按音效的值。"
+      },
+      "type": "string",
+      "$registry": "minecraft:sound_event"
     }
   },
-  "required": [
-    "items",
-    "technique"
-  ],
   "id": "mxt-technique_binding",
   "$version": "26.1.2",
   "$registry": "mxt:technique_binding",

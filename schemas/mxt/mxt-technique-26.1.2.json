@@ -1,16 +1,13 @@
 {
   "$title": {
-    "en_us": "MiXianTu Spirit Root",
-    "zh_cn": "觅仙途灵根"
+    "en_us": "MiXianTu Technique",
+    "zh_cn": "觅仙途功法"
   },
   "$description": {
-    "en_us": "Data-driven Spirit Root definition from MiXianTu.",
-    "zh_cn": "由觅仙途数据包加载的灵根定义。"
+    "en_us": "Data-driven Technique definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的功法定义。"
   },
   "type": "object",
-  "required": [
-    "element"
-  ],
   "properties": {
     "name": {
       "$title": {
@@ -18,7 +15,7 @@
         "zh_cn": "名称"
       },
       "$description": {
-        "en_us": "Name of this SpiritRoot.",
+        "en_us": "Name of this Technique.",
         "zh_cn": "名称的值。"
       },
       "type": [
@@ -32,7 +29,7 @@
         "zh_cn": "描述"
       },
       "$description": {
-        "en_us": "Description of this SpiritRoot.",
+        "en_us": "Description of this Technique.",
         "zh_cn": "描述的值。"
       },
       "type": [
@@ -40,26 +37,104 @@
         "object"
       ]
     },
-    "element": {
+    "quality": {
       "$title": {
-        "en_us": "Element",
-        "zh_cn": "元素"
+        "en_us": "Quality",
+        "zh_cn": "品质"
       },
       "$description": {
-        "en_us": "Element of this SpiritRoot.",
-        "zh_cn": "元素的值。"
+        "en_us": "Quality of this Technique.",
+        "zh_cn": "品质的值。"
       },
       "type": "string",
-      "$registry": "mxt:element"
+      "$registry": "mxt:quality"
     },
-    "cultivation_multiplier": {
+    "icon": {
       "$title": {
-        "en_us": "Cultivation Multiplier",
-        "zh_cn": "修炼倍率"
+        "en_us": "Icon",
+        "zh_cn": "图标"
       },
       "$description": {
-        "en_us": "Cultivation Multiplier of this SpiritRoot.",
-        "zh_cn": "修炼倍率的值。"
+        "en_us": "Icon of this Technique.",
+        "zh_cn": "图标的值。"
+      },
+      "$type": "mxt-common#record_IconReference"
+    },
+    "learn_condition": {
+      "$title": {
+        "en_us": "Learn Condition",
+        "zh_cn": "学习条件"
+      },
+      "$description": {
+        "en_us": "Learn Condition of this Technique.",
+        "zh_cn": "学习条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "exclusive_tags": {
+      "$title": {
+        "en_us": "Exclusive Tags",
+        "zh_cn": "互斥标签"
+      },
+      "$description": {
+        "en_us": "Exclusive Tags of this Technique.",
+        "zh_cn": "互斥标签的值。"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      }
+    },
+    "cultivation_modifier": {
+      "$title": {
+        "en_us": "Cultivation Modifier",
+        "zh_cn": "修炼修正"
+      },
+      "$description": {
+        "en_us": "Cultivation Modifier of this Technique.",
+        "zh_cn": "修炼修正的值。"
       },
       "oneOf": [
         {
@@ -97,62 +172,27 @@
         }
       ]
     },
-    "element_ability_modifier": {
+    "passive_modifiers": {
       "$title": {
-        "en_us": "Element Ability Modifier",
-        "zh_cn": "元素技能修正"
+        "en_us": "Passive Modifiers",
+        "zh_cn": "被动修正"
       },
       "$description": {
-        "en_us": "Element Ability Modifier of this SpiritRoot.",
-        "zh_cn": "元素技能修正的值。"
+        "en_us": "Passive Modifiers of this Technique.",
+        "zh_cn": "被动修正的值。"
       },
-      "oneOf": [
-        {
-          "$title": {
-            "en_us": "Text",
-            "zh_cn": "文本"
-          },
-          "$description": {
-            "en_us": "One accepted form of this value: text.",
-            "zh_cn": "文本的值。"
-          },
-          "type": "string"
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_AttributeEntry",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
-        {
-          "$title": {
-            "en_us": "Number",
-            "zh_cn": "数值"
-          },
-          "$description": {
-            "en_us": "One accepted form of this value: number.",
-            "zh_cn": "数值的值。"
-          },
-          "type": "number"
-        },
-        {
-          "$title": {
-            "en_us": "Number Provider",
-            "zh_cn": "数值提供器"
-          },
-          "$description": {
-            "en_us": "One accepted form of this value: number provider.",
-            "zh_cn": "数值提供器的值。"
-          },
-          "$type": "mxt-common#number_provider"
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      ]
-    },
-    "rarity": {
-      "$title": {
-        "en_us": "Rarity",
-        "zh_cn": "稀有度"
-      },
-      "$description": {
-        "en_us": "Rarity of this SpiritRoot.",
-        "zh_cn": "稀有度的值。"
-      },
-      "type": "string",
-      "default": "common"
+      }
     },
     "granted_abilities": {
       "$title": {
@@ -160,7 +200,7 @@
         "zh_cn": "授予的技能"
       },
       "$description": {
-        "en_us": "Granted Abilities of this SpiritRoot.",
+        "en_us": "Granted Abilities of this Technique.",
         "zh_cn": "授予的技能的值。"
       },
       "oneOf": [
@@ -239,94 +279,55 @@
         }
       ]
     },
-    "conflicting_elements": {
+    "default_stage": {
       "$title": {
-        "en_us": "Conflicting Elements",
-        "zh_cn": "Conflicting 元素"
+        "en_us": "Default Stage",
+        "zh_cn": "默认阶段"
       },
       "$description": {
-        "en_us": "Conflicting Elements of this SpiritRoot.",
-        "zh_cn": "Conflicting 元素的值。"
+        "en_us": "Default Stage of this Technique.",
+        "zh_cn": "默认阶段的值。"
       },
-      "oneOf": [
-        {
-          "$title": {
-            "en_us": "Identifier",
-            "zh_cn": "标识符"
-          },
-          "$description": {
-            "en_us": "One accepted form of this value: identifier.",
-            "zh_cn": "标识符的值。"
-          },
-          "type": "string",
-          "$registry": "mxt:element"
+      "type": "string",
+      "$registry": "mxt:skill_stage"
+    },
+    "mastery_resource": {
+      "$title": {
+        "en_us": "Mastery Resource",
+        "zh_cn": "Mastery Resource"
+      },
+      "$description": {
+        "en_us": "Mastery Resource of this Technique.",
+        "zh_cn": "Mastery Resource的值。"
+      },
+      "type": "string",
+      "$registry": "mxt:resource"
+    },
+    "configuration": {
+      "$title": {
+        "en_us": "Configuration",
+        "zh_cn": "Configuration"
+      },
+      "$description": {
+        "en_us": "Configuration of this Technique.",
+        "zh_cn": "Configuration的值。"
+      },
+      "type": "object",
+      "additionalProperties": {
+        "$type": "mxt-common-content#record_StageConfiguration",
+        "$title": {
+          "en_us": "Property",
+          "zh_cn": "条目"
         },
-        {
-          "$title": {
-            "en_us": "Tag",
-            "zh_cn": "标签"
-          },
-          "$description": {
-            "en_us": "One accepted form of this value: tag.",
-            "zh_cn": "标签的值。"
-          },
-          "type": "string",
-          "$registry": "mxt:element_tag",
-          "pattern": "^#.+"
-        },
-        {
-          "$title": {
-            "en_us": "List",
-            "zh_cn": "列表"
-          },
-          "$description": {
-            "en_us": "One accepted form of this value: list.",
-            "zh_cn": "列表的值。"
-          },
-          "type": "array",
-          "items": {
-            "oneOf": [
-              {
-                "$title": {
-                  "en_us": "Identifier",
-                  "zh_cn": "标识符"
-                },
-                "$description": {
-                  "en_us": "One accepted form of this value: identifier.",
-                  "zh_cn": "标识符的值。"
-                },
-                "type": "string",
-                "$registry": "mxt:element"
-              },
-              {
-                "$title": {
-                  "en_us": "Tag",
-                  "zh_cn": "标签"
-                },
-                "$description": {
-                  "en_us": "One accepted form of this value: tag.",
-                  "zh_cn": "标签的值。"
-                },
-                "type": "string",
-                "$registry": "mxt:element_tag",
-                "pattern": "^#.+"
-              }
-            ],
-            "$title": {
-              "en_us": "Item",
-              "zh_cn": "物品"
-            },
-            "$description": {
-              "en_us": "Item value.",
-              "zh_cn": "物品的值。"
-            }
-          }
+        "$description": {
+          "en_us": "Property value.",
+          "zh_cn": "条目的值。"
         }
-      ]
+      }
     }
   },
-  "id": "mxt-spirit_root",
+  "id": "mxt-technique",
   "$version": "26.1.2",
-  "$registry": "mxt:spirit_root",
-  "$path": "data/<namespace>/mxt/spirit_root/<path>.json"
+  "$registry": "mxt:technique",
+  "$path": "data/<namespace>/mxt/technique/<path>.json"
 }

@@ -8,212 +8,6 @@
     "zh_cn": "由觅仙途数据包加载的锻造目标与要求定义。"
   },
   "type": "object",
-  "properties": {
-    "input": {
-      "$title": {
-        "en_us": "Input",
-        "zh_cn": "材料"
-      },
-      "type": "array",
-      "items": {
-        "$type": "forging_material",
-        "$title": {
-          "en_us": "Material Entry",
-          "zh_cn": "材料条目"
-        },
-        "$description": {
-          "en_us": "One item and how many of it the input slots must hold.",
-          "zh_cn": "一项物品及其在输入槽中需要的数量。"
-        }
-      },
-      "$description": {
-        "en_us": "Order-independent material requirement: the 15 input slots only have to hold at least the declared amount of every entry, from any slots. One to fifteen entries, and no item twice.",
-        "zh_cn": "无序材料需求：15 格输入槽合计持有每项声明的数量即可，来自哪些槽位不限。1..15 项，同一物品不能重复出现。"
-      }
-    },
-    "allowed_methods": {
-      "$title": {
-        "en_us": "Allowed Methods",
-        "zh_cn": "允许的锻打方式"
-      },
-      "oneOf": [
-        {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "$registry": "mxt:forging_method",
-            "$title": {
-              "en_us": "Forging Method",
-              "zh_cn": "锻打方式"
-            },
-            "$description": {
-              "en_us": "A forging method id this blueprint accepts.",
-              "zh_cn": "本蓝图允许的一种锻打方式 ID。"
-            }
-          },
-          "default": [],
-          "$title": {
-            "en_us": "Method List",
-            "zh_cn": "方式列表"
-          },
-          "$description": {
-            "en_us": "An explicit list of the method ids this blueprint accepts. An empty list - like omitting the field - restricts nothing, and then the placed tools alone decide. What may actually be struck is always this set intersected with the methods the tools unlock.",
-            "zh_cn": "显式列出本蓝图允许的锻打方式 ID。空列表与省略该字段一样表示不做限制，此时完全由已放置的工具决定。实际可锻打的方法始终是此集合与工具解锁方式的交集。"
-          }
-        },
-        {
-          "type": "string",
-          "$registry": "mxt:forging_method",
-          "$title": {
-            "en_us": "Single Method or Tag",
-            "zh_cn": "单个方式或标签"
-          },
-          "$description": {
-            "en_us": "One method id, or one \"#namespace:tag\" that stands for every method in that tag. A tag that resolves to nothing allows nothing - unlike an empty list, which allows everything the tools unlock.",
-            "zh_cn": "单个锻打方式 ID，或单个 \"#命名空间:标签\" 表示该标签下的全部方式。标签解析为空时什么都不允许 —— 这与空列表不同，空列表是允许工具解锁的全部方式。"
-          }
-        }
-      ],
-      "$description": {
-        "en_us": "Which methods this blueprint accepts: a list, a single method id, one #tag, or nothing at all.",
-        "zh_cn": "本蓝图允许的锻打方式：可以是列表、单个方式 ID、单个 #标签，或完全不写。"
-      }
-    },
-    "meter_min": {
-      "$title": {
-        "en_us": "Meter Min",
-        "zh_cn": "数值条下界"
-      },
-      "type": "integer",
-      "$description": {
-        "en_us": "Left end of the meter. Must be negative, so the bar always crosses zero. A strike that would leave the meter is refused.",
-        "zh_cn": "数值条左端。必须为负数，保证数值条跨过 0。会让数值越界的锻打会被拒绝。"
-      }
-    },
-    "meter_max": {
-      "$title": {
-        "en_us": "Meter Max",
-        "zh_cn": "数值条上界"
-      },
-      "type": "integer",
-      "$description": {
-        "en_us": "Right end of the meter. Must be positive, so the bar always crosses zero.",
-        "zh_cn": "数值条右端。必须为正数，保证数值条跨过 0。"
-      }
-    },
-    "target_min": {
-      "$title": {
-        "en_us": "Target Min",
-        "zh_cn": "成功区间下界"
-      },
-      "type": "integer",
-      "$description": {
-        "en_us": "Lower end of the success band, inside the meter. The band is inclusive on both ends.",
-        "zh_cn": "成功区间（闭区间）的下界，必须落在数值条范围内。"
-      }
-    },
-    "target_max": {
-      "$title": {
-        "en_us": "Target Max",
-        "zh_cn": "成功区间上界"
-      },
-      "type": "integer",
-      "$description": {
-        "en_us": "Upper end of the success band, inside the meter and at or above the lower end.",
-        "zh_cn": "成功区间（闭区间）的上界，必须落在数值条范围内且不低于下界。"
-      }
-    },
-    "finish_pattern": {
-      "$title": {
-        "en_us": "Finish Pattern",
-        "zh_cn": "结束模式"
-      },
-      "$type": "finish_pattern",
-      "$description": {
-        "en_us": "Optional closing rule. Omit it for a blueprint that only asks for a value.",
-        "zh_cn": "可选的收尾规则。只要求数值的蓝图可以省略。"
-      }
-    },
-    "max_steps": {
-      "$title": {
-        "en_us": "Max Steps",
-        "zh_cn": "最大步数"
-      },
-      "type": "integer",
-      "minimum": 0,
-      "$description": {
-        "en_us": "The blueprint's only failure condition: reaching this many strikes without meeting the completion rule fails the forge. Omit it (or write 0) and the player may keep striking until the piece is done.",
-        "zh_cn": "本蓝图唯一的失败来源：达到该步数仍未满足完成条件即判定失败。省略（或写 0）则玩家可以一直锻打到满足条件为止。"
-      }
-    },
-    "quality_by_extra_steps": {
-      "$title": {
-        "en_us": "Quality By Extra Steps",
-        "zh_cn": "按额外步数确定品质"
-      },
-      "type": "array",
-      "items": {
-        "$type": "mxt-common#record_QualityThreshold",
-        "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
-        },
-        "$description": {
-          "en_us": "One ascending step of the quality curve.",
-          "zh_cn": "品质曲线中的一档，按额外步数升序排列。"
-        }
-      },
-      "$description": {
-        "en_us": "Ascending extra-steps-to-quality mapping; an empty list is rejected. The first entry whose max_extra_steps covers the run wins, so the last entry has to be 2147483647. Extra steps = actual steps - optimal steps.",
-        "zh_cn": "额外步数到品质的升序映射。首个满足 max_extra_steps 的条目即为成品品质，因此最后一项必须是 2147483647。额外步数 = 实际步数 - 最优步数。"
-      }
-    },
-    "result": {
-      "$title": {
-        "en_us": "Result",
-        "zh_cn": "结果"
-      },
-      "type": "string",
-      "$registry": "minecraft:item",
-      "$description": {
-        "en_us": "Item produced by a successful forge.",
-        "zh_cn": "锻造成功时产出的物品 ID。"
-      }
-    },
-    "complete_action": {
-      "$title": {
-        "en_us": "Complete Action",
-        "zh_cn": "完成行为"
-      },
-      "$type": "mxt-common-entity-action#entity_action",
-      "$description": {
-        "en_us": "Action run on the striker when the forge completes. Defaults to nothing.",
-        "zh_cn": "锻造成功时对发起者执行的行为，默认不执行。"
-      }
-    },
-    "fail_action": {
-      "$title": {
-        "en_us": "Fail Action",
-        "zh_cn": "失败行为"
-      },
-      "$type": "mxt-common-entity-action#entity_action",
-      "$description": {
-        "en_us": "Action run on the striker when the forge fails or is cancelled. Defaults to nothing.",
-        "zh_cn": "锻造失败或被取消时对发起者执行的行为，默认不执行。"
-      }
-    },
-    "failure_settlement": {
-      "$title": {
-        "en_us": "Failure Settlement",
-        "zh_cn": "失败结算"
-      },
-      "$type": "mxt-common#record_FailureSettlement",
-      "$description": {
-        "en_us": "What a failed or cancelled forge gives back. Omitting it destroys the locked input.",
-        "zh_cn": "锻造失败或取消时的返还规则。省略即销毁已锁定的材料。"
-      }
-    }
-  },
   "required": [
     "input",
     "meter_min",
@@ -223,48 +17,157 @@
     "quality_by_extra_steps",
     "result"
   ],
-  "$types": {
-    "forging_material": {
+  "properties": {
+    "input": {
       "$title": {
-        "en_us": "Material Entry",
-        "zh_cn": "材料条目"
+        "en_us": "Input",
+        "zh_cn": "输入"
       },
       "$description": {
-        "en_us": "One entry of the order-independent material requirement.",
-        "zh_cn": "无序材料需求中的一项。"
+        "en_us": "Input of this ForgingBlueprint.",
+        "zh_cn": "输入的值。"
       },
-      "type": "object",
-      "properties": {
-        "id": {
+      "type": "array",
+      "items": {
+        "$type": "mxt-common-content#record_ForgingMaterial",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      }
+    },
+    "allowed_methods": {
+      "$title": {
+        "en_us": "Allowed Methods",
+        "zh_cn": "允许的锻打方式"
+      },
+      "$description": {
+        "en_us": "Allowed Methods of this ForgingBlueprint.",
+        "zh_cn": "允许的锻打方式的值。"
+      },
+      "oneOf": [
+        {
           "$title": {
-            "en_us": "Item",
-            "zh_cn": "物品"
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
           },
           "type": "string",
-          "$registry": "minecraft:item",
-          "$description": {
-            "en_us": "Item id the input slots have to hold.",
-            "zh_cn": "输入槽必须持有的物品 ID。"
-          }
+          "$registry": "mxt:forging_method"
         },
-        "count": {
+        {
           "$title": {
-            "en_us": "Count",
-            "zh_cn": "数量"
+            "en_us": "Tag",
+            "zh_cn": "标签"
           },
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 64,
-          "default": 1,
           "$description": {
-            "en_us": "How many of that item are required, 1 to 64. Defaults to 1.",
-            "zh_cn": "该物品需要的数量，范围 1..64，默认 1。"
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:forging_method_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:forging_method"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:forging_method_tag",
+                "pattern": "^#.+"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
           }
         }
-      },
-      "required": [
-        "id"
       ]
+    },
+    "meter_min": {
+      "$title": {
+        "en_us": "Meter Min",
+        "zh_cn": "数值条下界"
+      },
+      "$description": {
+        "en_us": "Meter Min of this MeterBounds.",
+        "zh_cn": "数值条下界的值。"
+      },
+      "type": "integer"
+    },
+    "meter_max": {
+      "$title": {
+        "en_us": "Meter Max",
+        "zh_cn": "数值条上界"
+      },
+      "$description": {
+        "en_us": "Meter Max of this MeterBounds.",
+        "zh_cn": "数值条上界的值。"
+      },
+      "type": "integer"
+    },
+    "target_min": {
+      "$title": {
+        "en_us": "Target Min",
+        "zh_cn": "成功区间下界"
+      },
+      "$description": {
+        "en_us": "Target Min of this MeterBounds.",
+        "zh_cn": "成功区间下界的值。"
+      },
+      "type": "integer"
+    },
+    "target_max": {
+      "$title": {
+        "en_us": "Target Max",
+        "zh_cn": "成功区间上界"
+      },
+      "$description": {
+        "en_us": "Target Max of this MeterBounds.",
+        "zh_cn": "成功区间上界的值。"
+      },
+      "type": "integer"
     },
     "finish_pattern": {
       "$title": {
@@ -272,50 +175,156 @@
         "zh_cn": "结束模式"
       },
       "$description": {
-        "en_us": "The closing sequence, checked against the tail of the strike history. Only the last required_suffix_steps entries are compared; the positions in front of them are drawn as barriers and take no part in the rule.",
-        "zh_cn": "收尾序列，与锻打历史的末尾比对。只有末 required_suffix_steps 项会被校验，前面的位置在界面上是屏障格，不参与判定。"
+        "en_us": "Finish Pattern of this ForgingBlueprint.",
+        "zh_cn": "结束模式的值。"
       },
-      "type": "object",
-      "properties": {
-        "steps": {
+      "$type": "mxt-common-content#record_FinishPattern"
+    },
+    "max_steps": {
+      "$title": {
+        "en_us": "Max Steps",
+        "zh_cn": "最大步数"
+      },
+      "$description": {
+        "en_us": "Max Steps of this ForgingBlueprint.",
+        "zh_cn": "最大步数的值。"
+      },
+      "type": "integer",
+      "minimum": 0
+    },
+    "quality_by_extra_steps": {
+      "$title": {
+        "en_us": "Quality By Extra Steps",
+        "zh_cn": "按额外步数确定品质"
+      },
+      "$description": {
+        "en_us": "Quality By Extra Steps of this ForgingBlueprint.",
+        "zh_cn": "按额外步数确定品质的值。"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common-content#record_QualityThreshold",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      }
+    },
+    "result": {
+      "$title": {
+        "en_us": "Result",
+        "zh_cn": "结果"
+      },
+      "$description": {
+        "en_us": "Result of this ForgingBlueprint.",
+        "zh_cn": "结果的值。"
+      },
+      "type": "string"
+    },
+    "complete_action": {
+      "$title": {
+        "en_us": "Complete Action",
+        "zh_cn": "完成行为"
+      },
+      "$description": {
+        "en_us": "Complete Action of this ForgingBlueprint.",
+        "zh_cn": "完成行为的值。"
+      },
+      "oneOf": [
+        {
           "$title": {
-            "en_us": "Steps",
-            "zh_cn": "步骤"
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
           },
           "type": "array",
           "items": {
-            "type": "string",
-            "$registry": "mxt:forging_method",
+            "$type": "mxt-common-entity-action#entity_action",
             "$title": {
-              "en_us": "Forging Method",
-              "zh_cn": "锻打方式"
+              "en_us": "Item",
+              "zh_cn": "物品"
             },
             "$description": {
-              "en_us": "One of the six closing methods.",
-              "zh_cn": "六个收尾锻打方式之一。"
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
             }
-          },
-          "default": [],
-          "$description": {
-            "en_us": "Six method ids, or omitted when required_suffix_steps is 0. A non-zero requirement needs all six, and they must be methods this blueprint allows.",
-            "zh_cn": "六个锻打方式 ID；required_suffix_steps 为 0 时可以省略。要求步数非 0 时必须写满六项，且必须是本蓝图允许的方式。"
-          }
-        },
-        "required_suffix_steps": {
-          "$title": {
-            "en_us": "Required Suffix Steps",
-            "zh_cn": "要求末步数"
-          },
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 6,
-          "default": 0,
-          "$description": {
-            "en_us": "How many of the last strikes must match the tail of steps, 0 to 6. Zero means no closing requirement.",
-            "zh_cn": "末尾需要匹配的步数，范围 0..6。为 0 表示不要求收尾。"
           }
         }
-      }
+      ]
+    },
+    "fail_action": {
+      "$title": {
+        "en_us": "Fail Action",
+        "zh_cn": "失败行为"
+      },
+      "$description": {
+        "en_us": "Fail Action of this ForgingBlueprint.",
+        "zh_cn": "失败行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "failure_settlement": {
+      "$title": {
+        "en_us": "Failure Settlement",
+        "zh_cn": "失败结算"
+      },
+      "$description": {
+        "en_us": "Failure Settlement of this ForgingBlueprint.",
+        "zh_cn": "失败结算的值。"
+      },
+      "$type": "mxt-common-content#record_FailureSettlement"
     }
   },
   "id": "mxt-forging_blueprint",

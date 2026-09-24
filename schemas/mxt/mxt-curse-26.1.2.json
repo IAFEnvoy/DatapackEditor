@@ -8,130 +8,442 @@
     "zh_cn": "由觅仙途数据包加载的诅咒定义。"
   },
   "type": "object",
+  "required": [
+    "type"
+  ],
   "properties": {
+    "name": {
+      "$title": {
+        "en_us": "Name",
+        "zh_cn": "名称"
+      },
+      "$description": {
+        "en_us": "Name of this Curse.",
+        "zh_cn": "名称的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "description": {
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description of this Curse.",
+        "zh_cn": "描述的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "type": {
+      "$title": {
+        "en_us": "Type",
+        "zh_cn": "类型"
+      },
+      "$description": {
+        "en_us": "Type of this Curse.",
+        "zh_cn": "类型的值。"
+      },
+      "$type": "mxt-common-ability#curse_type"
+    },
     "duration_ticks": {
       "$title": {
         "en_us": "Duration Ticks",
         "zh_cn": "持续刻数"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "How long the curse lasts, in ticks.",
-        "zh_cn": "诅咒持续的时间，单位 tick。"
-      }
+        "en_us": "Duration Ticks of this Curse.",
+        "zh_cn": "持续刻数的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     },
     "tick_interval": {
       "$title": {
         "en_us": "Tick Interval",
         "zh_cn": "周期刻数"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "How often the curse ticks, in ticks.",
-        "zh_cn": "诅咒的触发间隔，单位 tick。"
-      }
+        "en_us": "Tick Interval of this Curse.",
+        "zh_cn": "周期刻数的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     },
     "max_stacks": {
       "$title": {
         "en_us": "Max Stacks",
         "zh_cn": "最大层数"
       },
-      "type": "integer",
-      "default": 1,
       "$description": {
-        "en_us": "Highest stack count the curse may reach.",
-        "zh_cn": "诅咒可以叠加到的最高层数。"
-      }
+        "en_us": "Max Stacks of this Curse.",
+        "zh_cn": "最大层数的值。"
+      },
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 256,
+      "default": 1
     },
     "stacking_mode": {
       "$title": {
         "en_us": "Stacking Mode",
         "zh_cn": "叠加模式"
       },
-      "$type": "mxt-common#record_StackingMode",
       "$description": {
-        "en_us": "How further applications combine with the stacks already there.",
-        "zh_cn": "再次施加时与已有层数的叠加方式。"
-      }
+        "en_us": "Stacking Mode of this Curse.",
+        "zh_cn": "叠加模式的值。"
+      },
+      "type": "string",
+      "enum": [
+        "ignore",
+        "refresh_duration",
+        "add_stacks_refresh_duration",
+        "add_stacks_keep_duration",
+        "replace"
+      ],
+      "$suggstion": true,
+      "default": "ignore"
     },
     "application_condition": {
       "$title": {
         "en_us": "Application Condition",
         "zh_cn": "施加条件"
       },
-      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Condition required before the curse may be applied.",
-        "zh_cn": "施加该诅咒前需要满足的条件。"
-      }
+        "en_us": "Application Condition of this Curse.",
+        "zh_cn": "施加条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "display_condition": {
+      "$title": {
+        "en_us": "Display Condition",
+        "zh_cn": "显示条件"
+      },
+      "$description": {
+        "en_us": "Display Condition of this Curse.",
+        "zh_cn": "显示条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "on_apply": {
       "$title": {
         "en_us": "On Apply",
         "zh_cn": "施加时行为"
       },
-      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Action run when the curse is applied.",
-        "zh_cn": "诅咒被施加时执行的行为。"
-      }
+        "en_us": "On Apply of this Curse.",
+        "zh_cn": "施加时行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "on_tick": {
       "$title": {
         "en_us": "On Tick",
         "zh_cn": "周期行为"
       },
-      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Action run on every curse tick.",
-        "zh_cn": "诅咒每刻执行的行为。"
-      }
-    },
-    "on_remove": {
-      "$title": {
-        "en_us": "On Remove",
-        "zh_cn": "移除时行为"
+        "en_us": "On Tick of this Curse.",
+        "zh_cn": "周期行为的值。"
       },
-      "$type": "mxt-common-entity-action#entity_action",
-      "$description": {
-        "en_us": "Action run when the curse ends or is cleansed.",
-        "zh_cn": "诅咒结束或被净化时执行的行为。"
-      }
-    },
-    "cleanse_tags": {
-      "$title": {
-        "en_us": "Cleanse Tags",
-        "zh_cn": "净化标签"
-      },
-      "type": "array",
-      "items": {
-        "type": "string",
-        "$title": {
-          "en_us": "Tag",
-          "zh_cn": "标签"
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
         },
-        "$description": {
-          "en_us": "One tag id.",
-          "zh_cn": "一个标签 ID。"
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Tags deciding which effects may cleanse this curse.",
-        "zh_cn": "决定哪些效果可以净化该诅咒的标签。"
-      }
+      ]
     },
-    "allow_force_remove": {
+    "on_expire": {
       "$title": {
-        "en_us": "Allow Force Remove",
-        "zh_cn": "允许强制移除"
+        "en_us": "On Expire",
+        "zh_cn": "在 Expire"
       },
-      "type": "boolean",
-      "default": false,
       "$description": {
-        "en_us": "Whether the curse may be removed by force.",
-        "zh_cn": "是否允许被强制移除。"
-      }
+        "en_us": "On Expire of this Curse.",
+        "zh_cn": "在 Expire的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "on_cleanse": {
+      "$title": {
+        "en_us": "On Cleanse",
+        "zh_cn": "在净化"
+      },
+      "$description": {
+        "en_us": "On Cleanse of this Curse.",
+        "zh_cn": "在净化的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     }
   },
   "id": "mxt-curse",

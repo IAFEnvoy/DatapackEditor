@@ -3,12 +3,12 @@
   "$library": true,
   "$version": "26.1.2",
   "$title": {
-    "en_us": "MiXianTu Bi-Entity Actions",
-    "zh_cn": "MiXianTu 双实体行为"
+    "en_us": "MiXianTu Bi-Entity-Action Types",
+    "zh_cn": "觅仙途 Bi-Entity-Action Types"
   },
   "$description": {
-    "en_us": "Actions involving an actor and a target.",
-    "zh_cn": "同时涉及执行者与目标的行为。"
+    "en_us": "Shared field types used by MiXianTu datapack schemas.",
+    "zh_cn": "觅仙途 Bi-Entity-Action Types的值。"
   },
   "$types": {
     "bi_entity_action": {
@@ -17,7 +17,7 @@
         "zh_cn": "双实体行为"
       },
       "$description": {
-        "en_us": "Bi Entity Action selected by a type identifier.",
+        "en_us": "Bi Entity Action selected by its type identifier.",
         "zh_cn": "双实体行为的值。"
       },
       "type": "object",
@@ -35,6 +35,7 @@
             "mxt:no_op",
             "mxt:js",
             "mxt:sequence",
+            "mxt:mount",
             "mxt:damage_target",
             "mxt:heal_target",
             "mxt:transfer_resource",
@@ -61,11 +62,10 @@
             "zh_cn": "无操作"
           },
           "$description": {
-            "en_us": "Does nothing.",
-            "zh_cn": "什么也不做。"
+            "en_us": "No Op bi_entity_action fields.",
+            "zh_cn": "无操作的值。"
           },
-          "type": "object",
-          "properties": {}
+          "type": "object"
         },
         "mxt:js": {
           "$title": {
@@ -73,8 +73,8 @@
             "zh_cn": "JS 表达式"
           },
           "$description": {
-            "en_us": "Runs a JavaScript callback with the actor and the target.",
-            "zh_cn": "以执行者与目标为参数执行 JavaScript 回调。"
+            "en_us": "Js bi_entity_action fields.",
+            "zh_cn": "JS 表达式的值。"
           },
           "type": "object",
           "properties": {
@@ -84,9 +84,10 @@
                 "zh_cn": "标识符"
               },
               "$description": {
-                "en_us": "Id value.",
+                "en_us": "Id of this JsBiEntityAction.",
                 "zh_cn": "标识符的值。"
-              }
+              },
+              "type": "string"
             },
             "params": {
               "$title": {
@@ -94,9 +95,10 @@
                 "zh_cn": "参数"
               },
               "$description": {
-                "en_us": "Params value.",
+                "en_us": "Params of this JsBiEntityAction.",
                 "zh_cn": "参数的值。"
-              }
+              },
+              "type": "object"
             }
           },
           "required": [
@@ -109,8 +111,8 @@
             "zh_cn": "顺序"
           },
           "$description": {
-            "en_us": "Runs several actions in order.",
-            "zh_cn": "按顺序执行多个行为。"
+            "en_us": "Sequence bi_entity_action fields.",
+            "zh_cn": "顺序的值。"
           },
           "type": "object",
           "properties": {
@@ -119,22 +121,21 @@
                 "en_us": "Actions",
                 "zh_cn": "行为"
               },
+              "$description": {
+                "en_us": "Actions of this SequenceBiEntityAction.",
+                "zh_cn": "行为的值。"
+              },
               "type": "array",
               "items": {
                 "$type": "mxt-common-bi-entity-action#bi_entity_action",
                 "$title": {
-                  "en_us": "Action",
-                  "zh_cn": "行为"
+                  "en_us": "Item",
+                  "zh_cn": "物品"
                 },
                 "$description": {
-                  "en_us": "One child action.",
-                  "zh_cn": "一个子行为。"
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
                 }
-              },
-              "default": [],
-              "$description": {
-                "en_us": "Actions value.",
-                "zh_cn": "行为的值。"
               }
             }
           },
@@ -142,14 +143,25 @@
             "actions"
           ]
         },
+        "mxt:mount": {
+          "$title": {
+            "en_us": "Mount",
+            "zh_cn": "骑乘"
+          },
+          "$description": {
+            "en_us": "Mount bi_entity_action fields.",
+            "zh_cn": "骑乘的值。"
+          },
+          "type": "object"
+        },
         "mxt:damage_target": {
           "$title": {
             "en_us": "Damage Target",
             "zh_cn": "伤害目标"
           },
           "$description": {
-            "en_us": "Deals damage to the target.",
-            "zh_cn": "对目标造成伤害。"
+            "en_us": "Damage Target bi_entity_action fields.",
+            "zh_cn": "伤害目标的值。"
           },
           "type": "object",
           "properties": {
@@ -158,11 +170,142 @@
                 "en_us": "Amount",
                 "zh_cn": "数量"
               },
-              "$type": "mxt-common#number_provider",
               "$description": {
-                "en_us": "Amount value.",
+                "en_us": "Amount of this DamageTargetBiEntityAction.",
                 "zh_cn": "数量的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            },
+            "damage_type": {
+              "$title": {
+                "en_us": "Damage Type",
+                "zh_cn": "伤害类型"
+              },
+              "$description": {
+                "en_us": "Damage Type of this DamageTargetBiEntityAction.",
+                "zh_cn": "伤害类型的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:damage_type"
+            },
+            "element": {
+              "$title": {
+                "en_us": "Element",
+                "zh_cn": "元素"
+              },
+              "$description": {
+                "en_us": "Element of this DamageTargetBiEntityAction.",
+                "zh_cn": "元素的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Identifier",
+                    "zh_cn": "标识符"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: identifier.",
+                    "zh_cn": "标识符的值。"
+                  },
+                  "type": "string",
+                  "$registry": "mxt:element"
+                },
+                {
+                  "$title": {
+                    "en_us": "Tag",
+                    "zh_cn": "标签"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: tag.",
+                    "zh_cn": "标签的值。"
+                  },
+                  "type": "string",
+                  "$registry": "mxt:element_tag",
+                  "pattern": "^#.+"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "$title": {
+                          "en_us": "Identifier",
+                          "zh_cn": "标识符"
+                        },
+                        "$description": {
+                          "en_us": "One accepted form of this value: identifier.",
+                          "zh_cn": "标识符的值。"
+                        },
+                        "type": "string",
+                        "$registry": "mxt:element"
+                      },
+                      {
+                        "$title": {
+                          "en_us": "Tag",
+                          "zh_cn": "标签"
+                        },
+                        "$description": {
+                          "en_us": "One accepted form of this value: tag.",
+                          "zh_cn": "标签的值。"
+                        },
+                        "type": "string",
+                        "$registry": "mxt:element_tag",
+                        "pattern": "^#.+"
+                      }
+                    ],
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -175,8 +318,8 @@
             "zh_cn": "治疗目标"
           },
           "$description": {
-            "en_us": "Heals the target.",
-            "zh_cn": "治疗目标。"
+            "en_us": "Heal Target bi_entity_action fields.",
+            "zh_cn": "治疗目标的值。"
           },
           "type": "object",
           "properties": {
@@ -185,11 +328,45 @@
                 "en_us": "Amount",
                 "zh_cn": "数量"
               },
-              "$type": "mxt-common#number_provider",
               "$description": {
-                "en_us": "Amount value.",
+                "en_us": "Amount of this HealTargetBiEntityAction.",
                 "zh_cn": "数量的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
             }
           },
           "required": [
@@ -202,8 +379,8 @@
             "zh_cn": "转移资源"
           },
           "$description": {
-            "en_us": "Moves an amount of a resource from one side to the other.",
-            "zh_cn": "把一定量的资源从一方转移到另一方。"
+            "en_us": "Transfer Resource bi_entity_action fields.",
+            "zh_cn": "转移资源的值。"
           },
           "type": "object",
           "properties": {
@@ -212,23 +389,57 @@
                 "en_us": "Resource",
                 "zh_cn": "资源"
               },
-              "type": "string",
-              "$registry": "mxt:resource",
               "$description": {
-                "en_us": "Resource value.",
+                "en_us": "Resource of this TransferResourceBiEntityAction.",
                 "zh_cn": "资源的值。"
-              }
+              },
+              "type": "string",
+              "$registry": "mxt:resource"
             },
             "amount": {
               "$title": {
                 "en_us": "Amount",
                 "zh_cn": "数量"
               },
-              "$type": "mxt-common#number_provider",
               "$description": {
-                "en_us": "Amount value.",
+                "en_us": "Amount of this TransferResourceBiEntityAction.",
                 "zh_cn": "数量的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
             }
           },
           "required": [
@@ -242,8 +453,8 @@
             "zh_cn": "施加速度"
           },
           "$description": {
-            "en_us": "Adds velocity to the target.",
-            "zh_cn": "给目标施加一个速度。"
+            "en_us": "Add Velocity bi_entity_action fields.",
+            "zh_cn": "施加速度的值。"
           },
           "type": "object",
           "properties": {
@@ -252,88 +463,89 @@
                 "en_us": "X",
                 "zh_cn": "X"
               },
-              "type": "number",
-              "default": 0,
               "$description": {
-                "en_us": "X value.",
+                "en_us": "X of this AddVelocityAction.",
                 "zh_cn": "X的值。"
-              }
+              },
+              "type": "number",
+              "default": 0
             },
             "y": {
               "$title": {
                 "en_us": "Y",
                 "zh_cn": "Y"
               },
-              "type": "number",
-              "default": 0,
               "$description": {
-                "en_us": "Y value.",
+                "en_us": "Y of this AddVelocityAction.",
                 "zh_cn": "Y的值。"
-              }
+              },
+              "type": "number",
+              "default": 0
             },
             "z": {
               "$title": {
                 "en_us": "Z",
                 "zh_cn": "Z"
               },
-              "type": "number",
-              "default": 0,
               "$description": {
-                "en_us": "Z value.",
+                "en_us": "Z of this AddVelocityAction.",
                 "zh_cn": "Z的值。"
-              }
+              },
+              "type": "number",
+              "default": 0
             },
             "reference": {
               "$title": {
                 "en_us": "Reference",
                 "zh_cn": "引用"
               },
+              "$description": {
+                "en_us": "Reference of this AddVelocityAction.",
+                "zh_cn": "引用的值。"
+              },
               "type": "string",
               "enum": [
                 "position",
                 "rotation"
               ],
-              "default": "position",
-              "$description": {
-                "en_us": "What the x/y/z offset is measured against: the position from the actor to the target, or the actor's facing.",
-                "zh_cn": "x/y/z 偏移相对的基准：执行者指向目标的位置，或执行者的朝向。"
-              }
+              "$suggstion": true,
+              "default": "position"
             },
             "client": {
               "$title": {
                 "en_us": "Client",
                 "zh_cn": "客户端"
               },
-              "type": "boolean",
-              "default": true,
               "$description": {
-                "en_us": "Client value.",
+                "en_us": "Client of this AddVelocityAction.",
                 "zh_cn": "客户端的值。"
-              }
+              },
+              "type": "boolean",
+              "default": true
             },
             "server": {
               "$title": {
                 "en_us": "Server",
                 "zh_cn": "服务端"
               },
-              "type": "boolean",
-              "default": true,
               "$description": {
-                "en_us": "Server value.",
+                "en_us": "Server of this AddVelocityAction.",
                 "zh_cn": "服务端的值。"
-              }
+              },
+              "type": "boolean",
+              "default": true
             },
             "set": {
               "$title": {
                 "en_us": "Set",
                 "zh_cn": "设置"
               },
-              "type": "boolean",
-              "default": false,
               "$description": {
-                "en_us": "Set value.",
+                "en_us": "Set of this AddVelocityAction.",
                 "zh_cn": "设置的值。"
-              }
+              },
+              "type": "boolean",
+              "default": false
             }
           }
         },
@@ -343,8 +555,8 @@
             "zh_cn": "传送"
           },
           "$description": {
-            "en_us": "Teleports one side to the other.",
-            "zh_cn": "把一方传送到另一方处。"
+            "en_us": "Teleport bi_entity_action fields.",
+            "zh_cn": "传送的值。"
           },
           "type": "object",
           "properties": {
@@ -353,36 +565,36 @@
                 "en_us": "Teleport Actor",
                 "zh_cn": "传送执行者"
               },
-              "type": "boolean",
-              "default": false,
               "$description": {
-                "en_us": "Teleport Actor value.",
+                "en_us": "Teleport Actor of this TeleportAction.",
                 "zh_cn": "传送执行者的值。"
-              }
+              },
+              "type": "boolean",
+              "default": false
             },
             "teleport_target": {
               "$title": {
                 "en_us": "Teleport Target",
                 "zh_cn": "传送目标"
               },
-              "type": "boolean",
-              "default": true,
               "$description": {
-                "en_us": "Teleport Target value.",
+                "en_us": "Teleport Target of this TeleportAction.",
                 "zh_cn": "传送目标的值。"
-              }
+              },
+              "type": "boolean",
+              "default": true
             },
             "rotate": {
               "$title": {
                 "en_us": "Rotate",
                 "zh_cn": "旋转"
               },
-              "type": "boolean",
-              "default": false,
               "$description": {
-                "en_us": "Rotate value.",
+                "en_us": "Rotate of this TeleportAction.",
                 "zh_cn": "旋转的值。"
-              }
+              },
+              "type": "boolean",
+              "default": false
             }
           }
         },
@@ -392,8 +604,8 @@
             "zh_cn": "概率"
           },
           "$description": {
-            "en_us": "Runs the child action with the given probability.",
-            "zh_cn": "按给定概率执行子行为。"
+            "en_us": "Chance bi_entity_action fields.",
+            "zh_cn": "概率的值。"
           },
           "type": "object",
           "properties": {
@@ -402,33 +614,103 @@
                 "en_us": "Action",
                 "zh_cn": "行为"
               },
-              "$type": "mxt-common-bi-entity-action#bi_entity_action",
               "$description": {
-                "en_us": "Action value.",
+                "en_us": "Action of this ChanceAction.",
                 "zh_cn": "行为的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Bi Entity Action",
+                    "zh_cn": "双实体行为"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: bi entity action.",
+                    "zh_cn": "双实体行为的值。"
+                  },
+                  "$type": "mxt-common-bi-entity-action#bi_entity_action"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-bi-entity-action#bi_entity_action",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             },
             "chance": {
               "$title": {
                 "en_us": "Chance",
                 "zh_cn": "概率"
               },
-              "type": "number",
               "$description": {
-                "en_us": "Chance value.",
+                "en_us": "Chance of this ChanceAction.",
                 "zh_cn": "概率的值。"
-              }
+              },
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
             },
             "fail_action": {
               "$title": {
                 "en_us": "Fail Action",
                 "zh_cn": "失败行为"
               },
-              "$type": "mxt-common-bi-entity-action#bi_entity_action",
               "$description": {
-                "en_us": "Fail Action value.",
+                "en_us": "Fail Action of this ChanceAction.",
                 "zh_cn": "失败行为的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Bi Entity Action",
+                    "zh_cn": "双实体行为"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: bi entity action.",
+                    "zh_cn": "双实体行为的值。"
+                  },
+                  "$type": "mxt-common-bi-entity-action#bi_entity_action"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-bi-entity-action#bi_entity_action",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -442,8 +724,8 @@
             "zh_cn": "条件分支"
           },
           "$description": {
-            "en_us": "Runs one of two actions, depending on a condition.",
-            "zh_cn": "按条件在两个行为中选择一个执行。"
+            "en_us": "If Else bi_entity_action fields.",
+            "zh_cn": "条件分支的值。"
           },
           "type": "object",
           "properties": {
@@ -452,33 +734,135 @@
                 "en_us": "Condition",
                 "zh_cn": "条件"
               },
-              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
               "$description": {
-                "en_us": "Condition value.",
+                "en_us": "Condition of this IfElseAction.",
                 "zh_cn": "条件的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Bi Entity Condition",
+                    "zh_cn": "双实体条件"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: bi entity condition.",
+                    "zh_cn": "双实体条件的值。"
+                  },
+                  "$type": "mxt-common-bi-entity-condition#bi_entity_condition"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             },
             "if_action": {
               "$title": {
                 "en_us": "If Action",
                 "zh_cn": "条件成立行为"
               },
-              "$type": "mxt-common-bi-entity-action#bi_entity_action",
               "$description": {
-                "en_us": "If Action value.",
+                "en_us": "If Action of this IfElseAction.",
                 "zh_cn": "条件成立行为的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Bi Entity Action",
+                    "zh_cn": "双实体行为"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: bi entity action.",
+                    "zh_cn": "双实体行为的值。"
+                  },
+                  "$type": "mxt-common-bi-entity-action#bi_entity_action"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-bi-entity-action#bi_entity_action",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             },
             "else_action": {
               "$title": {
                 "en_us": "Else Action",
                 "zh_cn": "否则行为"
               },
-              "$type": "mxt-common-bi-entity-action#bi_entity_action",
               "$description": {
-                "en_us": "Else Action value.",
+                "en_us": "Else Action of this IfElseAction.",
                 "zh_cn": "否则行为的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Bi Entity Action",
+                    "zh_cn": "双实体行为"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: bi entity action.",
+                    "zh_cn": "双实体行为的值。"
+                  },
+                  "$type": "mxt-common-bi-entity-action#bi_entity_action"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-bi-entity-action#bi_entity_action",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -492,8 +876,8 @@
             "zh_cn": "选择"
           },
           "$description": {
-            "en_us": "Picks one child action from a weighted list.",
-            "zh_cn": "从加权列表中随机挑选一个子行为。"
+            "en_us": "Choice bi_entity_action fields.",
+            "zh_cn": "选择的值。"
           },
           "type": "object",
           "properties": {
@@ -502,22 +886,83 @@
                 "en_us": "Actions",
                 "zh_cn": "行为"
               },
+              "$description": {
+                "en_us": "Actions of this ChoiceAction.",
+                "zh_cn": "行为的值。"
+              },
               "type": "array",
               "items": {
-                "$type": "mxt-common-bi-entity-action#bi_entity_action",
+                "type": "object",
+                "properties": {
+                  "element": {
+                    "$title": {
+                      "en_us": "Element",
+                      "zh_cn": "元素"
+                    },
+                    "$description": {
+                      "en_us": "Element of this ChoiceAction.",
+                      "zh_cn": "元素的值。"
+                    },
+                    "oneOf": [
+                      {
+                        "$title": {
+                          "en_us": "Bi Entity Action",
+                          "zh_cn": "双实体行为"
+                        },
+                        "$description": {
+                          "en_us": "One accepted form of this value: bi entity action.",
+                          "zh_cn": "双实体行为的值。"
+                        },
+                        "$type": "mxt-common-bi-entity-action#bi_entity_action"
+                      },
+                      {
+                        "$title": {
+                          "en_us": "List",
+                          "zh_cn": "列表"
+                        },
+                        "$description": {
+                          "en_us": "One accepted form of this value: list.",
+                          "zh_cn": "列表的值。"
+                        },
+                        "type": "array",
+                        "items": {
+                          "$type": "mxt-common-bi-entity-action#bi_entity_action",
+                          "$title": {
+                            "en_us": "Item",
+                            "zh_cn": "物品"
+                          },
+                          "$description": {
+                            "en_us": "Item value.",
+                            "zh_cn": "物品的值。"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "weight": {
+                    "$title": {
+                      "en_us": "Weight",
+                      "zh_cn": "权重"
+                    },
+                    "$description": {
+                      "en_us": "Weight of this ChoiceAction.",
+                      "zh_cn": "权重的值。"
+                    },
+                    "type": "integer",
+                    "default": 1
+                  }
+                },
+                "required": [
+                  "element"
+                ],
                 "$title": {
-                  "en_us": "Action",
-                  "zh_cn": "行为"
+                  "en_us": "Item",
+                  "zh_cn": "物品"
                 },
                 "$description": {
-                  "en_us": "One child action.",
-                  "zh_cn": "一个子行为。"
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
                 }
-              },
-              "default": [],
-              "$description": {
-                "en_us": "Actions value.",
-                "zh_cn": "行为的值。"
               }
             }
           },
@@ -531,8 +976,8 @@
             "zh_cn": "执行者行为"
           },
           "$description": {
-            "en_us": "Runs an action on the actor.",
-            "zh_cn": "对执行者执行行为。"
+            "en_us": "Actor Action bi_entity_action fields.",
+            "zh_cn": "执行者行为的值。"
           },
           "type": "object",
           "properties": {
@@ -541,11 +986,45 @@
                 "en_us": "Action",
                 "zh_cn": "行为"
               },
-              "$type": "mxt-common-entity-action#entity_action",
               "$description": {
-                "en_us": "Action value.",
+                "en_us": "Action of this ActorAction.",
                 "zh_cn": "行为的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Entity Action",
+                    "zh_cn": "实体行为"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: entity action.",
+                    "zh_cn": "实体行为的值。"
+                  },
+                  "$type": "mxt-common-entity-action#entity_action"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-entity-action#entity_action",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -558,8 +1037,8 @@
             "zh_cn": "目标行为"
           },
           "$description": {
-            "en_us": "Runs an action on the target.",
-            "zh_cn": "对目标执行行为。"
+            "en_us": "Target Action bi_entity_action fields.",
+            "zh_cn": "目标行为的值。"
           },
           "type": "object",
           "properties": {
@@ -568,11 +1047,45 @@
                 "en_us": "Action",
                 "zh_cn": "行为"
               },
-              "$type": "mxt-common-entity-action#entity_action",
               "$description": {
-                "en_us": "Action value.",
+                "en_us": "Action of this TargetAction.",
                 "zh_cn": "行为的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Entity Action",
+                    "zh_cn": "实体行为"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: entity action.",
+                    "zh_cn": "实体行为的值。"
+                  },
+                  "$type": "mxt-common-entity-action#entity_action"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-entity-action#entity_action",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [

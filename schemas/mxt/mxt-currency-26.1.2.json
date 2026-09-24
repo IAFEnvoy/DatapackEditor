@@ -8,38 +8,161 @@
     "zh_cn": "由觅仙途数据包加载的货币面额与兑换价值定义。"
   },
   "type": "object",
+  "required": [
+    "value",
+    "exchanges"
+  ],
   "properties": {
     "items": {
       "$title": {
         "en_us": "Items",
         "zh_cn": "物品"
       },
-      "$type": "mxt-common#item_matcher",
       "$description": {
-        "en_us": "Items this currency definition covers.",
-        "zh_cn": "该货币定义覆盖的物品。"
-      }
+        "en_us": "Items of this CurrencyValue.",
+        "zh_cn": "物品的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:item"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:item_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "Item Matcher Entry",
+            "zh_cn": "物品匹配器条目"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: item matcher entry.",
+            "zh_cn": "物品匹配器条目的值。"
+          },
+          "$type": "mxt-common#item_matcher_entry"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:item"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:item_tag",
+                "pattern": "^#.+"
+              },
+              {
+                "$title": {
+                  "en_us": "Item Matcher Entry",
+                  "zh_cn": "物品匹配器条目"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: item matcher entry.",
+                  "zh_cn": "物品匹配器条目的值。"
+                },
+                "$type": "mxt-common#item_matcher_entry"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "item": {
       "$title": {
         "en_us": "Item",
         "zh_cn": "物品"
       },
-      "type": "string",
       "$description": {
-        "en_us": "The item of one currency entry.",
-        "zh_cn": "单个货币条目对应的物品。"
-      }
+        "en_us": "Item of this CurrencyValue.",
+        "zh_cn": "物品的值。"
+      },
+      "type": "string",
+      "$registry": "minecraft:item"
     },
     "value": {
       "$title": {
         "en_us": "Value",
         "zh_cn": "值"
       },
-      "type": "integer",
       "$description": {
-        "en_us": "Worth of one unit, used when currencies are exchanged.",
-        "zh_cn": "一单位该货币的价值，用于兑换换算。"
+        "en_us": "Value of this CurrencyValue.",
+        "zh_cn": "值的值。"
+      },
+      "type": "integer"
+    },
+    "unavailable_when": {
+      "$title": {
+        "en_us": "Unavailable When",
+        "zh_cn": "Unavailable When"
+      },
+      "$description": {
+        "en_us": "Unavailable When of this CurrencyValue.",
+        "zh_cn": "Unavailable When的值。"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_UnavailableWhen",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
       }
     },
     "exchanges": {
@@ -47,29 +170,24 @@
         "en_us": "Exchanges",
         "zh_cn": "兑换项目"
       },
+      "$description": {
+        "en_us": "Exchanges of this CurrencyValue.",
+        "zh_cn": "兑换项目的值。"
+      },
       "type": "array",
       "items": {
-        "$type": "mxt-common-content#record_Exchange",
+        "$type": "mxt-common#record_Exchange",
         "$title": {
-          "en_us": "Exchange",
-          "zh_cn": "兑换项"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One exchange entry.",
-          "zh_cn": "一个兑换项。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Currency exchange entries.",
-        "zh_cn": "可进行的货币兑换项。"
       }
     }
   },
-  "required": [
-    "value",
-    "exchanges"
-  ],
   "id": "mxt-currency",
   "$version": "26.1.2",
   "$registry": "mxt:currency",

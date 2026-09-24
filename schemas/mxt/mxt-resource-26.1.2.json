@@ -8,124 +8,223 @@
     "zh_cn": "定义实体持有的可消耗数值，例如灵力、真元或神识；上限与恢复量可按境界和已吸收灵气动态计算。"
   },
   "type": "object",
+  "required": [
+    "default_value",
+    "max"
+  ],
   "properties": {
+    "name": {
+      "$title": {
+        "en_us": "Name",
+        "zh_cn": "名称"
+      },
+      "$description": {
+        "en_us": "Name of this Resource.",
+        "zh_cn": "名称的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "description": {
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description of this Resource.",
+        "zh_cn": "描述的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
     "default_value": {
       "$title": {
         "en_us": "Default Value",
         "zh_cn": "初始值"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Value written when an entity first gains this resource.",
+        "en_us": "Default Value of this Resource.",
         "zh_cn": "实体首次获得此数值资源时写入的当前值；最终值会被最小值与最大值限制。"
-      }
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     },
     "min": {
       "$title": {
         "en_us": "Min",
         "zh_cn": "最小值"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Lowest value this resource may hold. Omit it for 0.",
+        "en_us": "Min of this Resource.",
         "zh_cn": "该数值资源允许的最低当前值。省略时为 0；支持数值或公式。"
-      }
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     },
     "max": {
       "$title": {
         "en_us": "Max",
         "zh_cn": "最大值"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Upper limit of the resource. A formula may read the realm, level and absorbed aura.",
+        "en_us": "Max of this Resource.",
         "zh_cn": "该数值资源的当前上限，支持数值或公式。公式可使用 realm、realm_rank、level、absorbed_aura 与 cultivation_progress。"
-      }
-    },
-    "regen": {
-      "$title": {
-        "en_us": "Regen",
-        "zh_cn": "每刻恢复量"
       },
-      "$type": "mxt-common#number_provider",
-      "$description": {
-        "en_us": "How much is restored per tick. Omit it for no regeneration.",
-        "zh_cn": "每游戏刻自动增加的数值，支持数值或公式。省略时不自动恢复。"
-      }
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     },
     "icon": {
       "$title": {
-        "en_us": "Hotbar Icon",
-        "zh_cn": "快捷栏图标"
+        "en_us": "Icon",
+        "zh_cn": "图标"
       },
-      "$type": "mxt-common#hotbar_icon",
       "$description": {
-        "en_us": "Optional icon used by the spirit-burst hotbar. Without one, the resource name is shown.",
-        "zh_cn": "灵气发射快捷栏的可选图标；未填写时显示资源名称。"
-      }
+        "en_us": "Icon of this Resource.",
+        "zh_cn": "图标的值。"
+      },
+      "$type": "mxt-common#record_IconReference"
     },
-    "cultivation_to_resource": {
+    "particle_color": {
       "$title": {
-        "en_us": "Cultivation To Resource",
-        "zh_cn": "修为转蓝"
+        "en_us": "Particle Color",
+        "zh_cn": "粒子颜色"
       },
-      "$type": "mxt-common#record_ResourceConversion",
       "$description": {
-        "en_us": "Conversion that refills the resource from cultivation progress.",
-        "zh_cn": "从修为计数回充资源的转换配置，含倍率与每刻源修为上限。"
-      }
-    },
-    "resource_to_cultivation": {
-      "$title": {
-        "en_us": "Resource To Cultivation",
-        "zh_cn": "蓝转修为"
+        "en_us": "Particle Color of this Resource.",
+        "zh_cn": "粒子颜色的值。"
       },
-      "$type": "mxt-common#record_ResourceConversion",
-      "$description": {
-        "en_us": "Conversion that turns the resource back into cultivation progress.",
-        "zh_cn": "培养行为运行时从资源转为修为计数的转换配置，含倍率与每刻源蓝条上限。"
-      }
+      "type": [
+        "integer",
+        "string"
+      ],
+      "default": 1048575
     },
     "bars": {
       "$title": {
         "en_us": "Bars",
         "zh_cn": "资源条"
       },
+      "$description": {
+        "en_us": "Bars of this Resource.",
+        "zh_cn": "此资源的内联 HUD 显示条；资源归属由父级定义自动确定。"
+      },
       "type": "array",
       "items": {
-        "$type": "mxt-common-resource#record_ResourceBar",
+        "$type": "mxt-common-ability#record_ResourceBar",
         "$title": {
-          "en_us": "Bar",
-          "zh_cn": "资源条"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One HUD bar.",
-          "zh_cn": "一条资源条。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "HUD bars drawn for this resource.",
-        "zh_cn": "此资源的内联 HUD 显示条；资源归属由父级定义自动确定。"
-      }
-    },
-    "first_realm": {
-      "$title": {
-        "en_us": "First Realm",
-        "zh_cn": "首个境界"
-      },
-      "type": "string",
-      "$registry": "mxt:realm_stage",
-      "$description": {
-        "en_us": "First realm of the chain this resource's formulas read from.",
-        "zh_cn": "此资源绑定的线性境界链起点；用于为上限和恢复公式提供境界等级与已吸收灵气。"
       }
     }
   },
-  "required": [
-    "default_value",
-    "max"
-  ],
   "id": "mxt-resource",
   "$version": "26.1.2",
   "$registry": "mxt:resource",

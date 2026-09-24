@@ -1,0 +1,105 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Quality Chain",
+    "zh_cn": "觅仙途品质链"
+  },
+  "$description": {
+    "en_us": "Data-driven Quality Chain definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的品质链与升品条件定义。"
+  },
+  "type": "object",
+  "required": [
+    "tiers"
+  ],
+  "properties": {
+    "name": {
+      "$title": {
+        "en_us": "Name",
+        "zh_cn": "名称"
+      },
+      "$description": {
+        "en_us": "Name of this QualityChain.",
+        "zh_cn": "名称的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "description": {
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description of this QualityChain.",
+        "zh_cn": "描述的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "tiers": {
+      "$title": {
+        "en_us": "Tiers",
+        "zh_cn": "Tiers"
+      },
+      "$description": {
+        "en_us": "Tiers of this QualityChain.",
+        "zh_cn": "Tiers的值。"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$registry": "mxt:quality",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      }
+    },
+    "default": {
+      "$title": {
+        "en_us": "Default",
+        "zh_cn": "默认"
+      },
+      "$description": {
+        "en_us": "Default of this QualityChain.",
+        "zh_cn": "默认的值。"
+      },
+      "type": "string",
+      "$registry": "mxt:quality"
+    },
+    "upgrades": {
+      "$title": {
+        "en_us": "Upgrades",
+        "zh_cn": "升级"
+      },
+      "$description": {
+        "en_us": "Upgrades of this QualityChain.",
+        "zh_cn": "升级的值。"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common-content#record_Step",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      }
+    }
+  },
+  "id": "mxt-quality_chain",
+  "$version": "26.1.2",
+  "$registry": "mxt:quality_chain",
+  "$path": "data/<namespace>/mxt/quality_chain/<path>.json"
+}

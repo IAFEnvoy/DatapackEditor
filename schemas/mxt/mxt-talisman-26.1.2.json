@@ -1,25 +1,50 @@
 {
   "$title": {
-    "en_us": "MiXianTu Block Aura",
-    "zh_cn": "觅仙途方块灵气"
+    "en_us": "MiXianTu Talisman",
+    "zh_cn": "觅仙途符箓"
   },
   "$description": {
-    "en_us": "Data-driven Block Aura definition from MiXianTu.",
-    "zh_cn": "由觅仙途数据包加载的方块灵气定义。"
+    "en_us": "Data-driven Talisman definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的符箓定义。"
   },
   "type": "object",
-  "required": [
-    "blocks"
-  ],
   "properties": {
-    "blocks": {
+    "name": {
       "$title": {
-        "en_us": "Blocks",
-        "zh_cn": "方块"
+        "en_us": "Name",
+        "zh_cn": "名称"
       },
       "$description": {
-        "en_us": "Blocks of this BlockAura.",
-        "zh_cn": "方块的值。"
+        "en_us": "Name of this Talisman.",
+        "zh_cn": "名称的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "description": {
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description of this Talisman.",
+        "zh_cn": "描述的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "abilities": {
+      "$title": {
+        "en_us": "Abilities",
+        "zh_cn": "技能"
+      },
+      "$description": {
+        "en_us": "Abilities of this Talisman.",
+        "zh_cn": "技能的值。"
       },
       "oneOf": [
         {
@@ -32,7 +57,7 @@
             "zh_cn": "标识符的值。"
           },
           "type": "string",
-          "$registry": "minecraft:block"
+          "$registry": "mxt:ability"
         },
         {
           "$title": {
@@ -44,7 +69,7 @@
             "zh_cn": "标签的值。"
           },
           "type": "string",
-          "$registry": "minecraft:block_tag",
+          "$registry": "mxt:ability_tag",
           "pattern": "^#.+"
         },
         {
@@ -69,7 +94,7 @@
                   "zh_cn": "标识符的值。"
                 },
                 "type": "string",
-                "$registry": "minecraft:block"
+                "$registry": "mxt:ability"
               },
               {
                 "$title": {
@@ -81,7 +106,7 @@
                   "zh_cn": "标签的值。"
                 },
                 "type": "string",
-                "$registry": "minecraft:block_tag",
+                "$registry": "mxt:ability_tag",
                 "pattern": "^#.+"
               }
             ],
@@ -97,18 +122,52 @@
         }
       ]
     },
-    "aura": {
+    "aura_cost": {
       "$title": {
-        "en_us": "Aura",
-        "zh_cn": "灵气"
+        "en_us": "Aura Cost",
+        "zh_cn": "灵气消耗"
       },
       "$description": {
-        "en_us": "Aura of this BlockAura.",
-        "zh_cn": "灵气的值。"
+        "en_us": "Aura Cost of this Talisman.",
+        "zh_cn": "灵气消耗的值。"
       },
       "type": "object",
       "additionalProperties": {
-        "$type": "mxt-common-aura#record_AuraValue",
+        "oneOf": [
+          {
+            "$title": {
+              "en_us": "Text",
+              "zh_cn": "文本"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: text.",
+              "zh_cn": "文本的值。"
+            },
+            "type": "string"
+          },
+          {
+            "$title": {
+              "en_us": "Number",
+              "zh_cn": "数值"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: number.",
+              "zh_cn": "数值的值。"
+            },
+            "type": "number"
+          },
+          {
+            "$title": {
+              "en_us": "Number Provider",
+              "zh_cn": "数值提供器"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: number provider.",
+              "zh_cn": "数值提供器的值。"
+            },
+            "$type": "mxt-common#number_provider"
+          }
+        ],
         "$title": {
           "en_us": "Property",
           "zh_cn": "条目"
@@ -120,8 +179,8 @@
       }
     }
   },
-  "id": "mxt-block_aura",
+  "id": "mxt-talisman",
   "$version": "26.1.2",
-  "$registry": "mxt:block_aura",
-  "$path": "data/<namespace>/mxt/block_aura/<path>.json"
+  "$registry": "mxt:talisman",
+  "$path": "data/<namespace>/mxt/talisman/<path>.json"
 }

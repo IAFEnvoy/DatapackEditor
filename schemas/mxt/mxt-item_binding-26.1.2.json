@@ -5,70 +5,381 @@
   },
   "$description": {
     "en_us": "Data-driven Item Binding definition from MiXianTu.",
-    "zh_cn": "由觅仙途数据包加载的物品行为绑定定义。"
+    "zh_cn": "由觅仙途数据包加载的物品绑定定义。"
   },
   "type": "object",
+  "required": [
+    "items"
+  ],
   "properties": {
     "items": {
       "$title": {
         "en_us": "Items",
         "zh_cn": "物品"
       },
-      "$type": "mxt-common#item_matcher",
       "$description": {
-        "en_us": "Items this binding applies to.",
-        "zh_cn": "该绑定适用的物品。"
-      }
+        "en_us": "Items of this ItemBinding.",
+        "zh_cn": "物品的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:item"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:item_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "Item Matcher Entry",
+            "zh_cn": "物品匹配器条目"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: item matcher entry.",
+            "zh_cn": "物品匹配器条目的值。"
+          },
+          "$type": "mxt-common#item_matcher_entry"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:item"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:item_tag",
+                "pattern": "^#.+"
+              },
+              {
+                "$title": {
+                  "en_us": "Item Matcher Entry",
+                  "zh_cn": "物品匹配器条目"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: item matcher entry.",
+                  "zh_cn": "物品匹配器条目的值。"
+                },
+                "$type": "mxt-common#item_matcher_entry"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "actions": {
       "$title": {
         "en_us": "Actions",
         "zh_cn": "行为"
       },
+      "$description": {
+        "en_us": "Actions of this ItemBinding.",
+        "zh_cn": "行为的值。"
+      },
       "type": "array",
       "items": {
         "$type": "mxt-common-entity-action#entity_action",
         "$title": {
-          "en_us": "Action",
-          "zh_cn": "行为"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One child action.",
-          "zh_cn": "一个子行为。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Actions run for items matching this binding.",
-        "zh_cn": "匹配该绑定的物品所执行的行为。"
       }
     },
-    "quality_group": {
+    "quality_chain": {
       "$title": {
-        "en_us": "Quality Group",
-        "zh_cn": "品质组"
+        "en_us": "Quality Chain",
+        "zh_cn": "品质链"
       },
-      "$type": "mxt-common#item_quality_tag",
       "$description": {
-        "en_us": "Quality group shared by these items.",
-        "zh_cn": "这些物品共用的品质组。"
-      }
+        "en_us": "Quality Chain of this ItemBinding.",
+        "zh_cn": "品质链的值。"
+      },
+      "type": "string",
+      "$registry": "mxt:quality_chain"
     },
-    "condition": {
+    "conditions": {
       "$title": {
-        "en_us": "Condition",
+        "en_us": "Conditions",
         "zh_cn": "条件"
       },
-      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Condition an item has to meet for the binding to apply.",
-        "zh_cn": "物品需要满足的条件，满足后该绑定才生效。"
+        "en_us": "Conditions of this ItemBinding.",
+        "zh_cn": "条件的值。"
+      },
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$title": {
+              "en_us": "Object",
+              "zh_cn": "对象"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: object.",
+              "zh_cn": "对象的值。"
+            },
+            "type": "object",
+            "properties": {
+              "condition": {
+                "$title": {
+                  "en_us": "Condition",
+                  "zh_cn": "条件"
+                },
+                "$description": {
+                  "en_us": "Condition of this ItemBinding.",
+                  "zh_cn": "条件的值。"
+                },
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Entity Condition",
+                      "zh_cn": "实体条件"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: entity condition.",
+                      "zh_cn": "实体条件的值。"
+                    },
+                    "$type": "mxt-common-entity-condition#entity_condition"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "List",
+                      "zh_cn": "列表"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: list.",
+                      "zh_cn": "列表的值。"
+                    },
+                    "type": "array",
+                    "items": {
+                      "$type": "mxt-common-entity-condition#entity_condition",
+                      "$title": {
+                        "en_us": "Item",
+                        "zh_cn": "物品"
+                      },
+                      "$description": {
+                        "en_us": "Item value.",
+                        "zh_cn": "物品的值。"
+                      }
+                    }
+                  }
+                ]
+              },
+              "description": {
+                "$title": {
+                  "en_us": "Description",
+                  "zh_cn": "描述"
+                },
+                "$description": {
+                  "en_us": "Description of this ItemBinding.",
+                  "zh_cn": "描述的值。"
+                },
+                "type": "string"
+              }
+            },
+            "required": [
+              "condition"
+            ]
+          },
+          {
+            "$title": {
+              "en_us": "Entity Condition",
+              "zh_cn": "实体条件"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: entity condition.",
+              "zh_cn": "实体条件的值。"
+            },
+            "$type": "mxt-common-entity-condition#entity_condition"
+          },
+          {
+            "$title": {
+              "en_us": "List",
+              "zh_cn": "列表"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: list.",
+              "zh_cn": "列表的值。"
+            },
+            "type": "array",
+            "items": {
+              "$type": "mxt-common-entity-condition#entity_condition",
+              "$title": {
+                "en_us": "Item",
+                "zh_cn": "物品"
+              },
+              "$description": {
+                "en_us": "Item value.",
+                "zh_cn": "物品的值。"
+              }
+            }
+          }
+        ],
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
       }
+    },
+    "element": {
+      "$title": {
+        "en_us": "Element",
+        "zh_cn": "元素"
+      },
+      "$description": {
+        "en_us": "Element of this ItemBinding.",
+        "zh_cn": "元素的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:element"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:element_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:element"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:element_tag",
+                "pattern": "^#.+"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "attachment_multiplier": {
+      "$title": {
+        "en_us": "Attachment Multiplier",
+        "zh_cn": "Attachment 倍率"
+      },
+      "$description": {
+        "en_us": "Attachment Multiplier of this ItemBinding.",
+        "zh_cn": "Attachment 倍率的值。"
+      },
+      "type": "number",
+      "minimum": 0,
+      "default": 1
     }
   },
-  "required": [
-    "items"
-  ],
   "id": "mxt-item_binding",
   "$version": "26.1.2",
   "$registry": "mxt:item_binding",

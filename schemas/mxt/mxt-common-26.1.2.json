@@ -7,54 +7,643 @@
     "zh_cn": "MiXianTu 通用类型"
   },
   "$description": {
-    "en_us": "Primitives and shared value records every other MiXianTu schema builds on.",
+    "en_us": "Shared field types used by MiXianTu datapack schemas.",
     "zh_cn": "供其他 MiXianTu Schema 引用的基础字段类型与共用数值记录。"
   },
   "$types": {
+    "cost": {
+      "$title": {
+        "en_us": "Cost",
+        "zh_cn": "消耗"
+      },
+      "$description": {
+        "en_us": "Cost selected by its type identifier.",
+        "zh_cn": "消耗的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:resource",
+            "mxt:aura",
+            "mxt:item",
+            "mxt:js"
+          ],
+          "$suggstion": true,
+          "default": "mxt:resource",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:resource": {
+          "$title": {
+            "en_us": "Resource",
+            "zh_cn": "资源"
+          },
+          "$description": {
+            "en_us": "Resource cost fields.",
+            "zh_cn": "资源的值。"
+          },
+          "type": "object",
+          "properties": {
+            "resource": {
+              "$title": {
+                "en_us": "Resource",
+                "zh_cn": "资源"
+              },
+              "$description": {
+                "en_us": "Resource of this ResourceCost.",
+                "zh_cn": "资源的值。"
+              },
+              "type": "string",
+              "$registry": "mxt:resource"
+            },
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$description": {
+                "en_us": "Amount of this ResourceCost.",
+                "zh_cn": "数量的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            }
+          },
+          "required": [
+            "resource",
+            "amount"
+          ]
+        },
+        "mxt:aura": {
+          "$title": {
+            "en_us": "Aura",
+            "zh_cn": "灵气"
+          },
+          "$description": {
+            "en_us": "Aura cost fields.",
+            "zh_cn": "灵气的值。"
+          },
+          "type": "object",
+          "properties": {
+            "aura": {
+              "$title": {
+                "en_us": "Aura",
+                "zh_cn": "灵气"
+              },
+              "$description": {
+                "en_us": "Aura of this AuraCost.",
+                "zh_cn": "灵气的值。"
+              },
+              "type": "string",
+              "$registry": "mxt:aura"
+            },
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$description": {
+                "en_us": "Amount of this AuraCost.",
+                "zh_cn": "数量的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            }
+          },
+          "required": [
+            "aura",
+            "amount"
+          ]
+        },
+        "mxt:item": {
+          "$title": {
+            "en_us": "Item",
+            "zh_cn": "物品"
+          },
+          "$description": {
+            "en_us": "Item cost fields.",
+            "zh_cn": "物品的值。"
+          },
+          "type": "object",
+          "properties": {
+            "items": {
+              "$title": {
+                "en_us": "Items",
+                "zh_cn": "物品"
+              },
+              "$description": {
+                "en_us": "Items of this ItemCost.",
+                "zh_cn": "物品的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Identifier",
+                    "zh_cn": "标识符"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: identifier.",
+                    "zh_cn": "标识符的值。"
+                  },
+                  "type": "string",
+                  "$registry": "minecraft:item"
+                },
+                {
+                  "$title": {
+                    "en_us": "Tag",
+                    "zh_cn": "标签"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: tag.",
+                    "zh_cn": "标签的值。"
+                  },
+                  "type": "string",
+                  "$registry": "minecraft:item_tag",
+                  "pattern": "^#.+"
+                },
+                {
+                  "$title": {
+                    "en_us": "Item Matcher Entry",
+                    "zh_cn": "物品匹配器条目"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: item matcher entry.",
+                    "zh_cn": "物品匹配器条目的值。"
+                  },
+                  "$type": "mxt-common#item_matcher_entry"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "$title": {
+                          "en_us": "Identifier",
+                          "zh_cn": "标识符"
+                        },
+                        "$description": {
+                          "en_us": "One accepted form of this value: identifier.",
+                          "zh_cn": "标识符的值。"
+                        },
+                        "type": "string",
+                        "$registry": "minecraft:item"
+                      },
+                      {
+                        "$title": {
+                          "en_us": "Tag",
+                          "zh_cn": "标签"
+                        },
+                        "$description": {
+                          "en_us": "One accepted form of this value: tag.",
+                          "zh_cn": "标签的值。"
+                        },
+                        "type": "string",
+                        "$registry": "minecraft:item_tag",
+                        "pattern": "^#.+"
+                      },
+                      {
+                        "$title": {
+                          "en_us": "Item Matcher Entry",
+                          "zh_cn": "物品匹配器条目"
+                        },
+                        "$description": {
+                          "en_us": "One accepted form of this value: item matcher entry.",
+                          "zh_cn": "物品匹配器条目的值。"
+                        },
+                        "$type": "mxt-common#item_matcher_entry"
+                      }
+                    ],
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
+            },
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$description": {
+                "en_us": "Amount of this ItemCost.",
+                "zh_cn": "数量的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            }
+          },
+          "required": [
+            "items",
+            "amount"
+          ]
+        },
+        "mxt:js": {
+          "$title": {
+            "en_us": "Js",
+            "zh_cn": "JS 表达式"
+          },
+          "$description": {
+            "en_us": "Js cost fields.",
+            "zh_cn": "JS 表达式的值。"
+          },
+          "type": "object",
+          "properties": {
+            "id": {
+              "$title": {
+                "en_us": "Id",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "Id of this JsCost.",
+                "zh_cn": "标识符的值。"
+              },
+              "type": "string"
+            },
+            "params": {
+              "$title": {
+                "en_us": "Params",
+                "zh_cn": "参数"
+              },
+              "$description": {
+                "en_us": "Params of this JsCost.",
+                "zh_cn": "参数的值。"
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "id"
+          ]
+        }
+      }
+    },
+    "item_matcher_entry": {
+      "$title": {
+        "en_us": "Item Matcher Entry",
+        "zh_cn": "物品匹配器条目"
+      },
+      "$description": {
+        "en_us": "Item Matcher Entry selected by its type identifier.",
+        "zh_cn": "物品匹配器条目的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:item",
+            "mxt:tag",
+            "mxt:wildcard",
+            "mxt:regex",
+            "mxt:spirit_storage",
+            "mxt:herb_tag",
+            "mxt:technique"
+          ],
+          "$suggstion": true,
+          "default": "mxt:item",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:item": {
+          "$title": {
+            "en_us": "Item",
+            "zh_cn": "物品"
+          },
+          "$description": {
+            "en_us": "Item item_matcher_entry fields.",
+            "zh_cn": "物品的值。"
+          },
+          "type": "object",
+          "properties": {
+            "item": {
+              "$title": {
+                "en_us": "Item",
+                "zh_cn": "物品"
+              },
+              "$description": {
+                "en_us": "Item of this ItemEntry.",
+                "zh_cn": "物品的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:item"
+            }
+          },
+          "required": [
+            "item"
+          ]
+        },
+        "mxt:tag": {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "Tag item_matcher_entry fields.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "object",
+          "properties": {
+            "tag": {
+              "$title": {
+                "en_us": "Tag",
+                "zh_cn": "标签"
+              },
+              "$description": {
+                "en_us": "Tag of this TagEntry.",
+                "zh_cn": "标签的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:item_tag",
+              "pattern": "^#.+"
+            }
+          },
+          "required": [
+            "tag"
+          ]
+        },
+        "mxt:wildcard": {
+          "$title": {
+            "en_us": "Wildcard",
+            "zh_cn": "通配符"
+          },
+          "$description": {
+            "en_us": "Wildcard item_matcher_entry fields.",
+            "zh_cn": "通配符的值。"
+          },
+          "type": "object",
+          "properties": {
+            "pattern": {
+              "$title": {
+                "en_us": "Pattern",
+                "zh_cn": "图案"
+              },
+              "$description": {
+                "en_us": "Pattern of this WildcardEntry.",
+                "zh_cn": "图案的值。"
+              },
+              "type": "string"
+            }
+          },
+          "required": [
+            "pattern"
+          ]
+        },
+        "mxt:regex": {
+          "$title": {
+            "en_us": "Regex",
+            "zh_cn": "正则"
+          },
+          "$description": {
+            "en_us": "Regex item_matcher_entry fields.",
+            "zh_cn": "正则的值。"
+          },
+          "type": "object",
+          "properties": {
+            "pattern": {
+              "$title": {
+                "en_us": "Pattern",
+                "zh_cn": "图案"
+              },
+              "$description": {
+                "en_us": "Pattern of this RegexEntry.",
+                "zh_cn": "图案的值。"
+              },
+              "type": "string"
+            }
+          },
+          "required": [
+            "pattern"
+          ]
+        },
+        "mxt:spirit_storage": {
+          "$title": {
+            "en_us": "Spirit Storage",
+            "zh_cn": "灵储物"
+          },
+          "$description": {
+            "en_us": "Spirit Storage item_matcher_entry fields.",
+            "zh_cn": "灵储物的值。"
+          },
+          "type": "object"
+        },
+        "mxt:herb_tag": {
+          "$title": {
+            "en_us": "Herb Tag",
+            "zh_cn": "Herb 标签"
+          },
+          "$description": {
+            "en_us": "Herb Tag item_matcher_entry fields.",
+            "zh_cn": "Herb 标签的值。"
+          },
+          "type": "object",
+          "properties": {
+            "element": {
+              "$title": {
+                "en_us": "Element",
+                "zh_cn": "元素"
+              },
+              "$description": {
+                "en_us": "Element of this HerbTagEntry.",
+                "zh_cn": "元素的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Identifier",
+                    "zh_cn": "标识符"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: identifier.",
+                    "zh_cn": "标识符的值。"
+                  },
+                  "type": "string",
+                  "$registry": "mxt:element"
+                },
+                {
+                  "$title": {
+                    "en_us": "Tag",
+                    "zh_cn": "标签"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: tag.",
+                    "zh_cn": "标签的值。"
+                  },
+                  "type": "string",
+                  "$registry": "mxt:element_tag",
+                  "pattern": "^#.+"
+                }
+              ]
+            },
+            "material": {
+              "$title": {
+                "en_us": "Material",
+                "zh_cn": "材料"
+              },
+              "$description": {
+                "en_us": "Material of this HerbTagEntry.",
+                "zh_cn": "材料的值。"
+              },
+              "type": "string"
+            }
+          }
+        },
+        "mxt:technique": {
+          "$title": {
+            "en_us": "Technique",
+            "zh_cn": "功法"
+          },
+          "$description": {
+            "en_us": "Technique item_matcher_entry fields.",
+            "zh_cn": "功法的值。"
+          },
+          "type": "object"
+        }
+      }
+    },
     "number_provider": {
       "$title": {
         "en_us": "Number Provider",
         "zh_cn": "数值提供器"
       },
       "$description": {
-        "en_us": "A finite number, an exp4j expression, or a typed number provider.",
-        "zh_cn": "数值提供器的值。"
-      },
-      "oneOf": [
-        {
-          "$title": {
-            "en_us": "Constant",
-            "zh_cn": "常量"
-          },
-          "$description": {
-            "en_us": "A finite constant number.",
-            "zh_cn": "一个有限的常量数值。"
-          },
-          "type": "number"
-        },
-        {
-          "$title": {
-            "en_us": "Expression",
-            "zh_cn": "表达式"
-          },
-          "$description": {
-            "en_us": "An exp4j expression.",
-            "zh_cn": "一条 exp4j 表达式。"
-          },
-          "type": "string"
-        },
-        {
-          "$type": "mxt-common#number_provider_object"
-        }
-      ]
-    },
-    "number_provider_object": {
-      "$title": {
-        "en_us": "Number Provider",
-        "zh_cn": "数值提供器"
-      },
-      "$description": {
-        "en_us": "Number Provider selected by a type identifier.",
+        "en_us": "Number Provider selected by its type identifier.",
         "zh_cn": "数值提供器的值。"
       },
       "type": "object",
@@ -76,7 +665,8 @@
             "mxt:sum",
             "mxt:uniform",
             "mxt:binomial",
-            "mxt:weighted_list"
+            "mxt:weighted_list",
+            "mxt:conditional"
           ],
           "$suggstion": true,
           "default": "mxt:constant",
@@ -93,8 +683,8 @@
             "zh_cn": "常量"
           },
           "$description": {
-            "en_us": "A fixed number.",
-            "zh_cn": "固定数值。"
+            "en_us": "Constant number_provider fields.",
+            "zh_cn": "常量的值。"
           },
           "type": "object",
           "properties": {
@@ -104,9 +694,10 @@
                 "zh_cn": "值"
               },
               "$description": {
-                "en_us": "Value value.",
+                "en_us": "Value of this Constant.",
                 "zh_cn": "值的值。"
-              }
+              },
+              "type": "number"
             }
           },
           "required": [
@@ -119,8 +710,8 @@
             "zh_cn": "JS 表达式"
           },
           "$description": {
-            "en_us": "Computed by a JavaScript callback.",
-            "zh_cn": "由 JavaScript 回调计算。"
+            "en_us": "Js number_provider fields.",
+            "zh_cn": "JS 表达式的值。"
           },
           "type": "object",
           "properties": {
@@ -130,9 +721,10 @@
                 "zh_cn": "标识符"
               },
               "$description": {
-                "en_us": "Id value.",
+                "en_us": "Id of this JsNumberProvider.",
                 "zh_cn": "标识符的值。"
-              }
+              },
+              "type": "string"
             },
             "params": {
               "$title": {
@@ -140,9 +732,10 @@
                 "zh_cn": "参数"
               },
               "$description": {
-                "en_us": "Params value.",
+                "en_us": "Params of this JsNumberProvider.",
                 "zh_cn": "参数的值。"
-              }
+              },
+              "type": "object"
             }
           },
           "required": [
@@ -155,8 +748,8 @@
             "zh_cn": "表达式"
           },
           "$description": {
-            "en_us": "Computed by an exp4j expression.",
-            "zh_cn": "由 exp4j 表达式计算。"
+            "en_us": "Expression number_provider fields.",
+            "zh_cn": "表达式的值。"
           },
           "type": "object",
           "properties": {
@@ -166,30 +759,65 @@
                 "zh_cn": "表达式"
               },
               "$description": {
-                "en_us": "Expression value.",
+                "en_us": "Expression of this Expression.",
                 "zh_cn": "表达式的值。"
-              }
+              },
+              "type": "string"
             },
             "params": {
               "$title": {
                 "en_us": "Params",
                 "zh_cn": "参数"
               },
+              "$description": {
+                "en_us": "Params of this Expression.",
+                "zh_cn": "参数的值。"
+              },
               "type": "object",
               "additionalProperties": {
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Text",
+                      "zh_cn": "文本"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: text.",
+                      "zh_cn": "文本的值。"
+                    },
+                    "type": "string"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number",
+                      "zh_cn": "数值"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number.",
+                      "zh_cn": "数值的值。"
+                    },
+                    "type": "number"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number Provider",
+                      "zh_cn": "数值提供器"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number provider.",
+                      "zh_cn": "数值提供器的值。"
+                    },
+                    "$type": "mxt-common#number_provider"
+                  }
+                ],
                 "$title": {
-                  "en_us": "Parameter",
-                  "zh_cn": "参数"
+                  "en_us": "Property",
+                  "zh_cn": "条目"
                 },
                 "$description": {
-                  "en_us": "A named value the expression can read, keyed by the variable name.",
-                  "zh_cn": "表达式可以读取的具名值，键为变量名。"
+                  "en_us": "Property value.",
+                  "zh_cn": "条目的值。"
                 }
-              },
-              "default": {},
-              "$description": {
-                "en_us": "Params value.",
-                "zh_cn": "参数的值。"
               }
             }
           },
@@ -203,8 +831,8 @@
             "zh_cn": "上下文变量"
           },
           "$description": {
-            "en_us": "Reads a variable out of the formula context.",
-            "zh_cn": "从公式上下文中读取一个变量。"
+            "en_us": "Context Variable number_provider fields.",
+            "zh_cn": "上下文变量的值。"
           },
           "type": "object",
           "properties": {
@@ -213,22 +841,23 @@
                 "en_us": "Variable",
                 "zh_cn": "变量"
               },
-              "default": 0,
               "$description": {
-                "en_us": "Variable value.",
+                "en_us": "Variable of this ContextVariable.",
                 "zh_cn": "变量的值。"
-              }
+              },
+              "type": "string"
             },
             "fallback": {
               "$title": {
                 "en_us": "Fallback",
                 "zh_cn": "回退值"
               },
-              "default": 0,
               "$description": {
-                "en_us": "Fallback value.",
+                "en_us": "Fallback of this ContextVariable.",
                 "zh_cn": "回退值的值。"
-              }
+              },
+              "type": "number",
+              "default": 0
             }
           },
           "required": [
@@ -241,8 +870,8 @@
             "zh_cn": "求和"
           },
           "$description": {
-            "en_us": "Adds its terms together.",
-            "zh_cn": "把各项相加。"
+            "en_us": "Sum number_provider fields.",
+            "zh_cn": "求和的值。"
           },
           "type": "object",
           "properties": {
@@ -251,22 +880,57 @@
                 "en_us": "Summands",
                 "zh_cn": "加数"
               },
+              "$description": {
+                "en_us": "Summands of this Sum.",
+                "zh_cn": "加数的值。"
+              },
               "type": "array",
               "items": {
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Text",
+                      "zh_cn": "文本"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: text.",
+                      "zh_cn": "文本的值。"
+                    },
+                    "type": "string"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number",
+                      "zh_cn": "数值"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number.",
+                      "zh_cn": "数值的值。"
+                    },
+                    "type": "number"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number Provider",
+                      "zh_cn": "数值提供器"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number provider.",
+                      "zh_cn": "数值提供器的值。"
+                    },
+                    "$type": "mxt-common#number_provider"
+                  }
+                ],
                 "$title": {
-                  "en_us": "Summand",
-                  "zh_cn": "加数"
+                  "en_us": "Item",
+                  "zh_cn": "物品"
                 },
                 "$description": {
-                  "en_us": "One term of the sum.",
-                  "zh_cn": "求和中的一项。"
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
                 }
               },
-              "default": [],
-              "$description": {
-                "en_us": "Summands value.",
-                "zh_cn": "加数的值。"
-              }
+              "minItems": 1
             }
           },
           "required": [
@@ -279,8 +943,8 @@
             "zh_cn": "均匀分布"
           },
           "$description": {
-            "en_us": "A uniformly distributed random number.",
-            "zh_cn": "均匀分布的随机数。"
+            "en_us": "Uniform number_provider fields.",
+            "zh_cn": "均匀分布的值。"
           },
           "type": "object",
           "properties": {
@@ -290,9 +954,44 @@
                 "zh_cn": "最小"
               },
               "$description": {
-                "en_us": "Min value.",
+                "en_us": "Min of this Uniform.",
                 "zh_cn": "最小的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
             },
             "max": {
               "$title": {
@@ -300,9 +999,44 @@
                 "zh_cn": "最大"
               },
               "$description": {
-                "en_us": "Max value.",
+                "en_us": "Max of this Uniform.",
                 "zh_cn": "最大的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
             }
           },
           "required": [
@@ -316,8 +1050,8 @@
             "zh_cn": "二项分布"
           },
           "$description": {
-            "en_us": "A binomially distributed random number.",
-            "zh_cn": "二项分布的随机数。"
+            "en_us": "Binomial number_provider fields.",
+            "zh_cn": "二项分布的值。"
           },
           "type": "object",
           "properties": {
@@ -327,9 +1061,44 @@
                 "zh_cn": "N"
               },
               "$description": {
-                "en_us": "N value.",
+                "en_us": "N of this Binomial.",
                 "zh_cn": "N的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
             },
             "p": {
               "$title": {
@@ -337,9 +1106,44 @@
                 "zh_cn": "P"
               },
               "$description": {
-                "en_us": "P value.",
+                "en_us": "P of this Binomial.",
                 "zh_cn": "P的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
             }
           },
           "required": [
@@ -353,8 +1157,8 @@
             "zh_cn": "加权列表"
           },
           "$description": {
-            "en_us": "Picks a weighted entry at random.",
-            "zh_cn": "按权重随机挑选一项。"
+            "en_us": "Weighted List number_provider fields.",
+            "zh_cn": "加权列表的值。"
           },
           "type": "object",
           "properties": {
@@ -363,132 +1167,682 @@
                 "en_us": "Distribution",
                 "zh_cn": "分布"
               },
+              "$description": {
+                "en_us": "Distribution of this WeightedList.",
+                "zh_cn": "分布的值。"
+              },
               "type": "array",
               "items": {
+                "$type": "mxt-common#record_util_formula_number_Entry",
                 "$title": {
-                  "en_us": "Share",
-                  "zh_cn": "分配项"
+                  "en_us": "Item",
+                  "zh_cn": "物品"
                 },
                 "$description": {
-                  "en_us": "One share of the distribution.",
-                  "zh_cn": "分配方式中的一项。"
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
                 }
-              },
-              "default": [],
-              "$description": {
-                "en_us": "Distribution value.",
-                "zh_cn": "分布的值。"
               }
             }
           },
           "required": [
             "distribution"
           ]
+        },
+        "mxt:conditional": {
+          "$title": {
+            "en_us": "Conditional",
+            "zh_cn": "条件"
+          },
+          "$description": {
+            "en_us": "Conditional number_provider fields.",
+            "zh_cn": "条件的值。"
+          },
+          "type": "object",
+          "properties": {
+            "branches": {
+              "$title": {
+                "en_us": "Branches",
+                "zh_cn": "分支"
+              },
+              "$description": {
+                "en_us": "Branches of this Conditional.",
+                "zh_cn": "分支的值。"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common#record_Branch",
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            },
+            "fallback": {
+              "$title": {
+                "en_us": "Fallback",
+                "zh_cn": "回退值"
+              },
+              "$description": {
+                "en_us": "Fallback of this Conditional.",
+                "zh_cn": "回退值的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                }
+              ]
+            }
+          }
         }
       }
     },
-    "item_matcher": {
+    "record_ApplyCurseAction": {
       "$title": {
-        "en_us": "Item Matcher",
-        "zh_cn": "物品匹配器"
+        "en_us": "Record ApplyCurseAction",
+        "zh_cn": "Record 施加 Curse 行为"
       },
       "$description": {
-        "en_us": "One item or item tag, or an array mixing both.",
-        "zh_cn": "物品匹配器的值。"
+        "en_us": "ApplyCurseAction value.",
+        "zh_cn": "Record 施加 Curse 行为的值。"
       },
-      "oneOf": [
-        {
-          "$type": "mxt-common#item_matcher_entry"
-        },
-        {
-          "type": "array",
-          "items": {
-            "$type": "mxt-common#item_matcher_entry"
-          }
-        }
-      ]
-    },
-    "item_matcher_entry": {
-      "$title": {
-        "en_us": "Item Matcher Entry",
-        "zh_cn": "物品匹配器条目"
-      },
-      "$description": {
-        "en_us": "One item identifier or one item tag prefixed with #.",
-        "zh_cn": "物品匹配器条目的值。"
-      },
-      "oneOf": [
-        {
-          "$title": {
-            "en_us": "Item",
-            "zh_cn": "物品"
-          },
-          "$description": {
-            "en_us": "A Minecraft item identifier.",
-            "zh_cn": "一个 Minecraft 物品 ID。"
-          },
-          "type": "string",
-          "$registry": "minecraft:item"
-        },
-        {
-          "$title": {
-            "en_us": "Item Tag",
-            "zh_cn": "物品标签"
-          },
-          "$description": {
-            "en_us": "A Minecraft item tag identifier prefixed with #.",
-            "zh_cn": "以 # 开头的 Minecraft 物品标签 ID。"
-          },
-          "type": "string",
-          "$registry": "minecraft:item_tag",
-          "pattern": "^#.+"
-        }
-      ]
-    },
-    "item_quality_tag": {
-      "$title": {
-        "en_us": "Item Quality Tag",
-        "zh_cn": "物品品质标签"
-      },
-      "$description": {
-        "en_us": "An item quality tag identifier prefixed with #.",
-        "zh_cn": "物品品质标签的值。"
-      },
-      "type": "string",
-      "pattern": "^#.+"
-    },
-    "hotbar_icon": {
-      "$title": {
-        "en_us": "Hotbar Icon",
-        "zh_cn": "快捷栏图标"
-      },
-      "$description": {
-        "en_us": "Exactly one 16x16 texture or one item stack template rendered in an Mxt hotbar slot.",
-        "zh_cn": "快捷栏槽位图标，必须且只能指定一个 16x16 贴图或一个物品堆栈模板。"
-      },
-      "type": "object",
       "properties": {
-        "texture": {
+        "curse": {
           "$title": {
-            "en_us": "Texture",
-            "zh_cn": "贴图"
+            "en_us": "Curse",
+            "zh_cn": "诅咒"
+          },
+          "$description": {
+            "en_us": "Curse of this ApplyCurseAction.",
+            "zh_cn": "诅咒的值。"
           },
           "type": "string",
-          "$description": {
-            "en_us": "A 16x16 texture identifier, including the textures/ path and .png suffix.",
-            "zh_cn": "16x16 贴图标识符，需包含 textures/ 路径及 .png 后缀。"
-          }
+          "$registry": "mxt:curse"
         },
-        "item": {
+        "stacks": {
           "$title": {
-            "en_us": "Item",
-            "zh_cn": "物品"
+            "en_us": "Stacks",
+            "zh_cn": "层数"
           },
           "$description": {
-            "en_us": "An ItemStack template rendered with the vanilla item renderer.",
-            "zh_cn": "使用原版物品渲染器绘制的 ItemStack 模板。"
+            "en_us": "Stacks of this ApplyCurseAction.",
+            "zh_cn": "层数的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Text",
+                "zh_cn": "文本"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
+        },
+        "duration_ticks": {
+          "$title": {
+            "en_us": "Duration Ticks",
+            "zh_cn": "持续刻数"
+          },
+          "$description": {
+            "en_us": "Duration Ticks of this ApplyCurseAction.",
+            "zh_cn": "持续刻数的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Text",
+                "zh_cn": "文本"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
+        }
+      },
+      "required": [
+        "curse"
+      ]
+    },
+    "record_ApplyEffectAction": {
+      "$title": {
+        "en_us": "Record ApplyEffectAction",
+        "zh_cn": "Record 施加效果行为"
+      },
+      "$description": {
+        "en_us": "ApplyEffectAction value.",
+        "zh_cn": "Record 施加效果行为的值。"
+      },
+      "properties": {
+        "effect": {
+          "$title": {
+            "en_us": "Effect",
+            "zh_cn": "效果"
+          },
+          "$description": {
+            "en_us": "Effect of this ApplyEffectAction.",
+            "zh_cn": "效果的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:mob_effect"
+        },
+        "duration_ticks": {
+          "$title": {
+            "en_us": "Duration Ticks",
+            "zh_cn": "持续刻数"
+          },
+          "$description": {
+            "en_us": "Duration Ticks of this ApplyEffectAction.",
+            "zh_cn": "持续刻数的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Text",
+                "zh_cn": "文本"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
+        },
+        "amplifier": {
+          "$title": {
+            "en_us": "Amplifier",
+            "zh_cn": "等级"
+          },
+          "$description": {
+            "en_us": "Amplifier of this ApplyEffectAction.",
+            "zh_cn": "等级的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Text",
+                "zh_cn": "文本"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
+        }
+      },
+      "required": [
+        "effect",
+        "duration_ticks"
+      ]
+    },
+    "record_AttributeEntry": {
+      "$title": {
+        "en_us": "Record AttributeEntry",
+        "zh_cn": "Record 属性条目"
+      },
+      "$description": {
+        "en_us": "AttributeEntry value.",
+        "zh_cn": "Record 属性条目的值。"
+      },
+      "properties": {
+        "attribute": {
+          "$title": {
+            "en_us": "Attribute",
+            "zh_cn": "属性"
+          },
+          "$description": {
+            "en_us": "Attribute of this AttributeEntry.",
+            "zh_cn": "属性的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:attribute"
+        },
+        "id": {
+          "type": "string",
+          "$title": {
+            "en_us": "Id",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "Id value.",
+            "zh_cn": "标识符的值。"
+          }
+        },
+        "amount": {
+          "type": "number",
+          "$title": {
+            "en_us": "Amount",
+            "zh_cn": "数量"
+          },
+          "$description": {
+            "en_us": "Amount value.",
+            "zh_cn": "数量的值。"
+          }
+        },
+        "operation": {
+          "type": "string",
+          "enum": [
+            "add_value",
+            "add_multiplied_base",
+            "add_multiplied_total"
+          ],
+          "$suggstion": true,
+          "$title": {
+            "en_us": "Operation",
+            "zh_cn": "操作"
+          },
+          "$description": {
+            "en_us": "Operation value.",
+            "zh_cn": "操作的值。"
+          }
+        },
+        "value": {
+          "$title": {
+            "en_us": "Value",
+            "zh_cn": "值"
+          },
+          "$description": {
+            "en_us": "Value of this AttributeEntry.",
+            "zh_cn": "值的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Text",
+                "zh_cn": "文本"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
+        }
+      },
+      "required": [
+        "attribute",
+        "id",
+        "amount",
+        "operation"
+      ]
+    },
+    "record_Branch": {
+      "$title": {
+        "en_us": "Record Branch",
+        "zh_cn": "Record Branch"
+      },
+      "$description": {
+        "en_us": "Branch value.",
+        "zh_cn": "Record Branch的值。"
+      },
+      "properties": {
+        "condition": {
+          "$title": {
+            "en_us": "Condition",
+            "zh_cn": "条件"
+          },
+          "$description": {
+            "en_us": "Condition of this Branch.",
+            "zh_cn": "条件的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Entity Condition",
+                "zh_cn": "实体条件"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: entity condition.",
+                "zh_cn": "实体条件的值。"
+              },
+              "$type": "mxt-common-entity-condition#entity_condition"
+            },
+            {
+              "$title": {
+                "en_us": "List",
+                "zh_cn": "列表"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: list.",
+                "zh_cn": "列表的值。"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-entity-condition#entity_condition",
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            }
+          ]
+        },
+        "value": {
+          "$title": {
+            "en_us": "Value",
+            "zh_cn": "值"
+          },
+          "$description": {
+            "en_us": "Value of this Branch.",
+            "zh_cn": "值的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Text",
+                "zh_cn": "文本"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
+        }
+      },
+      "required": [
+        "condition",
+        "value"
+      ]
+    },
+    "record_Exchange": {
+      "$title": {
+        "en_us": "Record Exchange",
+        "zh_cn": "Record 兑换"
+      },
+      "$description": {
+        "en_us": "Exchange value.",
+        "zh_cn": "Record 兑换的值。"
+      },
+      "properties": {
+        "cost": {
+          "$title": {
+            "en_us": "Cost",
+            "zh_cn": "消耗"
+          },
+          "$description": {
+            "en_us": "Cost of this Exchange.",
+            "zh_cn": "消耗的值。"
+          },
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99
+        },
+        "result": {
+          "$title": {
+            "en_us": "Result",
+            "zh_cn": "结果"
+          },
+          "$description": {
+            "en_us": "Result of this Exchange.",
+            "zh_cn": "结果的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Object",
+                "zh_cn": "对象"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: object.",
+                "zh_cn": "对象的值。"
+              },
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "$registry": "minecraft:item",
+                  "$title": {
+                    "en_us": "Id",
+                    "zh_cn": "标识符"
+                  },
+                  "$description": {
+                    "en_us": "Id value.",
+                    "zh_cn": "标识符的值。"
+                  }
+                },
+                "count": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 99,
+                  "$title": {
+                    "en_us": "Count",
+                    "zh_cn": "数量"
+                  },
+                  "$description": {
+                    "en_us": "Count value.",
+                    "zh_cn": "数量的值。"
+                  }
+                },
+                "components": {
+                  "type": "object",
+                  "$title": {
+                    "en_us": "Components",
+                    "zh_cn": "组件"
+                  },
+                  "$description": {
+                    "en_us": "Components value.",
+                    "zh_cn": "组件的值。"
+                  }
+                }
+              }
+            },
+            {
+              "$title": {
+                "en_us": "Identifier",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: identifier.",
+                "zh_cn": "标识符的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:item"
+            }
+          ]
+        }
+      },
+      "required": [
+        "cost",
+        "result"
+      ]
+    },
+    "record_IconReference": {
+      "$title": {
+        "en_us": "Record IconReference",
+        "zh_cn": "Record 图标引用"
+      },
+      "$description": {
+        "en_us": "IconReference value.",
+        "zh_cn": "Record 图标引用的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Object",
+            "zh_cn": "对象"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: object.",
+            "zh_cn": "对象的值。"
           },
           "type": "object",
+          "required": [
+            "id"
+          ],
           "properties": {
             "id": {
               "type": "string",
@@ -506,7 +1860,6 @@
               "type": "integer",
               "minimum": 1,
               "maximum": 99,
-              "default": 1,
               "$title": {
                 "en_us": "Count",
                 "zh_cn": "数量"
@@ -527,541 +1880,639 @@
                 "zh_cn": "组件的值。"
               }
             }
-          },
-          "required": [
-            "id"
-          ]
-        }
-      },
-      "oneOf": [
-        {
-          "required": [
-            "texture"
-          ]
+          }
         },
         {
-          "required": [
-            "item"
-          ]
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:item"
         }
       ]
     },
-    "aura_maximum": {
+    "record_NumberRange": {
       "$title": {
-        "en_us": "Aura Maximum",
-        "zh_cn": "灵气上限"
+        "en_us": "Record NumberRange",
+        "zh_cn": "Record 数值 Range"
       },
       "$description": {
-        "en_us": "A fixed environmental capacity, an initial-aura multiplier, or no limit.",
-        "zh_cn": "固定环境容量、初始灵气倍数或无限制。"
+        "en_us": "NumberRange value.",
+        "zh_cn": "Record 数值 Range的值。"
       },
-      "oneOf": [
-        {
-          "type": "number",
-          "minimum": 0
-        },
-        {
-          "type": "object",
-          "required": [
-            "type"
-          ],
+      "properties": {
+        "min": {
           "$title": {
-            "en_us": "Typed Maximum",
-            "zh_cn": "具名上限"
+            "en_us": "Min",
+            "zh_cn": "最小"
           },
           "$description": {
-            "en_us": "The written-out form: a fixed capacity, a multiple of the initial aura, or no limit at all.",
-            "zh_cn": "完整写法：固定容量、初始灵气的倍数，或完全不限。"
+            "en_us": "Min of this NumberRange.",
+            "zh_cn": "最小的值。"
           },
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "mxt:fixed",
-                "mxt:initial_multiplier",
-                "mxt:unlimited"
-              ],
-              "default": "mxt:fixed",
+          "oneOf": [
+            {
               "$title": {
-                "en_us": "Type",
-                "zh_cn": "类型"
+                "en_us": "Text",
+                "zh_cn": "文本"
               },
               "$description": {
-                "en_us": "Which form this maximum takes. mxt:fixed reads value, mxt:initial_multiplier reads multiplier, and mxt:unlimited reads neither.",
-                "zh_cn": "上限的形式。mxt:fixed 读 value，mxt:initial_multiplier 读 multiplier，mxt:unlimited 两者都不读。"
-              }
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
             },
-            "value": {
-              "type": "number",
-              "minimum": 0,
+            {
               "$title": {
-                "en_us": "Value",
+                "en_us": "Number",
                 "zh_cn": "数值"
               },
               "$description": {
-                "en_us": "Fixed capacity, used by mxt:fixed. Must not be negative.",
-                "zh_cn": "固定容量，供 mxt:fixed 使用。不能为负数。"
-              }
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
             },
-            "multiplier": {
-              "type": "number",
-              "minimum": 0,
-              "default": 1,
+            {
               "$title": {
-                "en_us": "Multiplier",
-                "zh_cn": "倍率"
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
               },
               "$description": {
-                "en_us": "Multiple of the initial aura, used by mxt:initial_multiplier. Defaults to 1.",
-                "zh_cn": "初始灵气的倍数，供 mxt:initial_multiplier 使用。默认 1。"
-              }
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
             }
-          }
-        }
-      ]
-    },
-    "record_ResourceCost": {
-      "$title": {
-        "en_us": "ResourceCost",
-        "zh_cn": "资源消耗"
-      },
-      "$description": {
-        "en_us": "ResourceCost value.",
-        "zh_cn": "资源消耗的值。"
-      },
-      "type": "object",
-      "properties": {
-        "id": {
-          "$title": {
-            "en_us": "Id",
-            "zh_cn": "标识符"
-          },
-          "type": "string",
-          "$registry": "mxt:resource",
-          "$description": {
-            "en_us": "Id value.",
-            "zh_cn": "标识符的值。"
-          }
-        },
-        "amount": {
-          "$title": {
-            "en_us": "Amount",
-            "zh_cn": "数量"
-          },
-          "$type": "mxt-common#number_provider",
-          "$description": {
-            "en_us": "Amount value.",
-            "zh_cn": "数量的值。"
-          }
-        }
-      },
-      "required": [
-        "id",
-        "amount"
-      ]
-    },
-    "record_AuraValue": {
-      "$title": {
-        "en_us": "AuraValue",
-        "zh_cn": "灵气数值"
-      },
-      "$description": {
-        "en_us": "One resource's aura entry: how much, its cap, its regeneration and the colour used when rendering it.",
-        "zh_cn": "某一种资源的灵气条目：数量、上限、恢复速度，以及渲染时使用的颜色。"
-      },
-      "type": "object",
-      "properties": {
-        "amount": {
-          "$title": {
-            "en_us": "Amount",
-            "zh_cn": "数量"
-          },
-          "type": "number",
-          "minimum": 0,
-          "default": 0,
-          "$description": {
-            "en_us": "Initial stock, or this block's capacity contribution. Must not be negative.",
-            "zh_cn": "初始存量，或本方块的容量贡献。不能为负数。"
-          }
+          ]
         },
         "max": {
           "$title": {
             "en_us": "Max",
-            "zh_cn": "最大值"
+            "zh_cn": "最大"
           },
-          "$type": "mxt-common#aura_maximum",
           "$description": {
-            "en_us": "Cap for this resource. Omit it for the default multiplier of one.",
-            "zh_cn": "该资源的上限。省略即使用默认倍率 1。"
-          }
-        },
-        "regen_per_tick": {
-          "$title": {
-            "en_us": "Regen Per Tick",
-            "zh_cn": "每刻恢复量"
-          },
-          "type": "number",
-          "default": 0,
-          "$description": {
-            "en_us": "How much of this resource regenerates per game tick.",
-            "zh_cn": "该资源每游戏刻恢复的数量。"
-          }
-        },
-        "color": {
-          "$title": {
-            "en_us": "Color",
-            "zh_cn": "颜色"
+            "en_us": "Max of this NumberRange.",
+            "zh_cn": "最大的值。"
           },
           "oneOf": [
             {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 16777215,
-              "default": 16777215,
               "$title": {
-                "en_us": "Decimal Color",
-                "zh_cn": "十进制颜色"
+                "en_us": "Text",
+                "zh_cn": "文本"
               },
               "$description": {
-                "en_us": "The color as a 24-bit decimal number.",
-                "zh_cn": "颜色的 24 位十进制数值。"
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
+        }
+      },
+      "required": []
+    },
+    "record_ParticleEffect": {
+      "$title": {
+        "en_us": "Record ParticleEffect",
+        "zh_cn": "Record 粒子效果"
+      },
+      "$description": {
+        "en_us": "ParticleEffect value.",
+        "zh_cn": "Record 粒子效果的值。"
+      },
+      "properties": {
+        "particle": {
+          "$title": {
+            "en_us": "Particle",
+            "zh_cn": "粒子"
+          },
+          "$description": {
+            "en_us": "Particle of this ParticleEffect.",
+            "zh_cn": "粒子的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:particle_type"
+        },
+        "count": {
+          "$title": {
+            "en_us": "Count",
+            "zh_cn": "数量"
+          },
+          "$description": {
+            "en_us": "Count of this ParticleEffect.",
+            "zh_cn": "数量的值。"
+          },
+          "type": "integer",
+          "minimum": 0,
+          "default": 16
+        },
+        "speed": {
+          "$title": {
+            "en_us": "Speed",
+            "zh_cn": "速度"
+          },
+          "$description": {
+            "en_us": "Speed of this ParticleEffect.",
+            "zh_cn": "速度的值。"
+          },
+          "type": "number",
+          "default": 0
+        },
+        "force": {
+          "$title": {
+            "en_us": "Force",
+            "zh_cn": "强制"
+          },
+          "$description": {
+            "en_us": "Force of this ParticleEffect.",
+            "zh_cn": "强制的值。"
+          },
+          "type": "boolean",
+          "default": false
+        },
+        "spread": {
+          "$title": {
+            "en_us": "Spread",
+            "zh_cn": "扩散"
+          },
+          "$description": {
+            "en_us": "Spread of this ParticleEffect.",
+            "zh_cn": "扩散的值。"
+          },
+          "type": "array",
+          "items": {
+            "type": "number",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "offset_x": {
+          "$title": {
+            "en_us": "Offset X",
+            "zh_cn": "X 轴偏移"
+          },
+          "$description": {
+            "en_us": "Offset X of this ParticleEffect.",
+            "zh_cn": "X 轴偏移的值。"
+          },
+          "type": "number",
+          "default": 0
+        },
+        "offset_y": {
+          "$title": {
+            "en_us": "Offset Y",
+            "zh_cn": "Y 轴偏移"
+          },
+          "$description": {
+            "en_us": "Offset Y of this ParticleEffect.",
+            "zh_cn": "Y 轴偏移的值。"
+          },
+          "type": "number",
+          "default": 0.5
+        },
+        "offset_z": {
+          "$title": {
+            "en_us": "Offset Z",
+            "zh_cn": "Z 轴偏移"
+          },
+          "$description": {
+            "en_us": "Offset Z of this ParticleEffect.",
+            "zh_cn": "Z 轴偏移的值。"
+          },
+          "type": "number",
+          "default": 0
+        }
+      },
+      "required": [
+        "particle"
+      ]
+    },
+    "record_RequiredBlock": {
+      "$title": {
+        "en_us": "Record RequiredBlock",
+        "zh_cn": "Record 需要方块"
+      },
+      "$description": {
+        "en_us": "RequiredBlock value.",
+        "zh_cn": "Record 需要方块的值。"
+      },
+      "properties": {
+        "offset": {
+          "$title": {
+            "en_us": "Offset",
+            "zh_cn": "偏移"
+          },
+          "$description": {
+            "en_us": "Offset of this RequiredBlock.",
+            "zh_cn": "偏移的值。"
+          },
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "state": {
+          "$title": {
+            "en_us": "State",
+            "zh_cn": "方块状态"
+          },
+          "$description": {
+            "en_us": "State of this RequiredBlock.",
+            "zh_cn": "方块状态的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Object",
+                "zh_cn": "对象"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: object.",
+                "zh_cn": "对象的值。"
+              },
+              "type": "object",
+              "required": [
+                "Name"
+              ],
+              "properties": {
+                "Name": {
+                  "type": "string",
+                  "$registry": "minecraft:block",
+                  "$title": {
+                    "en_us": "Name",
+                    "zh_cn": "名称"
+                  },
+                  "$description": {
+                    "en_us": "Name value.",
+                    "zh_cn": "名称的值。"
+                  }
+                },
+                "Properties": {
+                  "type": "object",
+                  "$title": {
+                    "en_us": "Properties",
+                    "zh_cn": "属性"
+                  },
+                  "$description": {
+                    "en_us": "Properties value.",
+                    "zh_cn": "属性的值。"
+                  }
+                }
               }
             },
             {
-              "type": "string",
-              "pattern": "^#[0-9a-fA-F]{6}$",
               "$title": {
-                "en_us": "Hex Color",
-                "zh_cn": "十六进制颜色"
+                "en_us": "Identifier",
+                "zh_cn": "标识符"
               },
               "$description": {
-                "en_us": "The color as #RRGGBB. No alpha channel.",
-                "zh_cn": "写成 #RRGGBB 的颜色。不含透明度。"
+                "en_us": "One accepted form of this value: identifier.",
+                "zh_cn": "标识符的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:block"
+            },
+            {
+              "$title": {
+                "en_us": "Identifier",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: identifier.",
+                "zh_cn": "标识符的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:block"
+            }
+          ]
+        }
+      },
+      "required": [
+        "offset",
+        "state"
+      ]
+    },
+    "record_Storage": {
+      "$title": {
+        "en_us": "Record Storage",
+        "zh_cn": "Record 储物"
+      },
+      "$description": {
+        "en_us": "Storage value.",
+        "zh_cn": "Record 储物的值。"
+      },
+      "properties": {
+        "capacity": {
+          "$title": {
+            "en_us": "Capacity",
+            "zh_cn": "容量"
+          },
+          "$description": {
+            "en_us": "Capacity of this Storage.",
+            "zh_cn": "容量的值。"
+          },
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Text",
+                  "zh_cn": "文本"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: text.",
+                  "zh_cn": "文本的值。"
+                },
+                "type": "string"
+              },
+              {
+                "$title": {
+                  "en_us": "Number",
+                  "zh_cn": "数值"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: number.",
+                  "zh_cn": "数值的值。"
+                },
+                "type": "number"
+              },
+              {
+                "$title": {
+                  "en_us": "Number Provider",
+                  "zh_cn": "数值提供器"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: number provider.",
+                  "zh_cn": "数值提供器的值。"
+                },
+                "$type": "mxt-common#number_provider"
+              }
+            ],
+            "$title": {
+              "en_us": "Property",
+              "zh_cn": "条目"
+            },
+            "$description": {
+              "en_us": "Property value.",
+              "zh_cn": "条目的值。"
+            }
+          }
+        }
+      },
+      "required": [
+        "capacity"
+      ]
+    },
+    "record_UnavailableWhen": {
+      "$title": {
+        "en_us": "Record UnavailableWhen",
+        "zh_cn": "Record Unavailable When"
+      },
+      "$description": {
+        "en_us": "UnavailableWhen value.",
+        "zh_cn": "Record Unavailable When的值。"
+      },
+      "properties": {
+        "condition": {
+          "$title": {
+            "en_us": "Condition",
+            "zh_cn": "条件"
+          },
+          "$description": {
+            "en_us": "Condition of this UnavailableWhen.",
+            "zh_cn": "条件的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Item Condition",
+                "zh_cn": "物品条件"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: item condition.",
+                "zh_cn": "物品条件的值。"
+              },
+              "$type": "mxt-common-item-condition#item_condition"
+            },
+            {
+              "$title": {
+                "en_us": "List",
+                "zh_cn": "列表"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: list.",
+                "zh_cn": "列表的值。"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-item-condition#item_condition",
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
               }
             }
-          ],
-          "$description": {
-            "en_us": "Colour used by environment rendering. Particles and HUD bars keep their own colours.",
-            "zh_cn": "环境渲染使用的颜色。粒子与 HUD 条使用各自的颜色。"
-          }
-        }
-      }
-    },
-    "record_ApplyCurseAction": {
-      "$title": {
-        "en_us": "ApplyCurseAction",
-        "zh_cn": "施加诅咒条目"
-      },
-      "$description": {
-        "en_us": "One curse applied by the apply_curses action.",
-        "zh_cn": "施加诅咒行为中的一条诅咒配置。"
-      },
-      "type": "object",
-      "properties": {
-        "curse": {
-          "$title": {
-            "en_us": "Curse",
-            "zh_cn": "诅咒"
-          },
-          "type": "string",
-          "$registry": "mxt:curse",
-          "$description": {
-            "en_us": "Curse to apply.",
-            "zh_cn": "要施加的诅咒。"
-          }
+          ]
         },
-        "stacks": {
+        "reason": {
           "$title": {
-            "en_us": "Stacks",
-            "zh_cn": "层数"
+            "en_us": "Reason",
+            "zh_cn": "原因"
           },
-          "$type": "mxt-common#number_provider",
-          "default": 1,
           "$description": {
-            "en_us": "How many stacks to apply, evaluated through the formula context. Defaults to 1.",
-            "zh_cn": "施加的层数，通过公式上下文求值，默认 1。"
-          }
-        },
-        "duration_ticks": {
-          "$title": {
-            "en_us": "Duration Ticks",
-            "zh_cn": "持续刻数"
+            "en_us": "Reason of this UnavailableWhen.",
+            "zh_cn": "原因的值。"
           },
-          "$type": "mxt-common#number_provider",
-          "$description": {
-            "en_us": "How long the curse lasts, in ticks. Omit it for the curse's own default duration.",
-            "zh_cn": "诅咒持续时间，单位 tick。省略即使用诅咒自身的默认时长。"
-          }
+          "type": [
+            "string",
+            "object"
+          ]
         }
       },
       "required": [
-        "curse"
+        "condition",
+        "reason"
       ]
     },
-    "record_AttributeEntry": {
+    "record_util_formula_number_Entry": {
       "$title": {
-        "en_us": "AttributeEntry",
-        "zh_cn": "属性修正"
+        "en_us": "Record Util Formula Number Entry",
+        "zh_cn": "Record Util Formula 数值条目"
       },
       "$description": {
-        "en_us": "AttributeEntry value.",
-        "zh_cn": "属性修正的值。"
+        "en_us": "Entry value.",
+        "zh_cn": "Record Util Formula 数值条目的值。"
       },
-      "type": "object",
       "properties": {
-        "attribute": {
+        "data": {
           "$title": {
-            "en_us": "Attribute",
-            "zh_cn": "属性"
+            "en_us": "Data",
+            "zh_cn": "数据"
           },
           "$description": {
-            "en_us": "Attribute value.",
-            "zh_cn": "属性的值。"
-          }
+            "en_us": "Data of this Entry.",
+            "zh_cn": "数据的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Text",
+                "zh_cn": "文本"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
         },
-        "id": {
+        "weight": {
           "$title": {
-            "en_us": "Modifier Id",
-            "zh_cn": "修正器标识符"
+            "en_us": "Weight",
+            "zh_cn": "权重"
           },
-          "type": "string",
           "$description": {
-            "en_us": "Vanilla modifier identifier.",
-            "zh_cn": "原版属性修正器的标识符。"
-          }
-        },
-        "amount": {
-          "$title": {
-            "en_us": "Amount",
-            "zh_cn": "数量"
+            "en_us": "Weight of this Entry.",
+            "zh_cn": "权重的值。"
           },
-          "type": "number",
-          "$description": {
-            "en_us": "Base amount used when value is not specified.",
-            "zh_cn": "未指定数值提供器时使用的基础数量。"
-          }
-        },
-        "operation": {
-          "$title": {
-            "en_us": "Operation",
-            "zh_cn": "运算方式"
-          },
-          "type": "string",
-          "enum": [
-            "add_value",
-            "add_multiplied_base",
-            "add_multiplied_total"
-          ],
-          "default": "add_value",
-          "$description": {
-            "en_us": "Vanilla attribute operation: added flat, added to the base multiplier, or added to the total multiplier.",
-            "zh_cn": "原版属性运算方式：直接加值、加到基础倍率，或加到总倍率。"
-          }
-        },
-        "value": {
-          "$title": {
-            "en_us": "Value",
-            "zh_cn": "值"
-          },
-          "$type": "mxt-common#number_provider",
-          "$description": {
-            "en_us": "Value value.",
-            "zh_cn": "值的值。"
-          }
+          "type": "integer",
+          "minimum": 1
         }
       },
       "required": [
-        "attribute",
-        "id",
-        "amount",
-        "operation"
+        "data",
+        "weight"
       ]
     },
-    "record_Comparison": {
+    "record_util_math_Comparison": {
       "$title": {
-        "en_us": "Comparison",
-        "zh_cn": "比较方式"
+        "en_us": "Record Util Math Comparison",
+        "zh_cn": "Record Util Math 比较方式"
       },
       "$description": {
         "en_us": "Comparison value.",
-        "zh_cn": "比较方式的值。"
+        "zh_cn": "Record Util Math 比较方式的值。"
       },
-      "type": "object",
-      "properties": {}
-    },
-    "record_ResourceConversion": {
-      "$title": {
-        "en_us": "ResourceConversion",
-        "zh_cn": "资源转换"
-      },
-      "$description": {
-        "en_us": "ResourceConversion value.",
-        "zh_cn": "资源转换的值。"
-      },
-      "type": "object",
       "properties": {
-        "multiplier": {
+        "comparison": {
           "$title": {
-            "en_us": "Multiplier",
-            "zh_cn": "倍率"
+            "en_us": "Comparison",
+            "zh_cn": "比较方式"
           },
-          "$type": "mxt-common#number_provider",
           "$description": {
-            "en_us": "Multiplier value.",
-            "zh_cn": "倍率的值。"
-          }
-        },
-        "max_per_tick": {
-          "$title": {
-            "en_us": "Max Per Tick",
-            "zh_cn": "最大每刻"
-          },
-          "$type": "mxt-common#number_provider",
-          "$description": {
-            "en_us": "Max Per Tick value.",
-            "zh_cn": "最大每刻的值。"
-          }
-        }
-      }
-    },
-    "record_StackingMode": {
-      "$title": {
-        "en_us": "StackingMode",
-        "zh_cn": "叠加模式"
-      },
-      "$description": {
-        "en_us": "StackingMode value.",
-        "zh_cn": "叠加模式的值。"
-      },
-      "type": "object",
-      "properties": {}
-    },
-    "record_QualityThreshold": {
-      "$title": {
-        "en_us": "QualityThreshold",
-        "zh_cn": "品质阈值"
-      },
-      "$description": {
-        "en_us": "QualityThreshold value.",
-        "zh_cn": "品质阈值的值。"
-      },
-      "type": "object",
-      "properties": {
-        "max_extra_steps": {
-          "$title": {
-            "en_us": "Max Extra Steps",
-            "zh_cn": "最大额外步数"
-          },
-          "type": "integer",
-          "$description": {
-            "en_us": "Max Extra Steps value.",
-            "zh_cn": "最大额外步数的值。"
-          }
-        },
-        "quality": {
-          "$title": {
-            "en_us": "Quality",
-            "zh_cn": "品质"
+            "en_us": "Comparison of this Comparison.",
+            "zh_cn": "比较方式的值。"
           },
           "type": "string",
-          "$registry": "mxt:item_quality",
+          "enum": [
+            "<",
+            "<=",
+            ">",
+            ">=",
+            "==",
+            "!="
+          ],
+          "$suggstion": true
+        },
+        "compare_to": {
+          "$title": {
+            "en_us": "Compare To",
+            "zh_cn": "比较至"
+          },
           "$description": {
-            "en_us": "Quality value.",
-            "zh_cn": "品质的值。"
-          }
+            "en_us": "Compare To of this Comparison.",
+            "zh_cn": "比较至的值。"
+          },
+          "type": "number"
         }
       },
       "required": [
-        "max_extra_steps",
-        "quality"
-      ]
-    },
-    "record_FailureSettlement": {
-      "$title": {
-        "en_us": "FailureSettlement",
-        "zh_cn": "失败结算"
-      },
-      "$description": {
-        "en_us": "FailureSettlement value.",
-        "zh_cn": "失败结算的值。"
-      },
-      "type": "object",
-      "properties": {
-        "result": {
-          "$title": {
-            "en_us": "Result",
-            "zh_cn": "结果"
-          },
-          "type": "string",
-          "$description": {
-            "en_us": "Result value.",
-            "zh_cn": "结果的值。"
-          }
-        },
-        "input_return_ratio": {
-          "$title": {
-            "en_us": "Input Return Ratio",
-            "zh_cn": "输入返还比例"
-          },
-          "type": "number",
-          "default": 0,
-          "$description": {
-            "en_us": "Input Return Ratio value.",
-            "zh_cn": "输入返还比例的值。"
-          }
-        },
-        "material_loss_ratio": {
-          "$title": {
-            "en_us": "Material Loss Ratio",
-            "zh_cn": "材料损失比例"
-          },
-          "type": "number",
-          "default": 1,
-          "$description": {
-            "en_us": "Material Loss Ratio value.",
-            "zh_cn": "材料损失比例的值。"
-          }
-        }
-      }
-    },
-    "record_ResourceGain": {
-      "$title": {
-        "en_us": "ResourceGain",
-        "zh_cn": "资源获得"
-      },
-      "$description": {
-        "en_us": "ResourceGain value.",
-        "zh_cn": "资源获得的值。"
-      },
-      "type": "object",
-      "properties": {
-        "id": {
-          "$title": {
-            "en_us": "Id",
-            "zh_cn": "标识符"
-          },
-          "type": "string",
-          "$registry": "mxt:resource",
-          "$description": {
-            "en_us": "Id value.",
-            "zh_cn": "标识符的值。"
-          }
-        },
-        "amount": {
-          "$title": {
-            "en_us": "Amount",
-            "zh_cn": "数量"
-          },
-          "$type": "mxt-common#number_provider",
-          "$description": {
-            "en_us": "Amount value.",
-            "zh_cn": "数量的值。"
-          }
-        }
-      },
-      "required": [
-        "id",
-        "amount"
+        "comparison",
+        "compare_to"
       ]
     }
   }

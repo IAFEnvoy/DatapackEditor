@@ -1,0 +1,121 @@
+{
+  "$title": {
+    "en_us": "MiXianTu Trigger",
+    "zh_cn": "觅仙途事件触发器"
+  },
+  "$description": {
+    "en_us": "Data-driven Trigger definition from MiXianTu.",
+    "zh_cn": "由觅仙途数据包加载的事件规则定义。"
+  },
+  "type": "object",
+  "required": [
+    "trigger"
+  ],
+  "properties": {
+    "trigger": {
+      "$title": {
+        "en_us": "Trigger",
+        "zh_cn": "事件触发器"
+      },
+      "$description": {
+        "en_us": "Trigger of this TriggerRule.",
+        "zh_cn": "事件触发器的值。"
+      },
+      "$type": "mxt-common-content#trigger"
+    },
+    "condition": {
+      "$title": {
+        "en_us": "Condition",
+        "zh_cn": "条件"
+      },
+      "$description": {
+        "en_us": "Condition of this TriggerRule.",
+        "zh_cn": "条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "action": {
+      "$title": {
+        "en_us": "Action",
+        "zh_cn": "行为"
+      },
+      "$description": {
+        "en_us": "Action of this TriggerRule.",
+        "zh_cn": "行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "id": "mxt-trigger",
+  "$version": "26.1.2",
+  "$registry": "mxt:trigger",
+  "$path": "data/<namespace>/mxt/trigger/<path>.json"
+}

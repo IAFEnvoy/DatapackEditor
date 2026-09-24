@@ -8,39 +8,103 @@
     "zh_cn": "由觅仙途数据包加载的天劫定义。"
   },
   "type": "object",
+  "required": [
+    "timeline"
+  ],
   "properties": {
-    "trigger_condition": {
+    "name": {
       "$title": {
-        "en_us": "Trigger Condition",
-        "zh_cn": "触发条件"
+        "en_us": "Name",
+        "zh_cn": "名称"
       },
-      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Condition that starts the tribulation.",
-        "zh_cn": "触发天劫的条件。"
-      }
+        "en_us": "Name of this Tribulation.",
+        "zh_cn": "名称的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
     },
-    "phases": {
+    "description": {
       "$title": {
-        "en_us": "Phases",
-        "zh_cn": "阶段"
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description of this Tribulation.",
+        "zh_cn": "描述的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "condition": {
+      "$title": {
+        "en_us": "Condition",
+        "zh_cn": "条件"
+      },
+      "$description": {
+        "en_us": "Condition of this Tribulation.",
+        "zh_cn": "条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "timeline": {
+      "$title": {
+        "en_us": "Timeline",
+        "zh_cn": "Timeline"
+      },
+      "$description": {
+        "en_us": "Timeline of this Tribulation.",
+        "zh_cn": "Timeline的值。"
       },
       "type": "array",
       "items": {
-        "$type": "mxt-common-content#record_Phase",
+        "$type": "mxt-common-content#timeline_entry",
         "$title": {
-          "en_us": "Phase",
-          "zh_cn": "阶段"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One phase of the tribulation.",
-          "zh_cn": "天劫中的一个阶段。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Phases the tribulation goes through.",
-        "zh_cn": "天劫经历的阶段。"
       }
     },
     "difficulty_scale": {
@@ -48,38 +112,194 @@
         "en_us": "Difficulty Scale",
         "zh_cn": "难度倍率"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Multiplier applied to the tribulation's difficulty.",
-        "zh_cn": "天劫难度的倍率。"
-      }
+        "en_us": "Difficulty Scale of this Tribulation.",
+        "zh_cn": "难度倍率的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
+    },
+    "windup": {
+      "$title": {
+        "en_us": "Windup",
+        "zh_cn": "Windup"
+      },
+      "$description": {
+        "en_us": "Windup of this Tribulation.",
+        "zh_cn": "Windup的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
+    },
+    "darken_sky": {
+      "$title": {
+        "en_us": "Darken Sky",
+        "zh_cn": "Darken 天空"
+      },
+      "$description": {
+        "en_us": "Darken Sky of this Tribulation.",
+        "zh_cn": "Darken 天空的值。"
+      },
+      "type": "boolean",
+      "default": true
     },
     "success_action": {
       "$title": {
         "en_us": "Success Action",
         "zh_cn": "成功行为"
       },
-      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Action run when the tribulation is survived.",
-        "zh_cn": "渡过天劫时执行的行为。"
-      }
+        "en_us": "Success Action of this Tribulation.",
+        "zh_cn": "成功行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "fail_action": {
       "$title": {
         "en_us": "Fail Action",
         "zh_cn": "失败行为"
       },
-      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Action run when the tribulation is failed.",
-        "zh_cn": "天劫失败时执行的行为。"
-      }
+        "en_us": "Fail Action of this Tribulation.",
+        "zh_cn": "失败行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     }
   },
-  "required": [
-    "phases"
-  ],
   "id": "mxt-tribulation",
   "$version": "26.1.2",
   "$registry": "mxt:tribulation",

@@ -9,71 +9,437 @@
   },
   "type": "object",
   "properties": {
+    "name": {
+      "$title": {
+        "en_us": "Name",
+        "zh_cn": "名称"
+      },
+      "$description": {
+        "en_us": "Name of this ContractType.",
+        "zh_cn": "名称的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "description": {
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description of this ContractType.",
+        "zh_cn": "描述的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
     "owner_condition": {
       "$title": {
         "en_us": "Owner Condition",
         "zh_cn": "主人条件"
       },
-      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Condition the contract owner has to meet.",
-        "zh_cn": "契约主人需要满足的条件。"
-      }
+        "en_us": "Owner Condition of this ContractType.",
+        "zh_cn": "主人条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "creature_condition": {
       "$title": {
         "en_us": "Creature Condition",
         "zh_cn": "灵兽条件"
       },
-      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Condition the contracted creature has to meet.",
-        "zh_cn": "契约灵兽需要满足的条件。"
-      }
+        "en_us": "Creature Condition of this ContractType.",
+        "zh_cn": "灵兽条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "follow_action": {
       "$title": {
         "en_us": "Follow Action",
         "zh_cn": "跟随行为"
       },
-      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Action run on the creature while it follows its owner.",
-        "zh_cn": "灵兽跟随主人时执行的行为。"
-      }
+        "en_us": "Follow Action of this ContractType.",
+        "zh_cn": "跟随行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "combat_action": {
       "$title": {
         "en_us": "Combat Action",
         "zh_cn": "战斗行为"
       },
-      "$type": "mxt-common-bi-entity-action#bi_entity_action",
       "$description": {
-        "en_us": "Action run on the creature when it enters combat.",
-        "zh_cn": "灵兽进入战斗时执行的行为。"
+        "en_us": "Combat Action of this ContractType.",
+        "zh_cn": "战斗行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Bi Entity Action",
+            "zh_cn": "双实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: bi entity action.",
+            "zh_cn": "双实体行为的值。"
+          },
+          "$type": "mxt-common-bi-entity-action#bi_entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-bi-entity-action#bi_entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "release_action": {
+      "$title": {
+        "en_us": "Release Action",
+        "zh_cn": "Release 行为"
+      },
+      "$description": {
+        "en_us": "Release Action of this ContractType.",
+        "zh_cn": "Release 行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "death_action": {
+      "$title": {
+        "en_us": "Death Action",
+        "zh_cn": "Death 行为"
+      },
+      "$description": {
+        "en_us": "Death Action of this ContractType.",
+        "zh_cn": "Death 行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "costs": {
+      "$title": {
+        "en_us": "Costs",
+        "zh_cn": "消耗"
+      },
+      "$description": {
+        "en_us": "Costs of this ContractType.",
+        "zh_cn": "消耗的值。"
+      },
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$title": {
+              "en_us": "Object",
+              "zh_cn": "对象"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: object.",
+              "zh_cn": "对象的值。"
+            },
+            "type": "object",
+            "properties": {
+              "id": {
+                "$title": {
+                  "en_us": "Id",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "Id of this Cost.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:resource"
+              },
+              "amount": {
+                "$title": {
+                  "en_us": "Amount",
+                  "zh_cn": "数量"
+                },
+                "$description": {
+                  "en_us": "Amount of this Cost.",
+                  "zh_cn": "数量的值。"
+                },
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Text",
+                      "zh_cn": "文本"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: text.",
+                      "zh_cn": "文本的值。"
+                    },
+                    "type": "string"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number",
+                      "zh_cn": "数值"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number.",
+                      "zh_cn": "数值的值。"
+                    },
+                    "type": "number"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number Provider",
+                      "zh_cn": "数值提供器"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number provider.",
+                      "zh_cn": "数值提供器的值。"
+                    },
+                    "$type": "mxt-common#number_provider"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "amount"
+            ]
+          },
+          {
+            "$title": {
+              "en_us": "Cost",
+              "zh_cn": "消耗"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: cost.",
+              "zh_cn": "消耗的值。"
+            },
+            "$type": "mxt-common#cost"
+          }
+        ],
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
       }
     },
-    "break_action": {
+    "max_owned": {
       "$title": {
-        "en_us": "Break Action",
-        "zh_cn": "解除行为"
+        "en_us": "Max Owned",
+        "zh_cn": "最大归属"
       },
-      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Action run when the contract is broken.",
-        "zh_cn": "契约解除时执行的行为。"
-      }
+        "en_us": "Max Owned of this ContractType.",
+        "zh_cn": "最大归属的值。"
+      },
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
     },
-    "penalty_action": {
+    "recall_cooldown": {
       "$title": {
-        "en_us": "Penalty Action",
-        "zh_cn": "惩罚行为"
+        "en_us": "Recall Cooldown",
+        "zh_cn": "Recall 冷却时间"
       },
-      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Action run on the owner as the penalty for a broken contract.",
-        "zh_cn": "契约被违反时对主人执行的惩罚行为。"
-      }
+        "en_us": "Recall Cooldown of this ContractType.",
+        "zh_cn": "Recall 冷却时间的值。"
+      },
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
     }
   },
   "id": "mxt-contract_type",

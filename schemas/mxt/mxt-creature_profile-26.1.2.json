@@ -9,16 +9,27 @@
   },
   "type": "object",
   "properties": {
-    "realm_stage": {
+    "realm_stages": {
       "$title": {
-        "en_us": "Realm Stage",
-        "zh_cn": "境界阶段"
+        "en_us": "Realm Stages",
+        "zh_cn": "境界 Stages"
       },
-      "type": "string",
-      "$registry": "mxt:realm_stage",
       "$description": {
-        "en_us": "Realm stage this creature belongs to.",
-        "zh_cn": "该灵兽所属的境界阶段。"
+        "en_us": "Realm Stages of this CreatureProfile.",
+        "zh_cn": "境界 Stages的值。"
+      },
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$registry": "mxt:realm_stage",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
       }
     },
     "intelligence": {
@@ -26,133 +37,337 @@
         "en_us": "Intelligence",
         "zh_cn": "灵智"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "How smart the creature is, used by taming and behaviour.",
-        "zh_cn": "灵兽的灵智，用于驯服与行为判断。"
-      }
+        "en_us": "Intelligence of this CreatureProfile.",
+        "zh_cn": "灵智的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     },
     "condition": {
       "$title": {
-        "en_us": "Entity Condition",
-        "zh_cn": "实体条件"
+        "en_us": "Condition",
+        "zh_cn": "条件"
       },
-      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Entity condition required before applying this creature profile. A single condition or an array of conditions can be supplied.",
-        "zh_cn": "应用灵兽档案前必须满足的实体条件，可填写单个条件或条件数组。"
-      }
+        "en_us": "Condition of this CreatureProfile.",
+        "zh_cn": "条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "inner_core": {
       "$title": {
         "en_us": "Inner Core",
-        "zh_cn": "内核"
+        "zh_cn": "内丹"
       },
-      "type": "string",
       "$description": {
-        "en_us": "Item that forms the creature's inner core.",
-        "zh_cn": "构成灵兽内核的物品。"
-      }
+        "en_us": "Inner Core of this CreatureProfile.",
+        "zh_cn": "内丹的值。"
+      },
+      "type": "string"
     },
     "loot_table": {
       "$title": {
         "en_us": "Loot Table",
         "zh_cn": "战利品表"
       },
-      "type": "string",
       "$description": {
-        "en_us": "Loot table used when the creature is killed.",
-        "zh_cn": "灵兽被击杀时使用的战利品表。"
-      }
-    },
-    "contract_tags": {
-      "$title": {
-        "en_us": "Contract Tags",
-        "zh_cn": "契约标签"
+        "en_us": "Loot Table of this CreatureProfile.",
+        "zh_cn": "战利品表的值。"
       },
-      "type": "array",
-      "items": {
-        "type": "string",
-        "$title": {
-          "en_us": "Tag",
-          "zh_cn": "标签"
-        },
-        "$description": {
-          "en_us": "One tag id.",
-          "zh_cn": "一个标签 ID。"
-        }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Contract tags this creature carries.",
-        "zh_cn": "该灵兽携带的契约标签。"
-      }
+      "type": "string"
     },
     "entity_type_tags": {
       "$title": {
         "en_us": "Entity Type Tags",
         "zh_cn": "实体类型标签"
       },
-      "type": "array",
-      "items": {
-        "$title": {
-          "en_us": "Tag",
-          "zh_cn": "标签"
-        },
-        "$description": {
-          "en_us": "One tag id.",
-          "zh_cn": "一个标签 ID。"
-        }
-      },
-      "default": [],
       "$description": {
-        "en_us": "Entity type tags this profile applies to.",
-        "zh_cn": "该档案生效的实体类型标签。"
-      }
+        "en_us": "Entity Type Tags of this CreatureProfile.",
+        "zh_cn": "实体类型标签的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:entity_type"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:entity_type_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:entity_type"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:entity_type_tag",
+                "pattern": "^#.+"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "preferred_aura_elements": {
       "$title": {
         "en_us": "Preferred Aura Elements",
         "zh_cn": "偏好灵气元素"
       },
-      "type": "array",
-      "items": {
-        "$title": {
-          "en_us": "Element",
-          "zh_cn": "元素"
-        },
-        "$description": {
-          "en_us": "One preferred element.",
-          "zh_cn": "一个偏好的元素。"
-        }
-      },
-      "default": [],
       "$description": {
-        "en_us": "Elements whose aura this creature prefers.",
-        "zh_cn": "该灵兽偏好的灵气元素。"
-      }
+        "en_us": "Preferred Aura Elements of this CreatureProfile.",
+        "zh_cn": "偏好灵气元素的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:element"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:element_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:element"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:element_tag",
+                "pattern": "^#.+"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "minimum_aura": {
       "$title": {
-        "en_us": "Minimum Resource Aura",
-        "zh_cn": "最低资源灵气"
+        "en_us": "Minimum Aura",
+        "zh_cn": "最低灵气"
+      },
+      "$description": {
+        "en_us": "Minimum Aura of this CreatureProfile.",
+        "zh_cn": "最低灵气的值。"
       },
       "type": "object",
       "additionalProperties": {
-        "$type": "mxt-common#number_provider",
+        "oneOf": [
+          {
+            "$title": {
+              "en_us": "Text",
+              "zh_cn": "文本"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: text.",
+              "zh_cn": "文本的值。"
+            },
+            "type": "string"
+          },
+          {
+            "$title": {
+              "en_us": "Number",
+              "zh_cn": "数值"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: number.",
+              "zh_cn": "数值的值。"
+            },
+            "type": "number"
+          },
+          {
+            "$title": {
+              "en_us": "Number Provider",
+              "zh_cn": "数值提供器"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: number provider.",
+              "zh_cn": "数值提供器的值。"
+            },
+            "$type": "mxt-common#number_provider"
+          }
+        ],
         "$title": {
-          "en_us": "Resource Minimum",
-          "zh_cn": "资源最低值"
+          "en_us": "Property",
+          "zh_cn": "条目"
         },
         "$description": {
-          "en_us": "Minimum aura of this resource the creature needs, keyed by mxt:resource ids.",
-          "zh_cn": "该灵兽对这种资源要求的最低灵气，键为 mxt:resource ID。"
+          "en_us": "Property value.",
+          "zh_cn": "条目的值。"
         }
-      },
-      "default": {},
-      "$description": {
-        "en_us": "Per-resource environmental minimums; keys are mxt:resource IDs.",
-        "zh_cn": "按资源分别定义的环境最低值，键为 mxt:resource ID。"
       }
     }
   },

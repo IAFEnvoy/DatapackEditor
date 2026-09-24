@@ -3,431 +3,3494 @@
   "$library": true,
   "$version": "26.1.2",
   "$title": {
-    "en_us": "MiXianTu Domain Records",
-    "zh_cn": "MiXianTu 域记录"
+    "en_us": "MiXianTu Content Types",
+    "zh_cn": "觅仙途 Content Types"
   },
   "$description": {
-    "en_us": "Records a single content domain uses, such as sect ranks or tribulation phases.",
-    "zh_cn": "单一内容域使用的记录，例如宗门等级或天劫阶段。"
+    "en_us": "Shared field types used by MiXianTu datapack schemas.",
+    "zh_cn": "觅仙途 Content Types的值。"
   },
   "$types": {
-    "record_ItemAbilitiesData": {
+    "data_storage": {
       "$title": {
-        "en_us": "ItemAbilitiesData",
-        "zh_cn": "物品技能数据"
+        "en_us": "Data Storage",
+        "zh_cn": "数据储物"
       },
       "$description": {
-        "en_us": "ItemAbilitiesData value.",
-        "zh_cn": "物品技能数据的值。"
+        "en_us": "Data Storage selected by its type identifier.",
+        "zh_cn": "数据储物的值。"
       },
       "type": "object",
+      "required": [
+        "type"
+      ],
       "properties": {
-        "abilities": {
+        "type": {
           "$title": {
-            "en_us": "Abilities",
-            "zh_cn": "技能"
+            "en_us": "Type",
+            "zh_cn": "类型"
           },
-          "type": "array",
-          "items": {
-            "type": "string",
-            "$title": {
-              "en_us": "Ability",
-              "zh_cn": "技能"
+          "type": "string",
+          "enum": [
+            "mxt:empty",
+            "mxt:cooldown",
+            "mxt:charges",
+            "mxt:toggle",
+            "mxt:timer",
+            "mxt:resource",
+            "mxt:target_lock",
+            "mxt:cast_deadline",
+            "mxt:channel_pulse",
+            "mxt:aura_pulse",
+            "mxt:entry_began",
+            "mxt:idle_countdown"
+          ],
+          "$suggstion": true,
+          "default": "mxt:empty",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:empty": {
+          "$title": {
+            "en_us": "Empty",
+            "zh_cn": "空"
+          },
+          "$description": {
+            "en_us": "Empty data_storage fields.",
+            "zh_cn": "空的值。"
+          },
+          "type": "object"
+        },
+        "mxt:cooldown": {
+          "$title": {
+            "en_us": "Cooldown",
+            "zh_cn": "冷却时间"
+          },
+          "$description": {
+            "en_us": "Cooldown data_storage fields.",
+            "zh_cn": "冷却时间的值。"
+          },
+          "type": "object",
+          "properties": {
+            "ticks": {
+              "$title": {
+                "en_us": "Ticks",
+                "zh_cn": "刻数"
+              },
+              "$description": {
+                "en_us": "Ticks of this CooldownDataStorage.",
+                "zh_cn": "刻数的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
             },
-            "$description": {
-              "en_us": "One ability id.",
-              "zh_cn": "一个技能 ID。"
+            "duration": {
+              "$title": {
+                "en_us": "Duration",
+                "zh_cn": "持续时间"
+              },
+              "$description": {
+                "en_us": "Duration of this CooldownDataStorage.",
+                "zh_cn": "持续时间的值。"
+              },
+              "type": "number"
             }
           },
-          "default": [],
+          "required": [
+            "ticks"
+          ]
+        },
+        "mxt:charges": {
+          "$title": {
+            "en_us": "Charges",
+            "zh_cn": "充能次数"
+          },
           "$description": {
-            "en_us": "Abilities value.",
-            "zh_cn": "技能的值。"
+            "en_us": "Charges data_storage fields.",
+            "zh_cn": "充能次数的值。"
+          },
+          "type": "object",
+          "properties": {
+            "maximum": {
+              "$title": {
+                "en_us": "Maximum",
+                "zh_cn": "最大值"
+              },
+              "$description": {
+                "en_us": "Maximum of this ChargesDataStorage.",
+                "zh_cn": "最大值的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            },
+            "recharge_ticks": {
+              "$title": {
+                "en_us": "Recharge Ticks",
+                "zh_cn": "充能刻数"
+              },
+              "$description": {
+                "en_us": "Recharge Ticks of this ChargesDataStorage.",
+                "zh_cn": "充能刻数的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            },
+            "remaining": {
+              "$title": {
+                "en_us": "Remaining",
+                "zh_cn": "剩余"
+              },
+              "$description": {
+                "en_us": "Remaining of this ChargesDataStorage.",
+                "zh_cn": "剩余的值。"
+              },
+              "type": "number"
+            }
+          },
+          "required": [
+            "maximum",
+            "recharge_ticks"
+          ]
+        },
+        "mxt:toggle": {
+          "$title": {
+            "en_us": "Toggle",
+            "zh_cn": "切换"
+          },
+          "$description": {
+            "en_us": "Toggle data_storage fields.",
+            "zh_cn": "切换的值。"
+          },
+          "type": "object",
+          "properties": {
+            "default": {
+              "$title": {
+                "en_us": "Default",
+                "zh_cn": "默认"
+              },
+              "$description": {
+                "en_us": "Default of this ToggleDataStorage.",
+                "zh_cn": "默认的值。"
+              },
+              "type": "boolean",
+              "default": false
+            },
+            "state": {
+              "$title": {
+                "en_us": "State",
+                "zh_cn": "方块状态"
+              },
+              "$description": {
+                "en_us": "State of this ToggleDataStorage.",
+                "zh_cn": "方块状态的值。"
+              },
+              "type": "boolean"
+            }
           }
+        },
+        "mxt:timer": {
+          "$title": {
+            "en_us": "Timer",
+            "zh_cn": "计时器"
+          },
+          "$description": {
+            "en_us": "Timer data_storage fields.",
+            "zh_cn": "计时器的值。"
+          },
+          "type": "object",
+          "properties": {
+            "duration": {
+              "$title": {
+                "en_us": "Duration",
+                "zh_cn": "持续时间"
+              },
+              "$description": {
+                "en_us": "Duration of this TimerDataStorage.",
+                "zh_cn": "持续时间的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            },
+            "ends_at": {
+              "$title": {
+                "en_us": "Ends At",
+                "zh_cn": "结束于"
+              },
+              "$description": {
+                "en_us": "Ends At of this TimerDataStorage.",
+                "zh_cn": "结束于的值。"
+              },
+              "type": "number"
+            }
+          },
+          "required": [
+            "duration"
+          ]
+        },
+        "mxt:resource": {
+          "$title": {
+            "en_us": "Resource",
+            "zh_cn": "资源"
+          },
+          "$description": {
+            "en_us": "Resource data_storage fields.",
+            "zh_cn": "资源的值。"
+          },
+          "type": "object",
+          "properties": {
+            "resource": {
+              "$title": {
+                "en_us": "Resource",
+                "zh_cn": "资源"
+              },
+              "$description": {
+                "en_us": "Resource of this ResourceDataStorage.",
+                "zh_cn": "资源的值。"
+              },
+              "type": "string",
+              "$registry": "mxt:resource"
+            },
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$description": {
+                "en_us": "Amount of this ResourceDataStorage.",
+                "zh_cn": "数量的值。"
+              },
+              "type": "number"
+            }
+          },
+          "required": [
+            "resource"
+          ]
+        },
+        "mxt:target_lock": {
+          "$title": {
+            "en_us": "Target Lock",
+            "zh_cn": "目标锁定"
+          },
+          "$description": {
+            "en_us": "Target Lock data_storage fields.",
+            "zh_cn": "目标锁定的值。"
+          },
+          "type": "object",
+          "properties": {
+            "range": {
+              "$title": {
+                "en_us": "Range",
+                "zh_cn": "范围"
+              },
+              "$description": {
+                "en_us": "Range of this TargetLockDataStorage.",
+                "zh_cn": "范围的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            },
+            "target": {
+              "$title": {
+                "en_us": "Target",
+                "zh_cn": "目标"
+              },
+              "$description": {
+                "en_us": "Target of this TargetLockDataStorage.",
+                "zh_cn": "目标的值。"
+              },
+              "type": "string"
+            }
+          },
+          "required": [
+            "range"
+          ]
+        },
+        "mxt:cast_deadline": {
+          "$title": {
+            "en_us": "Cast Deadline",
+            "zh_cn": "施放 Deadline"
+          },
+          "$description": {
+            "en_us": "Cast Deadline data_storage fields.",
+            "zh_cn": "施放 Deadline的值。"
+          },
+          "type": "object",
+          "properties": {
+            "ends_at": {
+              "$title": {
+                "en_us": "Ends At",
+                "zh_cn": "结束于"
+              },
+              "$description": {
+                "en_us": "Ends At of this CastDeadline.",
+                "zh_cn": "结束于的值。"
+              },
+              "type": "number"
+            }
+          },
+          "required": [
+            "ends_at"
+          ]
+        },
+        "mxt:channel_pulse": {
+          "$title": {
+            "en_us": "Channel Pulse",
+            "zh_cn": "Channel Pulse"
+          },
+          "$description": {
+            "en_us": "Channel Pulse data_storage fields.",
+            "zh_cn": "Channel Pulse的值。"
+          },
+          "type": "object",
+          "properties": {
+            "next_tick": {
+              "$title": {
+                "en_us": "Next Tick",
+                "zh_cn": "下一刻"
+              },
+              "$description": {
+                "en_us": "Next Tick of this ChannelPulse.",
+                "zh_cn": "下一刻的值。"
+              },
+              "type": "number"
+            }
+          },
+          "required": [
+            "next_tick"
+          ]
+        },
+        "mxt:aura_pulse": {
+          "$title": {
+            "en_us": "Aura Pulse",
+            "zh_cn": "灵气 Pulse"
+          },
+          "$description": {
+            "en_us": "Aura Pulse data_storage fields.",
+            "zh_cn": "灵气 Pulse的值。"
+          },
+          "type": "object",
+          "properties": {
+            "next_tick": {
+              "$title": {
+                "en_us": "Next Tick",
+                "zh_cn": "下一刻"
+              },
+              "$description": {
+                "en_us": "Next Tick of this AuraPulse.",
+                "zh_cn": "下一刻的值。"
+              },
+              "type": "number"
+            }
+          },
+          "required": [
+            "next_tick"
+          ]
+        },
+        "mxt:entry_began": {
+          "$title": {
+            "en_us": "Entry Began",
+            "zh_cn": "条目 Began"
+          },
+          "$description": {
+            "en_us": "Entry Began data_storage fields.",
+            "zh_cn": "条目 Began的值。"
+          },
+          "type": "object"
+        },
+        "mxt:idle_countdown": {
+          "$title": {
+            "en_us": "Idle Countdown",
+            "zh_cn": "Idle Countdown"
+          },
+          "$description": {
+            "en_us": "Idle Countdown data_storage fields.",
+            "zh_cn": "Idle Countdown的值。"
+          },
+          "type": "object",
+          "properties": {
+            "remaining": {
+              "$title": {
+                "en_us": "Remaining",
+                "zh_cn": "剩余"
+              },
+              "$description": {
+                "en_us": "Remaining of this IdleCountdown.",
+                "zh_cn": "剩余的值。"
+              },
+              "type": "integer"
+            }
+          },
+          "required": [
+            "remaining"
+          ]
         }
       }
     },
-    "record_ArtifactStorageData": {
+    "formation_action": {
       "$title": {
-        "en_us": "ArtifactStorageData",
-        "zh_cn": "法器存储数据"
+        "en_us": "Formation Action",
+        "zh_cn": "阵法行为"
       },
       "$description": {
-        "en_us": "ArtifactStorageData value.",
-        "zh_cn": "法器存储数据的值。"
+        "en_us": "Formation Action selected by its type identifier.",
+        "zh_cn": "阵法行为的值。"
       },
       "type": "object",
+      "required": [
+        "type"
+      ],
       "properties": {
-        "contents": {
+        "type": {
           "$title": {
-            "en_us": "Contents",
-            "zh_cn": "内容"
+            "en_us": "Type",
+            "zh_cn": "类型"
           },
-          "type": "array",
-          "items": {
-            "$title": {
-              "en_us": "Entry",
-              "zh_cn": "条目"
+          "type": "string",
+          "enum": [
+            "mxt:none",
+            "mxt:attack",
+            "mxt:buff",
+            "mxt:protection",
+            "mxt:range_display"
+          ],
+          "$suggstion": true,
+          "default": "mxt:none",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:none": {
+          "$title": {
+            "en_us": "None",
+            "zh_cn": "无"
+          },
+          "$description": {
+            "en_us": "None formation_action fields.",
+            "zh_cn": "无的值。"
+          },
+          "type": "object"
+        },
+        "mxt:attack": {
+          "$title": {
+            "en_us": "Attack",
+            "zh_cn": "攻击"
+          },
+          "$description": {
+            "en_us": "Attack formation_action fields.",
+            "zh_cn": "攻击的值。"
+          },
+          "type": "object",
+          "properties": {
+            "damage": {
+              "$title": {
+                "en_us": "Damage",
+                "zh_cn": "伤害"
+              },
+              "$description": {
+                "en_us": "Damage of this AttackFormationAction.",
+                "zh_cn": "伤害的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
             },
-            "$description": {
-              "en_us": "One stored entry.",
-              "zh_cn": "储存的一个条目。"
+            "damage_type": {
+              "$title": {
+                "en_us": "Damage Type",
+                "zh_cn": "伤害类型"
+              },
+              "$description": {
+                "en_us": "Damage Type of this AttackFormationAction.",
+                "zh_cn": "伤害类型的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:damage_type"
+            },
+            "attribute_to_owner": {
+              "$title": {
+                "en_us": "Attribute To Owner",
+                "zh_cn": "属性至主人"
+              },
+              "$description": {
+                "en_us": "Attribute To Owner of this AttackFormationAction.",
+                "zh_cn": "属性至主人的值。"
+              },
+              "type": "boolean",
+              "default": true
+            },
+            "effects": {
+              "$title": {
+                "en_us": "Effects",
+                "zh_cn": "效果"
+              },
+              "$description": {
+                "en_us": "Effects of this AttackFormationAction.",
+                "zh_cn": "效果的值。"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common#record_ApplyEffectAction",
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            },
+            "target_condition": {
+              "$title": {
+                "en_us": "Target Condition",
+                "zh_cn": "目标条件"
+              },
+              "$description": {
+                "en_us": "Target Condition of this AttackFormationAction.",
+                "zh_cn": "目标条件的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Entity Condition",
+                    "zh_cn": "实体条件"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: entity condition.",
+                    "zh_cn": "实体条件的值。"
+                  },
+                  "$type": "mxt-common-entity-condition#entity_condition"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-entity-condition#entity_condition",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "mxt:buff": {
+          "$title": {
+            "en_us": "Buff",
+            "zh_cn": "增益"
+          },
+          "$description": {
+            "en_us": "Buff formation_action fields.",
+            "zh_cn": "增益的值。"
+          },
+          "type": "object",
+          "properties": {
+            "abilities": {
+              "$title": {
+                "en_us": "Abilities",
+                "zh_cn": "技能"
+              },
+              "$description": {
+                "en_us": "Abilities of this BuffFormationAction.",
+                "zh_cn": "技能的值。"
+              },
+              "type": "array",
+              "items": {
+                "type": "string",
+                "$registry": "mxt:ability",
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            },
+            "target": {
+              "$title": {
+                "en_us": "Target",
+                "zh_cn": "目标"
+              },
+              "$description": {
+                "en_us": "Target of this BuffFormationAction.",
+                "zh_cn": "目标的值。"
+              },
+              "type": "string",
+              "enum": [
+                "all",
+                "allies",
+                "owner"
+              ],
+              "$suggstion": true,
+              "default": "all"
+            },
+            "aura_zone": {
+              "$title": {
+                "en_us": "Aura Zone",
+                "zh_cn": "灵气区域"
+              },
+              "$description": {
+                "en_us": "Aura Zone of this BuffFormationAction.",
+                "zh_cn": "灵气区域的值。"
+              },
+              "type": "string",
+              "$registry": "mxt:aura_zone"
+            },
+            "max_bonus": {
+              "$title": {
+                "en_us": "Max Bonus",
+                "zh_cn": "最大额外"
+              },
+              "$description": {
+                "en_us": "Max Bonus of this BuffFormationAction.",
+                "zh_cn": "最大额外的值。"
+              },
+              "type": "object",
+              "additionalProperties": {
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Text",
+                      "zh_cn": "文本"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: text.",
+                      "zh_cn": "文本的值。"
+                    },
+                    "type": "string"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number",
+                      "zh_cn": "数值"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number.",
+                      "zh_cn": "数值的值。"
+                    },
+                    "type": "number"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number Provider",
+                      "zh_cn": "数值提供器"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number provider.",
+                      "zh_cn": "数值提供器的值。"
+                    },
+                    "$type": "mxt-common#number_provider"
+                  }
+                ],
+                "$title": {
+                  "en_us": "Property",
+                  "zh_cn": "条目"
+                },
+                "$description": {
+                  "en_us": "Property value.",
+                  "zh_cn": "条目的值。"
+                }
+              }
+            }
+          }
+        },
+        "mxt:protection": {
+          "$title": {
+            "en_us": "Protection",
+            "zh_cn": "保护"
+          },
+          "$description": {
+            "en_us": "Protection formation_action fields.",
+            "zh_cn": "保护的值。"
+          },
+          "type": "object",
+          "properties": {
+            "block_break": {
+              "$title": {
+                "en_us": "Block Break",
+                "zh_cn": "方块解除"
+              },
+              "$description": {
+                "en_us": "Block Break of this ProtectionFormationAction.",
+                "zh_cn": "方块解除的值。"
+              },
+              "type": "boolean",
+              "default": true
+            },
+            "block_place": {
+              "$title": {
+                "en_us": "Block Place",
+                "zh_cn": "方块 Place"
+              },
+              "$description": {
+                "en_us": "Block Place of this ProtectionFormationAction.",
+                "zh_cn": "方块 Place的值。"
+              },
+              "type": "boolean",
+              "default": true
+            },
+            "block_interact": {
+              "$title": {
+                "en_us": "Block Interact",
+                "zh_cn": "方块 Interact"
+              },
+              "$description": {
+                "en_us": "Block Interact of this ProtectionFormationAction.",
+                "zh_cn": "方块 Interact的值。"
+              },
+              "type": "boolean",
+              "default": true
+            },
+            "explosions": {
+              "$title": {
+                "en_us": "Explosions",
+                "zh_cn": "爆炸"
+              },
+              "$description": {
+                "en_us": "Explosions of this ProtectionFormationAction.",
+                "zh_cn": "爆炸的值。"
+              },
+              "type": "boolean",
+              "default": true
+            },
+            "mob_griefing": {
+              "$title": {
+                "en_us": "Mob Griefing",
+                "zh_cn": "生物 Griefing"
+              },
+              "$description": {
+                "en_us": "Mob Griefing of this ProtectionFormationAction.",
+                "zh_cn": "生物 Griefing的值。"
+              },
+              "type": "boolean",
+              "default": true
+            },
+            "entity_interact": {
+              "$title": {
+                "en_us": "Entity Interact",
+                "zh_cn": "实体 Interact"
+              },
+              "$description": {
+                "en_us": "Entity Interact of this ProtectionFormationAction.",
+                "zh_cn": "实体 Interact的值。"
+              },
+              "type": "boolean",
+              "default": true
+            },
+            "attack_entity": {
+              "$title": {
+                "en_us": "Attack Entity",
+                "zh_cn": "攻击实体"
+              },
+              "$description": {
+                "en_us": "Attack Entity of this ProtectionFormationAction.",
+                "zh_cn": "攻击实体的值。"
+              },
+              "type": "boolean",
+              "default": true
+            },
+            "item_use": {
+              "$title": {
+                "en_us": "Item Use",
+                "zh_cn": "物品使用"
+              },
+              "$description": {
+                "en_us": "Item Use of this ProtectionFormationAction.",
+                "zh_cn": "物品使用的值。"
+              },
+              "type": "boolean",
+              "default": true
+            },
+            "spare_friends": {
+              "$title": {
+                "en_us": "Spare Friends",
+                "zh_cn": "Spare Friends"
+              },
+              "$description": {
+                "en_us": "Spare Friends of this ProtectionFormationAction.",
+                "zh_cn": "Spare Friends的值。"
+              },
+              "type": "boolean",
+              "default": true
+            },
+            "delegate_to_claims": {
+              "$title": {
+                "en_us": "Delegate To Claims",
+                "zh_cn": "Delegate 至 Claims"
+              },
+              "$description": {
+                "en_us": "Delegate To Claims of this ProtectionFormationAction.",
+                "zh_cn": "Delegate 至 Claims的值。"
+              },
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        "mxt:range_display": {
+          "$title": {
+            "en_us": "Range Display",
+            "zh_cn": "Range 显示"
+          },
+          "$description": {
+            "en_us": "Range Display formation_action fields.",
+            "zh_cn": "Range 显示的值。"
+          },
+          "type": "object",
+          "properties": {
+            "particle": {
+              "$title": {
+                "en_us": "Particle",
+                "zh_cn": "粒子"
+              },
+              "$description": {
+                "en_us": "Particle of this RangeDisplayFormationAction.",
+                "zh_cn": "粒子的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:particle_type"
+            },
+            "interval_periods": {
+              "$title": {
+                "en_us": "Interval Periods",
+                "zh_cn": "间隔周期数"
+              },
+              "$description": {
+                "en_us": "Interval Periods of this RangeDisplayFormationAction.",
+                "zh_cn": "间隔周期数的值。"
+              },
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1200,
+              "default": 1
+            },
+            "points": {
+              "$title": {
+                "en_us": "Points",
+                "zh_cn": "点数"
+              },
+              "$description": {
+                "en_us": "Points of this RangeDisplayFormationAction.",
+                "zh_cn": "点数的值。"
+              },
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 512,
+              "default": 32
+            },
+            "shape": {
+              "$title": {
+                "en_us": "Shape",
+                "zh_cn": "形状"
+              },
+              "$description": {
+                "en_us": "Shape of this RangeDisplayFormationAction.",
+                "zh_cn": "形状的值。"
+              },
+              "type": "string",
+              "enum": [
+                "ring",
+                "sphere"
+              ],
+              "$suggstion": true,
+              "default": "ring"
             }
           },
-          "default": [],
-          "$description": {
-            "en_us": "Contents value.",
-            "zh_cn": "内容的值。"
-          }
+          "required": [
+            "particle"
+          ]
         }
       }
     },
-    "record_ForgingResultData": {
+    "record_Border": {
       "$title": {
-        "en_us": "ForgingResultData",
-        "zh_cn": "锻造结果数据"
+        "en_us": "Record Border",
+        "zh_cn": "Record Border"
       },
       "$description": {
-        "en_us": "ForgingResultData value.",
-        "zh_cn": "锻造结果数据的值。"
+        "en_us": "Border value.",
+        "zh_cn": "Record Border的值。"
       },
-      "type": "object",
       "properties": {
-        "blueprint": {
+        "center": {
           "$title": {
-            "en_us": "Blueprint",
-            "zh_cn": "蓝图"
+            "en_us": "Center",
+            "zh_cn": "Center"
           },
-          "type": "string",
           "$description": {
-            "en_us": "Blueprint value.",
-            "zh_cn": "蓝图的值。"
-          }
-        },
-        "final_value": {
-          "$title": {
-            "en_us": "Final Value",
-            "zh_cn": "最终值"
-          },
-          "type": "integer",
-          "$description": {
-            "en_us": "Final Value value.",
-            "zh_cn": "最终值的值。"
-          }
-        },
-        "actual_steps": {
-          "$title": {
-            "en_us": "Actual Steps",
-            "zh_cn": "实际步数"
-          },
-          "type": "integer",
-          "$description": {
-            "en_us": "Actual Steps value.",
-            "zh_cn": "实际步数的值。"
-          }
-        },
-        "optimal_steps": {
-          "$title": {
-            "en_us": "Optimal Steps",
-            "zh_cn": "最优步数"
-          },
-          "type": "integer",
-          "$description": {
-            "en_us": "Optimal Steps value.",
-            "zh_cn": "最优步数的值。"
-          }
-        },
-        "extra_steps": {
-          "$title": {
-            "en_us": "Extra Steps",
-            "zh_cn": "额外步数"
-          },
-          "type": "integer",
-          "$description": {
-            "en_us": "Extra Steps value.",
-            "zh_cn": "额外步数的值。"
-          }
-        },
-        "quality": {
-          "$title": {
-            "en_us": "Quality",
-            "zh_cn": "品质"
-          },
-          "type": "string",
-          "$registry": "mxt:item_quality",
-          "$description": {
-            "en_us": "Quality value.",
-            "zh_cn": "品质的值。"
-          }
-        }
-      },
-      "required": [
-        "blueprint",
-        "final_value",
-        "actual_steps",
-        "optimal_steps",
-        "extra_steps",
-        "quality"
-      ]
-    },
-    "record_CurseContainerData": {
-      "$title": {
-        "en_us": "CurseContainerData",
-        "zh_cn": "诅咒容器数据"
-      },
-      "$description": {
-        "en_us": "CurseContainerData value.",
-        "zh_cn": "诅咒容器数据的值。"
-      },
-      "type": "object",
-      "properties": {}
-    },
-    "record_Phase": {
-      "$title": {
-        "en_us": "Phase",
-        "zh_cn": "阶段"
-      },
-      "$description": {
-        "en_us": "Phase value.",
-        "zh_cn": "阶段的值。"
-      },
-      "type": "object",
-      "properties": {
-        "duration": {
-          "$title": {
-            "en_us": "Duration",
-            "zh_cn": "持续时间"
-          },
-          "$type": "mxt-common#number_provider",
-          "$description": {
-            "en_us": "Duration value.",
-            "zh_cn": "持续时间的值。"
-          }
-        },
-        "start_action": {
-          "$title": {
-            "en_us": "Start Action",
-            "zh_cn": "开始行为"
-          },
-          "$type": "mxt-common-entity-action#entity_action",
-          "$description": {
-            "en_us": "Start Action value.",
-            "zh_cn": "开始行为的值。"
-          }
-        },
-        "end_action": {
-          "$title": {
-            "en_us": "End Action",
-            "zh_cn": "结束行为"
-          },
-          "$type": "mxt-common-entity-action#entity_action",
-          "$description": {
-            "en_us": "End Action value.",
-            "zh_cn": "结束行为的值。"
-          }
-        }
-      },
-      "required": [
-        "duration"
-      ]
-    },
-    "record_Rank": {
-      "$title": {
-        "en_us": "Rank",
-        "zh_cn": "阶位"
-      },
-      "$description": {
-        "en_us": "Rank value.",
-        "zh_cn": "阶位的值。"
-      },
-      "type": "object",
-      "properties": {
-        "id": {
-          "$title": {
-            "en_us": "Id",
-            "zh_cn": "标识符"
-          },
-          "default": 0,
-          "$description": {
-            "en_us": "Id value.",
-            "zh_cn": "标识符的值。"
-          }
-        },
-        "priority": {
-          "$title": {
-            "en_us": "Priority",
-            "zh_cn": "优先级"
-          },
-          "type": "integer",
-          "default": 0,
-          "$description": {
-            "en_us": "Priority value.",
-            "zh_cn": "优先级的值。"
-          }
-        },
-        "min_contribution": {
-          "$title": {
-            "en_us": "Min Contribution",
-            "zh_cn": "最低贡献"
-          },
-          "type": "integer",
-          "default": 0,
-          "$description": {
-            "en_us": "Min Contribution value.",
-            "zh_cn": "最低贡献的值。"
-          }
-        },
-        "permissions": {
-          "$title": {
-            "en_us": "Permissions",
-            "zh_cn": "权限"
+            "en_us": "Center of this Border.",
+            "zh_cn": "Center的值。"
           },
           "type": "array",
           "items": {
-            "type": "string",
+            "type": "number",
             "$title": {
-              "en_us": "Permission",
-              "zh_cn": "权限"
+              "en_us": "Item",
+              "zh_cn": "物品"
             },
             "$description": {
-              "en_us": "One permission entry.",
-              "zh_cn": "一条权限。"
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
             }
           },
-          "default": [],
-          "$description": {
-            "en_us": "Permissions value.",
-            "zh_cn": "权限的值。"
-          }
+          "minItems": 2,
+          "maxItems": 2
         },
-        "promotion_costs": {
+        "size": {
           "$title": {
-            "en_us": "Promotion Costs",
-            "zh_cn": "晋升消耗"
+            "en_us": "Size",
+            "zh_cn": "Size"
+          },
+          "$description": {
+            "en_us": "Size of this Border.",
+            "zh_cn": "Size的值。"
+          },
+          "type": "number"
+        },
+        "warning_blocks": {
+          "$title": {
+            "en_us": "Warning Blocks",
+            "zh_cn": "Warning 方块"
+          },
+          "$description": {
+            "en_us": "Warning Blocks of this Border.",
+            "zh_cn": "Warning 方块的值。"
+          },
+          "type": "integer",
+          "default": 5
+        },
+        "warning_time": {
+          "$title": {
+            "en_us": "Warning Time",
+            "zh_cn": "Warning 时间"
+          },
+          "$description": {
+            "en_us": "Warning Time of this Border.",
+            "zh_cn": "Warning 时间的值。"
+          },
+          "type": "integer",
+          "default": 15
+        },
+        "damage_per_block": {
+          "$title": {
+            "en_us": "Damage Per Block",
+            "zh_cn": "伤害每方块"
+          },
+          "$description": {
+            "en_us": "Damage Per Block of this Border.",
+            "zh_cn": "伤害每方块的值。"
+          },
+          "type": "number",
+          "default": 0.2
+        },
+        "safe_zone": {
+          "$title": {
+            "en_us": "Safe Zone",
+            "zh_cn": "Safe 区域"
+          },
+          "$description": {
+            "en_us": "Safe Zone of this Border.",
+            "zh_cn": "Safe 区域的值。"
+          },
+          "type": "number",
+          "default": 5
+        }
+      },
+      "required": []
+    },
+    "record_CultivateConditions": {
+      "$title": {
+        "en_us": "Record CultivateConditions",
+        "zh_cn": "Record 修炼条件"
+      },
+      "$description": {
+        "en_us": "CultivateConditions value.",
+        "zh_cn": "Record 修炼条件的值。"
+      },
+      "properties": {
+        "conditions": {
+          "$title": {
+            "en_us": "Conditions",
+            "zh_cn": "条件"
+          },
+          "$description": {
+            "en_us": "Conditions of this CultivateConditions.",
+            "zh_cn": "条件的值。"
           },
           "type": "array",
           "items": {
-            "$type": "mxt-common#record_ResourceCost",
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Entity Condition",
+                  "zh_cn": "实体条件"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: entity condition.",
+                  "zh_cn": "实体条件的值。"
+                },
+                "$type": "mxt-common-entity-condition#entity_condition"
+              },
+              {
+                "$title": {
+                  "en_us": "List",
+                  "zh_cn": "列表"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: list.",
+                  "zh_cn": "列表的值。"
+                },
+                "type": "array",
+                "items": {
+                  "$type": "mxt-common-entity-condition#entity_condition",
+                  "$title": {
+                    "en_us": "Item",
+                    "zh_cn": "物品"
+                  },
+                  "$description": {
+                    "en_us": "Item value.",
+                    "zh_cn": "物品的值。"
+                  }
+                }
+              }
+            ],
             "$title": {
-              "en_us": "Cost",
-              "zh_cn": "消耗"
+              "en_us": "Item",
+              "zh_cn": "物品"
             },
             "$description": {
-              "en_us": "One cost paid on promotion.",
-              "zh_cn": "晋升时支付的一项消耗。"
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        },
+        "triggers": {
+          "$title": {
+            "en_us": "Triggers",
+            "zh_cn": "触发器"
+          },
+          "$description": {
+            "en_us": "Triggers of this CultivateConditions.",
+            "zh_cn": "触发器的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-content#trigger",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        },
+        "action": {
+          "$title": {
+            "en_us": "Action",
+            "zh_cn": "行为"
+          },
+          "$description": {
+            "en_us": "Action of this CultivateConditions.",
+            "zh_cn": "行为的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Entity Action",
+                "zh_cn": "实体行为"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: entity action.",
+                "zh_cn": "实体行为的值。"
+              },
+              "$type": "mxt-common-entity-action#entity_action"
+            },
+            {
+              "$title": {
+                "en_us": "List",
+                "zh_cn": "列表"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: list.",
+                "zh_cn": "列表的值。"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-entity-action#entity_action",
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": []
+    },
+    "record_DamageTypeClaim": {
+      "$title": {
+        "en_us": "Record DamageTypeClaim",
+        "zh_cn": "Record 伤害类型 Claim"
+      },
+      "$description": {
+        "en_us": "DamageTypeClaim value.",
+        "zh_cn": "Record 伤害类型 Claim的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Object",
+            "zh_cn": "对象"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: object.",
+            "zh_cn": "对象的值。"
+          },
+          "type": "object",
+          "properties": {
+            "damage_type": {
+              "$title": {
+                "en_us": "Damage Type",
+                "zh_cn": "伤害类型"
+              },
+              "$description": {
+                "en_us": "Damage Type of this DamageTypeClaim.",
+                "zh_cn": "伤害类型的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Identifier",
+                    "zh_cn": "标识符"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: identifier.",
+                    "zh_cn": "标识符的值。"
+                  },
+                  "type": "string",
+                  "$registry": "minecraft:damage_type"
+                },
+                {
+                  "$title": {
+                    "en_us": "Tag",
+                    "zh_cn": "标签"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: tag.",
+                    "zh_cn": "标签的值。"
+                  },
+                  "type": "string",
+                  "$registry": "minecraft:damage_type_tag",
+                  "pattern": "^#.+"
+                }
+              ]
+            },
+            "damage_attachment": {
+              "$title": {
+                "en_us": "Damage Attachment",
+                "zh_cn": "伤害 Attachment"
+              },
+              "$description": {
+                "en_us": "Damage Attachment of this DamageTypeClaim.",
+                "zh_cn": "伤害 Attachment的值。"
+              },
+              "type": "number",
+              "minimum": 0
             }
           },
-          "default": [],
-          "$description": {
-            "en_us": "Promotion Costs value.",
-            "zh_cn": "晋升消耗的值。"
-          }
-        }
-      },
-      "required": [
-        "id"
-      ]
-    },
-    "record_Task": {
-      "$title": {
-        "en_us": "Task",
-        "zh_cn": "任务"
-      },
-      "$description": {
-        "en_us": "Task value.",
-        "zh_cn": "任务的值。"
-      },
-      "type": "object",
-      "properties": {
-        "id": {
+          "required": [
+            "damage_type"
+          ]
+        },
+        {
           "$title": {
-            "en_us": "Id",
+            "en_us": "Identifier",
             "zh_cn": "标识符"
           },
-          "type": "string",
           "$description": {
-            "en_us": "Id value.",
+            "en_us": "One accepted form of this value: identifier.",
             "zh_cn": "标识符的值。"
-          }
-        },
-        "contribution_reward": {
-          "$title": {
-            "en_us": "Contribution Reward",
-            "zh_cn": "贡献奖励"
-          },
-          "type": "integer",
-          "default": true,
-          "$description": {
-            "en_us": "Contribution Reward value.",
-            "zh_cn": "贡献奖励的值。"
-          }
-        },
-        "once": {
-          "$title": {
-            "en_us": "Once",
-            "zh_cn": "一次"
-          },
-          "type": "boolean",
-          "default": true,
-          "$description": {
-            "en_us": "Once value.",
-            "zh_cn": "一次的值。"
-          }
-        },
-        "required_permission": {
-          "$title": {
-            "en_us": "Required Permission",
-            "zh_cn": "所需权限"
           },
           "type": "string",
+          "$registry": "minecraft:damage_type"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
           "$description": {
-            "en_us": "Required Permission value.",
-            "zh_cn": "所需权限的值。"
-          }
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:damage_type_tag",
+          "pattern": "^#.+"
+        }
+      ]
+    },
+    "record_data_cultivation_Relation": {
+      "$title": {
+        "en_us": "Record Data Cultivation Relation",
+        "zh_cn": "Record 数据修炼关系"
+      },
+      "$description": {
+        "en_us": "Relation value.",
+        "zh_cn": "Record 数据修炼关系的值。"
+      },
+      "properties": {
+        "elements": {
+          "$title": {
+            "en_us": "Elements",
+            "zh_cn": "元素"
+          },
+          "$description": {
+            "en_us": "Elements of this Relation.",
+            "zh_cn": "元素的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Identifier",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: identifier.",
+                "zh_cn": "标识符的值。"
+              },
+              "type": "string",
+              "$registry": "mxt:element"
+            },
+            {
+              "$title": {
+                "en_us": "Tag",
+                "zh_cn": "标签"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: tag.",
+                "zh_cn": "标签的值。"
+              },
+              "type": "string",
+              "$registry": "mxt:element_tag",
+              "pattern": "^#.+"
+            },
+            {
+              "$title": {
+                "en_us": "List",
+                "zh_cn": "列表"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: list.",
+                "zh_cn": "列表的值。"
+              },
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Identifier",
+                      "zh_cn": "标识符"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: identifier.",
+                      "zh_cn": "标识符的值。"
+                    },
+                    "type": "string",
+                    "$registry": "mxt:element"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Tag",
+                      "zh_cn": "标签"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: tag.",
+                      "zh_cn": "标签的值。"
+                    },
+                    "type": "string",
+                    "$registry": "mxt:element_tag",
+                    "pattern": "^#.+"
+                  }
+                ],
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            }
+          ]
+        },
+        "multiplier": {
+          "$title": {
+            "en_us": "Multiplier",
+            "zh_cn": "倍率"
+          },
+          "$description": {
+            "en_us": "Multiplier of this Relation.",
+            "zh_cn": "倍率的值。"
+          },
+          "type": "number"
         }
       },
       "required": [
-        "id",
-        "contribution_reward"
+        "elements",
+        "multiplier"
       ]
     },
-    "record_Exchange": {
+    "record_data_quality_Modifier": {
       "$title": {
-        "en_us": "Exchange",
-        "zh_cn": "兑换"
+        "en_us": "Record Data Quality Modifier",
+        "zh_cn": "Record 数据品质修正"
       },
       "$description": {
-        "en_us": "Exchange value.",
-        "zh_cn": "兑换的值。"
+        "en_us": "Modifier value.",
+        "zh_cn": "Record 数据品质修正的值。"
       },
-      "type": "object",
       "properties": {
-        "cost": {
+        "description": {
           "$title": {
-            "en_us": "Cost",
-            "zh_cn": "消耗"
+            "en_us": "Description",
+            "zh_cn": "描述"
+          },
+          "$description": {
+            "en_us": "Description of this Modifier.",
+            "zh_cn": "描述的值。"
+          },
+          "type": [
+            "string",
+            "object"
+          ]
+        },
+        "modifier": {
+          "$title": {
+            "en_us": "Modifier",
+            "zh_cn": "属性修正"
+          },
+          "$description": {
+            "en_us": "Modifier of this Modifier.",
+            "zh_cn": "属性修正的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Text",
+                "zh_cn": "文本"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
+        }
+      },
+      "required": []
+    },
+    "record_EntryPoint": {
+      "$title": {
+        "en_us": "Record EntryPoint",
+        "zh_cn": "Record 条目 Point"
+      },
+      "$description": {
+        "en_us": "EntryPoint value.",
+        "zh_cn": "Record 条目 Point的值。"
+      },
+      "properties": {
+        "pos": {
+          "$title": {
+            "en_us": "Pos",
+            "zh_cn": "坐标"
+          },
+          "$description": {
+            "en_us": "Pos of this EntryPoint.",
+            "zh_cn": "坐标的值。"
+          },
+          "type": "array",
+          "items": {
+            "type": "number",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "yaw": {
+          "$title": {
+            "en_us": "Yaw",
+            "zh_cn": "Yaw"
+          },
+          "$description": {
+            "en_us": "Yaw of this EntryPoint.",
+            "zh_cn": "Yaw的值。"
+          },
+          "type": "number"
+        },
+        "pitch": {
+          "$title": {
+            "en_us": "Pitch",
+            "zh_cn": "俯仰角"
+          },
+          "$description": {
+            "en_us": "Pitch of this EntryPoint.",
+            "zh_cn": "俯仰角的值。"
+          },
+          "type": "number"
+        },
+        "random_center": {
+          "$title": {
+            "en_us": "Random Center",
+            "zh_cn": "随机 Center"
+          },
+          "$description": {
+            "en_us": "Random Center of this EntryPoint.",
+            "zh_cn": "随机 Center的值。"
+          },
+          "type": "array",
+          "items": {
+            "type": "number",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "random_radius": {
+          "$title": {
+            "en_us": "Random Radius",
+            "zh_cn": "随机 Radius"
+          },
+          "$description": {
+            "en_us": "Random Radius of this EntryPoint.",
+            "zh_cn": "随机 Radius的值。"
+          },
+          "type": "number"
+        },
+        "spread": {
+          "$title": {
+            "en_us": "Spread",
+            "zh_cn": "扩散"
+          },
+          "$description": {
+            "en_us": "Spread of this EntryPoint.",
+            "zh_cn": "扩散的值。"
+          },
+          "type": "number",
+          "default": 3
+        },
+        "weight": {
+          "$title": {
+            "en_us": "Weight",
+            "zh_cn": "权重"
+          },
+          "$description": {
+            "en_us": "Weight of this EntryPoint.",
+            "zh_cn": "权重的值。"
           },
           "type": "integer",
-          "$description": {
-            "en_us": "Cost value.",
-            "zh_cn": "消耗的值。"
-          }
-        },
+          "default": 1
+        }
+      },
+      "required": []
+    },
+    "record_FailureSettlement": {
+      "$title": {
+        "en_us": "Record FailureSettlement",
+        "zh_cn": "Record 失败结算"
+      },
+      "$description": {
+        "en_us": "FailureSettlement value.",
+        "zh_cn": "Record 失败结算的值。"
+      },
+      "properties": {
         "result": {
           "$title": {
             "en_us": "Result",
             "zh_cn": "结果"
           },
           "$description": {
-            "en_us": "Result value.",
+            "en_us": "Result of this FailureSettlement.",
             "zh_cn": "结果的值。"
+          },
+          "type": "string"
+        },
+        "input_return_ratio": {
+          "$title": {
+            "en_us": "Input Return Ratio",
+            "zh_cn": "输入返还比例"
+          },
+          "$description": {
+            "en_us": "Input Return Ratio of this FailureSettlement.",
+            "zh_cn": "输入返还比例的值。"
+          },
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0
+        },
+        "material_loss_ratio": {
+          "$title": {
+            "en_us": "Material Loss Ratio",
+            "zh_cn": "材料损失比例"
+          },
+          "$description": {
+            "en_us": "Material Loss Ratio of this FailureSettlement.",
+            "zh_cn": "材料损失比例的值。"
+          },
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 1
+        }
+      },
+      "required": []
+    },
+    "record_FinishPattern": {
+      "$title": {
+        "en_us": "Record FinishPattern",
+        "zh_cn": "Record 结束模式"
+      },
+      "$description": {
+        "en_us": "FinishPattern value.",
+        "zh_cn": "Record 结束模式的值。"
+      },
+      "properties": {
+        "steps": {
+          "$title": {
+            "en_us": "Steps",
+            "zh_cn": "步骤"
+          },
+          "$description": {
+            "en_us": "Steps of this FinishPattern.",
+            "zh_cn": "步骤的值。"
+          },
+          "type": "array",
+          "items": {
+            "type": "string",
+            "$registry": "mxt:forging_method",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
           }
+        },
+        "required_suffix_steps": {
+          "$title": {
+            "en_us": "Required Suffix Steps",
+            "zh_cn": "要求末步数"
+          },
+          "$description": {
+            "en_us": "Required Suffix Steps of this FinishPattern.",
+            "zh_cn": "要求末步数的值。"
+          },
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 6,
+          "default": 0
+        }
+      },
+      "required": []
+    },
+    "record_ForgingMaterial": {
+      "$title": {
+        "en_us": "Record ForgingMaterial",
+        "zh_cn": "Record 锻造材料"
+      },
+      "$description": {
+        "en_us": "ForgingMaterial value.",
+        "zh_cn": "Record 锻造材料的值。"
+      },
+      "properties": {
+        "id": {
+          "$title": {
+            "en_us": "Id",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "Id of this ForgingMaterial.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string"
+        },
+        "count": {
+          "$title": {
+            "en_us": "Count",
+            "zh_cn": "数量"
+          },
+          "$description": {
+            "en_us": "Count of this ForgingMaterial.",
+            "zh_cn": "数量的值。"
+          },
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 64,
+          "default": 1
         }
       },
       "required": [
-        "cost",
-        "result"
+        "id"
       ]
+    },
+    "record_MeterBounds": {
+      "$title": {
+        "en_us": "Record MeterBounds",
+        "zh_cn": "Record Meter Bounds"
+      },
+      "$description": {
+        "en_us": "MeterBounds value.",
+        "zh_cn": "Record Meter Bounds的值。"
+      },
+      "properties": {
+        "meter_min": {
+          "$title": {
+            "en_us": "Meter Min",
+            "zh_cn": "数值条下界"
+          },
+          "$description": {
+            "en_us": "Meter Min of this MeterBounds.",
+            "zh_cn": "数值条下界的值。"
+          },
+          "type": "integer"
+        },
+        "meter_max": {
+          "$title": {
+            "en_us": "Meter Max",
+            "zh_cn": "数值条上界"
+          },
+          "$description": {
+            "en_us": "Meter Max of this MeterBounds.",
+            "zh_cn": "数值条上界的值。"
+          },
+          "type": "integer"
+        },
+        "target_min": {
+          "$title": {
+            "en_us": "Target Min",
+            "zh_cn": "成功区间下界"
+          },
+          "$description": {
+            "en_us": "Target Min of this MeterBounds.",
+            "zh_cn": "成功区间下界的值。"
+          },
+          "type": "integer"
+        },
+        "target_max": {
+          "$title": {
+            "en_us": "Target Max",
+            "zh_cn": "成功区间上界"
+          },
+          "$description": {
+            "en_us": "Target Max of this MeterBounds.",
+            "zh_cn": "成功区间上界的值。"
+          },
+          "type": "integer"
+        }
+      },
+      "required": [
+        "meter_min",
+        "meter_max",
+        "target_min",
+        "target_max"
+      ]
+    },
+    "record_QualityThreshold": {
+      "$title": {
+        "en_us": "Record QualityThreshold",
+        "zh_cn": "Record 品质阈值"
+      },
+      "$description": {
+        "en_us": "QualityThreshold value.",
+        "zh_cn": "Record 品质阈值的值。"
+      },
+      "properties": {
+        "max_extra_steps": {
+          "$title": {
+            "en_us": "Max Extra Steps",
+            "zh_cn": "最大额外步数"
+          },
+          "$description": {
+            "en_us": "Max Extra Steps of this QualityThreshold.",
+            "zh_cn": "最大额外步数的值。"
+          },
+          "type": "integer"
+        },
+        "quality": {
+          "$title": {
+            "en_us": "Quality",
+            "zh_cn": "品质"
+          },
+          "$description": {
+            "en_us": "Quality of this QualityThreshold.",
+            "zh_cn": "品质的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:quality"
+        }
+      },
+      "required": [
+        "max_extra_steps",
+        "quality"
+      ]
+    },
+    "record_StageConfiguration": {
+      "$title": {
+        "en_us": "Record StageConfiguration",
+        "zh_cn": "Record 阶段 Configuration"
+      },
+      "$description": {
+        "en_us": "StageConfiguration value.",
+        "zh_cn": "Record 阶段 Configuration的值。"
+      },
+      "properties": {
+        "condition": {
+          "$title": {
+            "en_us": "Condition",
+            "zh_cn": "条件"
+          },
+          "$description": {
+            "en_us": "Condition of this StageConfiguration.",
+            "zh_cn": "条件的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Entity Condition",
+                "zh_cn": "实体条件"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: entity condition.",
+                "zh_cn": "实体条件的值。"
+              },
+              "$type": "mxt-common-entity-condition#entity_condition"
+            },
+            {
+              "$title": {
+                "en_us": "List",
+                "zh_cn": "列表"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: list.",
+                "zh_cn": "列表的值。"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-entity-condition#entity_condition",
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            }
+          ]
+        },
+        "ability": {
+          "$title": {
+            "en_us": "Ability",
+            "zh_cn": "技能"
+          },
+          "$description": {
+            "en_us": "Ability of this StageConfiguration.",
+            "zh_cn": "技能的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Identifier",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: identifier.",
+                "zh_cn": "标识符的值。"
+              },
+              "type": "string",
+              "$registry": "mxt:ability"
+            },
+            {
+              "$title": {
+                "en_us": "Tag",
+                "zh_cn": "标签"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: tag.",
+                "zh_cn": "标签的值。"
+              },
+              "type": "string",
+              "$registry": "mxt:ability_tag",
+              "pattern": "^#.+"
+            },
+            {
+              "$title": {
+                "en_us": "List",
+                "zh_cn": "列表"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: list.",
+                "zh_cn": "列表的值。"
+              },
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Identifier",
+                      "zh_cn": "标识符"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: identifier.",
+                      "zh_cn": "标识符的值。"
+                    },
+                    "type": "string",
+                    "$registry": "mxt:ability"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Tag",
+                      "zh_cn": "标签"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: tag.",
+                      "zh_cn": "标签的值。"
+                    },
+                    "type": "string",
+                    "$registry": "mxt:ability_tag",
+                    "pattern": "^#.+"
+                  }
+                ],
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "condition"
+      ]
+    },
+    "record_Step": {
+      "$title": {
+        "en_us": "Record Step",
+        "zh_cn": "Record Step"
+      },
+      "$description": {
+        "en_us": "Step value.",
+        "zh_cn": "Record Step的值。"
+      },
+      "properties": {
+        "costs": {
+          "$title": {
+            "en_us": "Costs",
+            "zh_cn": "消耗"
+          },
+          "$description": {
+            "en_us": "Costs of this Step.",
+            "zh_cn": "消耗的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Object",
+                  "zh_cn": "对象"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: object.",
+                  "zh_cn": "对象的值。"
+                },
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "$title": {
+                      "en_us": "Id",
+                      "zh_cn": "标识符"
+                    },
+                    "$description": {
+                      "en_us": "Id of this Cost.",
+                      "zh_cn": "标识符的值。"
+                    },
+                    "type": "string",
+                    "$registry": "mxt:resource"
+                  },
+                  "amount": {
+                    "$title": {
+                      "en_us": "Amount",
+                      "zh_cn": "数量"
+                    },
+                    "$description": {
+                      "en_us": "Amount of this Cost.",
+                      "zh_cn": "数量的值。"
+                    },
+                    "oneOf": [
+                      {
+                        "$title": {
+                          "en_us": "Text",
+                          "zh_cn": "文本"
+                        },
+                        "$description": {
+                          "en_us": "One accepted form of this value: text.",
+                          "zh_cn": "文本的值。"
+                        },
+                        "type": "string"
+                      },
+                      {
+                        "$title": {
+                          "en_us": "Number",
+                          "zh_cn": "数值"
+                        },
+                        "$description": {
+                          "en_us": "One accepted form of this value: number.",
+                          "zh_cn": "数值的值。"
+                        },
+                        "type": "number"
+                      },
+                      {
+                        "$title": {
+                          "en_us": "Number Provider",
+                          "zh_cn": "数值提供器"
+                        },
+                        "$description": {
+                          "en_us": "One accepted form of this value: number provider.",
+                          "zh_cn": "数值提供器的值。"
+                        },
+                        "$type": "mxt-common#number_provider"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "amount"
+                ]
+              },
+              {
+                "$title": {
+                  "en_us": "Cost",
+                  "zh_cn": "消耗"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: cost.",
+                  "zh_cn": "消耗的值。"
+                },
+                "$type": "mxt-common#cost"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        },
+        "condition": {
+          "$title": {
+            "en_us": "Condition",
+            "zh_cn": "条件"
+          },
+          "$description": {
+            "en_us": "Condition of this Step.",
+            "zh_cn": "条件的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Entity Condition",
+                "zh_cn": "实体条件"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: entity condition.",
+                "zh_cn": "实体条件的值。"
+              },
+              "$type": "mxt-common-entity-condition#entity_condition"
+            },
+            {
+              "$title": {
+                "en_us": "List",
+                "zh_cn": "列表"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: list.",
+                "zh_cn": "列表的值。"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-entity-condition#entity_condition",
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": []
+    },
+    "record_StructurePlacement": {
+      "$title": {
+        "en_us": "Record StructurePlacement",
+        "zh_cn": "Record 结构 Placement"
+      },
+      "$description": {
+        "en_us": "StructurePlacement value.",
+        "zh_cn": "Record 结构 Placement的值。"
+      },
+      "properties": {
+        "nbt": {
+          "$title": {
+            "en_us": "Nbt",
+            "zh_cn": "NBT 数据"
+          },
+          "$description": {
+            "en_us": "Nbt of this StructurePlacement.",
+            "zh_cn": "NBT 数据的值。"
+          },
+          "type": "string"
+        },
+        "pos": {
+          "$title": {
+            "en_us": "Pos",
+            "zh_cn": "坐标"
+          },
+          "$description": {
+            "en_us": "Pos of this StructurePlacement.",
+            "zh_cn": "坐标的值。"
+          },
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        "rotation": {
+          "$title": {
+            "en_us": "Rotation",
+            "zh_cn": "旋转"
+          },
+          "$description": {
+            "en_us": "Rotation of this StructurePlacement.",
+            "zh_cn": "旋转的值。"
+          },
+          "type": "string",
+          "enum": [
+            "none",
+            "clockwise_90",
+            "clockwise_180",
+            "counterclockwise_90"
+          ],
+          "$suggstion": true,
+          "default": "none"
+        },
+        "mirror": {
+          "$title": {
+            "en_us": "Mirror",
+            "zh_cn": "Mirror"
+          },
+          "$description": {
+            "en_us": "Mirror of this StructurePlacement.",
+            "zh_cn": "Mirror的值。"
+          },
+          "type": "string",
+          "enum": [
+            "none",
+            "left_right",
+            "front_back"
+          ],
+          "$suggstion": true,
+          "default": "none"
+        },
+        "integrity": {
+          "$title": {
+            "en_us": "Integrity",
+            "zh_cn": "Integrity"
+          },
+          "$description": {
+            "en_us": "Integrity of this StructurePlacement.",
+            "zh_cn": "Integrity的值。"
+          },
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 1
+        },
+        "chance": {
+          "$title": {
+            "en_us": "Chance",
+            "zh_cn": "概率"
+          },
+          "$description": {
+            "en_us": "Chance of this StructurePlacement.",
+            "zh_cn": "概率的值。"
+          },
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 1
+        },
+        "relative_to_entry": {
+          "$title": {
+            "en_us": "Relative To Entry",
+            "zh_cn": "相对至条目"
+          },
+          "$description": {
+            "en_us": "Relative To Entry of this StructurePlacement.",
+            "zh_cn": "相对至条目的值。"
+          },
+          "type": "boolean",
+          "default": false
+        },
+        "ignore_entities": {
+          "$title": {
+            "en_us": "Ignore Entities",
+            "zh_cn": "Ignore Entities"
+          },
+          "$description": {
+            "en_us": "Ignore Entities of this StructurePlacement.",
+            "zh_cn": "Ignore Entities的值。"
+          },
+          "type": "boolean",
+          "default": false
+        },
+        "keep_liquids": {
+          "$title": {
+            "en_us": "Keep Liquids",
+            "zh_cn": "Keep Liquids"
+          },
+          "$description": {
+            "en_us": "Keep Liquids of this StructurePlacement.",
+            "zh_cn": "Keep Liquids的值。"
+          },
+          "type": "boolean",
+          "default": true
+        }
+      },
+      "required": [
+        "nbt",
+        "pos"
+      ]
+    },
+    "secret_realm_generation": {
+      "$title": {
+        "en_us": "Secret Realm Generation",
+        "zh_cn": "Secret 境界 Generation"
+      },
+      "$description": {
+        "en_us": "Secret Realm Generation selected by its type identifier.",
+        "zh_cn": "Secret 境界 Generation的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:stem",
+            "mxt:flat",
+            "mxt:void",
+            "mxt:template",
+            "mxt:existing"
+          ],
+          "$suggstion": true,
+          "default": "mxt:stem",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:stem": {
+          "$title": {
+            "en_us": "Stem",
+            "zh_cn": "Stem"
+          },
+          "$description": {
+            "en_us": "Stem secret_realm_generation fields.",
+            "zh_cn": "Stem的值。"
+          },
+          "type": "object",
+          "properties": {
+            "stem": {
+              "$title": {
+                "en_us": "Stem",
+                "zh_cn": "Stem"
+              },
+              "$description": {
+                "en_us": "Stem of this Stem.",
+                "zh_cn": "Stem的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:level_stem"
+            }
+          },
+          "required": [
+            "stem"
+          ]
+        },
+        "mxt:flat": {
+          "$title": {
+            "en_us": "Flat",
+            "zh_cn": "Flat"
+          },
+          "$description": {
+            "en_us": "Flat secret_realm_generation fields.",
+            "zh_cn": "Flat的值。"
+          },
+          "type": "object",
+          "properties": {
+            "preset": {
+              "$title": {
+                "en_us": "Preset",
+                "zh_cn": "Preset"
+              },
+              "$description": {
+                "en_us": "Preset of this Flat.",
+                "zh_cn": "Preset的值。"
+              },
+              "type": "string"
+            },
+            "dimension_type": {
+              "$title": {
+                "en_us": "Dimension Type",
+                "zh_cn": "维度类型"
+              },
+              "$description": {
+                "en_us": "Dimension Type of this Flat.",
+                "zh_cn": "维度类型的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:dimension_type"
+            },
+            "structures": {
+              "$title": {
+                "en_us": "Structures",
+                "zh_cn": "结构"
+              },
+              "$description": {
+                "en_us": "Structures of this Flat.",
+                "zh_cn": "结构的值。"
+              },
+              "type": "boolean",
+              "default": true
+            }
+          },
+          "required": [
+            "preset"
+          ]
+        },
+        "mxt:void": {
+          "$title": {
+            "en_us": "Void",
+            "zh_cn": "Void"
+          },
+          "$description": {
+            "en_us": "Void secret_realm_generation fields.",
+            "zh_cn": "Void的值。"
+          },
+          "type": "object",
+          "properties": {
+            "biome": {
+              "$title": {
+                "en_us": "Biome",
+                "zh_cn": "生物群系"
+              },
+              "$description": {
+                "en_us": "Biome of this Void.",
+                "zh_cn": "生物群系的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:biome"
+            },
+            "dimension_type": {
+              "$title": {
+                "en_us": "Dimension Type",
+                "zh_cn": "维度类型"
+              },
+              "$description": {
+                "en_us": "Dimension Type of this Void.",
+                "zh_cn": "维度类型的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:dimension_type"
+            },
+            "structures": {
+              "$title": {
+                "en_us": "Structures",
+                "zh_cn": "结构"
+              },
+              "$description": {
+                "en_us": "Structures of this Void.",
+                "zh_cn": "结构的值。"
+              },
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        "mxt:template": {
+          "$title": {
+            "en_us": "Template",
+            "zh_cn": "模板"
+          },
+          "$description": {
+            "en_us": "Template secret_realm_generation fields.",
+            "zh_cn": "模板的值。"
+          },
+          "type": "object",
+          "properties": {
+            "template": {
+              "$title": {
+                "en_us": "Template",
+                "zh_cn": "模板"
+              },
+              "$description": {
+                "en_us": "Template of this Template.",
+                "zh_cn": "模板的值。"
+              },
+              "type": "string"
+            },
+            "stem": {
+              "$title": {
+                "en_us": "Stem",
+                "zh_cn": "Stem"
+              },
+              "$description": {
+                "en_us": "Stem of this Template.",
+                "zh_cn": "Stem的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:level_stem"
+            }
+          },
+          "required": [
+            "template",
+            "stem"
+          ]
+        },
+        "mxt:existing": {
+          "$title": {
+            "en_us": "Existing",
+            "zh_cn": "Existing"
+          },
+          "$description": {
+            "en_us": "Existing secret_realm_generation fields.",
+            "zh_cn": "Existing的值。"
+          },
+          "type": "object",
+          "properties": {
+            "dimension": {
+              "$title": {
+                "en_us": "Dimension",
+                "zh_cn": "维度"
+              },
+              "$description": {
+                "en_us": "Dimension of this Existing.",
+                "zh_cn": "维度的值。"
+              },
+              "type": "string",
+              "$registry": "minecraft:dimension"
+            }
+          },
+          "required": [
+            "dimension"
+          ]
+        }
+      }
+    },
+    "timeline_entry": {
+      "$title": {
+        "en_us": "Timeline Entry",
+        "zh_cn": "Timeline 条目"
+      },
+      "$description": {
+        "en_us": "Timeline Entry selected by its type identifier.",
+        "zh_cn": "Timeline 条目的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:action",
+            "mxt:idle",
+            "mxt:wait_for"
+          ],
+          "$suggstion": true,
+          "default": "mxt:idle",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:action": {
+          "$title": {
+            "en_us": "Action",
+            "zh_cn": "行为"
+          },
+          "$description": {
+            "en_us": "Action timeline_entry fields.",
+            "zh_cn": "行为的值。"
+          },
+          "type": "object",
+          "properties": {
+            "action": {
+              "$title": {
+                "en_us": "Action",
+                "zh_cn": "行为"
+              },
+              "$description": {
+                "en_us": "Action of this ActionEntry.",
+                "zh_cn": "行为的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Entity Action",
+                    "zh_cn": "实体行为"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: entity action.",
+                    "zh_cn": "实体行为的值。"
+                  },
+                  "$type": "mxt-common-entity-action#entity_action"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-entity-action#entity_action",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "required": [
+            "action"
+          ]
+        },
+        "mxt:idle": {
+          "$title": {
+            "en_us": "Idle",
+            "zh_cn": "Idle"
+          },
+          "$description": {
+            "en_us": "Idle timeline_entry fields.",
+            "zh_cn": "Idle的值。"
+          },
+          "type": "object",
+          "properties": {
+            "duration": {
+              "$title": {
+                "en_us": "Duration",
+                "zh_cn": "持续时间"
+              },
+              "$description": {
+                "en_us": "Duration of this IdleEntry.",
+                "zh_cn": "持续时间的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            }
+          },
+          "required": [
+            "duration"
+          ]
+        },
+        "mxt:wait_for": {
+          "$title": {
+            "en_us": "Wait For",
+            "zh_cn": "等待 For"
+          },
+          "$description": {
+            "en_us": "Wait For timeline_entry fields.",
+            "zh_cn": "等待 For的值。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$description": {
+                "en_us": "Condition of this WaitForEntry.",
+                "zh_cn": "条件的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Entity Condition",
+                    "zh_cn": "实体条件"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: entity condition.",
+                    "zh_cn": "实体条件的值。"
+                  },
+                  "$type": "mxt-common-entity-condition#entity_condition"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-entity-condition#entity_condition",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "required": [
+            "condition"
+          ]
+        }
+      }
+    },
+    "trigger": {
+      "$title": {
+        "en_us": "Trigger",
+        "zh_cn": "事件触发器"
+      },
+      "$description": {
+        "en_us": "Trigger selected by its type identifier.",
+        "zh_cn": "事件触发器的值。"
+      },
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "$title": {
+            "en_us": "Type",
+            "zh_cn": "类型"
+          },
+          "type": "string",
+          "enum": [
+            "mxt:tick",
+            "mxt:attack",
+            "mxt:hurt",
+            "mxt:kill",
+            "mxt:block_break",
+            "mxt:block_use",
+            "mxt:item_use",
+            "mxt:equip",
+            "mxt:death",
+            "mxt:breakthrough",
+            "mxt:technique_stage",
+            "mxt:js",
+            "mxt:consume_item",
+            "mxt:brewed_potion",
+            "mxt:tame_animal",
+            "mxt:bred_animals",
+            "mxt:villager_trade",
+            "mxt:used_totem",
+            "mxt:started_riding",
+            "mxt:changed_dimension",
+            "mxt:effects_changed",
+            "mxt:lightning_strike",
+            "mxt:player_hurt_entity",
+            "mxt:entity_hurt_player",
+            "mxt:player_killed_entity",
+            "mxt:entity_killed_player",
+            "mxt:shot_crossbow",
+            "mxt:player_interacted_with_entity",
+            "mxt:fishing_rod_hooked",
+            "mxt:thrown_item_picked_up_by_player",
+            "mxt:enter_block",
+            "mxt:location",
+            "mxt:slept_in_bed",
+            "mxt:levitation",
+            "mxt:fall_from_height",
+            "mxt:fall_after_explosion",
+            "mxt:ride_entity_in_lava",
+            "mxt:nether_travel",
+            "mxt:inventory_changed",
+            "mxt:using_item",
+            "mxt:filled_bucket",
+            "mxt:item_durability_changed"
+          ],
+          "$suggstion": true,
+          "default": "mxt:tick",
+          "$description": {
+            "en_us": "Type value.",
+            "zh_cn": "类型的值。"
+          }
+        }
+      },
+      "$variants": {
+        "mxt:tick": {
+          "$title": {
+            "en_us": "Tick",
+            "zh_cn": "刻"
+          },
+          "$description": {
+            "en_us": "Tick trigger fields.",
+            "zh_cn": "刻的值。"
+          },
+          "type": "object"
+        },
+        "mxt:attack": {
+          "$title": {
+            "en_us": "Attack",
+            "zh_cn": "攻击"
+          },
+          "$description": {
+            "en_us": "Attack trigger fields.",
+            "zh_cn": "攻击的值。"
+          },
+          "type": "object"
+        },
+        "mxt:hurt": {
+          "$title": {
+            "en_us": "Hurt",
+            "zh_cn": "Hurt"
+          },
+          "$description": {
+            "en_us": "Hurt trigger fields.",
+            "zh_cn": "Hurt的值。"
+          },
+          "type": "object"
+        },
+        "mxt:kill": {
+          "$title": {
+            "en_us": "Kill",
+            "zh_cn": "Kill"
+          },
+          "$description": {
+            "en_us": "Kill trigger fields.",
+            "zh_cn": "Kill的值。"
+          },
+          "type": "object"
+        },
+        "mxt:block_break": {
+          "$title": {
+            "en_us": "Block Break",
+            "zh_cn": "方块解除"
+          },
+          "$description": {
+            "en_us": "Block Break trigger fields.",
+            "zh_cn": "方块解除的值。"
+          },
+          "type": "object"
+        },
+        "mxt:block_use": {
+          "$title": {
+            "en_us": "Block Use",
+            "zh_cn": "方块使用"
+          },
+          "$description": {
+            "en_us": "Block Use trigger fields.",
+            "zh_cn": "方块使用的值。"
+          },
+          "type": "object"
+        },
+        "mxt:item_use": {
+          "$title": {
+            "en_us": "Item Use",
+            "zh_cn": "物品使用"
+          },
+          "$description": {
+            "en_us": "Item Use trigger fields.",
+            "zh_cn": "物品使用的值。"
+          },
+          "type": "object"
+        },
+        "mxt:equip": {
+          "$title": {
+            "en_us": "Equip",
+            "zh_cn": "Equip"
+          },
+          "$description": {
+            "en_us": "Equip trigger fields.",
+            "zh_cn": "Equip的值。"
+          },
+          "type": "object"
+        },
+        "mxt:death": {
+          "$title": {
+            "en_us": "Death",
+            "zh_cn": "Death"
+          },
+          "$description": {
+            "en_us": "Death trigger fields.",
+            "zh_cn": "Death的值。"
+          },
+          "type": "object"
+        },
+        "mxt:breakthrough": {
+          "$title": {
+            "en_us": "Breakthrough",
+            "zh_cn": "突破"
+          },
+          "$description": {
+            "en_us": "Breakthrough trigger fields.",
+            "zh_cn": "突破的值。"
+          },
+          "type": "object"
+        },
+        "mxt:technique_stage": {
+          "$title": {
+            "en_us": "Technique Stage",
+            "zh_cn": "功法阶段"
+          },
+          "$description": {
+            "en_us": "Technique Stage trigger fields.",
+            "zh_cn": "功法阶段的值。"
+          },
+          "type": "object"
+        },
+        "mxt:js": {
+          "$title": {
+            "en_us": "Js",
+            "zh_cn": "JS 表达式"
+          },
+          "$description": {
+            "en_us": "Js trigger fields.",
+            "zh_cn": "JS 表达式的值。"
+          },
+          "type": "object",
+          "properties": {
+            "signal": {
+              "$title": {
+                "en_us": "Signal",
+                "zh_cn": "信号"
+              },
+              "$description": {
+                "en_us": "Signal of this JsTrigger.",
+                "zh_cn": "信号的值。"
+              },
+              "type": "string"
+            },
+            "id": {
+              "$title": {
+                "en_us": "Id",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "Id of this JsTrigger.",
+                "zh_cn": "标识符的值。"
+              },
+              "type": "string"
+            },
+            "params": {
+              "$title": {
+                "en_us": "Params",
+                "zh_cn": "参数"
+              },
+              "$description": {
+                "en_us": "Params of this JsTrigger.",
+                "zh_cn": "参数的值。"
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "signal",
+            "id"
+          ]
+        },
+        "mxt:consume_item": {
+          "$title": {
+            "en_us": "Consume Item",
+            "zh_cn": "消耗物品"
+          },
+          "$description": {
+            "en_us": "Consume Item trigger fields.",
+            "zh_cn": "消耗物品的值。"
+          },
+          "type": "object"
+        },
+        "mxt:brewed_potion": {
+          "$title": {
+            "en_us": "Brewed Potion",
+            "zh_cn": "Brewed Potion"
+          },
+          "$description": {
+            "en_us": "Brewed Potion trigger fields.",
+            "zh_cn": "Brewed Potion的值。"
+          },
+          "type": "object"
+        },
+        "mxt:tame_animal": {
+          "$title": {
+            "en_us": "Tame Animal",
+            "zh_cn": "Tame Animal"
+          },
+          "$description": {
+            "en_us": "Tame Animal trigger fields.",
+            "zh_cn": "Tame Animal的值。"
+          },
+          "type": "object"
+        },
+        "mxt:bred_animals": {
+          "$title": {
+            "en_us": "Bred Animals",
+            "zh_cn": "Bred Animals"
+          },
+          "$description": {
+            "en_us": "Bred Animals trigger fields.",
+            "zh_cn": "Bred Animals的值。"
+          },
+          "type": "object"
+        },
+        "mxt:villager_trade": {
+          "$title": {
+            "en_us": "Villager Trade",
+            "zh_cn": "Villager Trade"
+          },
+          "$description": {
+            "en_us": "Villager Trade trigger fields.",
+            "zh_cn": "Villager Trade的值。"
+          },
+          "type": "object"
+        },
+        "mxt:used_totem": {
+          "$title": {
+            "en_us": "Used Totem",
+            "zh_cn": "Used Totem"
+          },
+          "$description": {
+            "en_us": "Used Totem trigger fields.",
+            "zh_cn": "Used Totem的值。"
+          },
+          "type": "object"
+        },
+        "mxt:started_riding": {
+          "$title": {
+            "en_us": "Started Riding",
+            "zh_cn": "Started 骑乘"
+          },
+          "$description": {
+            "en_us": "Started Riding trigger fields.",
+            "zh_cn": "Started 骑乘的值。"
+          },
+          "type": "object"
+        },
+        "mxt:changed_dimension": {
+          "$title": {
+            "en_us": "Changed Dimension",
+            "zh_cn": "Changed 维度"
+          },
+          "$description": {
+            "en_us": "Changed Dimension trigger fields.",
+            "zh_cn": "Changed 维度的值。"
+          },
+          "type": "object"
+        },
+        "mxt:effects_changed": {
+          "$title": {
+            "en_us": "Effects Changed",
+            "zh_cn": "效果 Changed"
+          },
+          "$description": {
+            "en_us": "Effects Changed trigger fields.",
+            "zh_cn": "效果 Changed的值。"
+          },
+          "type": "object"
+        },
+        "mxt:lightning_strike": {
+          "$title": {
+            "en_us": "Lightning Strike",
+            "zh_cn": "Lightning Strike"
+          },
+          "$description": {
+            "en_us": "Lightning Strike trigger fields.",
+            "zh_cn": "Lightning Strike的值。"
+          },
+          "type": "object"
+        },
+        "mxt:player_hurt_entity": {
+          "$title": {
+            "en_us": "Player Hurt Entity",
+            "zh_cn": "Player Hurt 实体"
+          },
+          "$description": {
+            "en_us": "Player Hurt Entity trigger fields.",
+            "zh_cn": "Player Hurt 实体的值。"
+          },
+          "type": "object"
+        },
+        "mxt:entity_hurt_player": {
+          "$title": {
+            "en_us": "Entity Hurt Player",
+            "zh_cn": "实体 Hurt Player"
+          },
+          "$description": {
+            "en_us": "Entity Hurt Player trigger fields.",
+            "zh_cn": "实体 Hurt Player的值。"
+          },
+          "type": "object"
+        },
+        "mxt:player_killed_entity": {
+          "$title": {
+            "en_us": "Player Killed Entity",
+            "zh_cn": "Player Killed 实体"
+          },
+          "$description": {
+            "en_us": "Player Killed Entity trigger fields.",
+            "zh_cn": "Player Killed 实体的值。"
+          },
+          "type": "object"
+        },
+        "mxt:entity_killed_player": {
+          "$title": {
+            "en_us": "Entity Killed Player",
+            "zh_cn": "实体 Killed Player"
+          },
+          "$description": {
+            "en_us": "Entity Killed Player trigger fields.",
+            "zh_cn": "实体 Killed Player的值。"
+          },
+          "type": "object"
+        },
+        "mxt:shot_crossbow": {
+          "$title": {
+            "en_us": "Shot Crossbow",
+            "zh_cn": "Shot Crossbow"
+          },
+          "$description": {
+            "en_us": "Shot Crossbow trigger fields.",
+            "zh_cn": "Shot Crossbow的值。"
+          },
+          "type": "object"
+        },
+        "mxt:player_interacted_with_entity": {
+          "$title": {
+            "en_us": "Player Interacted With Entity",
+            "zh_cn": "Player Interacted With 实体"
+          },
+          "$description": {
+            "en_us": "Player Interacted With Entity trigger fields.",
+            "zh_cn": "Player Interacted With 实体的值。"
+          },
+          "type": "object"
+        },
+        "mxt:fishing_rod_hooked": {
+          "$title": {
+            "en_us": "Fishing Rod Hooked",
+            "zh_cn": "Fishing Rod Hooked"
+          },
+          "$description": {
+            "en_us": "Fishing Rod Hooked trigger fields.",
+            "zh_cn": "Fishing Rod Hooked的值。"
+          },
+          "type": "object"
+        },
+        "mxt:thrown_item_picked_up_by_player": {
+          "$title": {
+            "en_us": "Thrown Item Picked Up By Player",
+            "zh_cn": "Thrown 物品 Picked 上按 Player"
+          },
+          "$description": {
+            "en_us": "Thrown Item Picked Up By Player trigger fields.",
+            "zh_cn": "Thrown 物品 Picked 上按 Player的值。"
+          },
+          "type": "object"
+        },
+        "mxt:enter_block": {
+          "$title": {
+            "en_us": "Enter Block",
+            "zh_cn": "进入方块"
+          },
+          "$description": {
+            "en_us": "Enter Block trigger fields.",
+            "zh_cn": "进入方块的值。"
+          },
+          "type": "object"
+        },
+        "mxt:location": {
+          "$title": {
+            "en_us": "Location",
+            "zh_cn": "Location"
+          },
+          "$description": {
+            "en_us": "Location trigger fields.",
+            "zh_cn": "Location的值。"
+          },
+          "type": "object"
+        },
+        "mxt:slept_in_bed": {
+          "$title": {
+            "en_us": "Slept In Bed",
+            "zh_cn": "Slept 处于 Bed"
+          },
+          "$description": {
+            "en_us": "Slept In Bed trigger fields.",
+            "zh_cn": "Slept 处于 Bed的值。"
+          },
+          "type": "object"
+        },
+        "mxt:levitation": {
+          "$title": {
+            "en_us": "Levitation",
+            "zh_cn": "Levitation"
+          },
+          "$description": {
+            "en_us": "Levitation trigger fields.",
+            "zh_cn": "Levitation的值。"
+          },
+          "type": "object"
+        },
+        "mxt:fall_from_height": {
+          "$title": {
+            "en_us": "Fall From Height",
+            "zh_cn": "坠落来自高度"
+          },
+          "$description": {
+            "en_us": "Fall From Height trigger fields.",
+            "zh_cn": "坠落来自高度的值。"
+          },
+          "type": "object"
+        },
+        "mxt:fall_after_explosion": {
+          "$title": {
+            "en_us": "Fall After Explosion",
+            "zh_cn": "坠落之后 Explosion"
+          },
+          "$description": {
+            "en_us": "Fall After Explosion trigger fields.",
+            "zh_cn": "坠落之后 Explosion的值。"
+          },
+          "type": "object"
+        },
+        "mxt:ride_entity_in_lava": {
+          "$title": {
+            "en_us": "Ride Entity In Lava",
+            "zh_cn": "Ride 实体处于 Lava"
+          },
+          "$description": {
+            "en_us": "Ride Entity In Lava trigger fields.",
+            "zh_cn": "Ride 实体处于 Lava的值。"
+          },
+          "type": "object"
+        },
+        "mxt:nether_travel": {
+          "$title": {
+            "en_us": "Nether Travel",
+            "zh_cn": "Nether Travel"
+          },
+          "$description": {
+            "en_us": "Nether Travel trigger fields.",
+            "zh_cn": "Nether Travel的值。"
+          },
+          "type": "object"
+        },
+        "mxt:inventory_changed": {
+          "$title": {
+            "en_us": "Inventory Changed",
+            "zh_cn": "Inventory Changed"
+          },
+          "$description": {
+            "en_us": "Inventory Changed trigger fields.",
+            "zh_cn": "Inventory Changed的值。"
+          },
+          "type": "object"
+        },
+        "mxt:using_item": {
+          "$title": {
+            "en_us": "Using Item",
+            "zh_cn": "正在使用物品"
+          },
+          "$description": {
+            "en_us": "Using Item trigger fields.",
+            "zh_cn": "正在使用物品的值。"
+          },
+          "type": "object"
+        },
+        "mxt:filled_bucket": {
+          "$title": {
+            "en_us": "Filled Bucket",
+            "zh_cn": "Filled Bucket"
+          },
+          "$description": {
+            "en_us": "Filled Bucket trigger fields.",
+            "zh_cn": "Filled Bucket的值。"
+          },
+          "type": "object"
+        },
+        "mxt:item_durability_changed": {
+          "$title": {
+            "en_us": "Item Durability Changed",
+            "zh_cn": "物品耐久度 Changed"
+          },
+          "$description": {
+            "en_us": "Item Durability Changed trigger fields.",
+            "zh_cn": "物品耐久度 Changed的值。"
+          },
+          "type": "object"
+        }
+      }
     }
   }
 }

@@ -9,27 +9,54 @@
   },
   "type": "object",
   "properties": {
+    "name": {
+      "$title": {
+        "en_us": "Name",
+        "zh_cn": "名称"
+      },
+      "$description": {
+        "en_us": "Name of this Physique.",
+        "zh_cn": "名称的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "description": {
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description of this Physique.",
+        "zh_cn": "描述的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
     "attribute_modifiers": {
       "$title": {
         "en_us": "Attribute Modifiers",
         "zh_cn": "属性修正"
       },
+      "$description": {
+        "en_us": "Attribute Modifiers of this Physique.",
+        "zh_cn": "属性修正的值。"
+      },
       "type": "array",
       "items": {
         "$type": "mxt-common#record_AttributeEntry",
         "$title": {
-          "en_us": "Modifier",
-          "zh_cn": "属性修正"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One attribute modifier.",
-          "zh_cn": "一条属性修正。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Attribute modifiers this physique grants.",
-        "zh_cn": "该体质提供的属性修正。"
       }
     },
     "granted_abilities": {
@@ -37,55 +64,151 @@
         "en_us": "Granted Abilities",
         "zh_cn": "授予的技能"
       },
-      "type": "array",
-      "items": {
-        "$title": {
-          "en_us": "Ability",
-          "zh_cn": "技能"
-        },
-        "$description": {
-          "en_us": "One ability id.",
-          "zh_cn": "一个技能 ID。"
-        }
-      },
-      "default": [],
       "$description": {
-        "en_us": "Abilities unlocked by this physique.",
-        "zh_cn": "该体质解锁的技能。"
-      }
+        "en_us": "Granted Abilities of this Physique.",
+        "zh_cn": "授予的技能的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:ability"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:ability_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:ability"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:ability_tag",
+                "pattern": "^#.+"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "holder_condition": {
       "$title": {
         "en_us": "Holder Condition",
         "zh_cn": "持有者条件"
       },
-      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Condition the holder has to meet.",
-        "zh_cn": "持有者需要满足的条件。"
-      }
+        "en_us": "Holder Condition of this Physique.",
+        "zh_cn": "持有者条件的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "exclusive_tags": {
       "$title": {
         "en_us": "Exclusive Tags",
         "zh_cn": "互斥标签"
       },
+      "$description": {
+        "en_us": "Exclusive Tags of this Physique.",
+        "zh_cn": "互斥标签的值。"
+      },
       "type": "array",
       "items": {
         "type": "string",
         "$title": {
-          "en_us": "Tag",
-          "zh_cn": "标签"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One tag id.",
-          "zh_cn": "一个标签 ID。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Tags that make physiques mutually exclusive.",
-        "zh_cn": "体质之间互斥的标签。"
       }
     },
     "rarity": {
@@ -93,23 +216,114 @@
         "en_us": "Rarity",
         "zh_cn": "稀有度"
       },
-      "default": "common",
       "$description": {
-        "en_us": "How rare this physique is.",
-        "zh_cn": "该体质的稀有度。"
-      }
+        "en_us": "Rarity of this Physique.",
+        "zh_cn": "稀有度的值。"
+      },
+      "type": "string",
+      "default": "common"
     },
     "allow_stacking": {
       "$title": {
         "en_us": "Allow Stacking",
         "zh_cn": "允许叠加"
       },
-      "type": "boolean",
-      "default": false,
       "$description": {
-        "en_us": "Whether the physique may stack with itself.",
-        "zh_cn": "该体质是否允许叠加。"
-      }
+        "en_us": "Allow Stacking of this Physique.",
+        "zh_cn": "允许叠加的值。"
+      },
+      "type": "boolean",
+      "default": false
+    },
+    "damage_dealt_multiplier": {
+      "$title": {
+        "en_us": "Damage Dealt Multiplier",
+        "zh_cn": "伤害 Dealt 倍率"
+      },
+      "$description": {
+        "en_us": "Damage Dealt Multiplier of this Physique.",
+        "zh_cn": "伤害 Dealt 倍率的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
+    },
+    "damage_taken_multiplier": {
+      "$title": {
+        "en_us": "Damage Taken Multiplier",
+        "zh_cn": "伤害 Taken 倍率"
+      },
+      "$description": {
+        "en_us": "Damage Taken Multiplier of this Physique.",
+        "zh_cn": "伤害 Taken 倍率的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     }
   },
   "id": "mxt-physique",

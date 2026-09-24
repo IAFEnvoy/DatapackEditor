@@ -5,19 +5,72 @@
   },
   "$description": {
     "en_us": "Data-driven Formation definition from MiXianTu.",
-    "zh_cn": "由觅仙途数据包加载的阵法结构与运作定义。"
+    "zh_cn": "由觅仙途数据包加载的阵法定义。"
   },
   "type": "object",
+  "required": [
+    "radius"
+  ],
   "properties": {
+    "name": {
+      "$title": {
+        "en_us": "Name",
+        "zh_cn": "名称"
+      },
+      "$description": {
+        "en_us": "Name of this Formation.",
+        "zh_cn": "名称的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
+    "description": {
+      "$title": {
+        "en_us": "Description",
+        "zh_cn": "描述"
+      },
+      "$description": {
+        "en_us": "Description of this Formation.",
+        "zh_cn": "描述的值。"
+      },
+      "type": [
+        "string",
+        "object"
+      ]
+    },
     "structure_template": {
       "$title": {
         "en_us": "Structure Template",
         "zh_cn": "结构模板"
       },
-      "type": "string",
       "$description": {
-        "en_us": "Structure template that has to exist for the formation to work.",
-        "zh_cn": "阵法生效所需存在的结构模板。"
+        "en_us": "Structure Template of this Formation.",
+        "zh_cn": "结构模板的值。"
+      },
+      "type": "string"
+    },
+    "structure": {
+      "$title": {
+        "en_us": "Structure",
+        "zh_cn": "结构"
+      },
+      "$description": {
+        "en_us": "Structure of this Formation.",
+        "zh_cn": "结构的值。"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common#record_RequiredBlock",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
       }
     },
     "radius": {
@@ -25,56 +78,152 @@
         "en_us": "Radius",
         "zh_cn": "半径"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Radius the formation's effects reach, in blocks.",
-        "zh_cn": "阵法效果的作用半径，单位方块。"
-      }
-    },
-    "max_bonus": {
-      "$title": {
-        "en_us": "Resource Maximum Bonus",
-        "zh_cn": "资源上限加成"
+        "en_us": "Radius of this Formation.",
+        "zh_cn": "半径的值。"
       },
-      "type": "object",
-      "additionalProperties": {
-        "$type": "mxt-common#number_provider",
-        "$title": {
-          "en_us": "Resource Bonus",
-          "zh_cn": "资源加成"
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
         },
-        "$description": {
-          "en_us": "Bonus added to this resource's maximum, keyed by mxt:resource ids.",
-          "zh_cn": "加到该资源上限上的加成，键为 mxt:resource ID。"
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
         }
-      },
-      "default": {},
-      "$description": {
-        "en_us": "Per-resource capacity bonuses applied inside the formation.",
-        "zh_cn": "阵法范围内按资源分别增加灵气容量。"
-      }
+      ]
     },
     "activation_costs": {
       "$title": {
         "en_us": "Activation Costs",
         "zh_cn": "激活消耗"
       },
+      "$description": {
+        "en_us": "Activation Costs of this Formation.",
+        "zh_cn": "激活消耗的值。"
+      },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_ResourceCost",
+        "oneOf": [
+          {
+            "$title": {
+              "en_us": "Object",
+              "zh_cn": "对象"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: object.",
+              "zh_cn": "对象的值。"
+            },
+            "type": "object",
+            "properties": {
+              "id": {
+                "$title": {
+                  "en_us": "Id",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "Id of this Cost.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:resource"
+              },
+              "amount": {
+                "$title": {
+                  "en_us": "Amount",
+                  "zh_cn": "数量"
+                },
+                "$description": {
+                  "en_us": "Amount of this Cost.",
+                  "zh_cn": "数量的值。"
+                },
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Text",
+                      "zh_cn": "文本"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: text.",
+                      "zh_cn": "文本的值。"
+                    },
+                    "type": "string"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number",
+                      "zh_cn": "数值"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number.",
+                      "zh_cn": "数值的值。"
+                    },
+                    "type": "number"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number Provider",
+                      "zh_cn": "数值提供器"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number provider.",
+                      "zh_cn": "数值提供器的值。"
+                    },
+                    "$type": "mxt-common#number_provider"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "amount"
+            ]
+          },
+          {
+            "$title": {
+              "en_us": "Cost",
+              "zh_cn": "消耗"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: cost.",
+              "zh_cn": "消耗的值。"
+            },
+            "$type": "mxt-common#cost"
+          }
+        ],
         "$title": {
-          "en_us": "Cost",
-          "zh_cn": "消耗"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One cost paid on activation.",
-          "zh_cn": "激活时支付的一项消耗。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Resources paid once when the formation activates.",
-        "zh_cn": "激活阵法时一次性支付的资源。"
       }
     },
     "maintenance_costs": {
@@ -82,85 +231,425 @@
         "en_us": "Maintenance Costs",
         "zh_cn": "维护消耗"
       },
+      "$description": {
+        "en_us": "Maintenance Costs of this Formation.",
+        "zh_cn": "维护消耗的值。"
+      },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_ResourceCost",
+        "oneOf": [
+          {
+            "$title": {
+              "en_us": "Object",
+              "zh_cn": "对象"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: object.",
+              "zh_cn": "对象的值。"
+            },
+            "type": "object",
+            "properties": {
+              "id": {
+                "$title": {
+                  "en_us": "Id",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "Id of this Cost.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:resource"
+              },
+              "amount": {
+                "$title": {
+                  "en_us": "Amount",
+                  "zh_cn": "数量"
+                },
+                "$description": {
+                  "en_us": "Amount of this Cost.",
+                  "zh_cn": "数量的值。"
+                },
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Text",
+                      "zh_cn": "文本"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: text.",
+                      "zh_cn": "文本的值。"
+                    },
+                    "type": "string"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number",
+                      "zh_cn": "数值"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number.",
+                      "zh_cn": "数值的值。"
+                    },
+                    "type": "number"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number Provider",
+                      "zh_cn": "数值提供器"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number provider.",
+                      "zh_cn": "数值提供器的值。"
+                    },
+                    "$type": "mxt-common#number_provider"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "amount"
+            ]
+          },
+          {
+            "$title": {
+              "en_us": "Cost",
+              "zh_cn": "消耗"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: cost.",
+              "zh_cn": "消耗的值。"
+            },
+            "$type": "mxt-common#cost"
+          }
+        ],
         "$title": {
-          "en_us": "Cost",
-          "zh_cn": "消耗"
+          "en_us": "Item",
+          "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One cost paid while running.",
-          "zh_cn": "维持期间支付的一项消耗。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Resources paid periodically while the formation runs.",
-        "zh_cn": "阵法维持期间周期性支付的资源。"
       }
+    },
+    "storage": {
+      "$title": {
+        "en_us": "Storage",
+        "zh_cn": "储物"
+      },
+      "$description": {
+        "en_us": "Storage of this Formation.",
+        "zh_cn": "储物的值。"
+      },
+      "$type": "mxt-common#record_Storage"
+    },
+    "actions": {
+      "$title": {
+        "en_us": "Actions",
+        "zh_cn": "行为"
+      },
+      "$description": {
+        "en_us": "Actions of this Formation.",
+        "zh_cn": "行为的值。"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common-content#formation_action",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      }
+    },
+    "spare_friends": {
+      "$title": {
+        "en_us": "Spare Friends",
+        "zh_cn": "Spare Friends"
+      },
+      "$description": {
+        "en_us": "Spare Friends of this Formation.",
+        "zh_cn": "Spare Friends的值。"
+      },
+      "type": "boolean",
+      "default": false
     },
     "activate_action": {
       "$title": {
         "en_us": "Activate Action",
         "zh_cn": "激活行为"
       },
-      "$type": "mxt-common-block-action#block_action",
       "$description": {
-        "en_us": "Action run when the formation activates.",
-        "zh_cn": "阵法激活时执行的行为。"
-      }
+        "en_us": "Activate Action of this Formation.",
+        "zh_cn": "激活行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Block Action",
+            "zh_cn": "方块行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: block action.",
+            "zh_cn": "方块行为的值。"
+          },
+          "$type": "mxt-common-block-action#block_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-block-action#block_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "tick_action": {
       "$title": {
         "en_us": "Tick Action",
         "zh_cn": "周期行为"
       },
-      "$type": "mxt-common-block-action#block_action",
       "$description": {
-        "en_us": "Action run on every formation tick.",
-        "zh_cn": "阵法每刻执行的行为。"
-      }
+        "en_us": "Tick Action of this Formation.",
+        "zh_cn": "周期行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Block Action",
+            "zh_cn": "方块行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: block action.",
+            "zh_cn": "方块行为的值。"
+          },
+          "$type": "mxt-common-block-action#block_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-block-action#block_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "deactivate_action": {
       "$title": {
         "en_us": "Deactivate Action",
         "zh_cn": "失效行为"
       },
-      "$type": "mxt-common-block-action#block_action",
       "$description": {
-        "en_us": "Action run when the formation deactivates.",
-        "zh_cn": "阵法失效时执行的行为。"
-      }
+        "en_us": "Deactivate Action of this Formation.",
+        "zh_cn": "失效行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Block Action",
+            "zh_cn": "方块行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: block action.",
+            "zh_cn": "方块行为的值。"
+          },
+          "$type": "mxt-common-block-action#block_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-block-action#block_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "entity_tick_action": {
       "$title": {
         "en_us": "Entity Tick Action",
         "zh_cn": "实体周期行为"
       },
-      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Action run on entities inside the formation, every tick.",
-        "zh_cn": "阵法内实体每刻执行的行为。"
-      }
-    },
-    "aura_zone": {
-      "$title": {
-        "en_us": "Aura Zone",
-        "zh_cn": "灵气区域"
+        "en_us": "Entity Tick Action of this Formation.",
+        "zh_cn": "实体周期行为的值。"
       },
-      "type": "string",
-      "$registry": "mxt:aura_zone",
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "entity_enter_action": {
+      "$title": {
+        "en_us": "Entity Enter Action",
+        "zh_cn": "实体进入行为"
+      },
       "$description": {
-        "en_us": "Aura zone the formation projects.",
-        "zh_cn": "阵法投射出的灵气区域。"
-      }
+        "en_us": "Entity Enter Action of this Formation.",
+        "zh_cn": "实体进入行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "entity_exit_action": {
+      "$title": {
+        "en_us": "Entity Exit Action",
+        "zh_cn": "实体离开行为"
+      },
+      "$description": {
+        "en_us": "Entity Exit Action of this Formation.",
+        "zh_cn": "实体离开行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     }
   },
-  "required": [
-    "structure_template",
-    "radius"
-  ],
   "id": "mxt-formation",
   "$version": "26.1.2",
   "$registry": "mxt:formation",

@@ -3,22 +3,22 @@
   "$library": true,
   "$version": "26.1.2",
   "$title": {
-    "en_us": "MiXianTu Aura And Display",
-    "zh_cn": "MiXianTu 灵气与显示"
+    "en_us": "MiXianTu Aura Types",
+    "zh_cn": "觅仙途灵气 Types"
   },
   "$description": {
-    "en_us": "Aura field records, client render and HUD settings, particles and badges.",
-    "zh_cn": "灵气场记录、客户端渲染与 HUD 设置、粒子与徽章。"
+    "en_us": "Shared field types used by MiXianTu datapack schemas.",
+    "zh_cn": "觅仙途灵气 Types的值。"
   },
   "$types": {
-    "badge": {
+    "aura_maximum": {
       "$title": {
-        "en_us": "Badge",
-        "zh_cn": "徽章"
+        "en_us": "Aura Maximum",
+        "zh_cn": "灵气最大值"
       },
       "$description": {
-        "en_us": "Badge selected by a type identifier.",
-        "zh_cn": "徽章的值。"
+        "en_us": "Aura Maximum selected by its type identifier.",
+        "zh_cn": "灵气最大值的值。"
       },
       "type": "object",
       "required": [
@@ -32,14 +32,12 @@
           },
           "type": "string",
           "enum": [
-            "mxt:empty",
-            "mxt:crafting_recipe",
-            "mxt:keybind",
-            "mxt:sprite",
-            "mxt:tooltip"
+            "mxt:fixed",
+            "mxt:initial_multiplier",
+            "mxt:unlimited"
           ],
           "$suggstion": true,
-          "default": "mxt:empty",
+          "default": "mxt:initial_multiplier",
           "$description": {
             "en_us": "Type value.",
             "zh_cn": "类型的值。"
@@ -47,603 +45,813 @@
         }
       },
       "$variants": {
-        "mxt:empty": {
+        "mxt:fixed": {
           "$title": {
-            "en_us": "Empty",
-            "zh_cn": "空"
+            "en_us": "Fixed",
+            "zh_cn": "固定值"
           },
           "$description": {
-            "en_us": "Shows only the icon.",
-            "zh_cn": "只显示图标，不带附加说明。"
-          },
-          "type": "object",
-          "properties": {}
-        },
-        "mxt:crafting_recipe": {
-          "$title": {
-            "en_us": "Crafting Recipe",
-            "zh_cn": "工作台配方"
-          },
-          "$description": {
-            "en_us": "Points at a crafting recipe.",
-            "zh_cn": "指向一条工作台配方。"
+            "en_us": "Fixed aura_maximum fields.",
+            "zh_cn": "固定值的值。"
           },
           "type": "object",
           "properties": {
-            "sprite": {
+            "value": {
               "$title": {
-                "en_us": "Sprite",
-                "zh_cn": "精灵图"
-              },
-              "type": "string",
-              "$description": {
-                "en_us": "Sprite value.",
-                "zh_cn": "精灵图的值。"
-              }
-            },
-            "recipe": {
-              "$title": {
-                "en_us": "Recipe",
-                "zh_cn": "配方"
-              },
-              "type": "string",
-              "default": false,
-              "$description": {
-                "en_us": "Recipe value.",
-                "zh_cn": "配方的值。"
-              }
-            },
-            "from_power": {
-              "$title": {
-                "en_us": "From Power",
-                "zh_cn": "来自能力"
-              },
-              "type": "boolean",
-              "default": false,
-              "$description": {
-                "en_us": "From Power value.",
-                "zh_cn": "来自能力的值。"
-              }
-            },
-            "prefix": {
-              "$title": {
-                "en_us": "Prefix",
-                "zh_cn": "前缀"
+                "en_us": "Value",
+                "zh_cn": "值"
               },
               "$description": {
-                "en_us": "Prefix value.",
-                "zh_cn": "前缀的值。"
-              }
-            },
-            "suffix": {
-              "$title": {
-                "en_us": "Suffix",
-                "zh_cn": "后缀"
+                "en_us": "Value of this Fixed.",
+                "zh_cn": "值的值。"
               },
-              "$description": {
-                "en_us": "Suffix value.",
-                "zh_cn": "后缀的值。"
-              }
+              "type": "number",
+              "minimum": 0
             }
           },
           "required": [
-            "sprite",
-            "recipe"
+            "value"
           ]
         },
-        "mxt:keybind": {
+        "mxt:initial_multiplier": {
           "$title": {
-            "en_us": "Keybind",
-            "zh_cn": "按键"
+            "en_us": "Initial Multiplier",
+            "zh_cn": "Initial 倍率"
           },
           "$description": {
-            "en_us": "Shows a keybind hint.",
-            "zh_cn": "显示按键提示。"
+            "en_us": "Initial Multiplier aura_maximum fields.",
+            "zh_cn": "Initial 倍率的值。"
           },
           "type": "object",
           "properties": {
-            "sprite": {
+            "multiplier": {
               "$title": {
-                "en_us": "Sprite",
-                "zh_cn": "精灵图"
+                "en_us": "Multiplier",
+                "zh_cn": "倍率"
               },
-              "type": "string",
-              "default": "",
               "$description": {
-                "en_us": "Sprite value.",
-                "zh_cn": "精灵图的值。"
-              }
-            },
-            "text": {
-              "$title": {
-                "en_us": "Text",
-                "zh_cn": "文本"
+                "en_us": "Multiplier of this InitialMultiplier.",
+                "zh_cn": "倍率的值。"
               },
-              "default": "",
-              "$description": {
-                "en_us": "Text value.",
-                "zh_cn": "文本的值。"
-              }
-            },
-            "key": {
-              "$title": {
-                "en_us": "Key",
-                "zh_cn": "键"
-              },
-              "default": "key.mxt.primary_active",
-              "$description": {
-                "en_us": "Key value.",
-                "zh_cn": "键的值。"
-              }
+              "type": "number",
+              "minimum": 0,
+              "default": 1
             }
-          },
-          "required": [
-            "sprite"
-          ]
+          }
         },
-        "mxt:sprite": {
+        "mxt:unlimited": {
           "$title": {
-            "en_us": "Sprite",
-            "zh_cn": "精灵图"
+            "en_us": "Unlimited",
+            "zh_cn": "无上限"
           },
           "$description": {
-            "en_us": "Shows a sprite.",
-            "zh_cn": "显示一张精灵图。"
+            "en_us": "Unlimited aura_maximum fields.",
+            "zh_cn": "无上限的值。"
           },
-          "type": "object",
-          "properties": {
-            "sprite": {
-              "$title": {
-                "en_us": "Sprite",
-                "zh_cn": "精灵图"
-              },
-              "type": "string",
-              "$description": {
-                "en_us": "Sprite value.",
-                "zh_cn": "精灵图的值。"
-              }
-            }
-          },
-          "required": [
-            "sprite"
-          ]
-        },
-        "mxt:tooltip": {
-          "$title": {
-            "en_us": "Tooltip",
-            "zh_cn": "提示文本"
-          },
-          "$description": {
-            "en_us": "Adds a tooltip line.",
-            "zh_cn": "增加一行提示文本。"
-          },
-          "type": "object",
-          "properties": {
-            "sprite": {
-              "$title": {
-                "en_us": "Sprite",
-                "zh_cn": "精灵图"
-              },
-              "type": "string",
-              "$description": {
-                "en_us": "Sprite value.",
-                "zh_cn": "精灵图的值。"
-              }
-            },
-            "text": {
-              "$title": {
-                "en_us": "Text",
-                "zh_cn": "文本"
-              },
-              "$description": {
-                "en_us": "Text value.",
-                "zh_cn": "文本的值。"
-              }
-            }
-          },
-          "required": [
-            "sprite"
-          ]
+          "type": "object"
         }
       }
     },
-    "record_ParticleEffect": {
+    "record_AuraGain": {
       "$title": {
-        "en_us": "ParticleEffect",
-        "zh_cn": "粒子效果"
+        "en_us": "Record AuraGain",
+        "zh_cn": "Record 灵气获得"
       },
       "$description": {
-        "en_us": "ParticleEffect value.",
-        "zh_cn": "粒子效果的值。"
+        "en_us": "AuraGain value.",
+        "zh_cn": "Record 灵气获得的值。"
       },
-      "type": "object",
       "properties": {
-        "particle": {
+        "id": {
           "$title": {
-            "en_us": "Particle",
-            "zh_cn": "粒子"
+            "en_us": "Id",
+            "zh_cn": "标识符"
           },
-          "default": 16,
           "$description": {
-            "en_us": "Particle value.",
-            "zh_cn": "粒子的值。"
-          }
+            "en_us": "Id of this AuraGain.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "mxt:aura"
         },
-        "count": {
+        "amount": {
           "$title": {
-            "en_us": "Count",
+            "en_us": "Amount",
             "zh_cn": "数量"
           },
-          "type": "integer",
-          "default": 16,
           "$description": {
-            "en_us": "Count value.",
+            "en_us": "Amount of this AuraGain.",
             "zh_cn": "数量的值。"
-          }
-        },
-        "speed": {
-          "$title": {
-            "en_us": "Speed",
-            "zh_cn": "速度"
           },
-          "type": "number",
-          "default": 0,
-          "$description": {
-            "en_us": "Speed value.",
-            "zh_cn": "速度的值。"
-          }
-        },
-        "force": {
-          "$title": {
-            "en_us": "Force",
-            "zh_cn": "强制"
-          },
-          "type": "boolean",
-          "default": false,
-          "$description": {
-            "en_us": "Force value.",
-            "zh_cn": "强制的值。"
-          }
-        },
-        "spread": {
-          "$title": {
-            "en_us": "Spread",
-            "zh_cn": "扩散"
-          },
-          "$description": {
-            "en_us": "Spread value.",
-            "zh_cn": "扩散的值。"
-          }
-        },
-        "offset_x": {
-          "$title": {
-            "en_us": "Offset X",
-            "zh_cn": "X 轴偏移"
-          },
-          "type": "number",
-          "default": 0,
-          "$description": {
-            "en_us": "Offset X value.",
-            "zh_cn": "X 轴偏移的值。"
-          }
-        },
-        "offset_y": {
-          "$title": {
-            "en_us": "Offset Y",
-            "zh_cn": "Y 轴偏移"
-          },
-          "type": "number",
-          "default": 0.5,
-          "$description": {
-            "en_us": "Offset Y value.",
-            "zh_cn": "Y 轴偏移的值。"
-          }
-        },
-        "offset_z": {
-          "$title": {
-            "en_us": "Offset Z",
-            "zh_cn": "Z 轴偏移"
-          },
-          "type": "number",
-          "default": 0,
-          "$description": {
-            "en_us": "Offset Z value.",
-            "zh_cn": "Z 轴偏移的值。"
-          }
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Text",
+                "zh_cn": "文本"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
         }
       },
       "required": [
-        "particle"
+        "id",
+        "amount"
       ]
     },
-    "record_Fluctuation": {
+    "record_AuraRequirement": {
       "$title": {
-        "en_us": "Fluctuation",
-        "zh_cn": "波动"
+        "en_us": "Record AuraRequirement",
+        "zh_cn": "Record 灵气 Requirement"
       },
       "$description": {
-        "en_us": "Fluctuation value.",
-        "zh_cn": "波动的值。"
+        "en_us": "AuraRequirement value.",
+        "zh_cn": "Record 灵气 Requirement的值。"
       },
-      "type": "object",
       "properties": {
-        "enable": {
+        "min": {
           "$title": {
-            "en_us": "Enable",
-            "zh_cn": "启用"
+            "en_us": "Min",
+            "zh_cn": "最小"
           },
-          "type": "boolean",
-          "default": false,
           "$description": {
-            "en_us": "Enable value.",
-            "zh_cn": "启用的值。"
-          }
-        },
-        "cycle_type": {
-          "$title": {
-            "en_us": "Cycle Type",
-            "zh_cn": "波动周期类型"
+            "en_us": "Min of this AuraRequirement.",
+            "zh_cn": "最小的值。"
           },
-          "$type": "mxt-common-aura#record_CycleType",
-          "$description": {
-            "en_us": "Cycle Type value.",
-            "zh_cn": "波动周期类型的值。"
-          }
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Text",
+                "zh_cn": "文本"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
         },
-        "amplitude": {
+        "max": {
           "$title": {
-            "en_us": "Amplitude",
-            "zh_cn": "振幅"
+            "en_us": "Max",
+            "zh_cn": "最大"
+          },
+          "$description": {
+            "en_us": "Max of this AuraRequirement.",
+            "zh_cn": "最大的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Text",
+                "zh_cn": "文本"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
+        }
+      },
+      "required": [
+        "max"
+      ]
+    },
+    "record_AuraValue": {
+      "$title": {
+        "en_us": "Record AuraValue",
+        "zh_cn": "Record 灵气值"
+      },
+      "$description": {
+        "en_us": "AuraValue value.",
+        "zh_cn": "Record 灵气值的值。"
+      },
+      "properties": {
+        "amount": {
+          "$title": {
+            "en_us": "Amount",
+            "zh_cn": "数量"
+          },
+          "$description": {
+            "en_us": "Amount of this AuraValue.",
+            "zh_cn": "数量的值。"
           },
           "type": "number",
-          "default": 0,
-          "$description": {
-            "en_us": "Amplitude value.",
-            "zh_cn": "振幅的值。"
-          }
+          "default": 0
         },
-        "offset_tick": {
+        "max": {
           "$title": {
-            "en_us": "Offset Tick",
-            "zh_cn": "偏移刻"
+            "en_us": "Max",
+            "zh_cn": "最大"
+          },
+          "$description": {
+            "en_us": "Max of this AuraValue.",
+            "zh_cn": "最大的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "$title": {
+                "en_us": "Aura Maximum",
+                "zh_cn": "灵气最大值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: aura maximum.",
+                "zh_cn": "灵气最大值的值。"
+              },
+              "$type": "mxt-common-aura#aura_maximum"
+            }
+          ]
+        },
+        "regen_per_tick": {
+          "$title": {
+            "en_us": "Regen Per Tick",
+            "zh_cn": "每刻恢复"
+          },
+          "$description": {
+            "en_us": "Regen Per Tick of this AuraValue.",
+            "zh_cn": "每刻恢复的值。"
+          },
+          "type": "number",
+          "default": 0
+        },
+        "color": {
+          "$title": {
+            "en_us": "Color",
+            "zh_cn": "颜色"
+          },
+          "$description": {
+            "en_us": "Color of this AuraValue.",
+            "zh_cn": "颜色的值。"
+          },
+          "type": [
+            "integer",
+            "string"
+          ],
+          "default": 1048575
+        }
+      },
+      "required": []
+    },
+    "record_Bar": {
+      "$title": {
+        "en_us": "Record Bar",
+        "zh_cn": "Record 条"
+      },
+      "$description": {
+        "en_us": "Bar value.",
+        "zh_cn": "Record 条的值。"
+      },
+      "properties": {
+        "maximum": {
+          "$title": {
+            "en_us": "Maximum",
+            "zh_cn": "最大值"
+          },
+          "$description": {
+            "en_us": "Maximum of this Bar.",
+            "zh_cn": "最大值的值。"
+          },
+          "type": "number"
+        },
+        "bar_index": {
+          "$title": {
+            "en_us": "Bar Index",
+            "zh_cn": "条序号"
+          },
+          "$description": {
+            "en_us": "Bar Index of this Bar.",
+            "zh_cn": "条序号的值。"
           },
           "type": "integer",
-          "default": 0,
-          "$description": {
-            "en_us": "Offset Tick value.",
-            "zh_cn": "偏移刻的值。"
-          }
-        }
-      }
-    },
-    "record_CycleType": {
-      "$title": {
-        "en_us": "CycleType",
-        "zh_cn": "周期类型"
-      },
-      "$description": {
-        "en_us": "CycleType value.",
-        "zh_cn": "周期类型的值。"
-      },
-      "type": "object",
-      "properties": {}
-    },
-    "record_Rules": {
-      "$title": {
-        "en_us": "Rules",
-        "zh_cn": "规则"
-      },
-      "$description": {
-        "en_us": "Rules value.",
-        "zh_cn": "规则的值。"
-      },
-      "type": "object",
-      "properties": {
-        "cultivate_suppress": {
+          "minimum": 0,
+          "maximum": 24,
+          "default": 0
+        },
+        "inverted": {
           "$title": {
-            "en_us": "Cultivate Suppress",
-            "zh_cn": "压制修炼"
+            "en_us": "Inverted",
+            "zh_cn": "反转"
+          },
+          "$description": {
+            "en_us": "Inverted of this Bar.",
+            "zh_cn": "反转的值。"
           },
           "type": "boolean",
-          "default": false,
-          "$description": {
-            "en_us": "Cultivate Suppress value.",
-            "zh_cn": "压制修炼的值。"
-          }
+          "default": false
         },
-        "tribulation_modify": {
+        "anchor": {
           "$title": {
-            "en_us": "Tribulation Modify",
-            "zh_cn": "天劫修改"
+            "en_us": "Anchor",
+            "zh_cn": "锚点"
           },
-          "type": "number",
-          "default": 0,
           "$description": {
-            "en_us": "Tribulation Modify value.",
-            "zh_cn": "天劫修改的值。"
-          }
+            "en_us": "Anchor of this Bar.",
+            "zh_cn": "锚点的值。"
+          },
+          "type": "string",
+          "enum": [
+            "left",
+            "right"
+          ],
+          "$suggstion": true,
+          "default": "left"
         },
-        "spirit_plant_bonus": {
+        "order": {
           "$title": {
-            "en_us": "Spirit Plant Bonus",
-            "zh_cn": "灵植加成"
+            "en_us": "Order",
+            "zh_cn": "排序"
           },
-          "type": "number",
-          "default": 0,
           "$description": {
-            "en_us": "Spirit Plant Bonus value.",
-            "zh_cn": "灵植加成的值。"
-          }
-        },
-        "alchemy_env_bonus": {
-          "$title": {
-            "en_us": "Alchemy Env Bonus",
-            "zh_cn": "炼丹环境额外"
-          },
-          "type": "boolean",
-          "default": false,
-          "$description": {
-            "en_us": "Alchemy Env Bonus value.",
-            "zh_cn": "炼丹环境额外的值。"
-          }
-        },
-        "natural_spawn_herb": {
-          "$title": {
-            "en_us": "Natural Spawn Herb",
-            "zh_cn": "自然生成灵草"
-          },
-          "type": "boolean",
-          "default": false,
-          "$description": {
-            "en_us": "Natural Spawn Herb value.",
-            "zh_cn": "自然生成灵草的值。"
-          }
-        }
-      }
-    },
-    "record_Noise": {
-      "$title": {
-        "en_us": "Noise",
-        "zh_cn": "噪声"
-      },
-      "$description": {
-        "en_us": "Noise value.",
-        "zh_cn": "噪声的值。"
-      },
-      "type": "object",
-      "properties": {
-        "enable": {
-          "$title": {
-            "en_us": "Enable",
-            "zh_cn": "启用"
-          },
-          "type": "boolean",
-          "default": false,
-          "$description": {
-            "en_us": "Enable value.",
-            "zh_cn": "启用的值。"
-          }
-        },
-        "seed": {
-          "$title": {
-            "en_us": "Seed",
-            "zh_cn": "种子"
+            "en_us": "Order of this Bar.",
+            "zh_cn": "排序的值。"
           },
           "type": "integer",
-          "default": 0,
-          "$description": {
-            "en_us": "Seed value.",
-            "zh_cn": "种子的值。"
-          }
-        },
-        "scale": {
-          "$title": {
-            "en_us": "Scale",
-            "zh_cn": "缩放"
-          },
-          "type": "number",
-          "default": 640,
-          "$description": {
-            "en_us": "Scale value.",
-            "zh_cn": "缩放的值。"
-          }
-        },
-        "amplitude": {
-          "$title": {
-            "en_us": "Amplitude",
-            "zh_cn": "振幅"
-          },
-          "type": "number",
-          "default": 0,
-          "$description": {
-            "en_us": "Amplitude value.",
-            "zh_cn": "振幅的值。"
-          }
+          "default": 0
         }
-      }
-    },
-    "record_ClientRender": {
-      "$title": {
-        "en_us": "ClientRender",
-        "zh_cn": "客户端渲染"
       },
-      "$description": {
-        "en_us": "ClientRender value.",
-        "zh_cn": "客户端渲染的值。"
-      },
-      "type": "object",
-      "properties": {
-        "fog_color": {
-          "$title": {
-            "en_us": "Fog Color",
-            "zh_cn": "雾颜色"
-          },
-          "default": "#FFFFFF",
-          "$description": {
-            "en_us": "Fog Color value.",
-            "zh_cn": "雾颜色的值。"
-          }
-        },
-        "render_distance": {
-          "$title": {
-            "en_us": "Render Distance",
-            "zh_cn": "渲染距离"
-          },
-          "type": "integer",
-          "default": 64,
-          "$description": {
-            "en_us": "Render Distance value.",
-            "zh_cn": "渲染距离的值。"
-          }
-        },
-        "fog_strength": {
-          "$title": {
-            "en_us": "Fog Strength",
-            "zh_cn": "雾浓度"
-          },
-          "type": "number",
-          "default": 0.35,
-          "$description": {
-            "en_us": "Fog Strength value.",
-            "zh_cn": "雾浓度的值。"
-          }
-        }
-      }
+      "required": [
+        "maximum"
+      ]
     },
     "record_ClientHud": {
       "$title": {
-        "en_us": "ClientHud",
-        "zh_cn": "客户端 HUD"
+        "en_us": "Record ClientHud",
+        "zh_cn": "Record 客户端 HUD"
       },
       "$description": {
         "en_us": "ClientHud value.",
-        "zh_cn": "客户端 HUD的值。"
+        "zh_cn": "Record 客户端 HUD的值。"
       },
-      "type": "object",
       "properties": {
         "stored_aura": {
           "$title": {
             "en_us": "Stored Aura",
             "zh_cn": "已存灵气"
           },
-          "$type": "mxt-common-resource#record_Bar",
           "$description": {
-            "en_us": "Stored Aura value.",
+            "en_us": "Stored Aura of this ClientHud.",
             "zh_cn": "已存灵气的值。"
-          }
+          },
+          "$type": "mxt-common-aura#record_Bar"
         },
         "sensed_concentration": {
           "$title": {
             "en_us": "Sensed Concentration",
             "zh_cn": "感知浓度"
           },
-          "$type": "mxt-common-resource#record_Bar",
           "$description": {
-            "en_us": "Sensed Concentration value.",
+            "en_us": "Sensed Concentration of this ClientHud.",
             "zh_cn": "感知浓度的值。"
-          }
+          },
+          "$type": "mxt-common-aura#record_Bar"
         }
-      }
+      },
+      "required": []
+    },
+    "record_ClientRender": {
+      "$title": {
+        "en_us": "Record ClientRender",
+        "zh_cn": "Record 客户端渲染"
+      },
+      "$description": {
+        "en_us": "ClientRender value.",
+        "zh_cn": "Record 客户端渲染的值。"
+      },
+      "properties": {
+        "fog_color": {
+          "$title": {
+            "en_us": "Fog Color",
+            "zh_cn": "雾颜色"
+          },
+          "$description": {
+            "en_us": "Fog Color of this ClientRender.",
+            "zh_cn": "雾颜色的值。"
+          },
+          "type": [
+            "integer",
+            "string"
+          ],
+          "default": 1048575
+        },
+        "render_distance": {
+          "$title": {
+            "en_us": "Render Distance",
+            "zh_cn": "渲染距离"
+          },
+          "$description": {
+            "en_us": "Render Distance of this ClientRender.",
+            "zh_cn": "渲染距离的值。"
+          },
+          "type": "integer",
+          "minimum": 8,
+          "maximum": 256,
+          "default": 64
+        },
+        "fog_strength": {
+          "$title": {
+            "en_us": "Fog Strength",
+            "zh_cn": "雾浓度"
+          },
+          "$description": {
+            "en_us": "Fog Strength of this ClientRender.",
+            "zh_cn": "雾浓度的值。"
+          },
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.35
+        }
+      },
+      "required": []
+    },
+    "record_Fluctuation": {
+      "$title": {
+        "en_us": "Record Fluctuation",
+        "zh_cn": "Record 波动"
+      },
+      "$description": {
+        "en_us": "Fluctuation value.",
+        "zh_cn": "Record 波动的值。"
+      },
+      "properties": {
+        "enable": {
+          "$title": {
+            "en_us": "Enable",
+            "zh_cn": "启用"
+          },
+          "$description": {
+            "en_us": "Enable of this Fluctuation.",
+            "zh_cn": "启用的值。"
+          },
+          "type": "boolean",
+          "default": false
+        },
+        "cycle_type": {
+          "$title": {
+            "en_us": "Cycle Type",
+            "zh_cn": "波动周期类型"
+          },
+          "$description": {
+            "en_us": "Cycle Type of this Fluctuation.",
+            "zh_cn": "波动周期类型的值。"
+          },
+          "type": "string",
+          "enum": [
+            "day",
+            "moon",
+            "static"
+          ],
+          "$suggstion": true,
+          "default": "static"
+        },
+        "amplitude": {
+          "$title": {
+            "en_us": "Amplitude",
+            "zh_cn": "振幅"
+          },
+          "$description": {
+            "en_us": "Amplitude of this Fluctuation.",
+            "zh_cn": "振幅的值。"
+          },
+          "type": "number",
+          "default": 0
+        },
+        "offset_tick": {
+          "$title": {
+            "en_us": "Offset Tick",
+            "zh_cn": "偏移刻"
+          },
+          "$description": {
+            "en_us": "Offset Tick of this Fluctuation.",
+            "zh_cn": "偏移刻的值。"
+          },
+          "type": "integer",
+          "default": 0
+        }
+      },
+      "required": []
+    },
+    "record_Noise": {
+      "$title": {
+        "en_us": "Record Noise",
+        "zh_cn": "Record 噪声"
+      },
+      "$description": {
+        "en_us": "Noise value.",
+        "zh_cn": "Record 噪声的值。"
+      },
+      "properties": {
+        "enable": {
+          "$title": {
+            "en_us": "Enable",
+            "zh_cn": "启用"
+          },
+          "$description": {
+            "en_us": "Enable of this Noise.",
+            "zh_cn": "启用的值。"
+          },
+          "type": "boolean",
+          "default": false
+        },
+        "seed": {
+          "$title": {
+            "en_us": "Seed",
+            "zh_cn": "种子"
+          },
+          "$description": {
+            "en_us": "Seed of this Noise.",
+            "zh_cn": "种子的值。"
+          },
+          "type": "integer",
+          "default": 0
+        },
+        "scale": {
+          "$title": {
+            "en_us": "Scale",
+            "zh_cn": "缩放"
+          },
+          "$description": {
+            "en_us": "Scale of this Noise.",
+            "zh_cn": "缩放的值。"
+          },
+          "type": "number",
+          "default": 640
+        },
+        "amplitude": {
+          "$title": {
+            "en_us": "Amplitude",
+            "zh_cn": "振幅"
+          },
+          "$description": {
+            "en_us": "Amplitude of this Noise.",
+            "zh_cn": "振幅的值。"
+          },
+          "type": "number",
+          "default": 0
+        }
+      },
+      "required": []
+    },
+    "record_ResourceConversion": {
+      "$title": {
+        "en_us": "Record ResourceConversion",
+        "zh_cn": "Record Resource Conversion"
+      },
+      "$description": {
+        "en_us": "ResourceConversion value.",
+        "zh_cn": "Record Resource Conversion的值。"
+      },
+      "properties": {
+        "multiplier": {
+          "$title": {
+            "en_us": "Multiplier",
+            "zh_cn": "倍率"
+          },
+          "$description": {
+            "en_us": "Multiplier of this ResourceConversion.",
+            "zh_cn": "倍率的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Text",
+                "zh_cn": "文本"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
+        },
+        "max_per_tick": {
+          "$title": {
+            "en_us": "Max Per Tick",
+            "zh_cn": "最大每刻"
+          },
+          "$description": {
+            "en_us": "Max Per Tick of this ResourceConversion.",
+            "zh_cn": "最大每刻的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Text",
+                "zh_cn": "文本"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: text.",
+                "zh_cn": "文本的值。"
+              },
+              "type": "string"
+            },
+            {
+              "$title": {
+                "en_us": "Number",
+                "zh_cn": "数值"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number.",
+                "zh_cn": "数值的值。"
+              },
+              "type": "number"
+            },
+            {
+              "$title": {
+                "en_us": "Number Provider",
+                "zh_cn": "数值提供器"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: number provider.",
+                "zh_cn": "数值提供器的值。"
+              },
+              "$type": "mxt-common#number_provider"
+            }
+          ]
+        }
+      },
+      "required": []
+    },
+    "record_Rules": {
+      "$title": {
+        "en_us": "Record Rules",
+        "zh_cn": "Record 规则"
+      },
+      "$description": {
+        "en_us": "Rules value.",
+        "zh_cn": "Record 规则的值。"
+      },
+      "properties": {
+        "cultivate_suppress": {
+          "$title": {
+            "en_us": "Cultivate Suppress",
+            "zh_cn": "压制修炼"
+          },
+          "$description": {
+            "en_us": "Cultivate Suppress of this Rules.",
+            "zh_cn": "压制修炼的值。"
+          },
+          "type": "boolean",
+          "default": false
+        },
+        "tribulation_modify": {
+          "$title": {
+            "en_us": "Tribulation Modify",
+            "zh_cn": "天劫修改"
+          },
+          "$description": {
+            "en_us": "Tribulation Modify of this Rules.",
+            "zh_cn": "天劫修改的值。"
+          },
+          "type": "number",
+          "default": 0
+        },
+        "spirit_plant_bonus": {
+          "$title": {
+            "en_us": "Spirit Plant Bonus",
+            "zh_cn": "灵植加成"
+          },
+          "$description": {
+            "en_us": "Spirit Plant Bonus of this Rules.",
+            "zh_cn": "灵植加成的值。"
+          },
+          "type": "number",
+          "default": 0
+        },
+        "alchemy_env_bonus": {
+          "$title": {
+            "en_us": "Alchemy Env Bonus",
+            "zh_cn": "炼丹环境额外"
+          },
+          "$description": {
+            "en_us": "Alchemy Env Bonus of this Rules.",
+            "zh_cn": "炼丹环境额外的值。"
+          },
+          "type": "boolean",
+          "default": false
+        },
+        "natural_spawn_herb": {
+          "$title": {
+            "en_us": "Natural Spawn Herb",
+            "zh_cn": "自然生成灵草"
+          },
+          "$description": {
+            "en_us": "Natural Spawn Herb of this Rules.",
+            "zh_cn": "自然生成灵草的值。"
+          },
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": []
     }
   }
 }

@@ -8,99 +8,483 @@
     "zh_cn": "由觅仙途数据包加载的丹药绑定定义。"
   },
   "type": "object",
+  "required": [
+    "items"
+  ],
   "properties": {
     "items": {
       "$title": {
         "en_us": "Items",
         "zh_cn": "物品"
       },
-      "$type": "mxt-common#item_matcher",
       "$description": {
-        "en_us": "Pills this binding applies to.",
-        "zh_cn": "该绑定适用的丹药物品。"
-      }
+        "en_us": "Items of this PillBinding.",
+        "zh_cn": "物品的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:item"
+        },
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:item_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "Item Matcher Entry",
+            "zh_cn": "物品匹配器条目"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: item matcher entry.",
+            "zh_cn": "物品匹配器条目的值。"
+          },
+          "$type": "mxt-common#item_matcher_entry"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:item"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:item_tag",
+                "pattern": "^#.+"
+              },
+              {
+                "$title": {
+                  "en_us": "Item Matcher Entry",
+                  "zh_cn": "物品匹配器条目"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: item matcher entry.",
+                  "zh_cn": "物品匹配器条目的值。"
+                },
+                "$type": "mxt-common#item_matcher_entry"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "on_consume": {
       "$title": {
         "en_us": "On Consume",
         "zh_cn": "服用时行为"
       },
-      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Action run when the pill is consumed.",
-        "zh_cn": "服用丹药时执行的行为。"
-      }
+        "en_us": "On Consume of this PillBinding.",
+        "zh_cn": "服用时行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "toxicity_gain": {
       "$title": {
         "en_us": "Toxicity Gain",
         "zh_cn": "丹毒增加"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Toxicity added per pill.",
-        "zh_cn": "每颗丹药增加的丹毒。"
-      }
+        "en_us": "Toxicity Gain of this PillBinding.",
+        "zh_cn": "丹毒增加的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     },
     "toxicity_threshold": {
       "$title": {
         "en_us": "Toxicity Threshold",
         "zh_cn": "丹毒阈值"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Toxicity at which the overdose behaviour starts.",
-        "zh_cn": "触发丹毒过量的阈值。"
-      }
+        "en_us": "Toxicity Threshold of this PillBinding.",
+        "zh_cn": "丹毒阈值的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     },
     "on_overdose": {
       "$title": {
         "en_us": "On Overdose",
         "zh_cn": "丹毒过量时行为"
       },
-      "$type": "mxt-common-entity-action#entity_action",
       "$description": {
-        "en_us": "Action run when toxicity passes the threshold.",
-        "zh_cn": "丹毒超过阈值时执行的行为。"
-      }
+        "en_us": "On Overdose of this PillBinding.",
+        "zh_cn": "丹毒过量时行为的值。"
+      },
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Action",
+            "zh_cn": "实体行为"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity action.",
+            "zh_cn": "实体行为的值。"
+          },
+          "$type": "mxt-common-entity-action#entity_action"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-action#entity_action",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
     },
     "toxicity_after_overdose": {
       "$title": {
         "en_us": "Toxicity After Overdose",
         "zh_cn": "过量后的丹毒"
       },
-      "$type": "mxt-common#number_provider",
       "$description": {
-        "en_us": "Toxicity left once the overdose has been resolved.",
-        "zh_cn": "丹毒过量处理完之后剩余的丹毒。"
-      }
-    },
-    "quality_group": {
-      "$title": {
-        "en_us": "Quality Group",
-        "zh_cn": "品质组"
+        "en_us": "Toxicity After Overdose of this PillBinding.",
+        "zh_cn": "过量后的丹毒的值。"
       },
-      "$type": "mxt-common#item_quality_tag",
-      "$description": {
-        "en_us": "Quality group shared by these pills.",
-        "zh_cn": "这些丹药共用的品质组。"
-      }
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Text",
+            "zh_cn": "文本"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: text.",
+            "zh_cn": "文本的值。"
+          },
+          "type": "string"
+        },
+        {
+          "$title": {
+            "en_us": "Number",
+            "zh_cn": "数值"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number.",
+            "zh_cn": "数值的值。"
+          },
+          "type": "number"
+        },
+        {
+          "$title": {
+            "en_us": "Number Provider",
+            "zh_cn": "数值提供器"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: number provider.",
+            "zh_cn": "数值提供器的值。"
+          },
+          "$type": "mxt-common#number_provider"
+        }
+      ]
     },
-    "condition": {
+    "quality_chain": {
       "$title": {
-        "en_us": "Condition",
+        "en_us": "Quality Chain",
+        "zh_cn": "品质链"
+      },
+      "$description": {
+        "en_us": "Quality Chain of this PillBinding.",
+        "zh_cn": "品质链的值。"
+      },
+      "type": "string",
+      "$registry": "mxt:quality_chain"
+    },
+    "conditions": {
+      "$title": {
+        "en_us": "Conditions",
         "zh_cn": "条件"
       },
-      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Condition a pill has to meet for the binding to apply.",
-        "zh_cn": "丹药需要满足的条件，满足后该绑定才生效。"
+        "en_us": "Conditions of this PillBinding.",
+        "zh_cn": "条件的值。"
+      },
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$title": {
+              "en_us": "Object",
+              "zh_cn": "对象"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: object.",
+              "zh_cn": "对象的值。"
+            },
+            "type": "object",
+            "properties": {
+              "condition": {
+                "$title": {
+                  "en_us": "Condition",
+                  "zh_cn": "条件"
+                },
+                "$description": {
+                  "en_us": "Condition of this PillBinding.",
+                  "zh_cn": "条件的值。"
+                },
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Entity Condition",
+                      "zh_cn": "实体条件"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: entity condition.",
+                      "zh_cn": "实体条件的值。"
+                    },
+                    "$type": "mxt-common-entity-condition#entity_condition"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "List",
+                      "zh_cn": "列表"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: list.",
+                      "zh_cn": "列表的值。"
+                    },
+                    "type": "array",
+                    "items": {
+                      "$type": "mxt-common-entity-condition#entity_condition",
+                      "$title": {
+                        "en_us": "Item",
+                        "zh_cn": "物品"
+                      },
+                      "$description": {
+                        "en_us": "Item value.",
+                        "zh_cn": "物品的值。"
+                      }
+                    }
+                  }
+                ]
+              },
+              "description": {
+                "$title": {
+                  "en_us": "Description",
+                  "zh_cn": "描述"
+                },
+                "$description": {
+                  "en_us": "Description of this PillBinding.",
+                  "zh_cn": "描述的值。"
+                },
+                "type": "string"
+              }
+            },
+            "required": [
+              "condition"
+            ]
+          },
+          {
+            "$title": {
+              "en_us": "Entity Condition",
+              "zh_cn": "实体条件"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: entity condition.",
+              "zh_cn": "实体条件的值。"
+            },
+            "$type": "mxt-common-entity-condition#entity_condition"
+          },
+          {
+            "$title": {
+              "en_us": "List",
+              "zh_cn": "列表"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: list.",
+              "zh_cn": "列表的值。"
+            },
+            "type": "array",
+            "items": {
+              "$type": "mxt-common-entity-condition#entity_condition",
+              "$title": {
+                "en_us": "Item",
+                "zh_cn": "物品"
+              },
+              "$description": {
+                "en_us": "Item value.",
+                "zh_cn": "物品的值。"
+              }
+            }
+          }
+        ],
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
       }
     }
   },
-  "required": [
-    "items"
-  ],
   "id": "mxt-pill_binding",
   "$version": "26.1.2",
   "$registry": "mxt:pill_binding",

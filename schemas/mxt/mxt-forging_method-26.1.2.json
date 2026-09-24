@@ -8,39 +8,127 @@
     "zh_cn": "由觅仙途数据包加载的单次锻打操作定义。"
   },
   "type": "object",
+  "required": [
+    "value_delta"
+  ],
   "properties": {
     "value_delta": {
       "$title": {
         "en_us": "Value Delta",
         "zh_cn": "数值变化"
       },
-      "type": "integer",
       "$description": {
-        "en_us": "How far the meter moves on a successful strike. Positive moves right, negative moves left, and zero is rejected at load time.",
-        "zh_cn": "一次成功锻打让数值条移动的格数。正数向右、负数向左，写 0 会在数据包加载期被拒绝。"
-      }
+        "en_us": "Value Delta of this ForgingMethod.",
+        "zh_cn": "数值变化的值。"
+      },
+      "type": "integer"
     },
     "costs": {
       "$title": {
         "en_us": "Costs",
         "zh_cn": "消耗"
       },
+      "$description": {
+        "en_us": "Costs of this ForgingMethod.",
+        "zh_cn": "消耗的值。"
+      },
       "type": "array",
       "items": {
-        "$type": "mxt-common#record_ResourceCost",
+        "oneOf": [
+          {
+            "$title": {
+              "en_us": "Object",
+              "zh_cn": "对象"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: object.",
+              "zh_cn": "对象的值。"
+            },
+            "type": "object",
+            "properties": {
+              "id": {
+                "$title": {
+                  "en_us": "Id",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "Id of this Cost.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "mxt:resource"
+              },
+              "amount": {
+                "$title": {
+                  "en_us": "Amount",
+                  "zh_cn": "数量"
+                },
+                "$description": {
+                  "en_us": "Amount of this Cost.",
+                  "zh_cn": "数量的值。"
+                },
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Text",
+                      "zh_cn": "文本"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: text.",
+                      "zh_cn": "文本的值。"
+                    },
+                    "type": "string"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number",
+                      "zh_cn": "数值"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number.",
+                      "zh_cn": "数值的值。"
+                    },
+                    "type": "number"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Number Provider",
+                      "zh_cn": "数值提供器"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: number provider.",
+                      "zh_cn": "数值提供器的值。"
+                    },
+                    "$type": "mxt-common#number_provider"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "amount"
+            ]
+          },
+          {
+            "$title": {
+              "en_us": "Cost",
+              "zh_cn": "消耗"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: cost.",
+              "zh_cn": "消耗的值。"
+            },
+            "$type": "mxt-common#cost"
+          }
+        ],
         "$title": {
           "en_us": "Item",
           "zh_cn": "物品"
         },
         "$description": {
-          "en_us": "One resource cost paid on each strike.",
-          "zh_cn": "每次锻打支付的一项资源消耗。"
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
         }
-      },
-      "default": [],
-      "$description": {
-        "en_us": "Resources paid on every successful strike. Omit it for a free method.",
-        "zh_cn": "每次成功锻打支付的全部资源消耗。省略即为不消耗。"
       }
     },
     "condition": {
@@ -48,55 +136,84 @@
         "en_us": "Condition",
         "zh_cn": "条件"
       },
-      "$type": "mxt-common-entity-condition#entity_condition",
       "$description": {
-        "en_us": "Condition the striker has to meet before this method may be used. Omit it to always allow.",
-        "zh_cn": "使用该方式前必须满足的实体条件。省略即始终可用。"
-      }
-    },
-    "display_icon": {
-      "$title": {
-        "en_us": "Display Icon",
-        "zh_cn": "显示图标"
+        "en_us": "Condition of this ForgingMethod.",
+        "zh_cn": "条件的值。"
       },
-      "type": "string",
-      "$registry": "minecraft:item",
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Entity Condition",
+            "zh_cn": "实体条件"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: entity condition.",
+            "zh_cn": "实体条件的值。"
+          },
+          "$type": "mxt-common-entity-condition#entity_condition"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "$type": "mxt-common-entity-condition#entity_condition",
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
+        }
+      ]
+    },
+    "icon": {
+      "$title": {
+        "en_us": "Icon",
+        "zh_cn": "图标"
+      },
       "$description": {
-        "en_us": "Item id drawn in the method selector and used as this method's name. Omit it and the button shows the method id.",
-        "zh_cn": "方法选择格里绘制的物品 ID，同时也作为该方式的名字。省略时按钮显示方式 ID。"
-      }
+        "en_us": "Icon of this ForgingMethod.",
+        "zh_cn": "图标的值。"
+      },
+      "$type": "mxt-common#record_IconReference"
     },
     "cooldown": {
       "$title": {
         "en_us": "Cooldown",
         "zh_cn": "冷却时间"
       },
+      "$description": {
+        "en_us": "Cooldown of this ForgingMethod.",
+        "zh_cn": "冷却时间的值。"
+      },
       "type": "integer",
       "minimum": 0,
       "maximum": 72000,
-      "default": 0,
-      "$description": {
-        "en_us": "Ticks before the same player may strike the same table again, 0 to 72000. Enforced by the server's strike rate limiter.",
-        "zh_cn": "同一玩家对同一锻造台的连续锻打间隔，单位 tick，范围 0..72000，由服务端限流执行。"
-      }
+      "default": 0
     },
     "sound": {
       "$title": {
         "en_us": "Sound",
         "zh_cn": "音效"
       },
-      "type": "string",
-      "$registry": "minecraft:sound_event",
-      "default": "minecraft:block.anvil.place",
       "$description": {
-        "en_us": "Sound played at the table when this method is struck. Heard by every player in range, on the Blocks channel. Use minecraft:intentionally_empty for a silent method.",
-        "zh_cn": "使用该方式锻打成功时在锻造台播放的音效，附近所有玩家都能听到，走 blocks 音量通道。写 minecraft:intentionally_empty 即为静音。"
-      }
+        "en_us": "Sound of this ForgingMethod.",
+        "zh_cn": "音效的值。"
+      },
+      "type": "string",
+      "$registry": "minecraft:sound_event"
     }
   },
-  "required": [
-    "value_delta"
-  ],
   "id": "mxt-forging_method",
   "$version": "26.1.2",
   "$registry": "mxt:forging_method",

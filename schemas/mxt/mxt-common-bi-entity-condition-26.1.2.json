@@ -3,12 +3,12 @@
   "$library": true,
   "$version": "26.1.2",
   "$title": {
-    "en_us": "MiXianTu Bi-Entity Conditions",
-    "zh_cn": "MiXianTu 双实体条件"
+    "en_us": "MiXianTu Bi-Entity-Condition Types",
+    "zh_cn": "觅仙途 Bi-Entity-Condition Types"
   },
   "$description": {
-    "en_us": "Conditions comparing an actor with a target.",
-    "zh_cn": "比较执行者与目标的条件。"
+    "en_us": "Shared field types used by MiXianTu datapack schemas.",
+    "zh_cn": "觅仙途 Bi-Entity-Condition Types的值。"
   },
   "$types": {
     "bi_entity_condition": {
@@ -17,7 +17,7 @@
         "zh_cn": "双实体条件"
       },
       "$description": {
-        "en_us": "Bi Entity Condition selected by a type identifier.",
+        "en_us": "Bi Entity Condition selected by its type identifier.",
         "zh_cn": "双实体条件的值。"
       },
       "type": "object",
@@ -38,7 +38,9 @@
             "mxt:distance",
             "mxt:team",
             "mxt:relation",
+            "mxt:friend",
             "mxt:element_overcomes",
+            "mxt:element_adapted_to",
             "mxt:can_see",
             "mxt:chance",
             "mxt:constant",
@@ -68,11 +70,10 @@
             "zh_cn": "始终为真"
           },
           "$description": {
-            "en_us": "Always passes.",
-            "zh_cn": "始终满足，永远通过。"
+            "en_us": "Always True bi_entity_condition fields.",
+            "zh_cn": "始终为真的值。"
           },
-          "type": "object",
-          "properties": {}
+          "type": "object"
         },
         "mxt:js": {
           "$title": {
@@ -80,8 +81,8 @@
             "zh_cn": "JS 表达式"
           },
           "$description": {
-            "en_us": "Judged by a JavaScript callback with the actor and the target.",
-            "zh_cn": "以执行者与目标为参数，由 JavaScript 回调判定。"
+            "en_us": "Js bi_entity_condition fields.",
+            "zh_cn": "JS 表达式的值。"
           },
           "type": "object",
           "properties": {
@@ -91,9 +92,10 @@
                 "zh_cn": "标识符"
               },
               "$description": {
-                "en_us": "Id value.",
+                "en_us": "Id of this JsBiEntityCondition.",
                 "zh_cn": "标识符的值。"
-              }
+              },
+              "type": "string"
             },
             "params": {
               "$title": {
@@ -101,9 +103,10 @@
                 "zh_cn": "参数"
               },
               "$description": {
-                "en_us": "Params value.",
+                "en_us": "Params of this JsBiEntityCondition.",
                 "zh_cn": "参数的值。"
-              }
+              },
+              "type": "object"
             }
           },
           "required": [
@@ -116,8 +119,8 @@
             "zh_cn": "全部满足"
           },
           "$description": {
-            "en_us": "Passes when every child condition passes.",
-            "zh_cn": "所有子条件都满足时通过。"
+            "en_us": "And bi_entity_condition fields.",
+            "zh_cn": "全部满足的值。"
           },
           "type": "object",
           "properties": {
@@ -126,22 +129,21 @@
                 "en_us": "Conditions",
                 "zh_cn": "条件"
               },
+              "$description": {
+                "en_us": "Conditions of this AndBiEntityCondition.",
+                "zh_cn": "条件的值。"
+              },
               "type": "array",
               "items": {
                 "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
                 "$title": {
-                  "en_us": "Condition",
-                  "zh_cn": "条件"
+                  "en_us": "Item",
+                  "zh_cn": "物品"
                 },
                 "$description": {
-                  "en_us": "One child condition.",
-                  "zh_cn": "一个子条件。"
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
                 }
-              },
-              "default": [],
-              "$description": {
-                "en_us": "Conditions value.",
-                "zh_cn": "条件的值。"
               }
             }
           },
@@ -155,8 +157,8 @@
             "zh_cn": "距离"
           },
           "$description": {
-            "en_us": "Compares the distance between the two entities.",
-            "zh_cn": "比较两个实体之间的距离。"
+            "en_us": "Distance bi_entity_condition fields.",
+            "zh_cn": "距离的值。"
           },
           "type": "object",
           "properties": {
@@ -165,11 +167,45 @@
                 "en_us": "Maximum",
                 "zh_cn": "最大值"
               },
-              "$type": "mxt-common#number_provider",
               "$description": {
-                "en_us": "Maximum value.",
+                "en_us": "Maximum of this DistanceBiEntityCondition.",
                 "zh_cn": "最大值的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
             }
           },
           "required": [
@@ -182,8 +218,8 @@
             "zh_cn": "队伍"
           },
           "$description": {
-            "en_us": "Checks the team of one side.",
-            "zh_cn": "判断其中一方的队伍。"
+            "en_us": "Team bi_entity_condition fields.",
+            "zh_cn": "队伍的值。"
           },
           "type": "object",
           "properties": {
@@ -192,11 +228,12 @@
                 "en_us": "Same Team",
                 "zh_cn": "同队"
               },
-              "type": "boolean",
               "$description": {
-                "en_us": "Same Team value.",
+                "en_us": "Same Team of this TeamBiEntityCondition.",
                 "zh_cn": "同队的值。"
-              }
+              },
+              "type": "boolean",
+              "default": true
             }
           }
         },
@@ -206,8 +243,8 @@
             "zh_cn": "关系"
           },
           "$description": {
-            "en_us": "Checks how the two entities relate to each other.",
-            "zh_cn": "判断两个实体之间的关系。"
+            "en_us": "Relation bi_entity_condition fields.",
+            "zh_cn": "关系的值。"
           },
           "type": "object",
           "properties": {
@@ -216,14 +253,25 @@
                 "en_us": "Allied",
                 "zh_cn": "友方"
               },
-              "type": "boolean",
-              "default": true,
               "$description": {
-                "en_us": "Allied value.",
+                "en_us": "Allied of this RelationBiEntityCondition.",
                 "zh_cn": "友方的值。"
-              }
+              },
+              "type": "boolean",
+              "default": true
             }
           }
+        },
+        "mxt:friend": {
+          "$title": {
+            "en_us": "Friend",
+            "zh_cn": "友方"
+          },
+          "$description": {
+            "en_us": "Friend bi_entity_condition fields.",
+            "zh_cn": "友方的值。"
+          },
+          "type": "object"
         },
         "mxt:element_overcomes": {
           "$title": {
@@ -231,11 +279,21 @@
             "zh_cn": "元素克制"
           },
           "$description": {
-            "en_us": "Checks whether one side's element overcomes the other's.",
-            "zh_cn": "判断一方的元素是否克制另一方。"
+            "en_us": "Element Overcomes bi_entity_condition fields.",
+            "zh_cn": "元素克制的值。"
           },
-          "type": "object",
-          "properties": {}
+          "type": "object"
+        },
+        "mxt:element_adapted_to": {
+          "$title": {
+            "en_us": "Element Adapted To",
+            "zh_cn": "元素适应至"
+          },
+          "$description": {
+            "en_us": "Element Adapted To bi_entity_condition fields.",
+            "zh_cn": "元素适应至的值。"
+          },
+          "type": "object"
         },
         "mxt:can_see": {
           "$title": {
@@ -243,8 +301,8 @@
             "zh_cn": "可见"
           },
           "$description": {
-            "en_us": "Checks whether the actor can see the target.",
-            "zh_cn": "判断执行者能否看到目标。"
+            "en_us": "Can See bi_entity_condition fields.",
+            "zh_cn": "可见的值。"
           },
           "type": "object",
           "properties": {
@@ -254,9 +312,17 @@
                 "zh_cn": "形状类型"
               },
               "$description": {
-                "en_us": "Shape Type value.",
+                "en_us": "Shape Type of this CanSeeCondition.",
                 "zh_cn": "形状类型的值。"
-              }
+              },
+              "type": "string",
+              "enum": [
+                "collider",
+                "outline",
+                "visual",
+                "fall_destiny"
+              ],
+              "$suggstion": true
             },
             "fluid_handling": {
               "$title": {
@@ -264,9 +330,16 @@
                 "zh_cn": "流体处理方式"
               },
               "$description": {
-                "en_us": "Fluid Handling value.",
+                "en_us": "Fluid Handling of this CanSeeCondition.",
                 "zh_cn": "流体处理方式的值。"
-              }
+              },
+              "type": "string",
+              "enum": [
+                "none",
+                "source_only",
+                "any"
+              ],
+              "$suggstion": true
             }
           }
         },
@@ -276,8 +349,8 @@
             "zh_cn": "概率"
           },
           "$description": {
-            "en_us": "Passes with the given probability.",
-            "zh_cn": "按给定概率通过。"
+            "en_us": "Chance bi_entity_condition fields.",
+            "zh_cn": "概率的值。"
           },
           "type": "object",
           "properties": {
@@ -286,11 +359,13 @@
                 "en_us": "Chance",
                 "zh_cn": "概率"
               },
-              "type": "number",
               "$description": {
-                "en_us": "Chance value.",
+                "en_us": "Chance of this ChanceCondition.",
                 "zh_cn": "概率的值。"
-              }
+              },
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
             }
           },
           "required": [
@@ -303,8 +378,8 @@
             "zh_cn": "常量"
           },
           "$description": {
-            "en_us": "Always returns the configured answer.",
-            "zh_cn": "始终返回配置的固定结果。"
+            "en_us": "Constant bi_entity_condition fields.",
+            "zh_cn": "常量的值。"
           },
           "type": "object",
           "properties": {
@@ -313,11 +388,11 @@
                 "en_us": "Value",
                 "zh_cn": "值"
               },
-              "type": "boolean",
               "$description": {
-                "en_us": "Value value.",
+                "en_us": "Value of this ConstantCondition.",
                 "zh_cn": "值的值。"
-              }
+              },
+              "type": "boolean"
             }
           },
           "required": [
@@ -330,8 +405,8 @@
             "zh_cn": "条件取反"
           },
           "$description": {
-            "en_us": "Passes when the child condition fails.",
-            "zh_cn": "子条件不满足时通过。"
+            "en_us": "Not bi_entity_condition fields.",
+            "zh_cn": "条件取反的值。"
           },
           "type": "object",
           "properties": {
@@ -340,11 +415,45 @@
                 "en_us": "Condition",
                 "zh_cn": "条件"
               },
-              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
               "$description": {
-                "en_us": "Condition value.",
+                "en_us": "Condition of this NotCondition.",
                 "zh_cn": "条件的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Bi Entity Condition",
+                    "zh_cn": "双实体条件"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: bi entity condition.",
+                    "zh_cn": "双实体条件的值。"
+                  },
+                  "$type": "mxt-common-bi-entity-condition#bi_entity_condition"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -357,8 +466,8 @@
             "zh_cn": "任一满足"
           },
           "$description": {
-            "en_us": "Passes when any child condition passes.",
-            "zh_cn": "任一子条件满足时通过。"
+            "en_us": "Or bi_entity_condition fields.",
+            "zh_cn": "任一满足的值。"
           },
           "type": "object",
           "properties": {
@@ -367,22 +476,21 @@
                 "en_us": "Conditions",
                 "zh_cn": "条件"
               },
+              "$description": {
+                "en_us": "Conditions of this OrCondition.",
+                "zh_cn": "条件的值。"
+              },
               "type": "array",
               "items": {
                 "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
                 "$title": {
-                  "en_us": "Condition",
-                  "zh_cn": "条件"
+                  "en_us": "Item",
+                  "zh_cn": "物品"
                 },
                 "$description": {
-                  "en_us": "One child condition.",
-                  "zh_cn": "一个子条件。"
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
                 }
-              },
-              "default": [],
-              "$description": {
-                "en_us": "Conditions value.",
-                "zh_cn": "条件的值。"
               }
             }
           },
@@ -396,8 +504,8 @@
             "zh_cn": "执行者条件"
           },
           "$description": {
-            "en_us": "Checks a condition on the actor.",
-            "zh_cn": "对执行者判断一个实体条件。"
+            "en_us": "Actor Condition bi_entity_condition fields.",
+            "zh_cn": "执行者条件的值。"
           },
           "type": "object",
           "properties": {
@@ -406,11 +514,45 @@
                 "en_us": "Condition",
                 "zh_cn": "条件"
               },
-              "$type": "mxt-common-entity-condition#entity_condition",
               "$description": {
-                "en_us": "Condition value.",
+                "en_us": "Condition of this ActorCondition.",
                 "zh_cn": "条件的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Entity Condition",
+                    "zh_cn": "实体条件"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: entity condition.",
+                    "zh_cn": "实体条件的值。"
+                  },
+                  "$type": "mxt-common-entity-condition#entity_condition"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-entity-condition#entity_condition",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -423,8 +565,8 @@
             "zh_cn": "目标条件"
           },
           "$description": {
-            "en_us": "Checks a condition on the target.",
-            "zh_cn": "对目标判断一个实体条件。"
+            "en_us": "Target Condition bi_entity_condition fields.",
+            "zh_cn": "目标条件的值。"
           },
           "type": "object",
           "properties": {
@@ -433,11 +575,45 @@
                 "en_us": "Condition",
                 "zh_cn": "条件"
               },
-              "$type": "mxt-common-entity-condition#entity_condition",
               "$description": {
-                "en_us": "Condition value.",
+                "en_us": "Condition of this TargetCondition.",
                 "zh_cn": "条件的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Entity Condition",
+                    "zh_cn": "实体条件"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: entity condition.",
+                    "zh_cn": "实体条件的值。"
+                  },
+                  "$type": "mxt-common-entity-condition#entity_condition"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-entity-condition#entity_condition",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -450,8 +626,8 @@
             "zh_cn": "双方"
           },
           "$description": {
-            "en_us": "Passes when the condition holds for both sides.",
-            "zh_cn": "条件对双方都成立时通过。"
+            "en_us": "Both bi_entity_condition fields.",
+            "zh_cn": "双方的值。"
           },
           "type": "object",
           "properties": {
@@ -460,11 +636,45 @@
                 "en_us": "Condition",
                 "zh_cn": "条件"
               },
-              "$type": "mxt-common-entity-condition#entity_condition",
               "$description": {
-                "en_us": "Condition value.",
+                "en_us": "Condition of this BothCondition.",
                 "zh_cn": "条件的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Entity Condition",
+                    "zh_cn": "实体条件"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: entity condition.",
+                    "zh_cn": "实体条件的值。"
+                  },
+                  "$type": "mxt-common-entity-condition#entity_condition"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-entity-condition#entity_condition",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -477,8 +687,8 @@
             "zh_cn": "任一"
           },
           "$description": {
-            "en_us": "Passes when the condition holds for at least one side.",
-            "zh_cn": "条件至少对一方成立时通过。"
+            "en_us": "Either bi_entity_condition fields.",
+            "zh_cn": "任一的值。"
           },
           "type": "object",
           "properties": {
@@ -487,11 +697,45 @@
                 "en_us": "Condition",
                 "zh_cn": "条件"
               },
-              "$type": "mxt-common-entity-condition#entity_condition",
               "$description": {
-                "en_us": "Condition value.",
+                "en_us": "Condition of this EitherCondition.",
                 "zh_cn": "条件的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Entity Condition",
+                    "zh_cn": "实体条件"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: entity condition.",
+                    "zh_cn": "实体条件的值。"
+                  },
+                  "$type": "mxt-common-entity-condition#entity_condition"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-entity-condition#entity_condition",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
@@ -504,11 +748,10 @@
             "zh_cn": "递归骑乘"
           },
           "$description": {
-            "en_us": "Walks the whole chain of vehicles.",
-            "zh_cn": "沿着载具链逐层判断。"
+            "en_us": "Riding Recursive bi_entity_condition fields.",
+            "zh_cn": "递归骑乘的值。"
           },
-          "type": "object",
-          "properties": {}
+          "type": "object"
         },
         "mxt:same_team": {
           "$title": {
@@ -516,11 +759,10 @@
             "zh_cn": "同队"
           },
           "$description": {
-            "en_us": "Checks whether both entities share a team.",
-            "zh_cn": "判断两个实体是否同队。"
+            "en_us": "Same Team bi_entity_condition fields.",
+            "zh_cn": "同队的值。"
           },
-          "type": "object",
-          "properties": {}
+          "type": "object"
         },
         "mxt:relative_rotation": {
           "$title": {
@@ -528,11 +770,109 @@
             "zh_cn": "相对朝向"
           },
           "$description": {
-            "en_us": "Compares one entity's facing relative to the other.",
-            "zh_cn": "比较一方相对另一方的朝向。"
+            "en_us": "Relative Rotation bi_entity_condition fields.",
+            "zh_cn": "相对朝向的值。"
           },
           "type": "object",
-          "properties": {}
+          "properties": {
+            "axis": {
+              "$title": {
+                "en_us": "Axis",
+                "zh_cn": "轴"
+              },
+              "$description": {
+                "en_us": "Axis of this RelativeRotationCondition.",
+                "zh_cn": "轴的值。"
+              },
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "x",
+                  "y",
+                  "z"
+                ],
+                "$suggstion": true,
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            },
+            "actor_rotation": {
+              "$title": {
+                "en_us": "Actor Rotation",
+                "zh_cn": "执行者旋转"
+              },
+              "$description": {
+                "en_us": "Actor Rotation of this RelativeRotationCondition.",
+                "zh_cn": "执行者旋转的值。"
+              },
+              "type": "string",
+              "enum": [
+                "head",
+                "body"
+              ],
+              "$suggstion": true,
+              "default": "head"
+            },
+            "target_rotation": {
+              "$title": {
+                "en_us": "Target Rotation",
+                "zh_cn": "目标旋转"
+              },
+              "$description": {
+                "en_us": "Target Rotation of this RelativeRotationCondition.",
+                "zh_cn": "目标旋转的值。"
+              },
+              "type": "string",
+              "enum": [
+                "head",
+                "body"
+              ],
+              "$suggstion": true,
+              "default": "body"
+            },
+            "comparison": {
+              "$title": {
+                "en_us": "Comparison",
+                "zh_cn": "比较方式"
+              },
+              "$description": {
+                "en_us": "Comparison of this Comparison.",
+                "zh_cn": "比较方式的值。"
+              },
+              "type": "string",
+              "enum": [
+                "<",
+                "<=",
+                ">",
+                ">=",
+                "==",
+                "!="
+              ],
+              "$suggstion": true
+            },
+            "compare_to": {
+              "$title": {
+                "en_us": "Compare To",
+                "zh_cn": "比较至"
+              },
+              "$description": {
+                "en_us": "Compare To of this Comparison.",
+                "zh_cn": "比较至的值。"
+              },
+              "type": "number"
+            }
+          },
+          "required": [
+            "comparison",
+            "compare_to"
+          ]
         },
         "mxt:undirected": {
           "$title": {
@@ -540,8 +880,8 @@
             "zh_cn": "无方向"
           },
           "$description": {
-            "en_us": "Ignores which entity is the actor when comparing.",
-            "zh_cn": "比较时忽略谁是执行者。"
+            "en_us": "Undirected bi_entity_condition fields.",
+            "zh_cn": "无方向的值。"
           },
           "type": "object",
           "properties": {
@@ -550,11 +890,45 @@
                 "en_us": "Condition",
                 "zh_cn": "条件"
               },
-              "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
               "$description": {
-                "en_us": "Condition value.",
+                "en_us": "Condition of this UndirectedCondition.",
                 "zh_cn": "条件的值。"
-              }
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Bi Entity Condition",
+                    "zh_cn": "双实体条件"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: bi entity condition.",
+                    "zh_cn": "双实体条件的值。"
+                  },
+                  "$type": "mxt-common-bi-entity-condition#bi_entity_condition"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-bi-entity-condition#bi_entity_condition",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
             }
           },
           "required": [
