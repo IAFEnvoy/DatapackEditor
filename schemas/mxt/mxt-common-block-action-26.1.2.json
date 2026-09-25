@@ -628,14 +628,14 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "element": {
+                  "value": {
                     "$title": {
-                      "en_us": "Element",
-                      "zh_cn": "元素"
+                      "en_us": "Value",
+                      "zh_cn": "值"
                     },
                     "$description": {
-                      "en_us": "Element of this ChoiceAction.",
-                      "zh_cn": "元素的值。"
+                      "en_us": "Value of this ChoiceAction.",
+                      "zh_cn": "值的值。"
                     },
                     "oneOf": [
                       {
@@ -687,7 +687,7 @@
                   }
                 },
                 "required": [
-                  "element"
+                  "value"
                 ],
                 "$title": {
                   "en_us": "Item",

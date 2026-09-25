@@ -45,7 +45,8 @@
             "mxt:cooldown",
             "mxt:remove_enchantment",
             "mxt:add_enchantment",
-            "mxt:merge_components"
+            "mxt:merge_components",
+            "mxt:add_ability"
           ],
           "$suggstion": true,
           "default": "mxt:no_op",
@@ -741,14 +742,14 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "element": {
+                  "value": {
                     "$title": {
-                      "en_us": "Element",
-                      "zh_cn": "元素"
+                      "en_us": "Value",
+                      "zh_cn": "值"
                     },
                     "$description": {
-                      "en_us": "Element of this ChoiceAction.",
-                      "zh_cn": "元素的值。"
+                      "en_us": "Value of this ChoiceAction.",
+                      "zh_cn": "值的值。"
                     },
                     "oneOf": [
                       {
@@ -800,7 +801,7 @@
                   }
                 },
                 "required": [
-                  "element"
+                  "value"
                 ],
                 "$title": {
                   "en_us": "Item",
@@ -978,6 +979,45 @@
           },
           "required": [
             "components"
+          ]
+        },
+        "mxt:add_ability": {
+          "$title": {
+            "en_us": "Add Ability",
+            "zh_cn": "添加 Ability"
+          },
+          "$description": {
+            "en_us": "Add Ability item_action fields.",
+            "zh_cn": "添加 Ability的值。"
+          },
+          "type": "object",
+          "properties": {
+            "abilities": {
+              "$title": {
+                "en_us": "Abilities",
+                "zh_cn": "技能"
+              },
+              "$description": {
+                "en_us": "Abilities of this AddAbilityAction.",
+                "zh_cn": "技能的值。"
+              },
+              "type": "array",
+              "items": {
+                "type": "string",
+                "$registry": "mxt:ability",
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            }
+          },
+          "required": [
+            "abilities"
           ]
         }
       }

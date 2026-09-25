@@ -9,28 +9,102 @@
   },
   "type": "object",
   "properties": {
-    "realm_stages": {
+    "entities": {
       "$title": {
-        "en_us": "Realm Stages",
-        "zh_cn": "境界 Stages"
+        "en_us": "Entities",
+        "zh_cn": "实体"
       },
       "$description": {
-        "en_us": "Realm Stages of this CreatureProfile.",
-        "zh_cn": "境界 Stages的值。"
+        "en_us": "Entities of this CreatureProfile.",
+        "zh_cn": "实体的值。"
       },
-      "type": "array",
-      "items": {
-        "type": "string",
-        "$registry": "mxt:realm_stage",
-        "$title": {
-          "en_us": "Item",
-          "zh_cn": "物品"
+      "oneOf": [
+        {
+          "$title": {
+            "en_us": "Identifier",
+            "zh_cn": "标识符"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: identifier.",
+            "zh_cn": "标识符的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:entity_type"
         },
-        "$description": {
-          "en_us": "Item value.",
-          "zh_cn": "物品的值。"
+        {
+          "$title": {
+            "en_us": "Tag",
+            "zh_cn": "标签"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: tag.",
+            "zh_cn": "标签的值。"
+          },
+          "type": "string",
+          "$registry": "minecraft:entity_type_tag",
+          "pattern": "^#.+"
+        },
+        {
+          "$title": {
+            "en_us": "List",
+            "zh_cn": "列表"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: list.",
+            "zh_cn": "列表的值。"
+          },
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$title": {
+                  "en_us": "Identifier",
+                  "zh_cn": "标识符"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: identifier.",
+                  "zh_cn": "标识符的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:entity_type"
+              },
+              {
+                "$title": {
+                  "en_us": "Tag",
+                  "zh_cn": "标签"
+                },
+                "$description": {
+                  "en_us": "One accepted form of this value: tag.",
+                  "zh_cn": "标签的值。"
+                },
+                "type": "string",
+                "$registry": "minecraft:entity_type_tag",
+                "pattern": "^#.+"
+              }
+            ],
+            "$title": {
+              "en_us": "Item",
+              "zh_cn": "物品"
+            },
+            "$description": {
+              "en_us": "Item value.",
+              "zh_cn": "物品的值。"
+            }
+          }
         }
-      }
+      ]
+    },
+    "spawn_action": {
+      "$title": {
+        "en_us": "Spawn Action",
+        "zh_cn": "生成行为"
+      },
+      "$description": {
+        "en_us": "Spawn Action of this CreatureProfile.",
+        "zh_cn": "生成行为的值。"
+      },
+      "$type": "mxt-common-entity-action#entity_action",
+      "default": "instance"
     },
     "intelligence": {
       "$title": {
@@ -131,29 +205,59 @@
         "en_us": "Inner Core of this CreatureProfile.",
         "zh_cn": "内丹的值。"
       },
-      "type": "string"
-    },
-    "loot_table": {
-      "$title": {
-        "en_us": "Loot Table",
-        "zh_cn": "战利品表"
-      },
-      "$description": {
-        "en_us": "Loot Table of this CreatureProfile.",
-        "zh_cn": "战利品表的值。"
-      },
-      "type": "string"
-    },
-    "entity_type_tags": {
-      "$title": {
-        "en_us": "Entity Type Tags",
-        "zh_cn": "实体类型标签"
-      },
-      "$description": {
-        "en_us": "Entity Type Tags of this CreatureProfile.",
-        "zh_cn": "实体类型标签的值。"
-      },
       "oneOf": [
+        {
+          "$title": {
+            "en_us": "Object",
+            "zh_cn": "对象"
+          },
+          "$description": {
+            "en_us": "One accepted form of this value: object.",
+            "zh_cn": "对象的值。"
+          },
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "$registry": "minecraft:item",
+              "$title": {
+                "en_us": "Id",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "Id value.",
+                "zh_cn": "标识符的值。"
+              }
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 99,
+              "$title": {
+                "en_us": "Count",
+                "zh_cn": "数量"
+              },
+              "$description": {
+                "en_us": "Count value.",
+                "zh_cn": "数量的值。"
+              }
+            },
+            "components": {
+              "type": "object",
+              "$title": {
+                "en_us": "Components",
+                "zh_cn": "组件"
+              },
+              "$description": {
+                "en_us": "Components value.",
+                "zh_cn": "组件的值。"
+              }
+            }
+          }
+        },
         {
           "$title": {
             "en_us": "Identifier",
@@ -164,68 +268,7 @@
             "zh_cn": "标识符的值。"
           },
           "type": "string",
-          "$registry": "minecraft:entity_type"
-        },
-        {
-          "$title": {
-            "en_us": "Tag",
-            "zh_cn": "标签"
-          },
-          "$description": {
-            "en_us": "One accepted form of this value: tag.",
-            "zh_cn": "标签的值。"
-          },
-          "type": "string",
-          "$registry": "minecraft:entity_type_tag",
-          "pattern": "^#.+"
-        },
-        {
-          "$title": {
-            "en_us": "List",
-            "zh_cn": "列表"
-          },
-          "$description": {
-            "en_us": "One accepted form of this value: list.",
-            "zh_cn": "列表的值。"
-          },
-          "type": "array",
-          "items": {
-            "oneOf": [
-              {
-                "$title": {
-                  "en_us": "Identifier",
-                  "zh_cn": "标识符"
-                },
-                "$description": {
-                  "en_us": "One accepted form of this value: identifier.",
-                  "zh_cn": "标识符的值。"
-                },
-                "type": "string",
-                "$registry": "minecraft:entity_type"
-              },
-              {
-                "$title": {
-                  "en_us": "Tag",
-                  "zh_cn": "标签"
-                },
-                "$description": {
-                  "en_us": "One accepted form of this value: tag.",
-                  "zh_cn": "标签的值。"
-                },
-                "type": "string",
-                "$registry": "minecraft:entity_type_tag",
-                "pattern": "^#.+"
-              }
-            ],
-            "$title": {
-              "en_us": "Item",
-              "zh_cn": "物品"
-            },
-            "$description": {
-              "en_us": "Item value.",
-              "zh_cn": "物品的值。"
-            }
-          }
+          "$registry": "minecraft:item"
         }
       ]
     },

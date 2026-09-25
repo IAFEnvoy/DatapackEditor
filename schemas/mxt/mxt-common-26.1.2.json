@@ -1173,7 +1173,69 @@
               },
               "type": "array",
               "items": {
-                "$type": "mxt-common#record_util_formula_number_Entry",
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "$title": {
+                      "en_us": "Value",
+                      "zh_cn": "值"
+                    },
+                    "$description": {
+                      "en_us": "Value of this WeightedList.",
+                      "zh_cn": "值的值。"
+                    },
+                    "oneOf": [
+                      {
+                        "$title": {
+                          "en_us": "Text",
+                          "zh_cn": "文本"
+                        },
+                        "$description": {
+                          "en_us": "One accepted form of this value: text.",
+                          "zh_cn": "文本的值。"
+                        },
+                        "type": "string"
+                      },
+                      {
+                        "$title": {
+                          "en_us": "Number",
+                          "zh_cn": "数值"
+                        },
+                        "$description": {
+                          "en_us": "One accepted form of this value: number.",
+                          "zh_cn": "数值的值。"
+                        },
+                        "type": "number"
+                      },
+                      {
+                        "$title": {
+                          "en_us": "Number Provider",
+                          "zh_cn": "数值提供器"
+                        },
+                        "$description": {
+                          "en_us": "One accepted form of this value: number provider.",
+                          "zh_cn": "数值提供器的值。"
+                        },
+                        "$type": "mxt-common#number_provider"
+                      }
+                    ]
+                  },
+                  "weight": {
+                    "$title": {
+                      "en_us": "Weight",
+                      "zh_cn": "权重"
+                    },
+                    "$description": {
+                      "en_us": "Weight of this WeightedList.",
+                      "zh_cn": "权重的值。"
+                    },
+                    "type": "integer",
+                    "default": 1
+                  }
+                },
+                "required": [
+                  "value"
+                ],
                 "$title": {
                   "en_us": "Item",
                   "zh_cn": "物品"
@@ -2029,8 +2091,24 @@
             "en_us": "Particle of this ParticleEffect.",
             "zh_cn": "粒子的值。"
           },
-          "type": "string",
-          "$registry": "minecraft:particle_type"
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "type": "string",
+              "$registry": "minecraft:particle_type",
+              "$title": {
+                "en_us": "Type",
+                "zh_cn": "类型"
+              },
+              "$description": {
+                "en_us": "Type value.",
+                "zh_cn": "类型的值。"
+              }
+            }
+          }
         },
         "count": {
           "$title": {
@@ -2393,79 +2471,6 @@
       "required": [
         "condition",
         "reason"
-      ]
-    },
-    "record_util_formula_number_Entry": {
-      "$title": {
-        "en_us": "Record Util Formula Number Entry",
-        "zh_cn": "Record Util Formula 数值条目"
-      },
-      "$description": {
-        "en_us": "Entry value.",
-        "zh_cn": "Record Util Formula 数值条目的值。"
-      },
-      "properties": {
-        "data": {
-          "$title": {
-            "en_us": "Data",
-            "zh_cn": "数据"
-          },
-          "$description": {
-            "en_us": "Data of this Entry.",
-            "zh_cn": "数据的值。"
-          },
-          "oneOf": [
-            {
-              "$title": {
-                "en_us": "Text",
-                "zh_cn": "文本"
-              },
-              "$description": {
-                "en_us": "One accepted form of this value: text.",
-                "zh_cn": "文本的值。"
-              },
-              "type": "string"
-            },
-            {
-              "$title": {
-                "en_us": "Number",
-                "zh_cn": "数值"
-              },
-              "$description": {
-                "en_us": "One accepted form of this value: number.",
-                "zh_cn": "数值的值。"
-              },
-              "type": "number"
-            },
-            {
-              "$title": {
-                "en_us": "Number Provider",
-                "zh_cn": "数值提供器"
-              },
-              "$description": {
-                "en_us": "One accepted form of this value: number provider.",
-                "zh_cn": "数值提供器的值。"
-              },
-              "$type": "mxt-common#number_provider"
-            }
-          ]
-        },
-        "weight": {
-          "$title": {
-            "en_us": "Weight",
-            "zh_cn": "权重"
-          },
-          "$description": {
-            "en_us": "Weight of this Entry.",
-            "zh_cn": "权重的值。"
-          },
-          "type": "integer",
-          "minimum": 1
-        }
-      },
-      "required": [
-        "data",
-        "weight"
       ]
     },
     "record_util_math_Comparison": {

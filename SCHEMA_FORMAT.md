@@ -31,14 +31,14 @@ The generated Schema contains all registered Power IDs, the seven Condition regi
 
 - registry paths come from `MxtResourceKeys`, documents from the registrations in `MxtDatapackRegistries`;
 - a polymorphic family (a registry whose codecs dispatch on `type`) becomes one shared type whose `type` enum lists the registry's ids and whose `$variants` hold each concrete type's fields;
-- every field is read from the `RecordCodecBuilder` component that serializes it, including the ones built through `MiscCodecs.pair`, codec factories such as `DescribedEntry.codec(...)`, `CombinedCodecs`, `Codec.either`, and the codec fields a type reuses from another one.
+- every field is read from the `RecordCodecBuilder` component that serializes it, including the ones built through `MiscCodecs.pair`, codec factories such as `DescribedEntry.codec(...)`, `CombinedCodecs`, `Codec.either`, the codec fields a type reuses from another one, and factories that hand off to another factory of the same class (`Weighted.codec(...)` answers through `mapCodec(...)`).
 
 ```powershell
 node tools/generate-mxt-schema.mjs [path-to-MiXianTu]
 node tools/check-mxt-schemas.mjs
 ```
 
-Generated text uses `oneOf` for the unions the mod accepts (one value or a list, an entry id or a `#tag`, a typed object or its shorthand) and never emits `$ref`; a value read through a Java codec we cannot describe stays an open node, which the editor shows as free JSON. Run `check-mxt-schemas.mjs` afterwards: it verifies ids, output paths, `$type` resolution against the indexed libraries, variant dispatch enums, and the localized labels.
+Generated text uses `oneOf` for the unions the mod accepts (one value or a list, an entry id or a `#tag`, a typed object or its shorthand) and never emits `$ref`; a value read through a Java codec we cannot describe stays an open node, which the editor shows as free JSON. Stack fields follow their codecs exactly: `ItemStackTemplate` takes a bare item id **or** the `{"id": …}` object, while `ItemStack` takes the object form only, because its item id is a required field of the map codec. Run `check-mxt-schemas.mjs` afterwards: it verifies ids, output paths, `$type` resolution against the indexed libraries, variant dispatch enums, and the localized labels.
 
 ## Root shape
 

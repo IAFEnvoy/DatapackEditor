@@ -51,6 +51,23 @@
       },
       "type": "string"
     },
+    "structure_check": {
+      "$title": {
+        "en_us": "Structure Check",
+        "zh_cn": "结构 Check"
+      },
+      "$description": {
+        "en_us": "Structure Check of this Formation.",
+        "zh_cn": "结构 Check的值。"
+      },
+      "type": "string",
+      "enum": [
+        "structure",
+        "always"
+      ],
+      "$suggstion": true,
+      "default": "structure"
+    },
     "structure": {
       "$title": {
         "en_us": "Structure",

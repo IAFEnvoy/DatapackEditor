@@ -9,7 +9,7 @@
   },
   "type": "object",
   "required": [
-    "element"
+    "elements"
   ],
   "properties": {
     "name": {
@@ -40,17 +40,81 @@
         "object"
       ]
     },
-    "element": {
+    "elements": {
       "$title": {
-        "en_us": "Element",
+        "en_us": "Elements",
         "zh_cn": "元素"
       },
       "$description": {
-        "en_us": "Element of this SpiritRoot.",
+        "en_us": "Elements of this SpiritRoot.",
         "zh_cn": "元素的值。"
       },
-      "type": "string",
-      "$registry": "mxt:element"
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$title": {
+              "en_us": "Object",
+              "zh_cn": "对象"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: object.",
+              "zh_cn": "对象的值。"
+            },
+            "type": "object",
+            "required": [
+              "element"
+            ],
+            "properties": {
+              "element": {
+                "type": "string",
+                "$registry": "mxt:element",
+                "$title": {
+                  "en_us": "Element",
+                  "zh_cn": "元素"
+                },
+                "$description": {
+                  "en_us": "Element value.",
+                  "zh_cn": "元素的值。"
+                }
+              },
+              "weight": {
+                "type": "number",
+                "minimum": 0,
+                "default": 1,
+                "$title": {
+                  "en_us": "Weight",
+                  "zh_cn": "权重"
+                },
+                "$description": {
+                  "en_us": "Share of the root this element makes up; the shares are normalised, so only their ratio matters. Must be positive.",
+                  "zh_cn": "权重的值。"
+                }
+              }
+            }
+          },
+          {
+            "$title": {
+              "en_us": "Element",
+              "zh_cn": "元素"
+            },
+            "$description": {
+              "en_us": "One accepted form of this value: identifier.",
+              "zh_cn": "元素的值。"
+            },
+            "type": "string",
+            "$registry": "mxt:element"
+          }
+        ],
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      }
     },
     "cultivation_multiplier": {
       "$title": {

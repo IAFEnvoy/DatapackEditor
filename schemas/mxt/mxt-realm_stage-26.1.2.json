@@ -512,6 +512,28 @@
         }
       ]
     },
+    "minor_stage_abilities": {
+      "$title": {
+        "en_us": "Minor Stage Abilities",
+        "zh_cn": "Minor 阶段技能"
+      },
+      "$description": {
+        "en_us": "Minor Stage Abilities of this RealmStage.",
+        "zh_cn": "Minor 阶段技能的值。"
+      },
+      "type": "array",
+      "items": {
+        "$type": "mxt-common-content#record_MinorStageAbilities",
+        "$title": {
+          "en_us": "Item",
+          "zh_cn": "物品"
+        },
+        "$description": {
+          "en_us": "Item value.",
+          "zh_cn": "物品的值。"
+        }
+      }
+    },
     "tribulation": {
       "$title": {
         "en_us": "Tribulation",

@@ -40,7 +40,8 @@
             "mxt:composite",
             "mxt:word",
             "mxt:empty",
-            "mxt:flight",
+            "mxt:mount",
+            "mxt:flight_control",
             "mxt:storage",
             "mxt:upkeep"
           ],
@@ -73,8 +74,7 @@
                 "en_us": "Slot of this ActiveAbilityType.",
                 "zh_cn": "槽位的值。"
               },
-              "type": "string",
-              "default": "primary"
+              "type": "string"
             }
           }
         },
@@ -589,14 +589,14 @@
           },
           "type": "object"
         },
-        "mxt:flight": {
+        "mxt:mount": {
           "$title": {
-            "en_us": "Flight",
-            "zh_cn": "飞行"
+            "en_us": "Mount",
+            "zh_cn": "骑乘"
           },
           "$description": {
-            "en_us": "Flight ability_type fields.",
-            "zh_cn": "飞行的值。"
+            "en_us": "Mount ability_type fields.",
+            "zh_cn": "骑乘的值。"
           },
           "type": "object",
           "properties": {
@@ -606,7 +606,7 @@
                 "zh_cn": "速度"
               },
               "$description": {
-                "en_us": "Speed of this FlightAbilityType.",
+                "en_us": "Speed of this MountAbilityType.",
                 "zh_cn": "速度的值。"
               },
               "oneOf": [
@@ -645,13 +645,38 @@
                 }
               ]
             },
+            "seats": {
+              "$title": {
+                "en_us": "Seats",
+                "zh_cn": "Seats"
+              },
+              "$description": {
+                "en_us": "Seats of this MountAbilityType.",
+                "zh_cn": "Seats的值。"
+              },
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            },
+            "sit": {
+              "$title": {
+                "en_us": "Sit",
+                "zh_cn": "Sit"
+              },
+              "$description": {
+                "en_us": "Sit of this MountAbilityType.",
+                "zh_cn": "Sit的值。"
+              },
+              "type": "boolean",
+              "default": false
+            },
             "display": {
               "$title": {
                 "en_us": "Display",
                 "zh_cn": "显示"
               },
               "$description": {
-                "en_us": "Display of this FlightAbilityType.",
+                "en_us": "Display of this MountAbilityType.",
                 "zh_cn": "显示的值。"
               },
               "type": "object",
@@ -729,11 +754,323 @@
                   "maxItems": 3
                 }
               }
+            },
+            "width": {
+              "$title": {
+                "en_us": "Width",
+                "zh_cn": "宽度"
+              },
+              "$description": {
+                "en_us": "Width of this MountAbilityType.",
+                "zh_cn": "宽度的值。"
+              },
+              "type": "number"
+            },
+            "height": {
+              "$title": {
+                "en_us": "Height",
+                "zh_cn": "高度"
+              },
+              "$description": {
+                "en_us": "Height of this MountAbilityType.",
+                "zh_cn": "高度的值。"
+              },
+              "type": "number"
+            },
+            "step_height": {
+              "$title": {
+                "en_us": "Step Height",
+                "zh_cn": "Step 高度"
+              },
+              "$description": {
+                "en_us": "Step Height of this MountAbilityType.",
+                "zh_cn": "Step 高度的值。"
+              },
+              "type": "number",
+              "minimum": 0,
+              "default": 0
+            },
+            "seat_offsets": {
+              "$title": {
+                "en_us": "Seat Offsets",
+                "zh_cn": "Seat Offsets"
+              },
+              "$description": {
+                "en_us": "Seat Offsets of this MountAbilityType.",
+                "zh_cn": "Seat Offsets的值。"
+              },
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "$title": {
+                    "en_us": "Item",
+                    "zh_cn": "物品"
+                  },
+                  "$description": {
+                    "en_us": "Item value.",
+                    "zh_cn": "物品的值。"
+                  }
+                },
+                "minItems": 3,
+                "maxItems": 3,
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            },
+            "mount_action": {
+              "$title": {
+                "en_us": "Mount Action",
+                "zh_cn": "Mount 行为"
+              },
+              "$description": {
+                "en_us": "Mount Action of this MountAbilityType.",
+                "zh_cn": "Mount 行为的值。"
+              },
+              "$type": "mxt-common-ability#record_MountActions"
+            },
+            "trail": {
+              "$title": {
+                "en_us": "Trail",
+                "zh_cn": "Trail"
+              },
+              "$description": {
+                "en_us": "Trail of this MountAbilityType.",
+                "zh_cn": "Trail的值。"
+              },
+              "type": "object",
+              "properties": {
+                "particle": {
+                  "$title": {
+                    "en_us": "Particle",
+                    "zh_cn": "粒子"
+                  },
+                  "$description": {
+                    "en_us": "Particle of this MountTrail.",
+                    "zh_cn": "粒子的值。"
+                  },
+                  "type": "object",
+                  "required": [
+                    "type"
+                  ],
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "$registry": "minecraft:particle_type",
+                      "$title": {
+                        "en_us": "Type",
+                        "zh_cn": "类型"
+                      },
+                      "$description": {
+                        "en_us": "Type value.",
+                        "zh_cn": "类型的值。"
+                      }
+                    }
+                  }
+                },
+                "interval": {
+                  "$title": {
+                    "en_us": "Interval",
+                    "zh_cn": "间隔"
+                  },
+                  "$description": {
+                    "en_us": "Interval of this MountTrail.",
+                    "zh_cn": "间隔的值。"
+                  },
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 200,
+                  "default": 1
+                },
+                "count": {
+                  "$title": {
+                    "en_us": "Count",
+                    "zh_cn": "数量"
+                  },
+                  "$description": {
+                    "en_us": "Count of this MountTrail.",
+                    "zh_cn": "数量的值。"
+                  },
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 256,
+                  "default": 1
+                },
+                "speed": {
+                  "$title": {
+                    "en_us": "Speed",
+                    "zh_cn": "速度"
+                  },
+                  "$description": {
+                    "en_us": "Speed of this MountTrail.",
+                    "zh_cn": "速度的值。"
+                  },
+                  "type": "number",
+                  "default": 0
+                },
+                "spread": {
+                  "$title": {
+                    "en_us": "Spread",
+                    "zh_cn": "扩散"
+                  },
+                  "$description": {
+                    "en_us": "Spread of this MountTrail.",
+                    "zh_cn": "扩散的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  },
+                  "minItems": 3,
+                  "maxItems": 3
+                },
+                "offset_x": {
+                  "$title": {
+                    "en_us": "Offset X",
+                    "zh_cn": "X 轴偏移"
+                  },
+                  "$description": {
+                    "en_us": "Offset X of this MountTrail.",
+                    "zh_cn": "X 轴偏移的值。"
+                  },
+                  "type": "number",
+                  "default": 0
+                },
+                "offset_y": {
+                  "$title": {
+                    "en_us": "Offset Y",
+                    "zh_cn": "Y 轴偏移"
+                  },
+                  "$description": {
+                    "en_us": "Offset Y of this MountTrail.",
+                    "zh_cn": "Y 轴偏移的值。"
+                  },
+                  "type": "number"
+                },
+                "offset_z": {
+                  "$title": {
+                    "en_us": "Offset Z",
+                    "zh_cn": "Z 轴偏移"
+                  },
+                  "$description": {
+                    "en_us": "Offset Z of this MountTrail.",
+                    "zh_cn": "Z 轴偏移的值。"
+                  },
+                  "type": "number",
+                  "default": 0
+                },
+                "moving_only": {
+                  "$title": {
+                    "en_us": "Moving Only",
+                    "zh_cn": "Moving 仅"
+                  },
+                  "$description": {
+                    "en_us": "Moving Only of this MountTrail.",
+                    "zh_cn": "Moving 仅的值。"
+                  },
+                  "type": "boolean",
+                  "default": false
+                }
+              },
+              "required": [
+                "particle"
+              ]
             }
           },
           "required": [
             "speed"
           ]
+        },
+        "mxt:flight_control": {
+          "$title": {
+            "en_us": "Flight Control",
+            "zh_cn": "飞行 Control"
+          },
+          "$description": {
+            "en_us": "Flight Control ability_type fields.",
+            "zh_cn": "飞行 Control的值。"
+          },
+          "type": "object",
+          "properties": {
+            "hand": {
+              "$title": {
+                "en_us": "Hand",
+                "zh_cn": "手"
+              },
+              "$description": {
+                "en_us": "Hand of this FlightControlAbilityType.",
+                "zh_cn": "手的值。"
+              },
+              "type": "string",
+              "enum": [
+                "main",
+                "off",
+                "either"
+              ],
+              "$suggstion": true,
+              "default": "either"
+            },
+            "speed_multiplier": {
+              "$title": {
+                "en_us": "Speed Multiplier",
+                "zh_cn": "速度倍率"
+              },
+              "$description": {
+                "en_us": "Speed Multiplier of this FlightControlAbilityType.",
+                "zh_cn": "速度倍率的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            }
+          }
         },
         "mxt:storage": {
           "$title": {
@@ -1017,6 +1354,154 @@
           "type": "object"
         }
       }
+    },
+    "record_MountActions": {
+      "$title": {
+        "en_us": "Record MountActions",
+        "zh_cn": "Record Mount 行为"
+      },
+      "$description": {
+        "en_us": "MountActions value.",
+        "zh_cn": "Record Mount 行为的值。"
+      },
+      "properties": {
+        "on_mount": {
+          "$title": {
+            "en_us": "On Mount",
+            "zh_cn": "在 Mount"
+          },
+          "$description": {
+            "en_us": "On Mount of this MountActions.",
+            "zh_cn": "在 Mount的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Entity Action",
+                "zh_cn": "实体行为"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: entity action.",
+                "zh_cn": "实体行为的值。"
+              },
+              "$type": "mxt-common-entity-action#entity_action"
+            },
+            {
+              "$title": {
+                "en_us": "List",
+                "zh_cn": "列表"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: list.",
+                "zh_cn": "列表的值。"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-entity-action#entity_action",
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            }
+          ]
+        },
+        "on_dismount": {
+          "$title": {
+            "en_us": "On Dismount",
+            "zh_cn": "在 Dismount"
+          },
+          "$description": {
+            "en_us": "On Dismount of this MountActions.",
+            "zh_cn": "在 Dismount的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Entity Action",
+                "zh_cn": "实体行为"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: entity action.",
+                "zh_cn": "实体行为的值。"
+              },
+              "$type": "mxt-common-entity-action#entity_action"
+            },
+            {
+              "$title": {
+                "en_us": "List",
+                "zh_cn": "列表"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: list.",
+                "zh_cn": "列表的值。"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-entity-action#entity_action",
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            }
+          ]
+        },
+        "tick": {
+          "$title": {
+            "en_us": "Tick",
+            "zh_cn": "刻"
+          },
+          "$description": {
+            "en_us": "Tick of this MountActions.",
+            "zh_cn": "刻的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Entity Action",
+                "zh_cn": "实体行为"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: entity action.",
+                "zh_cn": "实体行为的值。"
+              },
+              "$type": "mxt-common-entity-action#entity_action"
+            },
+            {
+              "$title": {
+                "en_us": "List",
+                "zh_cn": "列表"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: list.",
+                "zh_cn": "列表的值。"
+              },
+              "type": "array",
+              "items": {
+                "$type": "mxt-common-entity-action#entity_action",
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": []
     },
     "record_ResourceBar": {
       "$title": {
@@ -1357,6 +1842,8 @@
           "enum": [
             "mxt:self",
             "mxt:area",
+            "mxt:ray",
+            "mxt:cone",
             "mxt:js"
           ],
           "$suggstion": true,
@@ -1446,10 +1933,337 @@
               },
               "type": "boolean",
               "default": false
+            },
+            "limit": {
+              "$title": {
+                "en_us": "Limit",
+                "zh_cn": "Limit"
+              },
+              "$description": {
+                "en_us": "Limit of this AreaTargetSelector.",
+                "zh_cn": "Limit的值。"
+              },
+              "type": "integer",
+              "default": 0
+            },
+            "order": {
+              "$title": {
+                "en_us": "Order",
+                "zh_cn": "排序"
+              },
+              "$description": {
+                "en_us": "Order of this AreaTargetSelector.",
+                "zh_cn": "排序的值。"
+              },
+              "type": "string",
+              "enum": [
+                "nearest",
+                "farthest",
+                "random"
+              ],
+              "$suggstion": true,
+              "default": "nearest"
             }
           },
           "required": [
             "radius"
+          ]
+        },
+        "mxt:ray": {
+          "$title": {
+            "en_us": "Ray",
+            "zh_cn": "Ray"
+          },
+          "$description": {
+            "en_us": "Ray target_selector fields.",
+            "zh_cn": "Ray的值。"
+          },
+          "type": "object",
+          "properties": {
+            "length": {
+              "$title": {
+                "en_us": "Length",
+                "zh_cn": "Length"
+              },
+              "$description": {
+                "en_us": "Length of this RayTargetSelector.",
+                "zh_cn": "Length的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            },
+            "radius": {
+              "$title": {
+                "en_us": "Radius",
+                "zh_cn": "半径"
+              },
+              "$description": {
+                "en_us": "Radius of this RayTargetSelector.",
+                "zh_cn": "半径的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            },
+            "include_actor": {
+              "$title": {
+                "en_us": "Include Actor",
+                "zh_cn": "Include 执行者"
+              },
+              "$description": {
+                "en_us": "Include Actor of this RayTargetSelector.",
+                "zh_cn": "Include 执行者的值。"
+              },
+              "type": "boolean",
+              "default": false
+            },
+            "limit": {
+              "$title": {
+                "en_us": "Limit",
+                "zh_cn": "Limit"
+              },
+              "$description": {
+                "en_us": "Limit of this RayTargetSelector.",
+                "zh_cn": "Limit的值。"
+              },
+              "type": "integer",
+              "default": 0
+            },
+            "order": {
+              "$title": {
+                "en_us": "Order",
+                "zh_cn": "排序"
+              },
+              "$description": {
+                "en_us": "Order of this RayTargetSelector.",
+                "zh_cn": "排序的值。"
+              },
+              "type": "string",
+              "enum": [
+                "nearest",
+                "farthest",
+                "random"
+              ],
+              "$suggstion": true,
+              "default": "nearest"
+            }
+          },
+          "required": [
+            "length"
+          ]
+        },
+        "mxt:cone": {
+          "$title": {
+            "en_us": "Cone",
+            "zh_cn": "Cone"
+          },
+          "$description": {
+            "en_us": "Cone target_selector fields.",
+            "zh_cn": "Cone的值。"
+          },
+          "type": "object",
+          "properties": {
+            "length": {
+              "$title": {
+                "en_us": "Length",
+                "zh_cn": "Length"
+              },
+              "$description": {
+                "en_us": "Length of this ConeTargetSelector.",
+                "zh_cn": "Length的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            },
+            "angle": {
+              "$title": {
+                "en_us": "Angle",
+                "zh_cn": "角度"
+              },
+              "$description": {
+                "en_us": "Angle of this ConeTargetSelector.",
+                "zh_cn": "角度的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            },
+            "include_actor": {
+              "$title": {
+                "en_us": "Include Actor",
+                "zh_cn": "Include 执行者"
+              },
+              "$description": {
+                "en_us": "Include Actor of this ConeTargetSelector.",
+                "zh_cn": "Include 执行者的值。"
+              },
+              "type": "boolean",
+              "default": false
+            },
+            "limit": {
+              "$title": {
+                "en_us": "Limit",
+                "zh_cn": "Limit"
+              },
+              "$description": {
+                "en_us": "Limit of this ConeTargetSelector.",
+                "zh_cn": "Limit的值。"
+              },
+              "type": "integer",
+              "default": 0
+            },
+            "order": {
+              "$title": {
+                "en_us": "Order",
+                "zh_cn": "排序"
+              },
+              "$description": {
+                "en_us": "Order of this ConeTargetSelector.",
+                "zh_cn": "排序的值。"
+              },
+              "type": "string",
+              "enum": [
+                "nearest",
+                "farthest",
+                "random"
+              ],
+              "$suggstion": true,
+              "default": "nearest"
+            }
+          },
+          "required": [
+            "length",
+            "angle"
           ]
         },
         "mxt:js": {

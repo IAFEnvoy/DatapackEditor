@@ -3539,7 +3539,7 @@
               "title": "Axis",
               "$title": {
                 "en_us": "Axis",
-                "zh_cn": "Axis"
+                "zh_cn": "轴"
               },
               "$description": {
                 "en_us": "Axis value.",
@@ -13532,7 +13532,7 @@
           "default": [],
           "$title": {
             "en_us": "Axis",
-            "zh_cn": "Axis"
+            "zh_cn": "轴"
           },
           "$description": {
             "en_us": "Axis value.",

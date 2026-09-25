@@ -43,7 +43,8 @@
             "mxt:channel_pulse",
             "mxt:aura_pulse",
             "mxt:entry_began",
-            "mxt:idle_countdown"
+            "mxt:idle_countdown",
+            "mxt:wait_countdown"
           ],
           "$suggstion": true,
           "default": "mxt:empty",
@@ -592,6 +593,33 @@
           "required": [
             "remaining"
           ]
+        },
+        "mxt:wait_countdown": {
+          "$title": {
+            "en_us": "Wait Countdown",
+            "zh_cn": "等待 Countdown"
+          },
+          "$description": {
+            "en_us": "Wait Countdown data_storage fields.",
+            "zh_cn": "等待 Countdown的值。"
+          },
+          "type": "object",
+          "properties": {
+            "remaining": {
+              "$title": {
+                "en_us": "Remaining",
+                "zh_cn": "剩余"
+              },
+              "$description": {
+                "en_us": "Remaining of this WaitCountdown.",
+                "zh_cn": "剩余的值。"
+              },
+              "type": "integer"
+            }
+          },
+          "required": [
+            "remaining"
+          ]
         }
       }
     },
@@ -1066,8 +1094,24 @@
                 "en_us": "Particle of this RangeDisplayFormationAction.",
                 "zh_cn": "粒子的值。"
               },
-              "type": "string",
-              "$registry": "minecraft:particle_type"
+              "type": "object",
+              "required": [
+                "type"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "$registry": "minecraft:particle_type",
+                  "$title": {
+                    "en_us": "Type",
+                    "zh_cn": "类型"
+                  },
+                  "$description": {
+                    "en_us": "Type value.",
+                    "zh_cn": "类型的值。"
+                  }
+                }
+              }
             },
             "interval_periods": {
               "$title": {
@@ -1961,6 +2005,117 @@
         "target_max"
       ]
     },
+    "record_MinorStageAbilities": {
+      "$title": {
+        "en_us": "Record MinorStageAbilities",
+        "zh_cn": "Record Minor 阶段技能"
+      },
+      "$description": {
+        "en_us": "MinorStageAbilities value.",
+        "zh_cn": "Record Minor 阶段技能的值。"
+      },
+      "properties": {
+        "stage": {
+          "$title": {
+            "en_us": "Stage",
+            "zh_cn": "阶段"
+          },
+          "$description": {
+            "en_us": "Stage of this MinorStageAbilities.",
+            "zh_cn": "阶段的值。"
+          },
+          "type": "integer"
+        },
+        "ability": {
+          "$title": {
+            "en_us": "Ability",
+            "zh_cn": "技能"
+          },
+          "$description": {
+            "en_us": "Ability of this MinorStageAbilities.",
+            "zh_cn": "技能的值。"
+          },
+          "oneOf": [
+            {
+              "$title": {
+                "en_us": "Identifier",
+                "zh_cn": "标识符"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: identifier.",
+                "zh_cn": "标识符的值。"
+              },
+              "type": "string",
+              "$registry": "mxt:ability"
+            },
+            {
+              "$title": {
+                "en_us": "Tag",
+                "zh_cn": "标签"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: tag.",
+                "zh_cn": "标签的值。"
+              },
+              "type": "string",
+              "$registry": "mxt:ability_tag",
+              "pattern": "^#.+"
+            },
+            {
+              "$title": {
+                "en_us": "List",
+                "zh_cn": "列表"
+              },
+              "$description": {
+                "en_us": "One accepted form of this value: list.",
+                "zh_cn": "列表的值。"
+              },
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$title": {
+                      "en_us": "Identifier",
+                      "zh_cn": "标识符"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: identifier.",
+                      "zh_cn": "标识符的值。"
+                    },
+                    "type": "string",
+                    "$registry": "mxt:ability"
+                  },
+                  {
+                    "$title": {
+                      "en_us": "Tag",
+                      "zh_cn": "标签"
+                    },
+                    "$description": {
+                      "en_us": "One accepted form of this value: tag.",
+                      "zh_cn": "标签的值。"
+                    },
+                    "type": "string",
+                    "$registry": "mxt:ability_tag",
+                    "pattern": "^#.+"
+                  }
+                ],
+                "$title": {
+                  "en_us": "Item",
+                  "zh_cn": "物品"
+                },
+                "$description": {
+                  "en_us": "Item value.",
+                  "zh_cn": "物品的值。"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "stage"
+      ]
+    },
     "record_QualityThreshold": {
       "$title": {
         "en_us": "Record QualityThreshold",
@@ -2436,11 +2591,11 @@
         "ignore_entities": {
           "$title": {
             "en_us": "Ignore Entities",
-            "zh_cn": "Ignore Entities"
+            "zh_cn": "忽略实体"
           },
           "$description": {
             "en_us": "Ignore Entities of this StructurePlacement.",
-            "zh_cn": "Ignore Entities的值。"
+            "zh_cn": "忽略实体的值。"
           },
           "type": "boolean",
           "default": false
@@ -2719,6 +2874,7 @@
           "type": "string",
           "enum": [
             "mxt:action",
+            "mxt:branch",
             "mxt:idle",
             "mxt:wait_for"
           ],
@@ -2790,6 +2946,93 @@
           },
           "required": [
             "action"
+          ]
+        },
+        "mxt:branch": {
+          "$title": {
+            "en_us": "Branch",
+            "zh_cn": "Branch"
+          },
+          "$description": {
+            "en_us": "Branch timeline_entry fields.",
+            "zh_cn": "Branch的值。"
+          },
+          "type": "object",
+          "properties": {
+            "condition": {
+              "$title": {
+                "en_us": "Condition",
+                "zh_cn": "条件"
+              },
+              "$description": {
+                "en_us": "Condition of this BranchEntry.",
+                "zh_cn": "条件的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Entity Condition",
+                    "zh_cn": "实体条件"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: entity condition.",
+                    "zh_cn": "实体条件的值。"
+                  },
+                  "$type": "mxt-common-entity-condition#entity_condition"
+                },
+                {
+                  "$title": {
+                    "en_us": "List",
+                    "zh_cn": "列表"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: list.",
+                    "zh_cn": "列表的值。"
+                  },
+                  "type": "array",
+                  "items": {
+                    "$type": "mxt-common-entity-condition#entity_condition",
+                    "$title": {
+                      "en_us": "Item",
+                      "zh_cn": "物品"
+                    },
+                    "$description": {
+                      "en_us": "Item value.",
+                      "zh_cn": "物品的值。"
+                    }
+                  }
+                }
+              ]
+            },
+            "if_true": {
+              "$title": {
+                "en_us": "If True",
+                "zh_cn": "如果真"
+              },
+              "$description": {
+                "en_us": "If True of this BranchEntry.",
+                "zh_cn": "如果真的值。"
+              },
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4096
+            },
+            "if_false": {
+              "$title": {
+                "en_us": "If False",
+                "zh_cn": "如果 False"
+              },
+              "$description": {
+                "en_us": "If False of this BranchEntry.",
+                "zh_cn": "如果 False的值。"
+              },
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4096
+            }
+          },
+          "required": [
+            "condition"
           ]
         },
         "mxt:idle": {
@@ -2908,6 +3151,68 @@
                   }
                 }
               ]
+            },
+            "timeout": {
+              "$title": {
+                "en_us": "Timeout",
+                "zh_cn": "Timeout"
+              },
+              "$description": {
+                "en_us": "Timeout of this WaitForEntry.",
+                "zh_cn": "Timeout的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            },
+            "on_timeout": {
+              "$title": {
+                "en_us": "On Timeout",
+                "zh_cn": "在 Timeout"
+              },
+              "$description": {
+                "en_us": "On Timeout of this WaitForEntry.",
+                "zh_cn": "在 Timeout的值。"
+              },
+              "type": "string",
+              "enum": [
+                "fail",
+                "finish"
+              ],
+              "$suggstion": true,
+              "default": "fail"
             }
           },
           "required": [

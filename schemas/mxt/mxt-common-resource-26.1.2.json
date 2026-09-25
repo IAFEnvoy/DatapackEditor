@@ -68,7 +68,143 @@
                 "en_us": "Background Sprite of this TexturedRenderData.",
                 "zh_cn": "背景精灵图的值。"
               },
-              "type": "string"
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Object",
+                    "zh_cn": "对象"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: object.",
+                    "zh_cn": "对象的值。"
+                  },
+                  "type": "object",
+                  "properties": {
+                    "sprite": {
+                      "type": "string",
+                      "$title": {
+                        "en_us": "Sprite",
+                        "zh_cn": "精灵图"
+                      },
+                      "$description": {
+                        "en_us": "Sprite value.",
+                        "zh_cn": "精灵图的值。"
+                      }
+                    },
+                    "texture": {
+                      "type": "string",
+                      "$title": {
+                        "en_us": "Texture",
+                        "zh_cn": "Texture"
+                      },
+                      "$description": {
+                        "en_us": "Texture value.",
+                        "zh_cn": "Texture的值。"
+                      }
+                    },
+                    "region": {
+                      "type": "object",
+                      "$description": {
+                        "en_us": "Where the usable area starts inside the texture and how big the file is. Textures only.",
+                        "zh_cn": "Region的值。"
+                      },
+                      "properties": {
+                        "u": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "default": 0,
+                          "$title": {
+                            "en_us": "U",
+                            "zh_cn": "U"
+                          },
+                          "$description": {
+                            "en_us": "U value.",
+                            "zh_cn": "U的值。"
+                          }
+                        },
+                        "v": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "default": 0,
+                          "$title": {
+                            "en_us": "V",
+                            "zh_cn": "V"
+                          },
+                          "$description": {
+                            "en_us": "V value.",
+                            "zh_cn": "V的值。"
+                          }
+                        },
+                        "texture_width": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "default": 256,
+                          "$title": {
+                            "en_us": "Texture Width",
+                            "zh_cn": "Texture 宽度"
+                          },
+                          "$description": {
+                            "en_us": "Texture Width value.",
+                            "zh_cn": "Texture 宽度的值。"
+                          }
+                        },
+                        "texture_height": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "default": 256,
+                          "$title": {
+                            "en_us": "Texture Height",
+                            "zh_cn": "Texture 高度"
+                          },
+                          "$description": {
+                            "en_us": "Texture Height value.",
+                            "zh_cn": "Texture 高度的值。"
+                          }
+                        }
+                      },
+                      "$title": {
+                        "en_us": "Region",
+                        "zh_cn": "Region"
+                      }
+                    },
+                    "width": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "$description": {
+                        "en_us": "Size the sprite is drawn at; must be written together with height. Omitted means the bar's own size.",
+                        "zh_cn": "宽度的值。"
+                      },
+                      "$title": {
+                        "en_us": "Width",
+                        "zh_cn": "宽度"
+                      }
+                    },
+                    "height": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "$title": {
+                        "en_us": "Height",
+                        "zh_cn": "高度"
+                      },
+                      "$description": {
+                        "en_us": "Height value.",
+                        "zh_cn": "高度的值。"
+                      }
+                    }
+                  }
+                },
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                }
+              ]
             },
             "fill_sprite": {
               "$title": {
@@ -79,7 +215,143 @@
                 "en_us": "Fill Sprite of this TexturedRenderData.",
                 "zh_cn": "填充精灵图的值。"
               },
-              "type": "string"
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Object",
+                    "zh_cn": "对象"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: object.",
+                    "zh_cn": "对象的值。"
+                  },
+                  "type": "object",
+                  "properties": {
+                    "sprite": {
+                      "type": "string",
+                      "$title": {
+                        "en_us": "Sprite",
+                        "zh_cn": "精灵图"
+                      },
+                      "$description": {
+                        "en_us": "Sprite value.",
+                        "zh_cn": "精灵图的值。"
+                      }
+                    },
+                    "texture": {
+                      "type": "string",
+                      "$title": {
+                        "en_us": "Texture",
+                        "zh_cn": "Texture"
+                      },
+                      "$description": {
+                        "en_us": "Texture value.",
+                        "zh_cn": "Texture的值。"
+                      }
+                    },
+                    "region": {
+                      "type": "object",
+                      "$description": {
+                        "en_us": "Where the usable area starts inside the texture and how big the file is. Textures only.",
+                        "zh_cn": "Region的值。"
+                      },
+                      "properties": {
+                        "u": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "default": 0,
+                          "$title": {
+                            "en_us": "U",
+                            "zh_cn": "U"
+                          },
+                          "$description": {
+                            "en_us": "U value.",
+                            "zh_cn": "U的值。"
+                          }
+                        },
+                        "v": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "default": 0,
+                          "$title": {
+                            "en_us": "V",
+                            "zh_cn": "V"
+                          },
+                          "$description": {
+                            "en_us": "V value.",
+                            "zh_cn": "V的值。"
+                          }
+                        },
+                        "texture_width": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "default": 256,
+                          "$title": {
+                            "en_us": "Texture Width",
+                            "zh_cn": "Texture 宽度"
+                          },
+                          "$description": {
+                            "en_us": "Texture Width value.",
+                            "zh_cn": "Texture 宽度的值。"
+                          }
+                        },
+                        "texture_height": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "default": 256,
+                          "$title": {
+                            "en_us": "Texture Height",
+                            "zh_cn": "Texture 高度"
+                          },
+                          "$description": {
+                            "en_us": "Texture Height value.",
+                            "zh_cn": "Texture 高度的值。"
+                          }
+                        }
+                      },
+                      "$title": {
+                        "en_us": "Region",
+                        "zh_cn": "Region"
+                      }
+                    },
+                    "width": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "$description": {
+                        "en_us": "Size the sprite is drawn at; must be written together with height. Omitted means the bar's own size.",
+                        "zh_cn": "宽度的值。"
+                      },
+                      "$title": {
+                        "en_us": "Width",
+                        "zh_cn": "宽度"
+                      }
+                    },
+                    "height": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "$title": {
+                        "en_us": "Height",
+                        "zh_cn": "高度"
+                      },
+                      "$description": {
+                        "en_us": "Height value.",
+                        "zh_cn": "高度的值。"
+                      }
+                    }
+                  }
+                },
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                }
+              ]
             },
             "width": {
               "$title": {
@@ -369,7 +641,143 @@
                 "en_us": "Sprite Location of this OriginsRenderData.",
                 "zh_cn": "精灵图路径的值。"
               },
-              "type": "string"
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Object",
+                    "zh_cn": "对象"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: object.",
+                    "zh_cn": "对象的值。"
+                  },
+                  "type": "object",
+                  "properties": {
+                    "sprite": {
+                      "type": "string",
+                      "$title": {
+                        "en_us": "Sprite",
+                        "zh_cn": "精灵图"
+                      },
+                      "$description": {
+                        "en_us": "Sprite value.",
+                        "zh_cn": "精灵图的值。"
+                      }
+                    },
+                    "texture": {
+                      "type": "string",
+                      "$title": {
+                        "en_us": "Texture",
+                        "zh_cn": "Texture"
+                      },
+                      "$description": {
+                        "en_us": "Texture value.",
+                        "zh_cn": "Texture的值。"
+                      }
+                    },
+                    "region": {
+                      "type": "object",
+                      "$description": {
+                        "en_us": "Where the usable area starts inside the texture and how big the file is. Textures only.",
+                        "zh_cn": "Region的值。"
+                      },
+                      "properties": {
+                        "u": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "default": 0,
+                          "$title": {
+                            "en_us": "U",
+                            "zh_cn": "U"
+                          },
+                          "$description": {
+                            "en_us": "U value.",
+                            "zh_cn": "U的值。"
+                          }
+                        },
+                        "v": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "default": 0,
+                          "$title": {
+                            "en_us": "V",
+                            "zh_cn": "V"
+                          },
+                          "$description": {
+                            "en_us": "V value.",
+                            "zh_cn": "V的值。"
+                          }
+                        },
+                        "texture_width": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "default": 256,
+                          "$title": {
+                            "en_us": "Texture Width",
+                            "zh_cn": "Texture 宽度"
+                          },
+                          "$description": {
+                            "en_us": "Texture Width value.",
+                            "zh_cn": "Texture 宽度的值。"
+                          }
+                        },
+                        "texture_height": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "default": 256,
+                          "$title": {
+                            "en_us": "Texture Height",
+                            "zh_cn": "Texture 高度"
+                          },
+                          "$description": {
+                            "en_us": "Texture Height value.",
+                            "zh_cn": "Texture 高度的值。"
+                          }
+                        }
+                      },
+                      "$title": {
+                        "en_us": "Region",
+                        "zh_cn": "Region"
+                      }
+                    },
+                    "width": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "$description": {
+                        "en_us": "Size the sprite is drawn at; must be written together with height. Omitted means the bar's own size.",
+                        "zh_cn": "宽度的值。"
+                      },
+                      "$title": {
+                        "en_us": "Width",
+                        "zh_cn": "宽度"
+                      }
+                    },
+                    "height": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "$title": {
+                        "en_us": "Height",
+                        "zh_cn": "高度"
+                      },
+                      "$description": {
+                        "en_us": "Height value.",
+                        "zh_cn": "高度的值。"
+                      }
+                    }
+                  }
+                },
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                }
+              ]
             },
             "bar_index": {
               "$title": {

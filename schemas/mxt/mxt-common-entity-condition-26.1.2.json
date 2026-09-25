@@ -688,6 +688,17 @@
               ],
               "$suggstion": true,
               "default": "exact"
+            },
+            "min_minor_stage": {
+              "$title": {
+                "en_us": "Min Minor Stage",
+                "zh_cn": "最小 Minor 阶段"
+              },
+              "$description": {
+                "en_us": "Min Minor Stage of this RealmEntityCondition.",
+                "zh_cn": "最小 Minor 阶段的值。"
+              },
+              "type": "integer"
             }
           },
           "required": [
