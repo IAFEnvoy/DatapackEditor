@@ -32,7 +32,8 @@
           },
           "type": "string",
           "enum": [
-            "mxt:always_true",
+            "mxt:always",
+            "mxt:never",
             "mxt:js",
             "mxt:and",
             "mxt:block_id",
@@ -46,14 +47,13 @@
             "mxt:blast_resistance",
             "mxt:movement_blocking",
             "mxt:chance",
-            "mxt:constant",
             "mxt:not",
             "mxt:or",
             "mxt:adjacent",
             "mxt:offset"
           ],
           "$suggstion": true,
-          "default": "mxt:always_true",
+          "default": "mxt:always",
           "$description": {
             "en_us": "Type value.",
             "zh_cn": "类型的值。"
@@ -61,14 +61,25 @@
         }
       },
       "$variants": {
-        "mxt:always_true": {
+        "mxt:always": {
           "$title": {
-            "en_us": "Always True",
-            "zh_cn": "始终为真"
+            "en_us": "Always",
+            "zh_cn": "始终"
           },
           "$description": {
-            "en_us": "Always True block_condition fields.",
-            "zh_cn": "始终为真的值。"
+            "en_us": "Always block_condition fields.",
+            "zh_cn": "始终的值。"
+          },
+          "type": "object"
+        },
+        "mxt:never": {
+          "$title": {
+            "en_us": "Never",
+            "zh_cn": "从不成立"
+          },
+          "$description": {
+            "en_us": "Never block_condition fields.",
+            "zh_cn": "从不成立的值。"
           },
           "type": "object"
         },
@@ -566,33 +577,6 @@
           },
           "required": [
             "chance"
-          ]
-        },
-        "mxt:constant": {
-          "$title": {
-            "en_us": "Constant",
-            "zh_cn": "常量"
-          },
-          "$description": {
-            "en_us": "Constant block_condition fields.",
-            "zh_cn": "常量的值。"
-          },
-          "type": "object",
-          "properties": {
-            "value": {
-              "$title": {
-                "en_us": "Value",
-                "zh_cn": "值"
-              },
-              "$description": {
-                "en_us": "Value of this ConstantCondition.",
-                "zh_cn": "值的值。"
-              },
-              "type": "boolean"
-            }
-          },
-          "required": [
-            "value"
           ]
         },
         "mxt:not": {

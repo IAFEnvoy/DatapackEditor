@@ -483,6 +483,17 @@
           "zh_cn": "物品的值。"
         }
       }
+    },
+    "priority": {
+      "$title": {
+        "en_us": "Priority",
+        "zh_cn": "优先级"
+      },
+      "$description": {
+        "en_us": "Priority of this PillBinding.",
+        "zh_cn": "优先级的值。"
+      },
+      "type": "integer"
     }
   },
   "id": "mxt-pill_binding",

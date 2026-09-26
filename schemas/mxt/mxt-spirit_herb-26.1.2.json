@@ -373,6 +373,17 @@
           "$type": "mxt-common#number_provider"
         }
       ]
+    },
+    "priority": {
+      "$title": {
+        "en_us": "Priority",
+        "zh_cn": "优先级"
+      },
+      "$description": {
+        "en_us": "Priority of this SpiritHerb.",
+        "zh_cn": "优先级的值。"
+      },
+      "type": "integer"
     }
   },
   "id": "mxt-spirit_herb",

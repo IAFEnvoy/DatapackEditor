@@ -378,6 +378,17 @@
       "type": "number",
       "minimum": 0,
       "default": 1
+    },
+    "priority": {
+      "$title": {
+        "en_us": "Priority",
+        "zh_cn": "优先级"
+      },
+      "$description": {
+        "en_us": "Priority of this ItemBinding.",
+        "zh_cn": "优先级的值。"
+      },
+      "type": "integer"
     }
   },
   "id": "mxt-item_binding",

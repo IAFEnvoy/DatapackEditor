@@ -81,7 +81,9 @@
             "mxt:explode",
             "mxt:spawn_particles",
             "mxt:spawn_effect_cloud",
-            "mxt:spawn_lightning"
+            "mxt:spawn_lightning",
+            "mxt:modify_lifespan",
+            "mxt:reincarnate"
           ],
           "$suggstion": true,
           "default": "mxt:no_op",
@@ -4016,6 +4018,95 @@
               "default": true
             }
           }
+        },
+        "mxt:modify_lifespan": {
+          "$title": {
+            "en_us": "Modify Lifespan",
+            "zh_cn": "修改寿元"
+          },
+          "$description": {
+            "en_us": "Modify Lifespan entity_action fields.",
+            "zh_cn": "修改寿元的值。"
+          },
+          "type": "object",
+          "properties": {
+            "mode": {
+              "$title": {
+                "en_us": "Mode",
+                "zh_cn": "模式"
+              },
+              "$description": {
+                "en_us": "Mode of this ModifyLifespanAction.",
+                "zh_cn": "模式的值。"
+              },
+              "type": "string",
+              "enum": [
+                "add",
+                "set"
+              ],
+              "$suggstion": true,
+              "default": "add"
+            },
+            "amount": {
+              "$title": {
+                "en_us": "Amount",
+                "zh_cn": "数量"
+              },
+              "$description": {
+                "en_us": "Amount of this ModifyLifespanAction.",
+                "zh_cn": "数量的值。"
+              },
+              "oneOf": [
+                {
+                  "$title": {
+                    "en_us": "Text",
+                    "zh_cn": "文本"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: text.",
+                    "zh_cn": "文本的值。"
+                  },
+                  "type": "string"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number",
+                    "zh_cn": "数值"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number.",
+                    "zh_cn": "数值的值。"
+                  },
+                  "type": "number"
+                },
+                {
+                  "$title": {
+                    "en_us": "Number Provider",
+                    "zh_cn": "数值提供器"
+                  },
+                  "$description": {
+                    "en_us": "One accepted form of this value: number provider.",
+                    "zh_cn": "数值提供器的值。"
+                  },
+                  "$type": "mxt-common#number_provider"
+                }
+              ]
+            }
+          },
+          "required": [
+            "amount"
+          ]
+        },
+        "mxt:reincarnate": {
+          "$title": {
+            "en_us": "Reincarnate",
+            "zh_cn": "转世"
+          },
+          "$description": {
+            "en_us": "Reincarnate entity_action fields.",
+            "zh_cn": "转世的值。"
+          },
+          "type": "object"
         }
       }
     }
